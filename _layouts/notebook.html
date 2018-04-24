@@ -1,9 +1,25 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         {% include notebook_header.html %}
     </head>
     <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Climate CMS</a>
+            <ul class="navbar-nav mr-auto">
+                {% if page.previous.url %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+                    </li>
+                {% endif %}
+                {% if page.next.url %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+      </nav>
       <div tabindex="-1" id="notebook" class="border-box-sizing">
         <div class="container" id="notebook-container">
         {% include notebooks/{{ page.notebook }} %}
