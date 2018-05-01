@@ -16,7 +16,7 @@
 title: CLEX CMS Blog
 # email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-    CMS provides programming and data support to researchers at CLEX, the ARC Centre of Excellence for Cliamte Extremes
+    CMS provides programming and data support to researchers at CLEX, the ARC Centre of Excellence for Climate Extremes
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://climate-cms.org" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
