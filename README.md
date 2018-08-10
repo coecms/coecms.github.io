@@ -1,6 +1,10 @@
 CMS Blog
 ========
 
+The blog is viewable here:
+
+http://climate-cms.org
+
 See the Jekyll docs for info on creating posts - https://jekyllrb.com/docs/posts/
 
 ---
