@@ -1,5 +1,5 @@
 ---
-title: Merge arrays with missing data
+title: Fortran Debugging Video Series
 layout: post
 excerpt: >-
     Presentation of Fortran Debugging Video Series
