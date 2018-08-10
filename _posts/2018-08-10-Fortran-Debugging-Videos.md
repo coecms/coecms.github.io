@@ -1,12 +1,10 @@
 ---
 title: Fortran Debugging Video Series
+author: Holger Wolff
 layout: post
 excerpt: >-
     Presentation of Fortran Debugging Video Series
 ---
-
-Video Series on Fortran Debugging
-=================================
 
 Last year we have given a Fortran Debugging Session during a workshop.
 
