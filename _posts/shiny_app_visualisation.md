@@ -157,3 +157,5 @@ We can leave our `shinyApp(ui, server)` command as is.
 And that's it!
 
 Run the app, and you should get something that looks like this:
+
+![Basic Heatwave App]( {{ "/images/shinyapp.jpg" | absolute_url }})
