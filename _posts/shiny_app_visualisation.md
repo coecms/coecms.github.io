@@ -30,7 +30,7 @@ library(colourpicker)
 ```
 
 The basic compnents of a Shiny app are the following 3 commands:
-```
+```R
 ui <- fluidPage()
 
 server <- function(input, output) { }
@@ -51,12 +51,12 @@ Providing Data For The App
 --------------------------
 
 To correct this situation, let's get our app to read in some data. Beforehand we downloaded some heatwave data which we will be using. Above our `ui <- fluidPage()` command, let's add in the following:
-```
+```R
 ncname <- "hw_ANN_CAM5-1-2degree_All-Hist_run001_1959-2012.nc"
 ncin <- nc_open(ncname)
 ```
 Now we'll extract some basic variables from the files - `lat`, `lon` - with which we'll calculate the dimensions for our contour map, as well as the names of the other variables in the data:
-```
+```R
 lat <- ncvar_get(ncin, "lat")
 lon <- ncvar_get(ncin, "lon")
 rows <- dim(lat)
@@ -69,11 +69,11 @@ Implementing the User Interface (UI)
 ------------------------------------
 
 We're now going to expand our `ui <- fluidPage()` to provide the controllers that will allow us to manipulate the plot. We will put our controllers in a sidebar panel on the left and there we will put 6 controllers:
-1. A select input to select the variable from the data to plot.
-2. A select input to select the statistic we wish to plot - mean, variance or standard deviation.
-3. A slider input to choose the range of years of data to plot.
-4. 3 colour inputs to set the colours to use for the maximum, minimum and median values in the plot.
-```
+* A select input to select the variable from the data to plot.
+* A select input to select the statistic we wish to plot - mean, variance or standard deviation.
+* A slider input to choose the range of years of data to plot.
+* 3 colour inputs to set the colours to use for the maximum, minimum and median values in the plot.
+```R
 ui <- fluidPage(
   titlePanel("The Facts About Heatwaves"),
   
@@ -92,7 +92,7 @@ ui <- fluidPage(
     ),
  ```
  The plot itself will be display in the main panel, to the right of the side bar:
- ```
+ ```R
     mainPanel(
       plotOutput(outputId = "contourMap")
     )
@@ -105,7 +105,7 @@ If you run it now, you should see the controllers in the side panel, with a spac
 Implementing the Server Code
 ----------------------------
 We will now replace our `server <- function(input, output) { }` with server code that does something.
-```
+```R
 server <- function(input, output) {
 
   # Here is the code for the contour map that will be displayed in the main panel
