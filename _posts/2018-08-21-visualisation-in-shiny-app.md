@@ -162,4 +162,4 @@ And that's it!
 
 Run the app, and you should get something that looks like this:
 
-[![Basic Heatwave App ("/images/shinyapp.jpg")]
+![Basic Heatwave App]({{ "shinyapp.jpg" | absolute_url }})
