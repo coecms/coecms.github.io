@@ -19,18 +19,15 @@ Before you can create a Shiny app, you first have to install RStudio. (See https
 
 Once you've done that, you'll want to install some packages that we'll be using in the Console window:
 ```
-install.packages("shiny", "shinydashboard", "ggplot2", "dplyr", "ncdf4", "itsmr", "colourpicker")
+install.packages("shiny", "ncdf4", "maps", "colourpicker")
 ```
 Create a new R script. We will start by importing the libraries our app will need:
 ```
 ## Basic Heatwave App ##
 
 library(shiny)
-library(shinydashboard)
-library(ggplot2)
-library(dplyr)
 library(ncdf4)
-library(itsmr)
+library(maps)
 library(colourpicker)
 ```
 
@@ -55,20 +52,21 @@ Click `Run App` and it should bring up for you an empty browser window, indicati
 Providing Data For The App
 --------------------------
 
-To correct this situation, let's get our app to read in some data. Beforehand we downloaded some heatwave data which we will be using. Above our `ui <- fluidPage()` command, let's add in the following:
+To correct this situation, let's get our app to read in some data. Beforehand we downloaded some heatwave data to our working directory which we will be using. Above our `ui <- fluidPage()` command, let's add in the following:
 ```R
+# load the heatwave data file
 ncname <- "hw_ANN_CAM5-1-2degree_All-Hist_run001_1959-2012.nc"
 ncin <- nc_open(ncname)
 ```
-Now we'll extract some basic variables from the files - `lat`, `lon` - with which we'll calculate the dimensions for our contour map, as well as the names of the other variables in the data:
+Now we'll extract some basic variables from the files - `lat`, `lon` - with which we'll calculate the dimensions for our contour map, as well as the names of the other variables in the data. We'll set up the matrix of our contour map with these dimensions.
 ```R
-lat <- ncvar_get(ncin, "lat")
-lon <- ncvar_get(ncin, "lon")
-rows <- dim(lat)
-cols <- dim(lon)
-area <- matrix(0, nrow=rows, ncol=cols)
-
+# extract lat, lon and variable names
+lats <- ncvar_get(ncin, "lat")
+lons <- ncvar_get(ncin, "lon")
 varNames <- attributes(ncin$var)$names[4:23]
+
+# set up the matrix for the contour map
+area <- matrix(0,nrow=dim(lons), ncol=dim(lats))
 ```
 Implementing the User Interface (UI)
 ------------------------------------
@@ -79,18 +77,31 @@ We're now going to expand our `ui <- fluidPage()` to provide the controllers tha
 * A slider input to choose the range of years of data to plot.
 * 3 colour inputs to set the colours to use for the maximum, minimum and median values in the plot.
 ```R
+# implement the app's user interface 
 ui <- fluidPage(
   titlePanel("The Facts About Heatwaves"),
-  
-  # Code for the Side bar
+
+  # put the UI controllers in a sidebar  
   sidebarLayout(
+    
     sidebarPanel(
       
+      # to select the variable
       selectInput("var", "Variable:", choices=varNames),
+
+      # to select the statistic to apply
       selectInput("stat", "Statistic:",
                   choices=c("Mean", "Variance", "Standard Deviation")),
+
+      # a slider to select the date range    
       sliderInput("dateRange", "Date Range", min=1959, max=2012,
                   value=c(1959,2012), dragRange = TRUE, sep=""),
+      
+      # a slider to select the range of z values to include in the plot
+      sliderInput("dataRange", "Data Range", min=-50, max=100,
+                  value=c(-50,100), dragRange = TRUE, sep=""),
+
+      # to select the colours you want for the max, min and median values
       colourInput("colMax", "Maximum Colour", "Red", showColour = "background"),
       colourInput("colMid", "Median Colour", "White", showColour = "background"),
       colourInput("colMin", "Minimum Colour", "Blue", showColour = "background")
@@ -135,25 +146,27 @@ server <- function(input, output) {
     dateRange = input$dateRange
     indexRange <- dateRange - 1958
     
-    for (row in 1:rows){
-      for (col in 1:cols){
-
-        # for each point on our spatial grid, get the array of values over time.
-        vals <- varValues[col, row, indexRange[1]:indexRange[2]]
+    # go to every lat/lon point, take the variable's values over the entire time range,
+    # apply the selected function on it and store it in the contour map's matrix
+    for (lat in 1:dim(lats)){
+      for (lon in 1:dim(lons)){
+        vals <- varValues[lon, lat, indexRange[1]:indexRange[2]]
 
         # remove Na values
         vals <- vals[!is.na(vals)]
-        
-        # apply our function (mean, var or sd) to the array of values
-        area[row, col] <- fn(vals)
+        area[lon, lat] <- fn(vals)
       }
     }
     
-    # Create a palette from the 3 selected colours to use in the contour map
+    # Create a palette with the 3 selected colours to use in the contour map
     colours = colorRampPalette(c(input$colMin, input$colMid, input$colMax))(24)
 
-    # Display a filled contour map
-    filled.contour(area, col=colours)
+    # display the contour map with lat/lon axes and a world map
+    filled.contour(lons,lats,area, col=colours, zlim =input$dataRange, 
+                   xlim = range(lons), ylim = range(lats),
+                   plot.axes = {axis(1);axis(2);
+                     map('world',add=TRUE, wrap=c(0,360), interior = FALSE)}
+    )
   })
 }
 ```
@@ -161,6 +174,6 @@ server <- function(input, output) {
 We can leave our `shinyApp(ui, server)` command as is.
 And that's it!
 
-Run the app, and you should get something that looks like this:
+Now run the app and check it out. You should get something that looks like this (after adjusting the "Data Range" slider as shown):
 
-![Basic Heatwave App]({{ "/images/shinyapp.JPG" | absolute_url }})
+![Basic Heatwave App]({{ "/images/HeatwaveApp.JPG" | absolute_url }})
