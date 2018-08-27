@@ -8,7 +8,7 @@ layout: default
 <div class="home">
     <ul class="post-list">
     {%- for post in site.posts -%}
-        <li>
+        <li style="padding-bottom: 30px;">
             <h3><a class="post-link" href="{{ post.url | relative_url }}">
                 {{ post.title | escape }}
             </a></h3>
