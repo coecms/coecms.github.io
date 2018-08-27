@@ -6,7 +6,7 @@ excerpt: >-
     How to use the R Shiny package to create cool visualisation apps
 categories: visualisation, R, Shiny
 ---
-Supposing you have data you want to present in a way which will be intuitive easy to interpret. Perhaps you want to present it to colleagues, or perhaps as outreach to the public. What's the best way to achieve that?
+Supposing you have data you want to present in a way which will be intuitive to interpret. Perhaps you want to present it to colleagues, or perhaps as outreach to the public. What's the best way to achieve that?
 
 Effective visualisation is clearly the key to conveying your point. An interactive plot in a website could really make it happen. But how do you go about doing that?
 
