@@ -15,7 +15,7 @@ Fortunately, there are a number of popular visualisation tools around designed t
 Let's Get Started
 -----------------
 
-Before you can create a Shiny app, you first have to install RStudio. (See https://www.rstudio.com/ for installation and other basics about using RStudio.)
+Before you can create a Shiny app, you first have to install RStudio. (See [https://www.rstudio.com/](https://www.rstudio.com/) for installation and other basics about using RStudio.)
 
 Once you've done that, you'll want to install some packages that we'll be using in the Console window:
 ```
