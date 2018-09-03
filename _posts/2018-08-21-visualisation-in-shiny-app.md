@@ -19,8 +19,10 @@ Before you can create a Shiny app, you first have to install RStudio. (See [http
 
 Once you've done that, you'll want to install some packages that we'll be using in the Console window:
 ```
-install.packages("shiny", "ncdf4", "maps", "colourpicker")
+install.packages(c("shiny", "ncdf4", "maps", "colourpicker"))
 ```
+(in some cases packages may require compilation)
+
 Create a new R script. We will start by importing the libraries our app will need:
 ```
 ## Basic Heatwave App ##
