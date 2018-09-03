@@ -21,7 +21,7 @@ Once you've done that, you'll want to install some packages that we'll be using 
 ```
 install.packages(c("shiny", "ncdf4", "maps", "colourpicker"))
 ```
-(in some cases packages may require compilation)
+(in some cases supporting packages may require compilation)
 
 Create a new R script. We will start by importing the libraries our app will need:
 ```
@@ -108,9 +108,7 @@ ui <- fluidPage(
       colourInput("colMid", "Median Colour", "White", showColour = "background"),
       colourInput("colMin", "Minimum Colour", "Blue", showColour = "background")
     ),
- ```
- The plot itself will be display in the main panel, to the right of the side bar:
- ```R
+    # The plot itself will be display in the main panel, to the right of the side bar:
     mainPanel(
       plotOutput(outputId = "contourMap")
     )
@@ -118,7 +116,7 @@ ui <- fluidPage(
 )
 ```
 
-If you run it now, you should see the controllers in the side panel, with a space to the right where our plot will go. Now to implement the plot...
+If you run it now (`shinyApp(ui, server)`), you should see the controllers in the side panel, with a space to the right where our plot will go. Now to implement the plot...
 
 Implementing the Server Code
 ----------------------------
