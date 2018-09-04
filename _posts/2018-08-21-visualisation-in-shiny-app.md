@@ -54,7 +54,7 @@ Now run the app. (Some versions of RStudio have a `Run App` button. Otherwise, y
 Providing Data For The App
 --------------------------
 
-To correct this situation, let's get our app to read in some data. Beforehand we downloaded some heatwave data to our working directory which we will be using. Above our `ui <- fluidPage()` command, let's add in the following:
+To correct this situation, let's get our app to read in some data. Beforehand we downloaded some global heatwave data to our working directory which we will be using. For the purposes of this exercise, any global dataset should be fine. Above our `ui <- fluidPage()` command, let's add in the following:
 ```R
 # load the heatwave data file
 ncname <- "hw_ANN_CAM5-1-2degree_All-Hist_run001_1959-2012.nc"
