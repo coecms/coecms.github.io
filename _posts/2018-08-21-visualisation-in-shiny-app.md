@@ -49,7 +49,7 @@ The second command, `server <- function(input, output) { }` is the code for the 
 
 The third command, `shinyApp(ui, server)` tells R to run the Shiny app.
 
-Click `Run App` and it should bring up for you an empty browser window, indicating that your Shiny app works, but doesn't yet do anything.
+Now run the app. (Some versions of RStudio have a `Run App` button. Otherwise, you might need to run it from a menu item: **Code -> Run Region -> Run All**.) It should bring up for you an empty browser window, indicating that your Shiny app works, but doesn't yet do anything.
 
 Providing Data For The App
 --------------------------
