@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Storage: where, what why and how?
+title: Storage - where, what why and how?
 author: Aidan Heerdegen
 excerpt: >-
     Where is my stuff? What even is it? Why is it taking up so much space and how can I fix it?
-categories: visualisation, R, Shiny
+categories: storage, disk
 ---
 
 Simulations, analysis, modelling, use and/or create data.
