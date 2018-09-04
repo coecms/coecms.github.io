@@ -19,8 +19,10 @@ Before you can create a Shiny app, you first have to install RStudio. (See [http
 
 Once you've done that, you'll want to install some packages that we'll be using in the Console window:
 ```
-install.packages("shiny", "ncdf4", "maps", "colourpicker")
+install.packages(c("shiny", "ncdf4", "maps", "colourpicker"))
 ```
+(in some cases supporting packages may require compilation)
+
 Create a new R script. We will start by importing the libraries our app will need:
 ```
 ## Basic Heatwave App ##
@@ -106,9 +108,8 @@ ui <- fluidPage(
       colourInput("colMid", "Median Colour", "White", showColour = "background"),
       colourInput("colMin", "Minimum Colour", "Blue", showColour = "background")
     ),
- ```
- The plot itself will be display in the main panel, to the right of the side bar:
- ```R
+
+    # The plot itself will display in the main panel, to the right of the side bar:
     mainPanel(
       plotOutput(outputId = "contourMap")
     )
@@ -116,7 +117,7 @@ ui <- fluidPage(
 )
 ```
 
-If you run it now, you should see the controllers in the side panel, with a space to the right where our plot will go. Now to implement the plot...
+Let's leave `shinyApp(ui, server)` at the bottom. If you run it now (i.e. click `Run App`), you should see the controllers in the side panel, with a space to the right where our plot will go. Now to implement the plot...
 
 Implementing the Server Code
 ----------------------------
