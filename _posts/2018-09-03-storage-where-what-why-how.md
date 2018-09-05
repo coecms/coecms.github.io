@@ -15,9 +15,9 @@ Space is limited: need to optimise storage.
 
 **What** is using up the disk space
 
-**Why** it is there (data triage: maybe you no longer need it) 
+**Why** is it there (data triage: maybe you no longer need it) 
 
-**How** you can reduce your usage to make room for MORE!
+**How** can you reduce your usage to make room for MORE!
 
 
 # Where
@@ -30,13 +30,13 @@ More detail for a single project is available using the `nci_account` command
 ```
 nci_account -P project_id
 ```
-To query usage for an on-disk file system NCI provides commands which report on daily crawls of the filesystem. On NCI systems it is the group of a file that determines how it is accounted for, not where it resides on the filesystem
+To query usage for an on-disk file system, NCI provides commands which report on filesystem usage, updated daily. On NCI systems, it is the project owning a file that determines how it is accounted for, not where the file resides on the filesystem
 ```
 short_files_report -G project_id
 gdata1_files_report -G project_id
 ```
 
-For Centre of Excellence projects (and a few others) we track usage over time using `ncimonitor`. To access this command:
+For Centre of Excellence projects (and a few others), we track usage over time using `ncimonitor`. To access this command:
 ```
 module use /g/data3/hh5/public/modules
 module load conda
@@ -53,10 +53,14 @@ Look at the change in your short file usage since the beginning of the quarter
 ```
 ncimonitor -P project_id --short -u $USER --delta
 ```
+For a full list of options
+```
+ncimonitor -h
+```
 
 # What?
 
-When you know where to look, to find out what is using all the disk space. Can use `ls`, `du` and `find`
+When you know where to look, to find out what is using all the disk space, you can use `ls`, `du` and `find`
 ```
 ls -lSrh dir
 du -shc dir/* | sort -h
@@ -67,9 +71,9 @@ But there is a better tool: `ncdu`
 ncdu directory_name
 ```
 `ncdu` crawls the directory you point it at, collects all the information about the files and directories, and presents this as a curses based interactive program. Using the arrow keys and navigating to another directory shows a view of the storage usage in that directory.
-Push '?' to get help on the options available. 'g' changes the layout. 'C' lists by numbers of items. 'c' will show how many items there are in a directory.
+Press '?' to get help on the options available. 'g' changes the layout. 'C' lists by numbers of items. 'c' will show how many items there are in a directory.
 
-Once you've found the files taking the space, need to find out what are they? The unix command `file` can help in some cases
+Once you've found the files taking the space, you need to find out what are they? The unix command `file` can help in some cases
 ```
 file filename
 ```
@@ -85,7 +89,7 @@ grib_ls grib_file
 # Why?
 
 Why do I have these in the first place? If you're running a model: check the diagnostics (output variables) being 
-produced. Do you need them all? Before starting a run check you will have enough space to store all the data produced.
+produced. Do you need them all? Before starting a run, check you will have enough space to store all the data produced.
 
 Analysing data: does your workflow involve:
 
@@ -98,45 +102,58 @@ Explore other approaches! You may be needlessly making multiple copies of data w
 
 How can I use less disk space? Data triage: Why am I storing these files?
 
-Archive if:
+## Archive if:
 
-* no longer require fast access, e.g. for analysis
+* no longer require fast access, e.g. raw data that has been analysed
 
-Delete if:
+## Delete if:
 
+* you don't remember what the data is or comes from
 * not required
 * duplicates of data available with similar access time (on disk, readable) or with a longer access time (mass data, off-site) if no longer require fast access
 * intermediate data for analysis (keep scripts to regenerate (version control))
 
-How can I use less disk space for the files/fields I must keep? Compression!
+## How can I use less disk space for the files/fields I must keep?
+### Netcdf files
 
+** Compression! **
 netCDF4 has lossless internal compression (transparent to user) which is typically half to a quarter of the same data uncompressed. 
 
 Output compressed netCDF4 directly from models/analysis where possible.
 
 Otherwise use compression tools.
 
-nccompress can be used to batch compress netcdf files
+nccompress can be used to batch compress netcdf files. To access this command:
 ```
-	nccompress -r -o -p -b 500 directory_name
+module use /g/data3/hh5/public/modules
+module load conda
 ```
-
-You can reduce the precision of netCDF data: known as packing.
+```
+nccompress -r -o -p -b 500 directory_name
+```
+For help on all available options:
+```
+nccompress -h
+```
+** Packing **
+You can reduce the precision of netCDF data, known as packing.
 
 The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally halves size of file. 
 
-Useful when data is produced: problems can be corrected and data regenerated. We don't recommend packing existing data: it is lossy and there is high potential for corruption, but if you must `nco` (`module load nco`) has a tool for packing
+Useful when data is produced: problems can be corrected and data regenerated. We don't recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, `nco` (`module load nco`) has a tool for packing
 ```
 ncpdq -L 5 infile.nc outfile.nc
 ```
 
+### UM history files
 UM history files can be compressed with tools like gzip, but this can be time consuming and the file must be uncompressed before using.
 Alternatively convert to compressed netCDF4.
 ```
 ~access/bin/um2netcdf.py -i um_file -o um_file.nc -k 4 -d 5
 ```
 
-Text files (and binary files) generally compress well, a lot of redundant information. This is lossless compression
+### Text files and binary
+Text files and binary files generally compress well, a lot of redundant information. This is lossless compression
 ```
 gzip textfile
 ```
@@ -147,11 +164,12 @@ To uncompress
 gunzip textfile.gz
 ```
 
-There is a limit on inodes (number of files). If you are close to this limit you need to reduce the number of files you are storing.
+## How can I reduce the number of files I store?
+There is a limit on inodes (number of files) on NCI machine. If you are close to this limit you need to reduce the number of files you are storing.
 
 One solution if you have a large number of netCDF files is to aggregate them. 
 
-Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata is repeated, so it is redundant, so this approach saves on space as well.
+Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata is repeated, so it is redundant, this approach saves on space as well.
 
 Use `nco` (`module load nco`)
 ```
@@ -163,7 +181,7 @@ If you have a large number of text files (logs etc) you can use `tar`:
 ```
 tar -zcvf tarfile.tar.gz directory_name
 ```
-This will put all the files in a single tape archive file and compress everything on the fly. Once again the originals must be deleted, or optionally you can use the `--remove-files` command line option to remove the files as they are added to the archive.
+This will put all the files in a single tape archive file and compress everything on the fly. Once again, the originals must be deleted, or optionally you can use the `--remove-files` command line option to remove the files as they are added to the archive.
 
 To see the contents of a tar file:
 ```
@@ -174,38 +192,39 @@ and to uncompress and restore all files
 tar -xvf tarfile.tar.gz
 ```
 
-Move data up the storage hierarchy: 
+## Move data up the storage hierarchy: 
 ```
 short	<	gdata 	< 	massdata
 ```
-In general the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for same storage.
+In general the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.
 
 Have a data workflow that moves data from short to gdata to massdata in a planned manner. 
 
 If inode quota is already tight on short, files must be aggregated when moving up the hierarchy. massdata is faster with larger file sizes due to physical limits of tape.
 
-
-Moving data up the storage hierarcy means copying data from one on-disk filesystem to another. Can use `cp`
+### Moving data between disks
+Moving data up the storage hierarchy means copying data from one on-disk filesystem to another. Can use `cp`
 ```
 cp -r origin destination
 ```
-Use rsync for large operations, if it times out, can run the same command and it will resume copying only that which has not yet been duplicated
+Use rsync for large operations, if it times out, you can run the same command and it will resume copying only that which has not yet been duplicated
 ```
 rsync -va origin destination
 ```
 
-In some cases it is important to not enforce group ownership, say when copying files that are owned by one project into a space where the files should be owned by a different project. In this case don't use the archive option (`-a`) but use the following option spaghetti: `-rltoD`
+In some cases, it is important to not enforce group ownership, say when copying files that are owned by one project into a space where the files should be owned by a different project. In this case don't use the archive option (`-a`) but use the following option spaghetti: `-rltoD`
 ```
 rsync --ignore-existing -vrltoD --safe-links origin destination
 ```
 
+### Moving data between disk and tape
 The "highest" position on the storage hierarchy is the tape based mass data store.
 
 But but but …
 
     "Massdata is a big black hole where data goes to die"
 
-Well, sort of ... massdata is more difficul to access and more difficult to locate data that is stored there.
+Well, sort of ... massdata is more difficult to access and data that is stored there is more difficult to locate.
 
 NCI supported methods:
 ```
@@ -219,8 +238,12 @@ You can put large amounts of data with netmv / netcp. Makes tar file of a direct
 If a data transfer times out before it is finished, it can be difficult to determine what has been transferred successfully, and extremely difficult to then transfer only what wasn't successfully written.
 
 CMS has written a tool (`mdssdiff`) to help with this. It is also available in the CMS conda environment.
+```
+module use /g/data3/hh5/public/modules
+module load conda
+```
 
-To show difference between local directory and remote copy on `mdss`:
+To show differences between local directory and remote copy on `mdss`:
 ```
 mdssdiff localdir -p $USER/path_to_localdir_on_mdss
 ```
@@ -241,7 +264,7 @@ As above, but specify project
 	mdssdiff -P project_id -cl -r localdir -p $USER/remotedir
 ```
 
-# How? In the future
+### Moving data between disk and tape: In the future
 
 There are plans to make it easier and more attractive to transfer files to massdata by creating more supporting software tools:
 
