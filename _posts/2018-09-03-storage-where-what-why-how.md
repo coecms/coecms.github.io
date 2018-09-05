@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Storage - where, what why and how?
+title: Storage - where, what, why and how?
 author: Aidan Heerdegen
 excerpt: >-
     Where is my stuff? What even is it? Why is it taking up so much space and how can I fix it?
@@ -117,6 +117,7 @@ How can I use less disk space? Data triage: Why am I storing these files?
 ### Netcdf files
 
 **Compression!**
+
 netCDF4 has lossless internal compression (transparent to user) which is typically half to a quarter of the same data uncompressed. 
 
 Output compressed netCDF4 directly from models/analysis where possible.
@@ -135,7 +136,9 @@ For help on all available options:
 ```
 nccompress -h
 ```
+
 **Packing**
+
 You can reduce the precision of netCDF data, known as packing.
 
 The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally halves size of file. 
