@@ -116,7 +116,7 @@ How can I use less disk space? Data triage: Why am I storing these files?
 ## How can I use less disk space for the files/fields I must keep?
 ### Netcdf files
 
-** Compression! **
+**Compression!**
 netCDF4 has lossless internal compression (transparent to user) which is typically half to a quarter of the same data uncompressed. 
 
 Output compressed netCDF4 directly from models/analysis where possible.
@@ -135,7 +135,7 @@ For help on all available options:
 ```
 nccompress -h
 ```
-** Packing **
+**Packing**
 You can reduce the precision of netCDF data, known as packing.
 
 The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally halves size of file. 
