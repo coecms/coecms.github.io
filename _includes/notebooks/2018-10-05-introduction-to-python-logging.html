@@ -1,0 +1,1101 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Basic-usage-of-python-logging-module"><strong>Basic usage of python logging module</strong><a class="anchor-link" href="#Basic-usage-of-python-logging-module">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Most people use <em>print</em> statements to debug their code, uncommenting them when they need them and commenting them again when they have finished.<br>
+Python has some proper debugging modules like <em>pdb</em> or you might be using an IDE with debug functionality like <em>pycharm</em> .<br>
+Look here for a list: <a href="https://wiki.python.org/moin/PythonDebuggingTools">https://wiki.python.org/moin/PythonDebuggingTools</a> ).<br>
+While these tools are certainly good, in this blog I will show you how to use the <strong>logging</strong> module. This module used in a basic mode is as easy as printing statements but will give you a lot more control on your code and to also add eventually more advanced features.<br>
+As well as demostrating some simple usage of <em>logging</em> I will touch also on other simple but useful debugging tools: the functions type() and dir() and the try/except control flow.</p>
+<p><em>logging</em> is part of the python distribution so you do not need to install or load anything else, simply import the module.<br>
+NB I am using python3.6 there might be difference if you are using a different version.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we are ready to start!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Printing-out-messages-and-logging-levels"><strong>Printing out messages and logging levels</strong><a class="anchor-link" href="#Printing-out-messages-and-logging-levels">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message the code will not print this unless you change its operating level&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This is a warning message this should be printed on your console
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All we have to do is to call one of the logging printing method, we used <em>warning</em> and <em>info</em>.<br>
+Let's have a look at the message we printed.<br>
+The first part indicates the logging level, in this case <em>WARNING</em>.<br>
+The second part <em>root</em> is telling us that we are using the <em>root logger</em> i.e. the default logger, in fact we haven't set up anything up to now, but just started using logging. 
+Finally ther eis the message.<br>
+The <em>logging.info</em> command didn't produce any output. Logging has 5 different levels. From the lowest:</p>
+<ul>
+<li>DEBUG</li>
+<li>INFO</li>
+<li>WARNING</li>
+<li>ERROR</li>
+<li>CRITICAL<br>
+Logging will only show the messages which are of level &gt;= of the set level, the default level is <em>warning</em> so our <em>info</em> message is not getting printed.<br>
+Let's change the level.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a debug message which will not be shown, its level is below the set level&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This is a warning message this should be printed on your console, its level is above the set level
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Oops nothing happened, the level is still set to <em>warning</em>. Let's pretend we researched this, there could various situations when this happens the answer in short is:  <em>This function does nothing if the root logger has already handlers configured</em>.  <br>
+In my brief experience this is mostly the case. The root logger is set up so you can get logging to work straight on as we did. <em>Loggers</em> are the logging object we are dealing with like any other python variable they have some attributes and some methods. So when we use <em>logging.info</em> for example we are calling the method info of our root logger. A logging <em>handler</em> takes a log message and send it to an output, this could the console (default) or a file, an e-mail or more complex outputs.  <br>
+This might seems complicated but now that we know there is already a logger defined we know how to deal with it. <br> 
+We can use two approaches:</p>
+<ul>
+<li>disable the root logger handlers and start afresh</li>
+<li>create our own logger <br>
+Let's start with the first and then we'll see how to set your own logger.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Remove all handlers associated with the root logger object.</span>
+<span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a debug message which will not be shown, its level is below the set level&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This is a warning message this should be printed on your console, its level is above the set level
+INFO:root:This is an info message it should be printed now!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Setting-up-a-logger"><strong>Setting up a logger</strong><a class="anchor-link" href="#Setting-up-a-logger">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a debug message which will not be shown, its level is below the set level&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This is a warning message this should be printed on your console, its level is above the set level
+INFO:root:This is an info message it should be printed now!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We retrieved the logger and save it to a variable using <strong>getLogger()</strong>.<br>
+Then we use <strong>setLevel()</strong> to change the level to INFO and the messages are showing as expected.<br>
+If we want to run the code in debug mode we can now change only the logging level instead of commenting/uncommenting print statements.<br>
+This is a good start but let's see how we can actually print out something a bit more useful.<br>
+Personally when I'm trying to debug something there are 3 things which I usually print: the variable value, its type and the methods and attributes. Remember then in python any variable is an object and can have more or less complex methods (functions) and attributes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This script is totally useless
+INFO:root:Starting complex calculation
+INFO:root:Calculation completed, result is 1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This looks more like a script, first of all we are starting using the levels as appropriate.<br>
+INFO is used to define the steps our script is going through and show us the result of our calculation.<br>
+WARNING is telling the user something which is potentially an issue but not an error.<br>
+DEBUG is ready to show us the values and of the variables we used, should something go wrong.<br>
+Please note that I am using %d as a number placeholder.<br>
+Let's now generate an error.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This script is totally useless
+INFO:root:Starting complex calculation
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-6455a6502345&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> logger<span class="ansi-blue-fg">.</span>debug<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Input values are %d %d&#39;</span><span class="ansi-blue-fg">,</span> var1<span class="ansi-blue-fg">,</span> var2<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> logger<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Starting complex calculation&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>result <span class="ansi-blue-fg">=</span> var1 <span class="ansi-blue-fg">+</span> var2
+<span class="ansi-green-intense-fg ansi-bold">      7</span> logger<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Calculation completed, result is %d&#39;</span><span class="ansi-blue-fg">,</span> result<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Instead of 0 we passed the equivalent string so we get an error. Let's switch to <em>debug</em> level.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#logger = logging.getLogger()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This script is totally useless
+Traceback (most recent call last):
+  File &#34;/g/data3/hh5/public/apps/miniconda3/envs/analysis27-18.07/lib/python2.7/logging/__init__.py&#34;, line 868, in emit
+    msg = self.format(record)
+  File &#34;/g/data3/hh5/public/apps/miniconda3/envs/analysis27-18.07/lib/python2.7/logging/__init__.py&#34;, line 741, in format
+    return fmt.format(record)
+  File &#34;/g/data3/hh5/public/apps/miniconda3/envs/analysis27-18.07/lib/python2.7/logging/__init__.py&#34;, line 465, in format
+    record.message = record.getMessage()
+  File &#34;/g/data3/hh5/public/apps/miniconda3/envs/analysis27-18.07/lib/python2.7/logging/__init__.py&#34;, line 329, in getMessage
+    msg = msg % self.args
+TypeError: %d format: a number is required, not str
+Logged from file &lt;ipython-input-8-19596707b9a2&gt;, line 6
+INFO:root:Starting complex calculation
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-8-19596707b9a2&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> logger<span class="ansi-blue-fg">.</span>debug<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Input values are %d %d&#39;</span><span class="ansi-blue-fg">,</span> var1<span class="ansi-blue-fg">,</span> var2<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span> logger<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Starting complex calculation&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 8</span><span class="ansi-red-fg"> </span>result <span class="ansi-blue-fg">=</span> var1 <span class="ansi-blue-fg">+</span> var2
+<span class="ansi-green-intense-fg ansi-bold">      9</span> logger<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Calculation completed, result is %d&#39;</span><span class="ansi-blue-fg">,</span> result<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Funnily enough now we have two separate error messages:</p>
+<ul>
+<li>The debug statement uses %d as place holder which fails when passed a string, we can use %s instead which is a string place holder and works with basically everything. You will notice that this error didn't stop the code from going on.</li>
+<li>The second error message tells us we have a type error, we can improve our debug message to catch this better.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">, their respective types are </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This script is totally useless
+DEBUG:root:Input values are 1 0, their respective types are &lt;type &#39;int&#39;&gt; and &lt;type &#39;str&#39;&gt;
+INFO:root:Starting complex calculation
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-9-21ff22721b76&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> logger<span class="ansi-blue-fg">.</span>debug<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Input values are %s %s, their respective types are %s and %s&#39;</span><span class="ansi-blue-fg">,</span> var1<span class="ansi-blue-fg">,</span> var2<span class="ansi-blue-fg">,</span> type<span class="ansi-blue-fg">(</span>var1<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> type<span class="ansi-blue-fg">(</span>var2<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> logger<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Starting complex calculation&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>result <span class="ansi-blue-fg">=</span> var1 <span class="ansi-blue-fg">+</span> var2
+<span class="ansi-green-intense-fg ansi-bold">      7</span> logger<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Calculation completed, result is %s&#39;</span><span class="ansi-blue-fg">,</span> result<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is better, let's use now the <em>ERROR</em> level too, we can safely ignore CRITICAL that's reserved for an error which can have catastrophic consequences and it's probably not useful to us.<br>
+Now that we know the code might pass a number as a string we want to be ready and handle this potential error. 
+A useful way to do this is to use the <strong>try: except:</strong> statements.<br>
+Let's get back to a lower level of logging and run the script again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">, their respective types are </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="k">except</span><span class="p">:</span> 
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;There is an issue adding </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I am still going on!&#39;</span><span class="p">)</span>
+<span class="c1"># Last statement still print fine because we haven&#39;t deleted result</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This script is totally useless
+INFO:root:Starting complex calculation
+ERROR:root:There is an issue adding 1 and 0
+WARNING:root:I am still going on!
+INFO:root:Calculation completed, result is 1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We tried to do 1 + '0' which failed so the code moved on executing the <em>except</em> statement rather then stopping and throwing out an error.<br>
+While often we want our code to stop when failing, there are situation if which we can remedy the error and <em>try/except</em> can help us handling it and then go on with it. For example if you want to open a file and you are not sure if exists already you could <strong>try</strong> to open file, if that fails you can use <strong>except</strong> to create the file.<br>
+The other common case is to simply use try/except as we did to print control what error message gets printed out and then exiting the code by adding sys.exit() at the end or going on depending on how critical the error is.<br>
+Note that because we are using try/except we cannot see the standard error message anymore, since this could be useful let's see how we can get both.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">, their respective types are </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="k">except</span><span class="p">:</span> 
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;There some issue with adding </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;There is some issue adding </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I am still going on!&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:This script is totally useless
+INFO:root:Starting complex calculation
+ERROR:root:There some issue with adding 1 and 0
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-11-27836643b46d&gt;&#34;, line 7, in &lt;module&gt;
+    result = var1 + var2
+TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;
+ERROR:root:There is some issue adding 1 and 0
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-11-27836643b46d&gt;&#34;, line 7, in &lt;module&gt;
+    result = var1 + var2
+TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;
+WARNING:root:I am still going on!
+INFO:root:Calculation completed, result is 1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By adding <em>exc_info=True</em> to the logging.error we can get also the traceback error again. Please note that you can achieve exactly the same using <em>logging.exception</em>.</p>
+<p>This is a fairly straightforward error, sometimes when you have variables going from one function to another and using modules you are not familiar with, you might end up with misterious object that don't work as you expect or of simply yoy might want to udnerstand better the properties. This is where the function dir() comes handy.<br>
+Let's look at a simple example.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="nb">dir</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;pop is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;items is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">))</span>  
+<span class="c1"># There&#39;s a new way to print formatted string introduced in python3.6, which accept any expression in {} embedded in the string</span>
+<span class="c1"># it evaluates the expression before printing.</span>
+<span class="c1"># It doesn&#39;t work yet in notebooks, but it will if you run directly with python.</span>
+<span class="c1"># print(f&quot;pop is {type(a.pop)}&quot;)</span>
+<span class="c1"># print(f&quot;the sum of {var1} and {var2} is {var1 + var2}&quot;)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;itervalues&#39;, &#39;keys&#39;, &#39;pop&#39;, &#39;popitem&#39;, &#39;setdefault&#39;]
+(&#39;pop is %s&#39;, &lt;type &#39;builtin_function_or_method&#39;&gt;)
+(&#39;items is %s&#39;, &lt;type &#39;builtin_function_or_method&#39;&gt;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I have defined a dictionary and used dir() to list all its properties, some are attributes and some are methods, I can find that by using type(). Please note dir() returns a list and I've printing only a subset to avoid a long list. 
+In fact lots of the debugging information might be better sent to a file, this will allows us to keep a record we can check later and to separate it from the usual print statements, or better, INFO and WARNING level statements. Will have a look at how to do this in the second part.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sending-messages-to-different-ouputs"><strong>Sending messages to different ouputs</strong><a class="anchor-link" href="#Sending-messages-to-different-ouputs">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember the logger and the handlers at the start of the blog? We will have a quick look at how to use them to send different levels of messages to different output channels.</p>
+<p>To start with a clean slate and change logging level more easily I will rewrite my code as a function that takes the logging level as input.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
+# I am showing here the content of the python file I will be running
+# I am runnig the code in this way to avoid to end up with lots of loggers or having console issues with jupyter.
+
+import logging
+
+def log_demo(level):
+    # define a logger
+    logger = logging.getLogger(&#39;mylogger&#39;)
+    # set the level passed as input, has to be logging.LEVEL
+    logger.setLevel(level)
+    logging.info(&#39;This function is a logging demo&#39;)
+    
+    # add a handler to send INFO level messages to console
+    # add a handler to send DEBUG level messages to file
+
+log_demo(logging.INFO)
+print(&#39;a bit of space in between&#39;)
+print(&#39; ... &#39;)
+log_demo(logging.WARNING)
+print(&#39;Finished!&#39;)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">!</span>python demo1.py &gt; out.txt
+<span class="o">!</span>cat out.txt
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>INFO:root:This function is a logging demo
+a bit of space in between
+ ... 
+Finished!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is behaving as expected, now let's add a handler, since we are already getting messages on the console let's start from the file handler.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
+# I am using this to run this as a separate script so I don&#39;t end up with lots of loggers!!
+
+import logging
+
+def log_demo(level):
+    # start a logger
+    logger = logging.getLogger(&#39;mylogger&#39;)
+    # set the level passed as input, has to be logging.LEVEL
+    logger.setLevel(level)
+    # set a formatter to manage the output format of our handlers
+    formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
+    logging.info(&#39;This function is a logging demo&#39;)
+    
+    # add a handler to send INFO level messages to console
+    
+    # add a handler to send DEBUG level messages to file    
+    file_handler = logging.FileHandler(&#39;mycode_debug.log&#39;,&#39;w&#39;) 
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+    
+    # add some debug messages
+    var1 = 1
+    var2 = &#39;0&#39;
+    logger.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
+    logger.info(&#39;Code ends here!&#39;)
+log_demo(logging.INFO)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:mylogger:Code ends here!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We define the file_handler simply by giving it a filename, there are other options we could set at the same time, but that's the only one we need. <br>
+We set the level to DEBUG and add a <em>formatter</em> to add before the message:<br>
+   time | logger_name | log level <br>
+Finally we add it to the logger and add a debug message to test it. <br>
+Let's call the function again using INFO as input level.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">!</span>cat mycode_debug.log
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2018-10-04 08:44:30,634 | mylogger |  INFO: Code ends here!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The output shows that the INFO message was printed out both on the console and in the file. There's no trace of the debug message in the file even if the level was set to DEBUG!!<br>
+Let's try to run it again but passing DEBUG as level.<br>
+I'm running the same script directly from the command line.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the console output</span>
+<span class="o">!</span>python demo2.py &gt; out.txt
+<span class="o">!</span>cat out.txt
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>DEBUG:mylogger:Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
+INFO:mylogger:Code ends here!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the file output</span>
+<span class="o">!</span>cat mycode_debug.log
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2018-10-04 08:44:49,444 | mylogger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
+2018-10-04 08:44:49,444 | mylogger |  INFO: Code ends here!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ok now we can see the debug message! We couldn't before because the <em>logger</em> level was setting the lowest possible level to INFO so even if we set the file level to DEBUG this was bumped up to INFO. <br>
+Luckily this can be easily fixed by setting the <em>logger</em> level to DEBUG, so now our file handler works as expected! The problem is that the debug messages are also showing on the console, this is why it is necessary to set a strem output handler if you what the file and the console to have different levels.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
+# I am using this to run this as a separate script so I don&#39;t end up with lots of loggers!!
+
+import logging
+
+def log_demo(level):
+    # start a logger
+    logger = logging.getLogger(&#39;mylogger&#39;)
+    # set the level passed as input, has to be logging.LEVEL
+    logger.setLevel(level)
+    # set a formatter to manage the output format of our handlers
+    formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
+    logger.info(&#39;This function is a logging demo&#39;)
+    
+    # add a handler to send INFO level messages to console
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+    logger.addHandler(console_handler)
+    
+    # add a handler to send DEBUG level messages to file    
+    file_handler = logging.FileHandler(&#39;mycode_debug.log&#39;,&#39;w&#39;) 
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+    
+    logger.warning(&#39;I repeat this here because the root logger is now superseded by mylogger!&#39;)
+    logger.info(&#39;This function is a logging demo&#39;)
+    # add some debug messages
+    var1 = 1
+    var2 = &#39;0&#39;
+    logger.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
+    logger.info(&#39;Code ends here!&#39;)
+log_demo(logging.DEBUG)
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>I repeat this here because the root logger is now superseded by mylogger!
+This function is a logging demo
+Code ends here!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="ch">#!python last_demo.py</span>
+<span class="o">!</span>cat mycode_debug.log
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2018-10-04 08:45:08,903 | mylogger |  WARNING: I repeat this here because the root logger is now superseded by mylogger!
+2018-10-04 08:45:08,903 | mylogger |  INFO: This function is a logging demo
+2018-10-04 08:45:08,903 | mylogger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
+2018-10-04 08:45:08,903 | mylogger |  INFO: Code ends here!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we are going to get all the message at level INFO or above printed on the console and the same plus the DEBUG messages saved on the file! <br>
+NB I added a <em>'w'</em> to the file handler definition so it will create a new file each time.</p>
+
+</div>
+</div>
+</div>
+ 
+
