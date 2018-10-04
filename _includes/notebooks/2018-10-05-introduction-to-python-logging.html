@@ -92,7 +92,7 @@ NB I am using python3.6 there might be difference if you are using a different v
 Let's have a look at the message we printed.<br>
 The first part indicates the logging level, in this case <em>WARNING</em>.<br>
 The second part <em>root</em> is telling us that we are using the <em>root logger</em> i.e. the default logger, in fact we haven't set up anything up to now, but just started using logging. 
-Finally ther eis the message.<br>
+Finally there is the message.<br>
 The <em>logging.info</em> command didn't produce any output. Logging has 5 different levels. From the lowest:</p>
 <ul>
 <li>DEBUG</li>
@@ -209,7 +209,11 @@ INFO:root:This is an info message it should be printed now!
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#import logging</span>
+<span class="c1">#for handler in logging.root.handlers[:]:</span>
+<span class="c1">#    logging.root.removeHandler(handler)</span>
+<span class="c1">#logging.basicConfig(level=logging.INFO)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
@@ -377,8 +381,7 @@ INFO:root:Starting complex calculation
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#logger = logging.getLogger()</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
 <span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
@@ -736,6 +739,8 @@ def log_demo(level):
     logger = logging.getLogger(&#39;mylogger&#39;)
     # set the level passed as input, has to be logging.LEVEL
     logger.setLevel(level)
+    # add one message using the root logger to check that we can switch levels correctly!
+    # we won&#39;t need this later
     logging.info(&#39;This function is a logging demo&#39;)
     
     # add a handler to send INFO level messages to console
@@ -814,7 +819,6 @@ def log_demo(level):
     logger.setLevel(level)
     # set a formatter to manage the output format of our handlers
     formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
-    logging.info(&#39;This function is a logging demo&#39;)
     
     # add a handler to send INFO level messages to console
     
@@ -989,7 +993,7 @@ Luckily this can be easily fixed by setting the <em>logger</em> level to DEBUG, 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
@@ -1004,7 +1008,6 @@ def log_demo(level):
     logger.setLevel(level)
     # set a formatter to manage the output format of our handlers
     formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
-    logger.info(&#39;This function is a logging demo&#39;)
     
     # add a handler to send INFO level messages to console
     console_handler = logging.StreamHandler()
@@ -1017,7 +1020,6 @@ def log_demo(level):
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
     
-    logger.warning(&#39;I repeat this here because the root logger is now superseded by mylogger!&#39;)
     logger.info(&#39;This function is a logging demo&#39;)
     # add some debug messages
     var1 = 1
@@ -1041,8 +1043,7 @@ log_demo(logging.DEBUG)
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>I repeat this here because the root logger is now superseded by mylogger!
-This function is a logging demo
+<pre>This function is a logging demo
 Code ends here!
 </pre>
 </div>
@@ -1054,7 +1055,7 @@ Code ends here!
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="ch">#!python last_demo.py</span>
@@ -1075,10 +1076,9 @@ Code ends here!
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2018-10-04 08:45:08,903 | mylogger |  WARNING: I repeat this here because the root logger is now superseded by mylogger!
-2018-10-04 08:45:08,903 | mylogger |  INFO: This function is a logging demo
-2018-10-04 08:45:08,903 | mylogger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
-2018-10-04 08:45:08,903 | mylogger |  INFO: Code ends here!
+<pre>2018-10-04 13:14:54,129 | mylogger |  INFO: This function is a logging demo
+2018-10-04 13:14:54,129 | mylogger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
+2018-10-04 13:14:54,129 | mylogger |  INFO: Code ends here!
 </pre>
 </div>
 </div>
