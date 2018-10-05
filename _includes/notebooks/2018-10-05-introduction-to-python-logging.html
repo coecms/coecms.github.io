@@ -739,7 +739,7 @@ In fact lots of the debugging information might be better off sent to a file, th
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Remember the handlers at the start of the blog? We will have a quick look at how to use them to send different levels of messages to different output channels.<br></p>
-<p>To make testing easier I will include part of the code in a function that takes the logger level as input.</p>
+<p>To make testing easier we will write the logger setup as a function that takes the logger level as input.</p>
 
 </div>
 </div>
@@ -768,40 +768,7 @@ You can use the basicConfig command only once in a session, if you try to run it
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
 # I am using this to run this as a separate script so we start with a clean enviroment!
 
-import logging
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
-# We disabled the existing handlers after import logging so we can configure the root logger as we want
-# We set the level to root logger level to WARNING
-logging.basicConfig(level=logging.WARNING)
-
-
-def log_demo(level):
-    # start a logger
-    mylog = logging.getLogger(&#39;mylogger&#39;)
-    # set the level passed as input, has to be logging.LEVEL not a string
-    # until we do so mylog doesn&#39;t have a level and inherits the root logger level:WARNING
-    mylog.setLevel(level)
-    
-    # add a handler to send INFO level messages to console
-    
-    # add a handler to send DEBUG level messages to file 
-    # all you need is a file name I added the &#39;w&#39; so each time a new file will be created
-    # without it the messagges will be appended to the same file
-    file_handler = logging.FileHandler(&#39;mycode_debug.log&#39;,&#39;w&#39;) 
-    file_handler.setLevel(logging.DEBUG)
-    # set a formatter to manage the output format of our handler
-    formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
-    file_handler.setFormatter(formatter)
-    mylog.addHandler(file_handler)
-    
-    mylog.info(&#39;This function is a logging demo&#39;)
-    # add some debug messages
-    var1 = 1
-    var2 = &#39;0&#39;
-    mylog.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
-    mylog.info(&#39;Code ends here!&#39;)
-log_demo(logging.INFO)
+-
 </pre></div>
 
 </div>
@@ -842,8 +809,8 @@ INFO:mylogger:Code ends here!
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2018-10-05 09:03:48,974 | mylogger |  INFO: This function is a logging demo
-2018-10-05 09:03:48,974 | mylogger |  INFO: Code ends here!
+<pre>2018-10-05 11:13:47,820 | mylogger |  INFO: This function is a logging demo
+2018-10-05 11:13:47,820 | mylogger |  INFO: Code ends here!
 </pre>
 </div>
 </div>
@@ -866,11 +833,11 @@ I'm running the same script directly from the command line.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># the console output</span>
-<span class="o">!</span>python demo1.py &gt; out.txt
+<span class="o">!</span>python demo_log.py &gt; out.txt
 <span class="o">!</span>cat out.txt
 </pre></div>
 
@@ -885,7 +852,6 @@ I'm running the same script directly from the command line.</p>
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:mylogger:This function is a logging demo
-DEBUG:mylogger:Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
 INFO:mylogger:Code ends here!
 </pre>
 </div>
@@ -897,7 +863,7 @@ INFO:mylogger:Code ends here!
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># the file output</span>
@@ -914,9 +880,8 @@ INFO:mylogger:Code ends here!
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2018-10-05 09:03:54,296 | mylogger |  INFO: This function is a logging demo
-2018-10-05 09:03:54,296 | mylogger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
-2018-10-05 09:03:54,296 | mylogger |  INFO: Code ends here!
+<pre>2018-10-05 11:16:05,335 | mylogger |  INFO: This function is a logging demo
+2018-10-05 11:16:05,336 | mylogger |  INFO: Code ends here!
 </pre>
 </div>
 </div>
@@ -939,7 +904,7 @@ Luckily this can be easily fixed by setting the logger level to DEBUG, so now ou
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
@@ -948,36 +913,45 @@ Luckily this can be easily fixed by setting the logger level to DEBUG, so now ou
 import logging
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
+# We disabled the existing handlers after import logging so we can configure the root logger as we want
+# We set the level to root logger level to WARNING
 logging.basicConfig(level=logging.WARNING)
 
-def log_demo(level):
+
+def log_setup(name, level):
+    &#39;&#39;&#39;This function will setup a logger with the name and level you pass as input&#39;&#39;&#39;
     # start a logger
-    mylog = logging.getLogger(&#39;mylogger&#39;)
+    logger = logging.getLogger(name)
     # set the level passed as input, has to be logging.LEVEL not a string
     # until we do so mylog doesn&#39;t have a level and inherits the root logger level:WARNING
-    mylog.setLevel(level)
-    # set a formatter to manage the output format of our handlers
-    formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
+    logger.setLevel(level)
     
     # add a handler to send INFO level messages to console
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-    mylog.addHandler(console_handler)
+    logger.addHandler(console_handler)    
     
-    # add a handler to send DEBUG level messages to file    
+    # add a handler to send DEBUG level messages to file 
+    # all you need is a file name I added the &#39;w&#39; so each time a new file will be created
+    # without it the messagges will be appended to the same file
     file_handler = logging.FileHandler(&#39;mycode_debug.log&#39;,&#39;w&#39;) 
     file_handler.setLevel(logging.DEBUG)
+    # set a formatter to manage the output format of our handler
+    formatter = logging.Formatter(&#39;%(asctime)s | %(name)s |  %(levelname)s: %(message)s&#39;)
     file_handler.setFormatter(formatter)
-    mylog.addHandler(file_handler)
+    logger.addHandler(file_handler)
     
-    mylog.info(&#39;This function is a logging demo&#39;)
-    # add some debug messages
-    var1 = 1
-    var2 = &#39;0&#39;
-    mylog.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
-    mylog.info(&#39;Code ends here!&#39;)
-# We are setting it the logger level to the lowest lovel so we can see all the messages!
-log_demo(logging.DEBUG)
+    # return the logger object
+    return logger
+
+# call function to setup the logger to the lowest level (DEBUG) so we can see all the messages!
+mylog = log_setup(&#39;clever_logger&#39;, logging.DEBUG)
+# add some debug messages
+mylog.info(&#39;This function is a logging demo&#39;)
+var1 = 1
+var2 = &#39;0&#39;
+mylog.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
+mylog.info(&#39;Code ends here!&#39;)
 </pre></div>
 
 </div>
@@ -990,11 +964,10 @@ log_demo(logging.DEBUG)
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>This function is a logging demo
-INFO:mylogger:This function is a logging demo
-DEBUG:mylogger:Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
+<pre>INFO:clever_logger:This function is a logging demo
+DEBUG:clever_logger:Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
 Code ends here!
-INFO:mylogger:Code ends here!
+INFO:clever_logger:Code ends here!
 </pre>
 </div>
 </div>
@@ -1005,11 +978,10 @@ INFO:mylogger:Code ends here!
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!python last_demo.py</span>
-<span class="o">!</span>cat mycode_debug.log
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat mycode_debug.log
 </pre></div>
 
 </div>
@@ -1022,9 +994,9 @@ INFO:mylogger:Code ends here!
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2018-10-05 09:04:03,982 | mylogger |  INFO: This function is a logging demo
-2018-10-05 09:04:03,982 | mylogger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
-2018-10-05 09:04:03,982 | mylogger |  INFO: Code ends here!
+<pre>2018-10-05 11:18:26,606 | clever_logger |  INFO: This function is a logging demo
+2018-10-05 11:18:26,606 | clever_logger |  DEBUG: Input values are 1 0, their respective types are &lt;class &#39;int&#39;&gt; and &lt;class &#39;str&#39;&gt;
+2018-10-05 11:18:26,606 | clever_logger |  INFO: Code ends here!
 </pre>
 </div>
 </div>
@@ -1051,6 +1023,7 @@ NB I added a <em>'w'</em> to the file handler definition so it will create a new
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I hope you'll find this helpful, once you understand the different loggers levels and how they interacts, this can be a very helpful module. <br>
 While we started the demo using the root logger is probably a good practice to setup your own logger and use that in your code.<br>
+You can use as a starting point the log_setup function we used in the last example. <br>
 Keep also in mind that the root logger will be used by some of the modules you might be loading so changing its configuration level will affect them too. Once you are a bit more experienced you could use this if you want to get more information out of them or redirect their log output to a file. <br></p>
 
 </div>
