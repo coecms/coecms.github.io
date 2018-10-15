@@ -1,13 +1,15 @@
 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="How-to-create-NetCDF-files">How to create NetCDF files<a class="anchor-link" href="#How-to-create-NetCDF-files">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is a very basic introduction into NetCDF files and how to create them.</p>
 <p>This document describes how to <strong>create</strong> a NetCDF file in Fortran, and later on in Python. The methods described herein will <strong>overwrite</strong> any existing file with the same name. Opening existing NetCDF files, either for reading or for modifying/appending, is different.</p>
@@ -19,7 +21,8 @@
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Create-a-NetCDF-file-in-Fortran">Create a NetCDF file in Fortran<a class="anchor-link" href="#Create-a-NetCDF-file-in-Fortran">&#182;</a></h2><h3 id="netcdf-module">netcdf module<a class="anchor-link" href="#netcdf-module">&#182;</a></h3><p>While there is an old-style Fortran 77 NetCDF interface, I strongly recommend using the Fortran 90 module invoked with the <code>use</code> statement:</p>
 
@@ -74,7 +77,8 @@ end program create_netcdf</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="a-very-basic-header">a very basic header<a class="anchor-link" href="#a-very-basic-header">&#182;</a></h3><p>I now assume that I want to store a 2-d field: latitude by longitude. <code>ny</code> and <code>nx</code> are the number of gridpoints in latitude and longitude respectively. The field itself I simply call <code>field</code>, and <code>lat_array</code> and <code>lon_array</code> are arrays with the values for latitude and longitude.</p>
 <h4 id="the-dimensions">the dimensions<a class="anchor-link" href="#the-dimensions">&#182;</a></h4><p>First, we need the dimensions. Fundamentally, a dimension is just a name, and a length. For each dimension, we need an integer variable called a dimension id, or dimid. Assume we declared dimids for latitude and longitude called <code>dimid_lat</code> and <code>dimid_lon</code>:</p>
@@ -115,7 +119,8 @@ You can read about what chunking does here: <a href="https://www.unidata.ucar.ed
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-actual-data">The actual data<a class="anchor-link" href="#The-actual-data">&#182;</a></h3><p>Let's create some data. I'm using implicit do loops to create even-spaced latitude and longitude arrays, and the <code>field</code> variable gets created in a do-loop:</p>
 
@@ -137,7 +142,8 @@ You can read about what chunking does here: <a href="https://www.unidata.ucar.ed
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Result">Result<a class="anchor-link" href="#Result">&#182;</a></h2><p>Looking at the output file, we notice something:</p>
 
@@ -177,7 +183,8 @@ variables:
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><p>There are different methods to read and write NetCDF in Python, but <code>xarray</code> is one of the most convenient. It can store the complete datastructure in memory, the output is then only a single instruction:</p>
 
@@ -185,7 +192,8 @@ variables:
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First, import <code>xarray</code> and <code>numpy</code></p>
 
@@ -202,13 +210,14 @@ variables:
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Second: Create the latitude and longitude arrays:</p>
 
@@ -225,13 +234,14 @@ variables:
 <span class="n">lat_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Third: Create the field, complete with values, dimensions, coordinates, and attributes.</p>
 
@@ -252,13 +262,14 @@ variables:
 <span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Fourth: The coordinate arrays don't have units yet, let's fix that.</p>
 
@@ -274,13 +285,14 @@ variables:
 <span class="n">field</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;degree_north&#39;</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Fifth: Create a Dataset containing all (in this case only one) fields. The netcdf file attributes are taken from the dataset attributes:</p>
 
@@ -295,13 +307,14 @@ variables:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">({</span><span class="s1">&#39;field&#39;</span><span class="p">:</span><span class="n">field</span><span class="p">},</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;note&#39;</span><span class="p">:</span><span class="s1">&#39;training file created with xarray&#39;</span><span class="p">})</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sixth: Use a single instruction to store all the data:</p>
 
@@ -322,7 +335,7 @@ variables:
             <span class="p">}})</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -335,7 +348,7 @@ variables:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls data.nc
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -345,7 +358,7 @@ variables:
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+<div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -366,7 +379,7 @@ variables:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ncdump -hs data.nc
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -376,7 +389,7 @@ variables:
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+<div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -414,19 +427,6 @@ variables:
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
