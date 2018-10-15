@@ -1,0 +1,435 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-to-create-NetCDF-files">How to create NetCDF files<a class="anchor-link" href="#How-to-create-NetCDF-files">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a very basic introduction into NetCDF files and how to create them.</p>
+<p>This document describes how to <strong>create</strong> a NetCDF file in Fortran, and later on in Python. The methods described herein will <strong>overwrite</strong> any existing file with the same name. Opening existing NetCDF files, either for reading or for modifying/appending, is different.</p>
+<p>The exact way data is stored in NetCDF Format is not necessary to know, but what you need to know is that each file consists of a header, which contains the meta-data, and the actual data.</p>
+<p>Metadata is Data about Data. It tells us the dimensions and datatypes of the data, as well as arbitrary attributes.</p>
+<p>Since the header is at the beginning of the file, and can change its length when new data is added or removed, it is very advisable to first create the header before starting to write the data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Create-a-NetCDF-file-in-Fortran">Create a NetCDF file in Fortran<a class="anchor-link" href="#Create-a-NetCDF-file-in-Fortran">&#182;</a></h2><h3 id="netcdf-module">netcdf module<a class="anchor-link" href="#netcdf-module">&#182;</a></h3><p>While there is an old-style Fortran 77 NetCDF interface, I strongly recommend using the Fortran 90 module invoked with the <code>use</code> statement:</p>
+
+<pre><code>program create_netcdf
+    use netcdf
+    implicit none
+end program create_netcdf</code></pre>
+<p>This is the most basic structure. To compile this program, you need the <code>netcdf</code> library in the <code>LD_LIBRARY_PATH</code>, on <code>raijin</code>, this can be easily achieved by running the <code>module load netcdf</code> command (or any of the different versions).</p>
+<p>Then you need to compile it with the compiler options <code>-lnetcdf -lnetcdff</code>:</p>
+
+<pre><code>$ module load intel-fc/2018.3.222 netcdf/4.6.1
+$ ifort -o create_netcdf -lnetcdf -lnetcdff create_netcdf.f90</code></pre>
+<h3 id="netcdf-Fortran-90-API">netcdf Fortran 90 API<a class="anchor-link" href="#netcdf-Fortran-90-API">&#182;</a></h3><p>The full API can be found here: <a href="https://www.unidata.ucar.edu/software/netcdf/netcdf-4/newdocs/netcdf-f90.html">https://www.unidata.ucar.edu/software/netcdf/netcdf-4/newdocs/netcdf-f90.html</a>, but it's 10 years old and pretty out-of-date.</p>
+<p>Better to use the C API here: <a href="https://www.unidata.ucar.edu/software/netcdf/docs/modules.html">https://www.unidata.ucar.edu/software/netcdf/docs/modules.html</a>, always replacing the leading <code>nc_</code> with <code>nf90_</code>.</p>
+<p>But the simple version is: Every instruction is a call to a <strong>function</strong> staring with <code>nf90_</code>, which returns an integer value as a status. Status <code>0</code> (or <code>NF90_NOERR</code>) means that the call was successful.</p>
+<p>I strongly suggest writing a little <code>check</code> routine, like this:</p>
+
+<pre><code>subroutine check(status, operation)
+    use netcdf
+    implicit none
+    integer, intent(in) :: status
+    character(len=*), intent(in) :: operation
+    if (status == NF90_NOERR) return
+    print *, "Error encountered during ", operation
+    print *, nf90_strerror(status)
+    STOP 1
+end subroutine check</code></pre>
+<p>Then, after every call to any <code>nf90_</code> routine, you can call this check to see what happened. If all went fine, the call returns immediately, but if there was an error, you get a human-readable error output.</p>
+<h3 id="create-an-empty-file">create an empty file<a class="anchor-link" href="#create-an-empty-file">&#182;</a></h3><p>To create a file, we need a file handle that is an integer variable, by convention <code>ncid</code>, which references the file we created similar to the <code>unit</code> of <code>read</code> and <code>write</code> commands:</p>
+
+<pre><code>program create_netcdf
+    use netcdf
+    implicit none
+    integer :: status, ncid
+
+    status = nf90_create('data.nc', NF90_NETCDF4, ncid)
+    call check(status, 'open')
+
+    status = nf90_close(ncid)
+    call check(status, 'close')
+
+contains
+
+    subroutine check(status, operation)
+        ....
+    end subroutine check
+end program create_netcdf</code></pre>
+<p>The <code>NF90_NETCDF4</code> tells the NetCDF library which type of NetCDF file to create. This is the most recent version.</p>
+<p><em>For the rest of the documentation I will no longer write the calls to <code>check</code>, please assume to do that after every call to any <code>nf90_</code> function</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="a-very-basic-header">a very basic header<a class="anchor-link" href="#a-very-basic-header">&#182;</a></h3><p>I now assume that I want to store a 2-d field: latitude by longitude. <code>ny</code> and <code>nx</code> are the number of gridpoints in latitude and longitude respectively. The field itself I simply call <code>field</code>, and <code>lat_array</code> and <code>lon_array</code> are arrays with the values for latitude and longitude.</p>
+<h4 id="the-dimensions">the dimensions<a class="anchor-link" href="#the-dimensions">&#182;</a></h4><p>First, we need the dimensions. Fundamentally, a dimension is just a name, and a length. For each dimension, we need an integer variable called a dimension id, or dimid. Assume we declared dimids for latitude and longitude called <code>dimid_lat</code> and <code>dimid_lon</code>:</p>
+
+<pre><code>    status = nf90_def_dim(ncid, 'longitude', nx, dimid_lon)
+    status = nf90_def_dim(ncid, 'latitude', ny, dimid_lat)</code></pre>
+<p>We're only using fixed-length dimensions here, but if we wanted am unlimited dimension, we'd write <code>NF90_UNLIMITED</code> as the length of the dimensions (where we currently have <code>nx</code> and <code>ny</code>, respectively).</p>
+<h4 id="the-variables">the variables<a class="anchor-link" href="#the-variables">&#182;</a></h4><p>Next, we define 3 more integer variables, <code>varid_*</code>, one each for longitude and latitude (those will contain the actual values for the latitude and longitudes, and of course our field.</p>
+
+<pre><code>    status = nf90_def_var(ncid, 'longitude', NF90_FLOAT, [dimid_lon], varid_lon)
+    status = nf90_def_var(ncid, 'latitude', NF90_FLOAT, [dimid_lat], varid_lat)
+    status = nf90_def_var(ncid, 'field', NF90_FLOAT, [dimid_lon, dimid_lat], varid_field)</code></pre>
+<p>You can see that each variable needs a name, a type (in this case 32-bit floating points), an array of dimensions (referenced by the dimension IDs), and a new integer variable which references the variable itself.</p>
+<h4 id="compression">compression<a class="anchor-link" href="#compression">&#182;</a></h4><p>The field in our example is fairly small, but if it were larger, we would want to chunk and compress it.
+You can read about what chunking does here: <a href="https://www.unidata.ucar.edu/blogs/developer/entry/chunking_data_why_it_matters">https://www.unidata.ucar.edu/blogs/developer/entry/chunking_data_why_it_matters</a></p>
+<p>But here's how we do that in the Fortran Code: After we have defined a variable, we add this line:</p>
+
+<pre><code>    status = nf90_def_var_chunking(ncid, varid_field, NF90_CHUNKED, [10, 101])</code></pre>
+<p><code>NF90_CHUNKED</code> -- as opposed to <code>NF90_CONTIGUOUS</code>, tells that the variable shall be chunked. We can also use an array to declare how the data should be chunked specifically.</p>
+<p>Once the data is declared as chunked, we can compress -- or deflate it:</p>
+
+<pre><code>    status = nf90_def_var_deflate(ncid, varid_field,          &amp;
+                                  shuffle = 1,                &amp;
+                                  deflate = 1,                &amp;
+                                  deflate_level = 5  )</code></pre>
+<p>Here we have a noticeable point, both <code>shuffle</code> and <code>deflate</code> technically only need a boolean, but for reasons, you have to give them an integer: 0 for false, any other number for true.</p>
+<p><code>shuffle</code> isn't all that important, but you might as well use it. <code>deflate</code> tells the netCDF library that the variable should be compressed. The compression level can be set between 0 and 9. 5 is usually a good compromise.</p>
+<h4 id="the-attributes">the attributes<a class="anchor-link" href="#the-attributes">&#182;</a></h4><p>Attributes can be attached to a variable, or to the file itself (global attribute). Common attributes are the units, long names, et cetera.</p>
+
+<pre><code>    status = nf90_put_att(ncid, NF90_GLOBAL, 'note', 'training file created with Fortran 90')
+    status = nf90_put_att(ncid, varid_lon, 'units', 'degree_east')
+    status = nf90_put_att(ncid, varid_lat, 'units', 'degree_north')
+    status = nf90_put_att(ncid, varid_field, '_FillValue', -2e8)</code></pre>
+<p>We can add any number of attributes to each variable, or even to the global file. They can be of any common type. For a list of attribute conventions, you can look here: <a href="http://cfconventions.org/">http://cfconventions.org/</a></p>
+<h4 id="end-definition">end definition<a class="anchor-link" href="#end-definition">&#182;</a></h4><p>With NetCDF versions before version 4, we needed to tell the Fortran Module that we're finished with the header by calling <code>nf90_enddef</code>, but with NetCDF4 this is no longer necessary. Note that if you use older versions of NetCDF (declared in the <code>nf90_create</code> instruction above, you would have to make a call to <code>nf90_enddef</code> here.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-actual-data">The actual data<a class="anchor-link" href="#The-actual-data">&#182;</a></h3><p>Let's create some data. I'm using implicit do loops to create even-spaced latitude and longitude arrays, and the <code>field</code> variable gets created in a do-loop:</p>
+
+<pre><code>    lat_array = [(jj * (360./ny), jj=0, ny-1)]
+    lon_array = [((ii * (180./(nx-1)) - 90.), ii=0, nx-1)]
+    do jj = 1, ny
+        do ii = 1, nx
+            field(ii, jj) = sin(lon_array(ii) * pi/180.) * &amp;
+                cos(lat_array(jj) * pi/180.)
+        end do
+    end do</code></pre>
+<h4 id="writing-the-data">writing the data<a class="anchor-link" href="#writing-the-data">&#182;</a></h4><p>It is worth noting that the variable <strong>definition</strong> of the <code>field</code> has the dimensions in the same order as the actual 2-d array. This makes things very easy:</p>
+
+<pre><code>    status = nf90_put_var(ncid, varid_lon, lon_array)
+    status = nf90_put_var(ncid, varid_lat, lat_array)
+    status = nf90_put_var(ncid, varid_field, field)</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Result">Result<a class="anchor-link" href="#Result">&#182;</a></h2><p>Looking at the output file, we notice something:</p>
+
+<pre><code>$ ncdump -hs data.nc
+netcdf data {
+dimensions:
+    longitude = 200 ;
+    latitude = 101 ;
+variables:
+    float longitude(longitude) ;
+        longitude:units = "degree_east" ;
+        longitude:_Storage = "contiguous" ;
+        longitude:_Endianness = "little" ;
+    float latitude(latitude) ;
+        latitude:units = "degree_north" ;
+        latitude:_Storage = "contiguous" ;
+        latitude:_Endianness = "little" ;
+    float field(latitude, longitude) ;
+        field:_FillValue = -2.e+08f ;
+        field:_Storage = "chunked" ;
+        field:_ChunkSizes = 101, 10 ;
+        field:_DeflateLevel = 5 ;
+        field:_Shuffle = "true" ;
+        field:_Endianness = "little" ;
+
+// global attributes:
+        :note = "training file created with Fortran 90" ;
+        :_NCProperties = "version=1|netcdflibversion=4.6.1|hdf5libversion=1.10.2" ;
+        :_SuperblockVersion = 0 ;
+        :_IsNetcdf4 = 1 ;
+        :_Format = "netCDF-4" ;
+}</code></pre>
+<p>In Fortran, we always had the dimensions of <code>field</code> as (longitude, latitude), now it's the other way round.</p>
+<p>That's because Fortran stores multi-dimensional arrays the other way as almost all other programming languages.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><p>There are different methods to read and write NetCDF in Python, but <code>xarray</code> is one of the most convenient. It can store the complete datastructure in memory, the output is then only a single instruction:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, import <code>xarray</code> and <code>numpy</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Second: Create the latitude and longitude arrays:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">lon_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">lat_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Third: Create the field, complete with values, dimensions, coordinates, and attributes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">field</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">lon_array</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span> <span class="o">*</span> 
+    <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat_array</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">),</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">],</span> 
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">lat_array</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">lon_array</span><span class="p">},</span>
+    <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;_FillValue&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">2e8</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fourth: The coordinate arrays don't have units yet, let's fix that.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">field</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;degree_east&#39;</span>
+<span class="n">field</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;degree_north&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fifth: Create a Dataset containing all (in this case only one) fields. The netcdf file attributes are taken from the dataset attributes:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">({</span><span class="s1">&#39;field&#39;</span><span class="p">:</span><span class="n">field</span><span class="p">},</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;note&#39;</span><span class="p">:</span><span class="s1">&#39;training file created with xarray&#39;</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sixth: Use a single instruction to store all the data:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;data.nc&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF4&#39;</span><span class="p">,</span> 
+             <span class="n">encoding</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;field&#39;</span><span class="p">:{</span>
+                                <span class="s1">&#39;shuffle&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="s1">&#39;chunksizes&#39;</span><span class="p">:[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+                                <span class="s1">&#39;zlib&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="s1">&#39;complevel&#39;</span><span class="p">:</span><span class="mi">5</span>
+            <span class="p">}})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls data.nc
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>data.nc
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ncdump -hs data.nc
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>netcdf data {
+dimensions:
+	longitude = 200 ;
+	latitude = 101 ;
+variables:
+	float longitude(longitude) ;
+		longitude:_FillValue = NaNf ;
+		longitude:units = &#34;degree_east&#34; ;
+		longitude:_Storage = &#34;contiguous&#34; ;
+		longitude:_Endianness = &#34;little&#34; ;
+	float latitude(latitude) ;
+		latitude:_FillValue = NaNf ;
+		latitude:units = &#34;degree_north&#34; ;
+		latitude:_Storage = &#34;contiguous&#34; ;
+		latitude:_Endianness = &#34;little&#34; ;
+	float field(latitude, longitude) ;
+		field:_FillValue = -2.e+08f ;
+		field:_Storage = &#34;chunked&#34; ;
+		field:_ChunkSizes = 101, 10 ;
+		field:_DeflateLevel = 5 ;
+		field:_Shuffle = &#34;true&#34; ;
+		field:_Endianness = &#34;little&#34; ;
+
+// global attributes:
+		:note = &#34;training file created with xarray&#34; ;
+		:_NCProperties = &#34;version=1|netcdflibversion=4.6.1|hdf5libversion=1.10.1&#34; ;
+		:_SuperblockVersion = 0 ;
+		:_IsNetcdf4 = 1 ;
+		:_Format = &#34;netCDF-4&#34; ;
+}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
