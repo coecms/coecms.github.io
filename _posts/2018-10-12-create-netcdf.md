@@ -1,5 +1,5 @@
 ---
-title: 2018-10-12-create-netcdf.md
+title: Creating NetCDF Files
 layout: notebook
 notebook: 2018-10-12-create-netcdf.html
 author: Holger Wolff
