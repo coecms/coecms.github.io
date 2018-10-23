@@ -5,7 +5,7 @@ author: Aidan Heerdegen
 excerpt: >-
     Introducing payu support for a new program for fast collation of tiled MOM outputs (or any other FMS based model)
 categories: MOM, collate, mpi
-published: false
+published: true
 ---
 
 # Introduction
