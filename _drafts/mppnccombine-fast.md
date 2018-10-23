@@ -66,35 +66,26 @@ collate:
     # exe: /full/path/to/mppnccombine-fast
 ```
 
-*Must* specify `mpi` to use `mppnccombine-fast`. Minimum of 2 cpus, so you can't use `copyq`.
-The number of cpus per thread is `ncpus / nthreads`. 
+You *must* specify `mpi` to use `mppnccombine-fast`. Minimum of 2 cpus, so you can't use `copyq`. The number of cpus per thread is `ncpus / nthreads`. 
 
 `nthreads` defaults to 1. `ncpus` defaults to 2 and `enable` defaults to `true`.
 
-Don't *have* to specify `flags`, `enable` or `exe`. 
+Don't *have* to specify `flags`, `enable` or `exe` unless you need to specify values other than the default. 
 
 There are fewer `flags`, as `mppnccombine-fast` has fewer command options than `mppnccombine`
    
 # Resource requirements
 
-Memory use should only depend on chunksize 
-  in the compressed file, not on the overall size of the file being written.
-  Unfortunately a memory leak bug in the underlying ``HDF5`` library means memory use will go up with 
-  the number of times data is written to a collated file. It is difficult to predict, but 2-4GB per 
-  thread has been the upper limit observed so far.
+Memory use should only depend on chunksize in the compressed file, not on the overall size of the file being written. Unfortunately a memory leak bug in the underlying ``HDF5`` library means memory use will go up with the number of times data is written to a collated file. It is difficult to predict, but 2-4GB per thread has been the upper limit observed so far.
 
-Walltime should be minutes. No speed-up for low resolution outputs (MPI overhead swamps fast run times). 
-  Also no speed advantage for uncompressed files, especially if `io_layout` is not specified, and there are
-  hundreds or thousands of tiles.
+Walltime should be minutes. There is no speed-up for low resolution outputs (MPI overhead swamps fast run times). Also no speed advantage for uncompressed files, especially if `io_layout` is not specified, and there are hundreds or thousands of tiles.
 
-Minimum of 2 cpus. Speed improvements up to 8 cpus in some cases, but experimentation is required.
+There is a minimum of 2 cpus. Speed improvements up to 8 cpus in some cases has been observed, but experimentation is required to optimise this for any particular configuration, as the size and number of diagnostics can vary a great deal.
 
 
 # Layout affects efficiency
 
-Chunk sizes are chosen automatically by netCDF4 and depend on tile size. Inconsistent tile sizes leads
-to inconsistent chunk sizes. Inconsistent chunk sizes makes `mppnccombine-fast` slow as it has to do the
-uncompress/compress step for tiles which are not the same as the first
+Chunk sizes are chosen automatically by netCDF4 and depend on tile size. Inconsistent tile sizes leads to inconsistent chunk sizes. Inconsistent chunk sizes makes `mppnccombine-fast` slow as it has to do the uncompress/compress step for tiles which are not the same as the first
 
 To ensure maximum speed make processor `layout` and `io_layout`, an integer divisor of grid. 
 
