@@ -27,6 +27,12 @@ To create a new blog post:
 6. After review squash and merge PR
 7. Delete `branch`
 
+The new blog post should appear within a few minutes at http://climate-cms.org 
+
+If it doesn't, check under "Github Pages" here for error messages:
+
+https://github.com/coecms/coecms.github.io/settings
+
 ---
 
 Create a local test server by running
