@@ -17,10 +17,30 @@ you will need to edit the metadata in the `_post` directory as appropriate
 
 ---
 
+To create a new blog post:
+
+1. `clone` the repo
+2. Create new `branch`
+3. Create a new blog post in `_posts`, named `YY-MM-DD-title.md`
+4. `commit` changes and `push` branch back to `coecms/coecms.github.io`
+5. Open Pull Request, and select CMS team member to review
+6. After review squash and merge PR
+7. Delete `branch`
+
+The new blog post should appear within a few minutes at http://climate-cms.org 
+
+If it doesn't, check under "Github Pages" here for error messages:
+
+https://github.com/coecms/coecms.github.io/settings
+
+---
+
 Create a local test server by running
 
     vagrant up
 
 then going to http://localhost:8080
+
+---
 
 
