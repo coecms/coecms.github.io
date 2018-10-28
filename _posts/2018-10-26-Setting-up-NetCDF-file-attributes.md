@@ -24,7 +24,7 @@ Global attributes allow you and others know what this file is for. Of these, the
 2. Recommended
 3. Optional - i.e. not necessarily recommended.
 
-Here is an excerpt from a random CMIP5 file I found on Raijin. The highly recommended attributes are **bolded**, the recommended ones are in *italics* (You can find it at `/g/data/rr3/publications/CMIP5/output1/UNSW/CSIRO-Mk3L-1-2/1pctCO2/mon/land/Lmon/r1i1p1/v20170728/mrro/mrro_Lmon_CSIRO-Mk3L-1-2_1pctCO2_r1i1p1_000101-014012.nc`):
+Here is an excerpt from a random CMIP5 file I found on Raijin. (You can find it at `/g/data/rr3/publications/CMIP5/output1/UNSW/CSIRO-Mk3L-1-2/1pctCO2/mon/land/Lmon/r1i1p1/v20170728/mrro/mrro_Lmon_CSIRO-Mk3L-1-2_1pctCO2_r1i1p1_000101-014012.nc`):
 
 ```
 // global attributes:
