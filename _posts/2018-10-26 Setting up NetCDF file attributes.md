@@ -1,3 +1,12 @@
+---
+layout: post
+title: Setting up NetCDF file attributes
+author: Danny Eisenberg
+excerpt: >-
+    How to set up NetCDF global and variable attributes according to CF conventions
+published: true
+---
+
 In a recent blog post we discussed how to make a NetCDF file. Now that we know how to make one, the next step is to find out what attributes should be included in the file moving forward.
 
 # Why is this important?
@@ -62,7 +71,7 @@ The recommended fields listed above (in order of appearance) are: `institution`,
 
 The `history` attribute need not be added by you. Software utilities like cdo and nco will do that for you. Sometimes this field can become quite detailed (e.g. this file was added, this file was removed, etc). You want to make sure that it remains relevant and to the point, detailing which transformations were done on the data, for example.
 
-The `source` attribute is there to provide a high-level description of where you obtained your data.
+The `source` attribute is there to provide a high-level description of how you generated your data.
 
 What should normally happen is that you would provide the highly recommended global attributes when you first create the file and add more recommended fields gradually as you refine your file or seek to publish.
 
@@ -132,7 +141,6 @@ In some cases, you’ll need boundary attributes for a variable, such as `time_b
 `Original_name` is important to provide if you have changed a variable name (whether for readability or other purposes). That way you can identify the original fields provided by the data source. Sometimes projects will use certain variable names. For example, CMIP6 used `tos` to refer to `sea_surface_temperature` (CF standard name).
 
 In contrast to global attributes, when it comes to variable attributes, all the above should be included from the beginning, so that you don’t lose track of what’s going on.
-Cell methods - direct them to documentation. Same with boundary - centre or start of time step.
 
 # Real-life examples of problems with variables
 
@@ -186,7 +194,10 @@ cchecker.py -h
 However, be aware that CF checkers are not failsafe. Files which pass the check may not work with software utilities and vice versa. More information about how to use it can be found [here](https://github.com/ioos/compliance-checker#command-line-usage).
 
 To summarise:
+-------------
 * The most essential attributes are those required by software utilities.
 * The next most essential attributes are those which enable you and others to understand what your file is for, how it was made and what its values mean.
 * Name your files and directories with a view to long-term usefulness.
 * CF convention checkers exist, but are not failsafe.
+
+*One final comment:* Other best practices include **internal compression** and **chunking**. We plan to discuss these in another blog post.
