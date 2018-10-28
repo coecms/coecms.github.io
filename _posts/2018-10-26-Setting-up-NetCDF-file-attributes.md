@@ -15,7 +15,7 @@ There are 3 reasons why it’s necessary to set up the attributes correctly:
 2. **Software operation:** Various NetCDF software utilities (e.g. CDO, NCO) expect a certain format and will not be able to properly process your file otherwise.
 3. **File sharing:** Files which are intended to be shared with others, whether with colleagues, or in publications, need to follow accepted standards.
 
-The two kinds of attributes you need to set are **global** and **variable** attributes. There are **Climate and Forecast (CF) conventions** for the setting the attributes of NetCDF files.
+The two kinds of attributes you need to set are **global** and **variable** attributes. There are **Climate and Forecast (CF) conventions** for setting the attributes of NetCDF files.
 
 # Setting the global attributes
 
