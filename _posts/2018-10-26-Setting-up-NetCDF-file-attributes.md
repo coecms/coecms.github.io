@@ -65,11 +65,11 @@ The highly recommended fields are those which will be necessary for you to ident
 * `keywords`
 * `Conventions` - identifying the CF version number, and potentially other conventions that may be used, such as `ACDD`, as in the above example.
 
-Note that the above example doesn’t contain summary or keywords. This would be acceptable practice if the title conveys sufficient information to potential readers.
+Note that the above example doesn’t contain `summary` or `keywords`. This would be acceptable practice if the title conveys sufficient information to potential readers.
 
 The recommended fields listed above (in order of appearance) are: `institution`, `source`, `history` and `date_created` (called `creation_date` above).
 
-The `history` attribute need not be added by you. Software utilities like cdo and nco will do that for you. Sometimes this field can become quite detailed (e.g. this file was added, this file was removed, etc). You want to make sure that it remains relevant and to the point, detailing which transformations were done on the data, for example.
+The `history` attribute need not be added by you. Software utilities like `cdo` and `nco` will do that for you. Sometimes this field can become quite detailed (e.g. this file was added, this file was removed, etc). You want to make sure that it remains relevant and to the point, detailing which transformations were done on the data, for example.
 
 The `source` attribute is there to provide a high-level description of how you generated your data.
 
@@ -119,15 +119,15 @@ variables:
 
 While global attributes usually won’t require tremendous precision, the same is not the case with variable attributes. The reason for this is that software utilities will expect certain standards to be adhered to completely and will not tolerate deviations.
 
-The highly recommended attributes are the `long_name`, the `standard_name` and the `units`. The `long_name` is what you call the variable, while the `standard_name` is the official name found in the [CF Standard Name Table](http://cfconventions.org/Data/cf-standard-names/59/build/cf-standard-name-table.html). Software utilities will look for the latter in the file, and will expect to find `standard_names` for `latitude`, `longitude` and `time`. Furthermore, if you are using a search facility to search for a files with a particular variable type, it will likely look for the standard_name. The only reason not to include the standard_name for a variable is if it doesn’t have one.
+The highly recommended attributes are the `long_name`, the `standard_name` and the `units`. The `long_name` is what you call the variable, while the `standard_name` is the official name found in the [CF Standard Name Table](http://cfconventions.org/Data/cf-standard-names/59/build/cf-standard-name-table.html). Software utilities will look for the latter in the file, and will expect to find `standard_names` for `latitude`, `longitude` and `time`. Furthermore, if you are using a search facility to search for a files with a particular variable type, it will likely look for the `standard_name`. The only reason not to include the `standard_name` for a variable is if it doesn’t have one.
 
 ## Units
 
 Units are absolutely essential to include. Without them, they may be useless to use with software utilities; and even if not, the data will be difficult to use by anyone else. Sometimes one can guess (e.g. whether a temperature is in Kelvin or degrees Celsius), but it’s not always obvious.
 
-The units provided will have to *essentially* match the CF standard’s units found in the table for the particular standard_name. I say “essentially”, because the units only need to be of the same general format. For example, the standard units for air density are `kg m-3`. If your file’s units for air density are units `g cm-3` that should also work, since it is still a unit of mass / volume.
+The units provided will have to *essentially* match the CF standard’s units found in the table for the particular standard_name. I say “essentially”, because the units only need to be of the same general format. For example, the standard units for air density are `kg m-3`. If your file’s units for air density are `g cm-3` that should also work, since it is still a unit of mass / volume.
 
-If something is dimensionless, such as a %, ratio or mask, the unit should be recorded as “1”.
+If something is dimensionless, such as a percentage, ratio or mask, the unit should be recorded as `“1”`.
 
 Time variable units can be a bit tricky to define. It is always recommended to specify which calendar is being used, but if you are not using a standard calendar, this will be **absolutely essential**. 
 
@@ -171,15 +171,16 @@ People don’t always think about it, but naming your files appropriately is pro
 If we look at the file path of the sample file above, we can see that the information stored in the directories is replicated in the filename as well:
 `/g/data/rr3/publications/CMIP5/output1/UNSW/CSIRO-Mk3L-1-2/1pctCO2/mon/land/Lmon/r1i1p1/v20170728/mrro/mrro_Lmon_CSIRO-Mk3L-1-2_1pctCO2_r1i1p1_000101-014012.nc`
 
-We can say the properties used in the name:
-* mon - time frequency - monthly
-* land - modeling realm
-* Lmon - land monthly
-* CSIRO - institution
-* mrro - variable name (runoff)
-* r1i1p1 - ensemble name
-* 1pctCO2 - 1 percent CO2 - experiment name 
-* v20170728 - version in format yyyymmdd
+We can see the properties used in the path:
+* `mon` - time frequency - monthly
+* `land` - modeling realm
+* `Lmon` - land monthly
+* `UNSW` - institution (Only in the directory names. Not normally included in the filename.)
+* `CSIRO-Mk3L-1-2` - Model name - CSIRO Mk3L model version 1.2 (Should not use `.` in filenames)
+* `mrro` - variable name (runoff)
+* `r1i1p1` - ensemble name
+* `1pctCO2` - 1 percent CO2 - experiment name 
+* `000101-014012` - dates of data in the form `yyyymm`, from year 1, month 1 to year 140, month 12. In this particular case, relative dates are used, but more often you will see absolute dates, e.g. `201810`
 
 Be aware that you don’t have to have it fully worked out from the beginning. You can improve the name progressively as you go.
 
