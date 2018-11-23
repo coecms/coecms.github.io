@@ -29,6 +29,7 @@ markdown: kramdown
 theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
 repository: coecms/coecms.github.io
 
