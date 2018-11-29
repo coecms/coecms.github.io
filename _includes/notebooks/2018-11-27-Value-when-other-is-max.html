@@ -11,7 +11,7 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-in-time-for-each-spatial-point-of-one-variable.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">Let's say you have two variables that vary in space and time. You can easily calculate the maximum in time for each spatial point of one variable. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.<a class="anchor-link" href="#Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-in-time-for-each-spatial-point-of-one-variable.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">&#182;</a></h3>
+<h3 id="Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">Let's say you have two variables that vary in space and time. You can easily calculate the maximum of one variable each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.<a class="anchor-link" href="#Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -19,8 +19,8 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is relatively easy to do with two variables of the same rank as that is what the <code>where()</code> function is designed for. But this problem is more complicated with variables of different ranks depending on which package you are using. For example if you want to find the times when each point in space equals the maximum value.
-In this blog, we'll first look at the problem when both variables have the same rank and then we'll look at the problem to find the times of the maxima.</p>
+<p>As we shall see, it is relatively easy to do with two variables of the same rank, and that is what the where() function is designed for. But, depending on which Python package you are using, this problem can be more complicated with variables of different ranks, or not! 
+In this blog, we will look at both scenarios.</p>
 
 </div>
 </div>
@@ -281,7 +281,7 @@ Wall time: 1.17 s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="As-you-can-see,-hfss_at_max-as-the-same-dimensions-as-the-initial-arrays-(hfss-and-tas)-but-with-a-lot-of-missing-values.-Only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values.-So-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it.-Here-we-arbitrarily-chose-to-plot-the-mean-in-time.">As you can see, hfss_at_max as the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.<a class="anchor-link" href="#As-you-can-see,-hfss_at_max-as-the-same-dimensions-as-the-initial-arrays-(hfss-and-tas)-but-with-a-lot-of-missing-values.-Only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values.-So-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it.-Here-we-arbitrarily-chose-to-plot-the-mean-in-time.">&#182;</a></h4>
+<h4 id="As-you-can-see,-hfss_at_max-has-the-same-dimensions-as-the-initial-arrays-(hfss-and-tas)-but-with-a-lot-of-missing-values.-Only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values.-So-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it.-Here-we-arbitrarily-chose-to-plot-the-mean-in-time.">As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.<a class="anchor-link" href="#As-you-can-see,-hfss_at_max-has-the-same-dimensions-as-the-initial-arrays-(hfss-and-tas)-but-with-a-lot-of-missing-values.-Only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values.-So-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it.-Here-we-arbitrarily-chose-to-plot-the-mean-in-time.">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -482,7 +482,7 @@ Attributes:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you see, <code>numpy</code> is unable to broadcast the different shapes together. <code>xarray</code> is much better at broadcasting as it uses all the metadata stored in the DataArray to identify the dimensions in each array.
-If you have <code>numpy</code> arrays, the best solution is to quickly transform your <code>numpy</code> arrays in <code>xarray</code> DataArrays. You only need to name the dimensions. Any name will do, as long as you give the same name for the time dimensions in the 3D array and the time array:</p>
+If you have <code>numpy</code> arrays, the best solution is to quickly transform your <code>numpy</code> arrays into <code>xarray</code> DataArrays. You only need to name the dimensions. Any name will do, as long as you give the same name for the common dimensions in the :</p>
 
 </div>
 </div>
@@ -554,7 +554,7 @@ Dimensions without coordinates: t, l, L</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As you see, you can keep your values and the time in different arrays. You don't need to add the time array as a coordinate to the 3D array. Although it can be a good idea to do it in general as it keeps the data self-describing.</p>
+<p>As you see, you can keep your values and the time in separate arrays (new_tas and new_time). You don't need to add the time array as a coordinate to the 3D array. Although it can be a good idea to do it in general as it keeps the data self-describing.</p>
 
 </div>
 </div>
@@ -664,7 +664,7 @@ Coordinates:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But this is slower than using the built-in functions directly. And it doesn't keep the attributes!</p>
+<p>But this is slower than using the built-in functions directly. And it doesn't keep the attributes (like time_bnds, units, calendar, etc)! It is then best to keep this approach for more complex problems that can not be easily solved otherwise.</p>
 
 </div>
 </div>
