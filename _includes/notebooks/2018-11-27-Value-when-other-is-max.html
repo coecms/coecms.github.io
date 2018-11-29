@@ -11,7 +11,7 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">Let's say you have two variables that vary in space and time. You can easily calculate the maximum of one variable each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.<a class="anchor-link" href="#Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">&#182;</a></h3>
+<h3 id="Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">Let's say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.<a class="anchor-link" href="#Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -252,8 +252,8 @@ hfss_at_max
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 874 ms, sys: 301 ms, total: 1.17 s
-Wall time: 1.17 s
+<pre>CPU times: user 942 ms, sys: 3.44 s, total: 4.38 s
+Wall time: 4.78 s
 </pre>
 </div>
 </div>
@@ -481,8 +481,9 @@ Attributes:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As you see, <code>numpy</code> is unable to broadcast the different shapes together. <code>xarray</code> is much better at broadcasting as it uses all the metadata stored in the DataArray to identify the dimensions in each array.
-If you have <code>numpy</code> arrays, the best solution is to quickly transform your <code>numpy</code> arrays into <code>xarray</code> DataArrays. You only need to name the dimensions. Any name will do, as long as you give the same name for the common dimensions in the :</p>
+<p>This does not work as <code>numpy</code> (and <code>xarray</code>) can only perform a <code>where()</code> operation on arrays of the same shape. When provided with arrays of different shapes (like in this case), both <code>numpy</code> and <code>xarray</code> will try to make them conformant with each other by expanding the smallest arrays to the shape of the biggest array. The values of the smallest arrays are copied across all missing dimensions. This process is called <code>broadcasting</code>.</p>
+<p>The problem is <code>numpy</code> is quite conservative in its broadcasting rules and can not perform it in the case above. <code>xarray</code> is much better at broadcasting as it uses all the metadata stored in the DataArray to identify the dimensions in each array. That is the reason why <code>DataArray.where()</code> worked above.</p>
+<p>If you have <code>numpy</code> arrays, the best solution is to quickly transform your <code>numpy</code> arrays into <code>xarray</code> DataArrays. You only need to name the dimensions. Any name will do, as long as you give the same name for the common dimensions in the :</p>
 
 </div>
 </div>
@@ -492,7 +493,8 @@ If you have <code>numpy</code> arrays, the best solution is to quickly transform
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_tas</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#DataArray.values will return only the numpy array with the values and none of the metadata stored in the DataArray</span>
+<span class="n">new_tas</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
 <span class="n">new_time</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">new_max</span> <span class="o">=</span> <span class="n">new_tas</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">new_time_at_max</span> <span class="o">=</span> <span class="n">new_time</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_tas</span> <span class="o">==</span> <span class="n">new_max</span><span class="p">)</span>
