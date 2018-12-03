@@ -52,8 +52,8 @@ For NCI Users
   * Python basics
   * Debugging
   * Version control
-  * Svn
-  * Git
+    * Svn
+    * Git
   * Publishing
 </details>
 
@@ -83,8 +83,8 @@ For Non-NCI Users
   * Python basics
   * Debugging
   * Version control
-  * Svn
-  * Git
+    * Svn
+    * Git
   * Publishing
 </details>
 
