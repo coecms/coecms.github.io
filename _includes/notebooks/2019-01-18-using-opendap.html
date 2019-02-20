@@ -27,7 +27,7 @@ This is one of the advantages of OPeNDAP you don't need to download a file befor
 If you copy and paste the above url in your browser you will see what an OPeNDAP form looks like.<br><br>
 Let's split this url:<br>
   <strong>test.opendap.org:80/opendap/data</strong> <br>
-is the root of the opendap catalogue, starting from this url you can browse down the available subdirectories, in our case "nc" indicating netcdf files;<br>
+is the root of the opendap catalogue, starting from this url you can browse down the available subdirectories, in our case <strong>/nc/</strong> indicating netcdf files;<br>
 finally the filename <br>
   <strong>sst.mnmean.nc.gz</strong><br>
 Note in this example the file is compressed with gzip, opendap can access compressed files without needing you to download and uncompress them before.
@@ -35,7 +35,7 @@ If you want to select only some variables you can do so by adding some constrain
 <strong>?sst,lat</strong> <br>
 The constraints syntax is a question mark followed by a list of variables.
 Each variable is separated by a comma and can be indexed, for example
-<strong> <a href="http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz?sst[10:2:18][10:1:28][100:1:120">http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz?sst[10:2:18][10:1:28][100:1:120</a>]</strong> <br>
+<strong><a href="http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz?sst[10:2:18][10:1:28][100:1:120">http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz?sst[10:2:18][10:1:28][100:1:120</a>]</strong> <br>
 will return a subset of the sst array with: <br></p>
 <ul>
 <li>only every 2 timesteps from index 10 to 18</li>
@@ -77,7 +77,7 @@ We will see now how using xarray and python can help you skip this step.<br></p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If I knew exactly which indexes I'm interested into I could add a constraints to data url below and get back only a subset of the dataset.<br>
-Since we are using xarray we don't have to worry about that, since xarray initially will laod only the information on the data and not the values.</p>
+Since we are using xarray we don't have to worry about that, since xarray initially will load only the information on the data and not the values.</p>
 
 </div>
 </div>
@@ -100,7 +100,7 @@ Since we are using xarray we don't have to worry about that, since xarray initia
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I can select the sst variable and a specific region using latitude and longitude values simply as I would after loading data from a netcdf file. In fact xarray showed me the variable names and dimensions after I "connected" to the remote file. <br> In this way I'm laoding directly only the values I'm interested into.</p>
+<p>I can select the sst variable and a specific region using latitude and longitude values simply as I would after loading data from a netcdf file. In fact xarray showed me the variable names and dimensions after I "connected" to the remote file. <br> In this way I'm loading directly only the values I'm interested into.</p>
 
 </div>
 </div>
