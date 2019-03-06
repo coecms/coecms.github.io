@@ -1,0 +1,133 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Setting-up-a-coupled-model-at-a-new-resolution">Setting up a coupled model at a new resolution<a class="anchor-link" href="#Setting-up-a-coupled-model-at-a-new-resolution">&#182;</a></h1><h4 id="Scott-Wales,-CLEX-CMS">Scott Wales, CLEX CMS<a class="anchor-link" href="#Scott-Wales,-CLEX-CMS">&#182;</a></h4><p>We've been setting up an ACCESS coupled model for a new atmosphere resolution. The process is quite involved, here's some notes on how we've done it.</p>
+<p>ACCESS consists of three models - the UM atmosphere, MOM ocean and CICE sea ice models, tied together with the Oasis coupler. The coupler handles sending fields between all of the models, to do so it needs to regrid the data fields from the grid of one model to the grid of another.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Regridding-weights">Regridding weights<a class="anchor-link" href="#Regridding-weights">&#182;</a></h2><p>Oasis requires regridding weights in SCRIP format to convert a field from one model to another. Oasis can generate these itself from SCRIP descriptions of the source and target grid, or they can be generated using <a href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03020000000000000000">ESMF_RegridWeightGen</a> and the ESMF weights converted to SCRIP format.</p>
+<p>The most important thing here is that the masks are consistent between all the models. If they are not you will see discontinuity in the surface fields around coastlines.</p>
+<h3 id="UM-Grids">UM Grids<a class="anchor-link" href="#UM-Grids">&#182;</a></h3><p>The UM mask is defined by two files - the land mask, which is 1 everywhere there is greater than 0% land in a grid cell, and the land fraction, which is the fraction of land in a grid cell. These fields are only defined on the T grid - the UM uses an <a href="https://en.wikipedia.org/wiki/Arakawa_grids#Arakawa_C-grid">Arakawa C grid</a>, with the scalar component termed the 'T' grid and the vector components termed the 'U' and 'V' grids.</p>
+<p>The coupling masks define the regions on the source and target grids which are involved in the coupling. Since we're coupling ocean and sea ice models we want to mask out land points where the ocean fields are not defined. The mask for the UM T grid should be 1 everywhere the land fraction field is less than 1, in other words everywhere with greater than 0% ocean in a cell.</p>
+<p>For the U and V fields I used no mask, since we don't want to conservatively interpolate vector fields and masking the offset grids is more difficult.</p>
+<p>Since the UM uses regular lat-lon grids you can create a <a href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03028300000000000000">GRIDSPEC grid description</a> to feed into ESMF.</p>
+<h3 id="MOM/CICE-Grids">MOM/CICE Grids<a class="anchor-link" href="#MOM/CICE-Grids">&#182;</a></h3><p>The MOM and CICE masks should be equal to each other. The CICE mask is found in <code>$ICE/INPUT/kmt.nc</code> as variable <code>kmt</code>, the MOM mask in <code>$OCN/INPUT/grid_spec.nc</code> as variable <code>wet</code>.</p>
+<p>The coupling mask for the MOM/CICE T grid should be equal to <code>wet</code> from <code>grid_spec.nc</code>.</p>
+<p>MOM uses a tripolar grid, all of the fields needed to create a <a href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03028100000000000000">SCRIP description</a> of a MOM grid may be found in <code>grid_spec.nc</code></p>
+<h3 id="Masks-and-Conservative-Regridding">Masks and Conservative Regridding<a class="anchor-link" href="#Masks-and-Conservative-Regridding">&#182;</a></h3><p>Whereever possible we want to be using conservative regridding - we don't want our model to loose energy each timestep otherwise fields like the model temperature will drift. Conservative regridding ensures that the total field value sent by the source model equals the total field value received by the destination model.</p>
+<p>For conservative regridding to work, the masks of the two models must be consistent as well - there can't be areas where the ocean model thinks it's land and the atmosphere model thinks it's ocean.</p>
+<p>An example point where this can happen is the ice shelves around Antarctica. The ocean model's grid doesn't go all the way to the south pole, so it misses the southernmost part of the Ross ice shelf. The atmosphere grid does reach the pole however, and its default land mask assumes the ice shelf is ocean. There can be other areas where this causes conflicts as well - for instance the black sea is not included in the MOM default mask.</p>
+<p>To make sure that the masks are consistent you need to do a conservative regridding of the mask from one grid to the other. The highest resolution grid should be the source, in my case I used the ocean mask. I then conservatively regridded the <code>wet</code> field from MOM to the UM grid with ESMF_RegridWeightGen. It's important to not use masks for this interpolation, since the mask itself is what we're interpolating and we want to conserve the land area. Also since the MOM grid doesn't cover the entire globe I turned on the ESMF '--ignore_unmapped' flag.</p>
+<p>This operation gave me an ocean fraction field on the UM grid. The ocean fraction can then be straightforwardly converted to a land fraction and land mask field to be input to the UM, although note that the interpolation can introduce a bit of noise, so the land fraction won't be exactly 1.0 on pure land points - I used all grid cells where the land fraction was greater than 0.99 as the land mask.</p>
+<p>With a new land mask and land fraction the UM ancillaries needed to be modified</p>
+<h3 id="Regridding-Weights">Regridding Weights<a class="anchor-link" href="#Regridding-Weights">&#182;</a></h3><p>To calculate regridding weights I used <code>ESMF_RegridWeightGen</code>, a command-line tool included with ESMF. ESMF names the fields differently to SCRIP, so some modification of the output is required in order for OASIS to be able to read the files.</p>
+<p>Conservative regridding is used for scalar fields, for vector fields I used patch regridding to for smooth interpolation without introducing artefacts from the different grid resolutions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="UM-Ancillary-interpolation">UM Ancillary interpolation<a class="anchor-link" href="#UM-Ancillary-interpolation">&#182;</a></h2><p>Since the UM is using a new resolution and mask the various ancillary datasets also need to be changed. For the most part files from the Met Office archive at the target resolution were used. For fields like vegetation fraction which are only defined on land points (and missing data over the ocean) I 'de-masked' the ancillary field, by performing a nearest grid point interpolation from the masked source field to the same grid without a mask to remove the missing data areas. It's important to use nearest grid point so that fields like the vegetation fractions correctly add up - some interpolation types also can result in negative values at some points which crashes the model.</p>
+<p>The aerosol climatology files had to be vertically interpolated since we had also reduced the number of vertical levels in the model run. For this I used the <a href="https://github.com/SciTools-incubator/python-stratify">stratify</a> python library. The vertical levels used by the UM are hybrid height levels - they vary depending on location, following the terrain up to a certain height, then above that level they are constant height levels.</p>
+<p>To convert from the source set of hybrid heights to the target hybrid heights I first converted both to true heights, using the formula from <a href="https://code.metoffice.gov.uk/doc/um/latest/papers/umdp_F03.pdf">UMDB F03</a>. I then used stratify to convert the aerosol fields on true source heights to the true target heights.</p>
+<p>To modify the UM ancillary files I used the <a href="https://code.metoffice.gov.uk/doc/um/mule/2018.07.1/">mule</a> library as well as <a href="https://pandas.pydata.org/">pandas</a> to group the individual 2d lat-lon field slices that are contained in UM format files into the full 4d field</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">categorise_fields</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sorts all of the 2d field slices in mule file ``m`` into a</span>
+<span class="sd">    pandas.DataFrame so that they can be grouped together into full</span>
+<span class="sd">    fields</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">fields</span><span class="p">})</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbyr</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbmon</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbdat</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbhr</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbmin</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;second&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbsec</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stash&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbuser4</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vertical_type&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbvc</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lblev</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pseudo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbuser5</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;blev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">blev</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;brlev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">brlev</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bhlev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">bhlev</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bhrlev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">bhrlev</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Group the 2d slices with the same field and time value together</span>
+<span class="n">ancil</span> <span class="o">=</span> <span class="n">mule</span><span class="o">.</span><span class="n">AncilFile</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">ancil_path</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">categorise_fields</span><span class="p">(</span><span class="n">ancil</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span><span class="s1">&#39;minute&#39;</span><span class="p">,</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;stash&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%04d%02d%02d</span><span class="s2">T</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2"> STASH </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">name</span>)
+
+    <span class="c1"># Stack the slices of this field/time into a 3d array</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">get_data</span><span class="p">()))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">true_theta_height</span><span class="p">(</span><span class="n">level_file</span><span class="p">,</span> <span class="n">orography</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a true height field from the UM levels namelist at ``level_file``</span>
+<span class="sd">    and the orography field</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_levels</span> <span class="o">=</span> <span class="n">f90nml</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">vertlevs</span><span class="p">)[</span><span class="s1">&#39;VERTLEVS&#39;</span><span class="p">]</span>
+    
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">target_levels</span><span class="p">[</span><span class="s1">&#39;eta_theta&#39;</span><span class="p">])</span>
+    <span class="n">const_lev</span> <span class="o">=</span> <span class="n">target_levels</span><span class="p">[</span><span class="s1">&#39;first_constant_r_rho_level&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">Zsea</span> <span class="o">=</span> <span class="n">target_levels</span><span class="p">[</span><span class="s1">&#39;z_top_of_model&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">eta</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="o">/</span><span class="n">eta</span><span class="p">[</span><span class="n">const_lev</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">const_lev</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">target_Zsea</span><span class="p">[:,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">multiply</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">target_C</span><span class="p">,</span><span class="n">orog</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Z</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Running-the-model">Running the model<a class="anchor-link" href="#Running-the-model">&#182;</a></h2><p>With all of this set up the next thing to do is configure the model with all of the new files then do a short test run. A single model day should tell you if the coupling fields are being sent correctly and all of the ancillary files are at the correct resolution. With that done you can move on to longer runs to check the stability of the model.</p>
+
+</div>
+</div>
+</div>
+ 
+
