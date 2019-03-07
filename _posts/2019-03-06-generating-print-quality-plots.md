@@ -79,6 +79,32 @@ dev.off()
 
 That's better.
 
+What if we want an even higher resolution, say 600dpi. So we change the first line to:
+```R
+png('C:/Users/Danny/Documents/heatmap4.png', pointsize=10, width=2800, height=2000, res=600)
+```
+and run the plot again.
+This time you might get the following error: `Error in plot.new() : figure region too large`.
+
+What this means is that your figure doesn't fit in the default device screen that R has set. What does that mean? Well, when you run a `png()` command, you are actually telling R to set up a PNG output device on which to display your plot. That device has certain default parameters, including dimensions and margin sizes. In this case, the plot you have specified doesn't fit in the device's spatial parameters.
+
+You may be able to solve this problem by changing the device's margin sizes. This may require a bit of fiddling to get them right. Margin sizes are measured in units of lines of text. (A plot has a specific text size.)
+
+By adding a `par(mar=...)` command, the error went away.
+```R
+png('C:/Users/Danny/Documents/heatmap5.png', pointsize=10, width=2800, height=2000, res=600)
+par(mar=c(5, 4, 4, 2))
+filled.contour(lons,lats,area,
+               xlim = range(lons), ylim = range(lats),
+               plot.axes = {axis(1);axis(2);
+                 map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
+dev.off()
+```
+
+You may also get an error message saying that the margins are too big. That might indicate that:
+1. You have to make them smaller, or
+2. You haven't set your plot dimensions to be sufficiently large, so there isn't enough space to fit the margins.
+
 ## Changing the Colour Palette
 
 R's default choice of colours is not to everyone's taste and those submitting theses have been known to be asked to change the colour palette.
