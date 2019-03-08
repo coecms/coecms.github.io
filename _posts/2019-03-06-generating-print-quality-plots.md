@@ -90,7 +90,7 @@ What this means is that your figure doesn't fit in the default device screen tha
 
 You may be able to solve this problem by changing the device's margin sizes. This may require a bit of fiddling to get them right. Margin sizes are measured in units of lines of text. (A plot has a specific text size.)
 
-By adding a `par(mar=...)` command, the error went away.
+By adding a `par(mar=...)` command, my error went away.
 ```R
 png('C:/Users/Danny/Documents/heatmap5.png', pointsize=10, width=2800, height=2000, res=600)
 par(mar=c(5, 4, 4, 2))
