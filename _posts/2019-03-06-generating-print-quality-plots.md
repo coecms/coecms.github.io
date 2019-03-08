@@ -105,20 +105,36 @@ You may also get an error message saying that the margins are too big. That migh
 1. You have to make them smaller, or
 2. You haven't set your plot dimensions to be sufficiently large, so there isn't enough space to fit the margins.
 
+Because this is so fiddly, it might just be easier to create a PDF file first, either with the Export function as discussed, or with the following script:
+```R
+pdf('heatmap.pdf', pointsize=30, width=40, height=25)
+filled.contour(lons,lats,area,
+               xlim = range(lons), ylim = range(lats),
+               plot.axes = {axis(1);axis(2);
+                 map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
+dev.off()
+```
+Then you can convert it to the desired format. On the Mac, this can be done quite easily using Preview. Other tools that do this are [ImageMagick](https://www.imagemagick.org/) or Adobe Acrobat.
+
+(*Note:* I had to play a bit with the `pointsize`, `width` and `height` to get it right.)
+
 ## Changing the Colour Palette
 
 R's default choice of colours is not to everyone's taste and those submitting theses have been known to be asked to change the colour palette.
 
 To set the colour palette for a plot, you just have to create a vector of colour names.
 ```R
-# create a vector with 24 shades ranging between the colours mentioned
-colours = colorRampPalette(c("blue", "white", "pink", "red"))(24)
+# create a vector with 15 shades ranging between the colours mentioned
+colours = colorRampPalette(c("blue", "white", "pink", "red"))(15)
 png('heatmap4.png', pointsize=10, width=1400, height=960, res=300, units="px")filled.contour(lons,lats,area, col=colours,
                xlim = range(lons), ylim = range(lats),
                plot.axes = {axis(1);axis(2);
                  map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
 dev.off()
 ```
+
+Note that our colour palette has 15 shades. This needs to correspond to the number of colour levels in the plot. If you have too many shades, not all of them will be used; too few, and the colour palette will cycle (which is not very helpful).
+
 ![Fixed up the palette]({{ "/images/heatmap4.PNG" | absolute_url }})
 
 For a full list of colour names in R, see [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
