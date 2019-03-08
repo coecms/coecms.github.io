@@ -42,8 +42,9 @@ filled.contour(lons,lats,area,
                      map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
 ```
 
-When saved in PNG format, you get this (after zooming in a bit):
+When saved in PNG format, you get this:
 ![Default PNG resolution (zoomed in)]({{ "/images/heatmap_bad_bitmap.PNG" | absolute_url }})
+(You might not be able to see the low resolution so well here, but if you display the image on your browser you'll definitely see it.)
 
 The equivalent way to save to PNG file via the code is this:
 ```R
@@ -64,7 +65,7 @@ filled.contour(lons,lats,area,
                      map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
 dev.off()
 ```
-![Changed resolution to 300dpm]({{ "/images/heatmap2.PNG" | absolute_url }})
+![Changed resolution to 300dpi]({{ "/images/heatmap2.png" | absolute_url }})
 Adding the `res` parameter fixes up the resolution, but it also rescales the axes and text. Therefore, you need to increase the height and the width.
 
 ```R
@@ -75,7 +76,7 @@ filled.contour(lons,lats,area,
                  map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
 dev.off()
 ```
-![Doubled width and height]({{ "/images/heatmap3.PNG" | absolute_url }})
+![Doubled width and height]({{ "/images/heatmap3.png" | absolute_url }})
 
 That's better.
 
@@ -135,7 +136,7 @@ dev.off()
 
 Note that our colour palette has 15 shades. This needs to correspond to the number of colour levels in the plot. If you have too many shades, not all of them will be used; too few, and the colour palette will cycle (which is not very helpful).
 
-![Fixed up the palette]({{ "/images/heatmap4.PNG" | absolute_url }})
+![Fixed up the palette]({{ "/images/heatmap4.png" | absolute_url }})
 
 For a full list of colour names in R, see [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 
