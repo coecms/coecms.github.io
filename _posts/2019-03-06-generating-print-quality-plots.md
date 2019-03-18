@@ -8,7 +8,7 @@ Some students have mentioned that they had generated plots with R and submitted 
 
 ## High Resolution
 
-If you use RStudio, you can export your plots to a file in either PDF or PNG format. If you save it in PDF format, by default it is high resoultion. If, however, you wish to save it as a PNG bitmap, the default resolution will be 72 dpi (dots per inch), the standard screen resolution, far too low for high quality printing, which needs to be at least 300 dpi.
+If you use RStudio, you can click on the "Export" button and export your plots to a file in either PDF or PNG format. If you save it in PDF format, by default it is high resoultion. If, however, you wish to save it as a PNG bitmap, the default resolution will be 72 dpi (dots per inch), the standard screen resolution, far too low for high quality printing, which needs to be at least 300 dpi.
 
 To see what I mean, let's generate a plot as an example. We are will use a sample file recording maximum temperature available from the [UK Met Office](https://www.metoffice.gov.uk/hadobs/hadghcnd/download.html): https://www.metoffice.gov.uk/hadobs/hadghcnd/data/HadGHCND_1949-2011_TXx.nc.gz
 
@@ -30,7 +30,7 @@ janVals <- ncvar_get(ncin, "January")
 area <- matrix(0,nrow=dim(lons), ncol=dim(lats))
 for (lat in 1:dim(lats)){
   for (lon in 1:dim(lons)){
-    vals <- janVals[lon, lat,]
+    vals <- janVals[lon, dim(lats)+1-lat,]
     vals <- vals[!is.na(vals)]
     area[lon, lat] <- mean(vals)
   }
@@ -82,7 +82,7 @@ That's better.
 
 What if we want an even higher resolution, say 600dpi. So we change the first line to:
 ```R
-png('C:/Users/Danny/Documents/heatmap4.png', pointsize=10, width=2800, height=2000, res=600)
+png('heatmap4.png', pointsize=10, width=2800, height=2000, res=600)
 ```
 and run the plot again.
 This time you might get the following error: `Error in plot.new() : figure region too large`.
@@ -93,7 +93,7 @@ You may be able to solve this problem by changing the device's margin sizes. Thi
 
 By adding a `par(mar=...)` command, my error went away.
 ```R
-png('C:/Users/Danny/Documents/heatmap5.png', pointsize=10, width=2800, height=2000, res=600)
+png('heatmap4.png', pointsize=10, width=2800, height=2000, res=600)
 par(mar=c(5, 4, 4, 2))
 filled.contour(lons,lats,area,
                xlim = range(lons), ylim = range(lats),
@@ -115,7 +115,7 @@ filled.contour(lons,lats,area,
                  map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
 dev.off()
 ```
-Then you can convert it to the desired format. On the Mac, this can be done quite easily using Preview. Other tools that do this are [ImageMagick](https://www.imagemagick.org/) or Adobe Acrobat.
+Then you can convert it to the desired format. On the Mac, this can be done quite easily using Preview. Other tools that do this are [ImageMagick](https://www.imagemagick.org/) or Adobe Acrobat. There are also a bunch of free online tools specifically for doing this kind of thing with PDFs, such as [CombinePDF](https://combinepdf.com/) and [SmallPDF.com](https://smallpdf.com/).
 
 (*Note:* I had to play a bit with the `pointsize`, `width` and `height` to get it right.)
 
@@ -127,7 +127,7 @@ To set the colour palette for a plot, you just have to create a vector of colour
 ```R
 # create a vector with 15 shades ranging between the colours mentioned
 colours = colorRampPalette(c("blue", "white", "pink", "red"))(15)
-png('heatmap4.png', pointsize=10, width=1400, height=960, res=300, units="px")filled.contour(lons,lats,area, col=colours,
+png('heatmap5.png', pointsize=10, width=1400, height=960, res=300, units="px")filled.contour(lons,lats,area, col=colours,
                xlim = range(lons), ylim = range(lats),
                plot.axes = {axis(1);axis(2);
                  map('world',add=TRUE, wrap=c(-180,180), interior = FALSE)})
@@ -136,10 +136,11 @@ dev.off()
 
 Note that our colour palette has 15 shades. This needs to correspond to the number of colour levels in the plot. If you have too many shades, not all of them will be used; too few, and the colour palette will cycle (which is not very helpful).
 
-![Fixed up the palette]({{ "/images/heatmap4.png" | absolute_url }})
+![Fixed up the palette]({{ "/images/heatmap5.png" | absolute_url }})
 
 For a full list of colour names in R, see [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 
 There are other colour tools you can use in R, such as [RColorBrewer](https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html#rcolorbrewer-package).
+
 
 Happy plotting!
