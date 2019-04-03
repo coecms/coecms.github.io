@@ -5,7 +5,6 @@ author: Aidan Heerdegen
 categories: bash, sed
 ---
 
-## Filtering files
 We had a recent query on the [Slack support channel](https://arccss.slack.com) 
 asking how, when using `bash`, to programatically generate a listing of files 
 when the year was part the filename, given a begin year and end year.
