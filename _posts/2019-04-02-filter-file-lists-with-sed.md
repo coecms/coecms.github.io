@@ -6,7 +6,6 @@ categories: bash, sed
 ---
 
 ## Introduction
-
 We had a recent query on the [Slack support channel](https://arccss.slack.com) 
 asking how, when using `bash`, to programatically generate a listing of files 
 when the year was part the filename, given a begin year and end year.
@@ -232,7 +231,7 @@ in mind
 ## sed
 
 If `eval` worries you, or you just like the idea of doing yet another way, another option 
-is to use the stream editor`sed`.
+is to use the stream editor `sed`.
 
 The command below is listing all the files, and then piping (`|`) the result into `sed`.
 The sed script matches, and starts printing the input, when it encounters the first pattern, 
@@ -322,5 +321,5 @@ tmp/file.0201-12.nc
 There are often many ways to accomplish even the simplest tasks, but sometimes
 the hardest thing to know is what **not** to do.
 
-Note also that this is very specific to bash. Other shells will have their own
+Note also that this is very specific to `bash`. Other shells will have their own
 limits and abilities.
