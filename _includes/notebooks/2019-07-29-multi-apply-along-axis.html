@@ -2,7 +2,8 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Per-gridpoint-time-correlation-of-two-models">Per-gridpoint time correlation of two models<a class="anchor-link" href="#Per-gridpoint-time-correlation-of-two-models">&#182;</a></h1><p>We've had a few questions lately about how to calculate a time correlation of two different models at every grid point. Numpy's <code>apply_along_axis()</code> function is super useful for applying a function to the time axis at each grid point of a single array, but what if we have more than one input array we need to do a calculation on?</p>
+<h1 id="Per-gridpoint-time-correlation-of-two-models">Per-gridpoint time correlation of two models<a class="anchor-link" href="#Per-gridpoint-time-correlation-of-two-models">&#182;</a></h1><p><strong>By Scott Wales</strong></p>
+<p>We've had a few questions lately about how to calculate a time correlation of two different models at every grid point. Numpy's <code>apply_along_axis()</code> function is super useful for applying a function to the time axis at each grid point of a single array, but what if we have more than one input array we need to do a calculation on?</p>
 <p>To accomplish this we can use a trick - we can combine all the input arrays into a single big array that we can call <code>apply_along_axis()</code> on, and use a helper function to split the time axis of the big array back into its component pieces.</p>
 <p>Let's start out by loading a couple libraries and turning on inline plotting</p>
 
@@ -30,7 +31,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p>I've set up the function below to help do the correlation analysis. This works just like numpy's <code>apply_along_axis()</code> function, but instead of a single array it takes a list of arrays. These will all need to be the same dimension and the same size in all dimensions except time (they should also use the same grid latitudes and longitudes, but this isn't enforced by the function).</p>
+<h3 id="Defining-the-function">Defining the function<a class="anchor-link" href="#Defining-the-function">&#182;</a></h3><p>I've set up the function below to help do the correlation analysis. This works just like numpy's <code>apply_along_axis()</code> function, but instead of a single array it takes a list of arrays. These will all need to be the same dimension and the same size in all dimensions except time (they should also use the same grid latitudes and longitudes, but this isn't enforced by the function).</p>
 <p>The function is split up into a few parts:</p>
 <p>First all of the input arrays are concatenated along the axis of interest into <code>carrs</code>, which is the big array that gets used in <code>apply_along_axis()</code>.</p>
 <p>Next I calculate the offsets needed to give to <code>split()</code> to undo the calculation. This only needs to be done once, as the offsets will be the same for every grid point. The offsets are calculated by adding together the lengths of each input array along the time axis.</p>
@@ -101,7 +102,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p>To show off our function let's plot the correlation of the surface temperature of two CMIP5 models - HadGEM2-AO from KMA and HadGEM2-CC from the Hadley Centre. I've chosen the same model type just to make sure they're using the same grid, you could do an interpolation if the models were on different grids</p>
+<h3 id="Load-test-data">Load test data<a class="anchor-link" href="#Load-test-data">&#182;</a></h3><p>To show off our function let's plot the correlation of the surface temperature of two CMIP5 models - HadGEM2-AO from KMA and HadGEM2-CC from the Hadley Centre. I've chosen the same model type just to make sure they're using the same grid, you could do an interpolation if the models were on different grids</p>
 
 </div>
 </div>
@@ -162,7 +163,7 @@ Attributes:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p>For the correlation function I'm going to use the <code>pearsonr()</code> function from Scipy. This returns two values as a tuple - the Pearson correlation coefficient and the two-tailed p-value. When I apply the function these two values will be added as a new axis, replacing the time axis.</p>
+<h3 id="Run-a-test-analysis">Run a test analysis<a class="anchor-link" href="#Run-a-test-analysis">&#182;</a></h3><p>For the correlation function I'm going to use the <code>pearsonr()</code> function from Scipy. This returns two values as a tuple - the Pearson correlation coefficient and the two-tailed p-value. When I apply the function these two values will be added as a new axis, replacing the time axis.</p>
 <p>I'll apply it along the time axis, which for this example is axis 0. I'm also going to make sure the date range is the same for both inputs - the values for the full date range start and end in different months in each model.</p>
 
 </div>
@@ -208,7 +209,7 @@ Attributes:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p>Now let's plot the results. I've done a log of the p-value to better show off its range.</p>
+<h3 id="Looking-at-results">Looking at results<a class="anchor-link" href="#Looking-at-results">&#182;</a></h3><p>Now let's plot the results. I've done a log of the p-value to better show off its range.</p>
 
 </div>
 </div>
@@ -273,7 +274,7 @@ Attributes:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p>If the dimensions of the input arrays aren't compatible (say if we try to compare different regions) Numpy will raise an exception when it attempts the concatenation</p>
+<h3 id="Handling-errors">Handling errors<a class="anchor-link" href="#Handling-errors">&#182;</a></h3><p>If the dimensions of the input arrays aren't compatible (say if we try to compare different regions) Numpy will raise an exception when it attempts the concatenation</p>
 
 </div>
 </div>
