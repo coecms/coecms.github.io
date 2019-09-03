@@ -1,0 +1,237 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Using-OPeNDAP-to-access-data-remotely:-MUR-example">Using OPeNDAP to access data remotely: MUR example<a class="anchor-link" href="#Using-OPeNDAP-to-access-data-remotely:-MUR-example">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One of our researcher asked me recently to download the MUR (Multi-scale Ultra-high Resolution SST) dataset. She is interested in all the available period but only for a small region. This dataset is relatively small but has many files (several for each day across 19 years) and it is updated frequently. This means that we would also have to update and check the dataset frequently and the files would be stored across several sub-directories making the access more complicated. <br><br>
+Fortunately this data is available via OPeNDAP. OPeNDAP is a web-based software that allows users to access datasets remotely. Many softwares used for analysis recognise an OPeNDAP url as a filename. A OPeNDAP url is usually constituted by the remote address of the file followed by optional constraints.<br><br>
+This is one of the advantages of OPeNDAP you don't need to download a file before using it, you can simply subset the portion you need and the software you are using will load only the data you need. Next time you run the same analysis, if the data has been updated, you will be automatically using the updated dataset.<br><br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="OPeNDAP-url">OPeNDAP url<a class="anchor-link" href="#OPeNDAP-url">&#182;</a></h3><p>Let's check an example using a test server:<br><br>
+<a href="http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz.html">http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz.html</a> <br>
+If you copy and paste the above url in your browser you will see what an OPeNDAP form looks like.<br><br>
+Let's split this url:<br>
+  <strong>test.opendap.org:80/opendap/data</strong> <br>
+is the root of the opendap catalogue, starting from this url you can browse down the available subdirectories, in our case <strong>/nc/</strong> indicating netcdf files;<br>
+finally the filename <br>
+  <strong>sst.mnmean.nc.gz</strong><br>
+Note in this example the file is compressed with gzip, opendap can access compressed files without needing you to download and uncompress them before.
+If you want to select only some variables you can do so by adding some constraints:<br>
+<strong>?sst,lat</strong> <br>
+The constraints syntax is a question mark followed by a list of variables.
+Each variable is separated by a comma and can be indexed, for example
+<strong><a href="http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz?sst[10:2:18][10:1:28][100:1:120">http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz?sst[10:2:18][10:1:28][100:1:120</a>]</strong> <br>
+will return a subset of the sst array with: <br></p>
+<ul>
+<li>only every 2 timesteps from index 10 to 18</li>
+<li>lat from index 10 to 28 included</li>
+<li>lon from index 100 to 120 included</li>
+</ul>
+<p>An easy way to build the url is to use the form to select what you want the <strong>data_url</strong> box will update itself and show you the url you need to use to get exactly what you selected.<br><br>
+You don't need to subset a variable or even specify any of them. It is useful when you want to select only a specific variable, region or time range. <br>
+The downside is that usually you have to first retrieve the dimensions to work out which indexes to use.<br>
+We will see now how using xarray and python can help you skip this step.<br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Accessing-OPeNDAP-in-python-with-xarray">Accessing OPeNDAP in python with xarray<a class="anchor-link" href="#Accessing-OPeNDAP-in-python-with-xarray">&#182;</a></h3><p>I am using xarray to open one file from the MUR dataset, load the data and select the time and lat/lon ranges. <br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xa</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If I knew exactly which indexes I'm interested into I could add a constraints to data url below and get back only a subset of the dataset.<br>
+Since we are using xarray we don't have to worry about that, since xarray initially will load only the information on the data and not the values.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dap_url</span><span class="o">=</span><span class="s2">&quot;https://podaac-opendap.jpl.nasa.gov/opendap/allData/ghrsst/data/GDS2/L4/GLOB/JPL/MUR/v4.1/2002/152/20020601090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">xa</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dap_url</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I can select the sst variable and a specific region using latitude and longitude values simply as I would after loading data from a netcdf file. In fact xarray showed me the variable names and dimensions after I "connected" to the remote file. <br> In this way I'm loading directly only the values I'm interested into.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sst</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;analysed_sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">53.99</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span><span class="mi">170</span><span class="p">))</span>
+<span class="n">sst</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;xarray.DataArray &#39;analysed_sst&#39; (time: 1, lat: 3999, lon: 3001)&gt;
+[12000999 values with dtype=float32]
+Coordinates:
+  * time     (time) datetime64[ns] 2002-06-01T09:00:00
+  * lat      (lat) float32 -53.98 -53.97 -53.96 -53.95 ... -14.02 -14.01 -14.0
+  * lon      (lon) float32 140.0 140.01 140.02 140.03 ... 169.98 169.99 170.0
+Attributes:
+    long_name:      analysed sea surface temperature
+    standard_name:  sea_surface_foundation_temperature
+    units:          kelvin
+    valid_min:      -32767
+    valid_max:      32767
+    comment:        &#34;Final&#34; version using Multi-Resolution Variational Analys...
+    source:         AMSRE-REMSS, AVHRR_Pathfinder-PFV5.2-NODC_day, AVHRR_Path...</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Aggregated-virtual-files">Aggregated virtual files<a class="anchor-link" href="#Aggregated-virtual-files">&#182;</a></h3><p>Another powerful feature of OPeNDAP is that it works also with virtually aggregated datasets. This sounds complicated but all you need to know is that a multi files dataset can be made visible as a single file, you can then access potentially thousands of files via a single url. <br><br>
+MUR dataset is available as a virtually aggregated file so we can use this version of the data to get the complete SST timeseries from one url only.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aggr_url</span> <span class="o">=</span> <span class="s2">&quot;https://thredds.jpl.nasa.gov/thredds/dodsC/OceanTemperature/MUR-JPL-L4-GLOB-v4.1.nc&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">xa</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">aggr_url</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I loaded the data in the same way and I'm going to select sst and the region IO'm interested into in exactly the same way</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sst</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;analysed_sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">53.99</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span><span class="mi">170</span><span class="p">))</span>
+<span class="n">sst</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;xarray.DataArray &#39;analysed_sst&#39; (time: 6106, lat: 3999, lon: 3001)&gt;
+[73278099894 values with dtype=float32]
+Coordinates:
+  * lat      (lat) float32 -53.98 -53.97 -53.96 -53.95 ... -14.02 -14.01 -14.0
+  * lon      (lon) float32 140.0 140.01 140.02 140.03 ... 169.98 169.99 170.0
+  * time     (time) datetime64[ns] 2002-06-01T09:00:00 ... 2019-02-17T09:00:00
+Attributes:
+    long_name:      analysed sea surface temperature
+    standard_name:  sea_surface_foundation_temperature
+    units:          kelvin
+    valid_min:      -32767
+    valid_max:      32767
+    comment:        &#34;Final&#34; version using Multi-Resolution Variational Analys...
+    source:         AVHRR18_G-NAVO, AVHRR19_G-NAVO, AVHRR_METOP_A-EUMETSAT, M...
+    _ChunkSizes:    [   1 1023 2047]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+ 
+

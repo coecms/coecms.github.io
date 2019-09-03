@@ -19,37 +19,29 @@
         gtag('js', new Date());
         gtag('config', 'UA-45778515-2');
     </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
-        
-        {% if site.logo %}
-          <img src="{{site.logo | relative_url}}" alt="Logo" style="padding-bottom: 30px;"/>
-        {% endif %}
-
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
-
-        <p class="view"><a href="http://climateextremes.org.au">ARC CoE for Climate Extremes</a></p>
-
-        <p class="view"><a href="http://climate-cms.wikis.unsw.edu.au/Home">CMS Wiki</a></p>
-
-        <p class="view"><a href="http://github.com/coecms">CMS Github</a></p>
-
-      </header>
-      <section>
-
-      {{ content }}
-
-      </section>
-      <footer>
-        {% if site.github.is_project_page %}
-        <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
-        {% endif %}
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Climate CMS</a>
+            <ul class="navbar-nav mr-auto">
+                {% if page.previous.url %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+                    </li>
+                {% endif %}
+                {% if page.next.url %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+      </nav>
+      <div tabindex="-1" id="post" class="border-box-sizing">
+        <div class="container" id="post-container">
+         {{ content }}
+        </div>
+      </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
   </body>
 </html>
