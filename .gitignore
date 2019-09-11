@@ -6,3 +6,7 @@ _site
 .vagrant
 .ipynb_checkpoints
 *.log
+
+# Some temporary files for the Python Animation notebook
+images/Python_Animation/*.png
+notebooks/None*png
