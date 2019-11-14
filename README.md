@@ -19,6 +19,7 @@ To create a new blog post:
         1. Edit the metadata in the `_posts` directory as appropriate
     - *the post is not a notebook:*
         1. Create a new blog post in `_posts`, named `YY-MM-DD-title.md` directly
+   Note: the file in `_posts` should only have `-`, no `_`.
 1. `commit` changes and `push` branch back to `coecms/coecms.github.io`
 1. Open Pull Request and select CMS team member to review
 1. After review squash and merge PR
