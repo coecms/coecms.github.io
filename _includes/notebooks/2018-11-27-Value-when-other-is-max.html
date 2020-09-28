@@ -1,23 +1,19 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum">Find the value of a variable at the times when another variable is maximum<a class="anchor-link" href="#Find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum">&#182;</a></h1><h2 id="Claire-Carouge">Claire Carouge<a class="anchor-link" href="#Claire-Carouge">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">Let's say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.<a class="anchor-link" href="#Let's-say-you-have-two-variables-that-vary-in-space-and-time.-You-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time.-Now,-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum.-And-this,-for-each-spatial-point.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As we shall see, it is relatively easy to do with two variables of the same rank, and that is what the <code>where()</code> function is designed for. But, depending on which Python package you are using, this problem can be more complicated with variables of different ranks, or not! 
 In this blog, we will look at both scenarios.</p>
@@ -26,8 +22,7 @@ In this blog, we will look at both scenarios.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We first need to import some packages, read in some data and calculate the maximum in time at all spatial points. As usual, I'm going to use CMIP data as it's easily accessible.</p>
 
@@ -44,7 +39,7 @@ In this blog, we will look at both scenarios.</p>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -65,7 +60,7 @@ In this blog, we will look at both scenarios.</p>
 <span class="n">hfss</span> <span class="o">=</span> <span class="n">ds1</span><span class="o">.</span><span class="n">hfss</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -78,7 +73,7 @@ In this blog, we will look at both scenarios.</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tas</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -88,7 +83,7 @@ In this blog, we will look at both scenarios.</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -125,7 +120,7 @@ Attributes:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hfss</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -135,7 +130,7 @@ Attributes:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -173,7 +168,7 @@ Attributes:
 <span class="n">tas_max</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -183,7 +178,7 @@ Attributes:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -211,16 +206,14 @@ Coordinates:
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Variables-of-the-same-dimensionality">Variables of the same dimensionality<a class="anchor-link" href="#Variables-of-the-same-dimensionality">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Now-we-want-to-find-the-values-of-the-sensible-heat-flux-when-the-2m-temperature-is-maximum.">Now we want to find the values of the sensible heat flux when the 2m temperature is maximum.<a class="anchor-link" href="#Now-we-want-to-find-the-values-of-the-sensible-heat-flux-when-the-2m-temperature-is-maximum.">&#182;</a></h4>
 </div>
@@ -237,7 +230,7 @@ Coordinates:
 <span class="n">hfss_at_max</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -247,7 +240,7 @@ Coordinates:
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -259,7 +252,7 @@ Wall time: 4.78 s
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -277,24 +270,21 @@ Wall time: 4.78 s
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="As-you-can-see,-hfss_at_max-has-the-same-dimensions-as-the-initial-arrays-(hfss-and-tas)-but-with-a-lot-of-missing-values.-Only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values.-So-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it.-Here-we-arbitrarily-chose-to-plot-the-mean-in-time.">As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.<a class="anchor-link" href="#As-you-can-see,-hfss_at_max-has-the-same-dimensions-as-the-initial-arrays-(hfss-and-tas)-but-with-a-lot-of-missing-values.-Only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values.-So-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it.-Here-we-arbitrarily-chose-to-plot-the-mean-in-time.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Variables-of-different-dimensionality">Variables of different dimensionality<a class="anchor-link" href="#Variables-of-different-dimensionality">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It really depends a lot on what object you are using. It is really easy with <code>xarray</code> arrays and not so much with <code>numpy</code> arrays</p>
 
@@ -302,8 +292,7 @@ Wall time: 4.78 s
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To illustrate this, we are going to look at the problem of finding at what times the 2m temperature is maximum at each point</p>
 
@@ -311,16 +300,14 @@ Wall time: 4.78 s
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Solution-with-xarray">Solution with <code>xarray</code><a class="anchor-link" href="#Solution-with-xarray">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this case, it is as simple as the previous case with variables of the same rank. Note that the result is a full 3D array with lots of missing values (NaN). There are only values when <code>tas</code> is at a maximum for that point in space.</p>
 
@@ -337,7 +324,7 @@ Wall time: 4.78 s
 <span class="n">time_at_max</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -347,7 +334,7 @@ Wall time: 4.78 s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -397,7 +384,7 @@ Attributes:
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -415,8 +402,7 @@ Attributes:
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Note:</strong> The time unit is number of days since 0001-01-01, so one would have to convert to a more usable format for scientific usage</p>
 
@@ -424,16 +410,14 @@ Attributes:
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Solution-for-numpy-arrays">Solution for <code>numpy</code> arrays<a class="anchor-link" href="#Solution-for-numpy-arrays">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We'll use <code>tas</code> and <code>tas.time</code> again but without using the <code>xarray</code> built-in methods. If I try the <code>numpy</code> equivalent solution:</p>
 
@@ -448,7 +432,7 @@ Attributes:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">nptime_at_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tas</span> <span class="o">==</span> <span class="n">tas_max</span><span class="p">,</span> <span class="n">tas</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -458,7 +442,7 @@ Attributes:
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_text output_error">
@@ -477,8 +461,7 @@ Attributes:
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This does not work as <code>numpy</code> (and <code>xarray</code>) can only perform a <code>where()</code> operation on arrays of the same shape. When provided with arrays of different shapes (like in this case), both <code>numpy</code> and <code>xarray</code> will try to make them conform with each other by expanding the smallest arrays to the shape of the biggest array. The values of the smallest arrays are copied across all missing dimensions. This process is called <code>broadcasting</code>.</p>
 <p>The problem is <code>numpy</code> is quite conservative in its broadcasting rules and can not perform it in the case above. <code>xarray</code> is much better at broadcasting as it uses all the metadata stored in the DataArray to identify the dimensions in each array. That is the reason why <code>DataArray.where()</code> worked above.</p>
@@ -500,7 +483,7 @@ Attributes:
 <span class="n">new_time_at_max</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -510,7 +493,7 @@ Attributes:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -552,8 +535,7 @@ Dimensions without coordinates: t, l, L</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you see, you can keep your values and the time in separate arrays (new_tas and new_time). You don't need to add the time array as a coordinate to the 3D array. Although it can be a good idea to do it in general as it keeps the data self-describing.</p>
 
@@ -561,16 +543,14 @@ Dimensions without coordinates: t, l, L</pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Extension">Extension<a class="anchor-link" href="#Extension">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The other advantage of using <code>xarray</code> is it allows you to extend the functionalities beyond the built-in functions a lot more easily. The idea here is to use the  <code>groupby().apply()</code> workflow to apply a user-defined function.
 You could obviously use it as a solution to the current problem:</p>
@@ -591,7 +571,7 @@ You could obviously use it as a solution to the current problem:</p>
 <span class="n">tasmax_dates</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -601,7 +581,7 @@ You could obviously use it as a solution to the current problem:</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -644,7 +624,7 @@ Coordinates:
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -662,8 +642,7 @@ Coordinates:
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>But this is slower than using the built-in functions directly. And it doesn't keep the attributes (like time_bnds, units, calendar, etc)! It is then best to keep this approach for more complex problems that can not be easily solved otherwise.</p>
 

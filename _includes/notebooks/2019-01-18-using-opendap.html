@@ -1,15 +1,12 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Using-OPeNDAP-to-access-data-remotely:-MUR-example">Using OPeNDAP to access data remotely: MUR example<a class="anchor-link" href="#Using-OPeNDAP-to-access-data-remotely:-MUR-example">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>One of our researcher asked me recently to download the MUR (Multi-scale Ultra-high Resolution SST) dataset. She is interested in all the available period but only for a small region. This dataset is relatively small but has many files (several for each day across 19 years) and it is updated frequently. This means that we would also have to update and check the dataset frequently and the files would be stored across several sub-directories making the access more complicated. <br><br>
 Fortunately this data is available via OPeNDAP. OPeNDAP is a web-based software that allows users to access datasets remotely. Many softwares used for analysis recognise an OPeNDAP url as a filename. A OPeNDAP url is usually constituted by the remote address of the file followed by optional constraints.<br><br>
@@ -19,8 +16,7 @@ This is one of the advantages of OPeNDAP you don't need to download a file befor
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="OPeNDAP-url">OPeNDAP url<a class="anchor-link" href="#OPeNDAP-url">&#182;</a></h3><p>Let's check an example using a test server:<br><br>
 <a href="http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz.html">http://test.opendap.org:80/opendap/data/nc/sst.mnmean.nc.gz.html</a> <br>
@@ -51,8 +47,7 @@ We will see now how using xarray and python can help you skip this step.<br></p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Accessing-OPeNDAP-in-python-with-xarray">Accessing OPeNDAP in python with xarray<a class="anchor-link" href="#Accessing-OPeNDAP-in-python-with-xarray">&#182;</a></h3><p>I am using xarray to open one file from the MUR dataset, load the data and select the time and lat/lon ranges. <br></p>
 
@@ -67,14 +62,13 @@ We will see now how using xarray and python can help you skip this step.<br></p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xa</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If I knew exactly which indexes I'm interested into I could add a constraints to data url below and get back only a subset of the dataset.<br>
 Since we are using xarray we don't have to worry about that, since xarray initially will load only the information on the data and not the values.</p>
@@ -91,14 +85,13 @@ Since we are using xarray we don't have to worry about that, since xarray initia
 <span class="n">data</span> <span class="o">=</span> <span class="n">xa</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dap_url</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I can select the sst variable and a specific region using latitude and longitude values simply as I would after loading data from a netcdf file. In fact xarray showed me the variable names and dimensions after I "connected" to the remote file. <br> In this way I'm loading directly only the values I'm interested into.</p>
 
@@ -114,7 +107,7 @@ Since we are using xarray we don't have to worry about that, since xarray initia
 <span class="n">sst</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -124,7 +117,7 @@ Since we are using xarray we don't have to worry about that, since xarray initia
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -153,8 +146,7 @@ Attributes:
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Aggregated-virtual-files">Aggregated virtual files<a class="anchor-link" href="#Aggregated-virtual-files">&#182;</a></h3><p>Another powerful feature of OPeNDAP is that it works also with virtually aggregated datasets. This sounds complicated but all you need to know is that a multi files dataset can be made visible as a single file, you can then access potentially thousands of files via a single url. <br><br>
 MUR dataset is available as a virtually aggregated file so we can use this version of the data to get the complete SST timeseries from one url only.</p>
@@ -171,14 +163,13 @@ MUR dataset is available as a virtually aggregated file so we can use this versi
 <span class="n">data</span> <span class="o">=</span> <span class="n">xa</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">aggr_url</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I loaded the data in the same way and I'm going to select sst and the region IO'm interested into in exactly the same way</p>
 
@@ -194,7 +185,7 @@ MUR dataset is available as a virtually aggregated file so we can use this versi
 <span class="n">sst</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -204,7 +195,7 @@ MUR dataset is available as a virtually aggregated file so we can use this versi
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -229,6 +220,19 @@ Attributes:
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 

@@ -1,7 +1,5 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Setting-up-a-coupled-model-at-a-new-resolution">Setting up a coupled model at a new resolution<a class="anchor-link" href="#Setting-up-a-coupled-model-at-a-new-resolution">&#182;</a></h1><h4 id="Scott-Wales,-CLEX-CMS">Scott Wales, CLEX CMS<a class="anchor-link" href="#Scott-Wales,-CLEX-CMS">&#182;</a></h4><p>We've been setting up an ACCESS coupled model for a new atmosphere resolution. The process is quite involved, here's some notes on how we've done it.</p>
 <p>ACCESS consists of three models - the UM atmosphere, MOM ocean and CICE sea ice models, tied together with the Oasis coupler. The coupler handles sending fields between all of the models, to do so it needs to regrid the data fields from the grid of one model to the grid of another.</p>
@@ -10,8 +8,7 @@
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Regridding-weights">Regridding weights<a class="anchor-link" href="#Regridding-weights">&#182;</a></h2><p>Oasis requires regridding weights in SCRIP format to convert a field from one model to another. Oasis can generate these itself from SCRIP descriptions of the source and target grid, or they can be generated using <a href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03020000000000000000">ESMF_RegridWeightGen</a> and the ESMF weights converted to SCRIP format.</p>
 <p>The most important thing here is that the masks are consistent between all the models. If they are not you will see discontinuity in the surface fields around coastlines.</p>
@@ -35,8 +32,7 @@
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="UM-Ancillary-interpolation">UM Ancillary interpolation<a class="anchor-link" href="#UM-Ancillary-interpolation">&#182;</a></h2><p>Since the UM is using a new resolution and mask the various ancillary datasets also need to be changed. For the most part files from the Met Office archive at the target resolution were used. For fields like vegetation fraction which are only defined on land points (and missing data over the ocean) I 'de-masked' the ancillary field, by performing a nearest grid point interpolation from the masked source field to the same grid without a mask to remove the missing data areas. It's important to use nearest grid point so that fields like the vegetation fractions correctly add up - some interpolation types also can result in negative values at some points which crashes the model.</p>
 <p>The aerosol climatology files had to be vertically interpolated since we had also reduced the number of vertical levels in the model run. For this I used the <a href="https://github.com/SciTools-incubator/python-stratify">stratify</a> python library. The vertical levels used by the UM are hybrid height levels - they vary depending on location, following the terrain up to a certain height, then above that level they are constant height levels.</p>
@@ -87,7 +83,7 @@
     <span class="n">cube</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">get_data</span><span class="p">()))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -115,14 +111,13 @@
     <span class="k">return</span> <span class="n">Z</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Running-the-model">Running the model<a class="anchor-link" href="#Running-the-model">&#182;</a></h2><p>With all of this set up the next thing to do is configure the model with all of the new files then do a short test run. A single model day should tell you if the coupling fields are being sent correctly and all of the ancillary files are at the correct resolution. With that done you can move on to longer runs to check the stability of the model.</p>
 
