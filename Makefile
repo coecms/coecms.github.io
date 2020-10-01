@@ -12,6 +12,9 @@ _posts/%.md:
 	>> $@ echo "title: $(notdir $@)"
 	>> $@ echo "layout: notebook"
 	>> $@ echo "notebook: $*.html"
+	>> $@ echo "excerpt: >-"
+	>> $@ echo "    TODO: Add excerpt"
+	>> $@ echo "tags: TODO: Add tags"
 	>> $@ echo "---"
 
 .PRECIOUS: _includes/notebooks/%.html
