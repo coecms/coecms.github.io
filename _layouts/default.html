@@ -21,7 +21,7 @@
     </script>
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper", style="width: auto">
       <header>
         <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
         
@@ -38,7 +38,15 @@
         <p class="view"><a href="http://github.com/coecms">CMS Github</a></p>
 
       </header>
-      <section>
+      <div class="tag_list" style="float: right; width: 270px">
+          <h2>Tags</h2>
+          <ul>
+          {% for tag in site.tags %}
+              <li><a href="{{ "/tag_index" | absolute_url }}#{{tag[0]}}">{{ tag[0] }}</a> ({{ tag[1].size }})</li>
+          {% endfor %}
+          </ul>
+      </div>
+      <section style="margin: auto; float: none">
 
       {{ content }}
 
