@@ -5,7 +5,7 @@ NB_RENDERS = $(patsubst notebooks/%.ipynb,_includes/notebooks/%.html,${NOTEBOOKS
 all: ${NB_POSTS} ${NB_RENDERS}
 
 _includes/notebooks/%.html: notebooks/%.ipynb
-	jupyter nbconvert $< --output-dir $(dir $@) --output $(notdir $@) --template basic
+	jupyter nbconvert $< --output-dir $(dir $@) --output $(notdir $@) --template classic --to html
 
 _posts/%.md:
 	>  $@ echo "---"
