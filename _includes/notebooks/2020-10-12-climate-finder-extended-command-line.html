@@ -13106,7 +13106,7 @@ div#notebook {
 <p>In the first CleF blog we covered the basic command line options:</p>
 <ul>
 <li>exploring the command and sub-commands options</li>
-<li>passing constraints to query CMIP5 and/or CMIP6 data</li>
+<li>passing constraints to query CMIP5, CORDEX and CMIP6 data</li>
 <li>searching only the locally stored data or the ESGF published collection</li>
 <li>how to check which data has been published but not yet downloaded locally</li>
 <li>and finally how to request for data to be downloaded.
@@ -13117,48 +13117,29 @@ div#notebook {
 <li>save the query results as a csv file</li>
 <li>get a summary of available data</li>
 <li>run more complex queries</li>
-<li>get extra information from the ESDOC documentation such as errata and citations <br></li>
+<li>get extra information from the ESDOC documentation as errate and citations <br></li>
 </ul>
-<p>A reminder that CleF is currently installed in the CMS conda modules analysis3 (stable version) and analysis3-unstable (latest version). As such one needs to <a href="https://my.nci.org.au/mancini/project/hh5">become a member of the hh5 project</a> on NCI before using CleF. This is managed by the CMS team and is available simply by running</p>
+<p>A reminder that CleF is currently installed in the CMS conda module analysis3 and analysis3-unstable for the latest version. This is managed by the CMS and is available simply by running</p>
 <blockquote><p>module use /g/data3/hh5/public/modules <br>
  module load conda/analysis3</p>
 </blockquote>
+<p><br><br>
+You need to be a member of hh5 to use the modules and of one of the CMIP projects: oi10,rr3, fs38, al33 to access the data and the clef database.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># run this if you haven&#39;t done so already in the terminal</span>
-<span class="o">!</span>module use /g/data3/hh5/public/modules
-<span class="o">!</span>module load conda/analysis3-unstable
+<span class="c1">#!module use /g/data3/hh5/public/modules</span>
+<span class="c1">#!module load conda/analysis3-unstable</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Important Note. git/2.9.5 is not compatible with matlab.
-Make sure you do not have a matlab module loaded when using this version of git
-Important Note. git/2.9.5 is not compatible with matlab.
-Make sure you do not have a matlab module loaded when using this version of git
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13173,8 +13154,8 @@ Make sure you do not have a matlab module loaded when using this version of git
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <em>--csv</em> option added to the command line will output the query results in a csv file. Rather than getting only the files path, it will list all the available attributes.<br>
-This currently works only with the <em>--local</em> and <em>--remote</em> option, it doesn't yet work for the standard search, which is basically a combination of the two.</p>
+<p>The <code>--csv</code> option added to the command line will output the query results in a csv file. Rather than getting only the files path, it will list all the available attributes.<br>
+This currently works only with the <code>--local</code> and <code>--remote</code> option, it doesn't yet work for the standard search, which is basically a combination of the two.</p>
 
 </div>
 </div>
@@ -13367,9 +13348,9 @@ This currently works only with the <em>--local</em> and <em>--remote</em> option
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the first example I am passing <em>--csv</em> to a CMIP5 query with the <em>--local</em> option set.<br> 
-The tool still prints the results on the display as well as creating the csv file.<br>
-The following example demonstrate how <em>--csv</em> works also for remote CMIP6 queries.</p>
+<p>In the first example I am passing <code>--csv</code> to a CMIP5 query with the <code>--local</code> option set.<br> 
+I am hiding the cell output but the tool still prints the results on the display as well as creating the csv file.<br>
+The following example demonstrate how <code>--csv</code> works also for remote CMIP6 queries and with the flag <code>--and</code>. The <code>--and</code> flag allows for more complex filtering of the data and later we will see how it works.</p>
 
 </div>
 </div>
@@ -13485,8 +13466,8 @@ TaiESM1 / r1i1p1f1 versions: v20200211, v20200302
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <em>--stats</em> option added to the command line will print a summary of the query results<br>
-It works for both <em>--local</em> and <em>--remote</em> options, but not with the default query.<br>
+<p>The <code>--stats</code> option added to the command line will print a summary of the query results<br>
+It works for both <code>--local</code> and <code>--remote</code> options, but not with the default query.<br>
 Currently it prints the following:</p>
 <ul>
 <li>total number of models, followed by their names</li>
@@ -13599,6 +13580,111 @@ A total of 100 unique model-member combinations are available.
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef --local cmip5 -v cli -e rcp85 -e rcp45 -e rcp26 -t Amon --and experiment --stats
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BNU-ESM / r1i1p1 versions: 20120510
+CSIRO-Mk3.6.0 / r10i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r1i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r2i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r3i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r4i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r5i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r6i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r7i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r8i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r9i1p1 versions: v20110518
+CanESM2 / r1i1p1 versions: 20120718
+FGOALS_g2 / r1i1p1 versions: 20161204
+GFDL-CM3 / r1i1p1 versions: 20120227
+GFDL-ESM2G / r1i1p1 versions: 20120412
+GISS-E2-H / r1i1p1 versions: 20160512
+GISS-E2-H / r1i1p2 versions: 20160512
+GISS-E2-H / r1i1p3 versions: 20160512
+GISS-E2-R / r1i1p1 versions: 20160803, 20160513, 20160512
+GISS-E2-R / r1i1p2 versions: 20160513, 20160512
+GISS-E2-R / r1i1p3 versions: 20160823, 20160513, 20160512
+HadGEM2-ES / r1i1p1 versions: 20111128, 20111206, 20130430
+HadGEM2-ES / r2i1p1 versions: 20111205, 20111129, 20120114
+HadGEM2-ES / r3i1p1 versions: 20111208, 20111205, 20120114
+HadGEM2-ES / r4i1p1 versions: 20111209, 20111205, 20120114
+IPSL-CM5A-LR / r1i1p1 versions: 20110914, 20111103, 20120114
+MIROC-ESM / r1i1p1 versions: 20120710
+MIROC-ESM-CHEM / r1i1p1 versions: 20120710
+MIROC5 / r1i1p1 versions: 20120710, 20161012
+MIROC5 / r2i1p1 versions: 20120710
+MIROC5 / r3i1p1 versions: 20120710
+MPI-ESM-LR / r1i1p1 versions: 20120315
+MPI-ESM-LR / r2i1p1 versions: 20120315
+MPI-ESM-LR / r3i1p1 versions: 20120315
+MPI-ESM-MR / r1i1p1 versions: 20120503
+MRI-CGCM3 / r1i1p1 versions: 20120701
+NorESM1-M / r1i1p1 versions: 20120412
+
+Query summary
+
+17 model/s are available:
+BNU-ESM CSIRO-Mk3.6.0 CanESM2 FGOALS_g2 GFDL-CM3 GFDL-ESM2G GISS-E2-H GISS-E2-R HadGEM2-ES IPSL-CM5A-LR MIROC-ESM MIROC-ESM-CHEM MIROC5 MPI-ESM-LR MPI-ESM-MR MRI-CGCM3 NorESM1-M 
+
+A total of 37 unique model-member combinations are available.
+
+  11 model/s have 1 member/s:
+
+     BNU-ESM: r1i1p1
+     CanESM2: r1i1p1
+     FGOALS_g2: r1i1p1
+     GFDL-CM3: r1i1p1
+     GFDL-ESM2G: r1i1p1
+     IPSL-CM5A-LR: r1i1p1
+     MIROC-ESM: r1i1p1
+     MIROC-ESM-CHEM: r1i1p1
+     MPI-ESM-MR: r1i1p1
+     MRI-CGCM3: r1i1p1
+     NorESM1-M: r1i1p1
+
+  4 model/s have 3 member/s:
+
+     GISS-E2-H: r1i1p1, r1i1p2, r1i1p3
+     GISS-E2-R: r1i1p1, r1i1p2, r1i1p3
+     MIROC5: r1i1p1, r2i1p1, r3i1p1
+     MPI-ESM-LR: r3i1p1, r1i1p1, r2i1p1
+
+  1 model/s have 4 member/s:
+
+     HadGEM2-ES: r2i1p1, r3i1p1, r4i1p1, r1i1p1
+
+  1 model/s have 10 member/s:
+
+     CSIRO-Mk3.6.0: r8i1p1, r10i1p1, r1i1p1, r2i1p1, r3i1p1, r4i1p1, r5i1p1, r6i1p1, r7i1p1, r9i1p1
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13609,11 +13695,9 @@ A total of 100 unique model-member combinations are available.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We added the <em>--and</em> filter flag to perform more complex queries. As the name implies this option applies the AND operator to the query results.<br>
-The <em>--and</em> filter works only for the <em>--local</em> and <em>--remote</em> queries at the present but not for the standard query. The filter is available for both <em>cmip5</em> and <em>cmip6</em> datasets.<br>NB the attributes' names are different for CMIP5 and CMIP6 and need to be specified accordingly to the <em>--and</em> filter. See examples below<br><br>
-It is easier to explain by looking at an example.<br>
+<p>We added the <code>--and</code> filter flag to perform more complex queries. As the name implies this option applies the AND operator to the query results. It is easier to explain by looking at an example.<br><br>
 Let's say that you want to find all the CMIP6 models that have both daily precipitation (pr) and soil moisture (mrso) for a particular experiment (piControl). A way of doing it would be to select separately both variables and then work out which models had both.<br>
-With the <em>--and</em> option you can query for both variables at the same time and specify you want only the models, ensemble pairs that have both of them.</p>
+With the <code>--and</code> option you can query for both variables at the same time and specify you want only the models, ensemble pairs that have both of them.</p>
 
 </div>
 </div>
@@ -13692,10 +13776,10 @@ TaiESM1 / r1i1p1f1 versions: v20200302, v20200211
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The results are displayed as a list of the model-members pairs followed by all the available versions.<br>
-<em>--and</em> can be used in conjunction with <em>--csv</em> to produce a csv file where the paths and other attributes values will be listed.<br>
-Similarly the <em>--stats</em> option can be used with <em>--and</em> to summarise the results.
-<br>
-Here is an example with CMIP5. Note the different attribute name for the <em>--and</em> filter</p>
+Using the option <code>--csv</code> will produce a csv where, as we saw above, the paths and other attributes values will be listed too.<br>
+Similarly using the option <code>--stats</code> will summarise the results.<br><br>
+The same will work for <code>--remote</code> and/or <strong>cmip5</strong>. For the moment <code>--and</code> works only for <code>--local</code> or <code>--remote</code> queries and not for the standard query.<br>
+NB the attributes names can be different for different datasets, in this case <code>variable</code> for CMIP5 and <code>variable_id</code> for CMIP6.</p>
 
 </div>
 </div>
@@ -13783,7 +13867,7 @@ NorESM1-M / r1i1p1 versions: v20110901
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can pass the <em>--and</em> flag more than once if we want to apply the operator to more than one attribute.<br>
+<p>We can passed the <em>--and</em> flag more than once if we want to apply the operator to more than one attribute.<br>
 Let's add another experiment as a constraint to the previous CMIP6 query and see what happens.</p>
 
 </div>
@@ -13842,10 +13926,154 @@ TaiESM1 / r1i1p1f1 versions: v20200211, v20200901, v20200302
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The query returned less results because, although we added an experiment, we are requiring that both variables and both experiments are available for a model/member pair to be selected. <br>
-By default model/member pair (or model/ensemble pairs for CMIP5) are used to identify a simulation. As we will see in the next and last blog when the same function is imported in a python code you can define the simulation using different attributes.</p>
+By default model/member pair (or model/ensemble pairs for CMIP5) are used to identify a simulation. As we will see in the next and last blog when the same function is imported in a python code you can define the simulation using different attributes.
+The CORDEX dataset has more default attributes to define a simulation and they are different depending if you are doing a local or remote query.
+For local queries:<br>
+      <code>cordex_domain</code>, <code>driving_model_id</code>, <code>model_id</code> and <code>driving_model_ensemble_member</code><br>
+And for remote queries:<br>
+      <code>domain</code>, <code>driving_model</code>, <code>rcm_name</code> and <code>ensemble</code><br>
+These differences reflect the fact that the local query uses the file attributes, while the remote query uses the ESGF facets. Unfortunately different terminology have been used.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="More-tips-on-queries">More tips on queries<a class="anchor-link" href="#More-tips-on-queries">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="About-experiment_family">About experiment_family<a class="anchor-link" href="#About-experiment_family">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Experiment_family is a facet present only for CMIP5 and CORDEX. It allows you to select all the experiments following in the same category. The correspondent in CMIP6 is activity. However, not all experiments belong to a family and searching for both experiment and experiment_family at the same time can give unexpected results.<br>
+Let's look at an example, if I want to get all the rcps experiments and historical I might be tempted to pass them as constraints in the same query:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM -e historical --experiment_family RCP -t Omon -v tos -en r1i1p1
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ERROR: No matches found on ESGF, check at https://esgf.nci.org.au/search/esgf-nci?query=&amp;type=File&amp;distrib=True&amp;replica=False&amp;latest=True&amp;project=CMIP5&amp;ensemble=r1i1p1&amp;experiment=historical&amp;model=CMCC-CM&amp;cmor_table=Omon&amp;variable=tos&amp;experiment_family=RCP
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The ESGF query uses an <em>AND</em> operator for all the constraints we pass. We couldn't find any matches because both the experiment and experiment_family constraints have to be satisfied. Historical is not part of the RCP family and so no results are returned. Similarly if we pass rcp45 as experiment as well as the family RCP we will only get the rcp45 results.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM -e rcp45 --experiment_family RCP -t Omon -v tos -en r1i1p1
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos/
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos/
+
+Everything available on ESGF is also available locally
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, it is possible to use <code>--experiment_family</code> also in the local search:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef --local cmip5 -m CMCC-CM --experiment_family RCP -t Omon -v tos -en r1i1p1
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20120528/tos
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20170725/tos
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13858,8 +14086,8 @@ By default model/member pair (or model/ensemble pairs for CMIP5) are used to ide
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>CleF has functions that retrieve errata associated to a file and the documents available in the ESDOC system.<br> Most of these functionalities are currently working only when you use clef interactively. However, since version 1.2 we added a flag to retrieve citations also using the command line.<br>
-The <em>--cite</em> option added to the command line will create a file containing the citations of all the datasets returned by the query. It retrieves the citation information from the DKRZ WDCC server (<a href="https://cera-www.dkrz.de/WDCC">https://cera-www.dkrz.de/WDCC</a>). This provides citation information only for CMIP6, so this flag is only available with the <em>cmip6</em> sub-command.<br>
-As for the other flags illustrated above, this option works when you select either <em>--local</em> or <em>--remote</em> queries.</p>
+The <code>--cite</code> option added to the command line will create a file containing the citations of all the datasets returned by the query. It retrieves the citation information from the DKRZ WDCC server (<a href="https://cera-www.dkrz.de/WDCC">https://cera-www.dkrz.de/WDCC</a>). This provides citation information only for CMIP6, so this flag is only available with the <strong>cmip6</strong> sub-command.<br>
+As for the other flags illustrated above, this option works when you select either <code>--local</code> or <code>--remote</code> queries.</p>
 
 </div>
 </div>
@@ -13974,7 +14202,7 @@ Zhang, Jie; Wu, Tongwen; Shi, Xueli; Zhang, Fang; Li, Jianglong; Chu, Min; Liu, 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Please note that some of the more recently published datasets might not have citations information available yet on the WDCC server. CleF retrieves the information from different fields and put them together to form a correct citation in the required format. If some of these fields are not available the citation might be incomplete, so always check the entire file before using it.<br>
+<p>Please note that some of the more recently published datasets might not have citations information available yet on the WDCC server. CleF retrieves the information from different fields and them put them together to form a correct citation in the required format. If some of these fields are not available the citation might be incomplete, so always check the entire file before using it.<br>
 See below for an example of this:</p>
 
 </div>
@@ -14005,188 +14233,6 @@ See below for an example of this:</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>/g/data/oi10/replicas/CMIP6/ScenarioMIP/AS-RCEC/TaiESM1/ssp585/r1i1p1f1/Amon/pr/gn/v20200901
  (2018). AS-RCEC TaiESM1.0 model output prepared for CMIP6 ScenarioMIP ssp585. Earth System Grid Federation. http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.AS-RCEC.TaiESM1.ssp585</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="More-tips-on-queries">More tips on queries<a class="anchor-link" href="#More-tips-on-queries">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="About-experiment_family">About experiment_family<a class="anchor-link" href="#About-experiment_family">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Experiment_family is a facet present only for CMIP5, it allows you to select all the experiments following in the same category. The correspondent in CMIP6 is activity. It can be very useful, for example, if you want to find all the available rcp experiments.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM --experiment_family RCP -t Omon -v tos -en r1i1p1
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos/
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos/
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20120528/tos/
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20170725/tos/
-
-Everything available on ESGF is also available locally
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>However, not all experiments belong to a family and searching for both experiment and experiment_family at the same time can give unexpected results.<br>
-Let's look at an example, if I want to get all the rcps experiments and historical I might be tempted to pass them as constraints in the same query:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM -e historical --experiment_family RCP -t Omon -v tos -en r1i1p1
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>ERROR: No matches found on ESGF, check at https://esgf.nci.org.au/search/esgf-nci?query=&amp;type=File&amp;distrib=True&amp;replica=False&amp;latest=True&amp;project=CMIP5&amp;ensemble=r1i1p1&amp;experiment=historical&amp;model=CMCC-CM&amp;cmor_table=Omon&amp;variable=tos&amp;experiment_family=RCP
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The ESGF query uses an <em>AND</em> operator for all the constraints we pass. We couldn't find any matches because both the experiment and experiment_family constraints have to be satisfied. Historical is not part of the RCP family and so no results are returned. Similarly if we pass rcp45 as experiment as well as the family RCP we will only get the rcp45 results.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM -e rcp45 --experiment_family RCP -t Omon -v tos -en r1i1p1
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos/
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos/
-
-Everything available on ESGF is also available locally
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, it is possible to use experiment_family also in the local search, we aimed to reproduce the same results that you would get for the web-based ESGF query, so they behave in the same way.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef --local cmip5 -m CMCC-CM --experiment_family RCP -t Omon -v tos -en r1i1p1
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20120528/tos
-/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20170725/tos
-</pre>
 </div>
 </div>
 

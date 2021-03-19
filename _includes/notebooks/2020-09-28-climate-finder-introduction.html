@@ -13105,11 +13105,12 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This blog is the first of three showing examples of how to use the CleF (Climate Finder) python module to search for ESGF data on the NCI server. <br>
 Currently the tool is set up for CMIP5 and CMIP6 data, but other ESGF dataset like CORDEX will be available in the future. <br></p>
-<p>CleF is currently installed in the CMS conda module analysis3, and analysis3-unstable for the latest version. To access the conda environments, you need to <a href="https://my.nci.org.au/mancini/project/hh5">become a member of the hh5 project at NCI</a>. This is managed by the CMS and is available simply by running</p>
+<p>CleF is currently installed in the CMS conda module analysis3, and analysis3-unstable for the latest version. This is managed by the CMS and is available simply by running</p>
 <blockquote><p>module use /g/data3/hh5/public/modules <br>
  module load conda/analysis3</p>
 </blockquote>
-<p>This blog covers the basic usage of the command line options. <br><br>
+<p>You need to be a member of hh5 to use the modules and of one of the CMIP projects: oi10,rr3, fs38, al33 to access the data and the clef database. <br><br>
+This blog covers the basic usage of the command line options. <br><br>
 In the next blog we'll cover how to:</p>
 <ul>
 <li>save the query results as a csv file</li>
@@ -13139,6 +13140,7 @@ Let's start!</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># run this if you haven&#39;t done so already in the terminal</span>
 <span class="c1">#!module use /g/data3/hh5/public/modules</span>
 <span class="c1">#!module load conda/analysis3-unstable</span>
+<span class="c1"># using unstable guarantees that the latest features ar eall available, but clef is also available in stable</span>
 </pre></div>
 
     </div>
@@ -13148,7 +13150,7 @@ Let's start!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef
@@ -13179,9 +13181,10 @@ Options:
   --help     Show this message and exit.
 
 Commands:
-  cmip5  Search ESGF and local database for CMIP5 files Constraints can be...
-  cmip6  Search ESGF and local database for CMIP6 files Constraints can be...
-  ds     Search local database for non-ESGF datasets
+  cmip5   Search ESGF and local database for CMIP5 files Constraints can be...
+  cmip6   Search ESGF and local database for CMIP6 files Constraints can be...
+  cordex  Search ESGF and local database for CORDEX files.
+  ds      Search local database for non-ESGF datasets
 </pre>
 </div>
 </div>
@@ -13197,8 +13200,8 @@ Commands:
 <blockquote><p>clef --help <br></p>
 </blockquote>
 <p>We can see currently there are 3 sub-commands, <strong>ds</strong> to query non-ESGF collections and one for each cmip dataset: <strong>cmip5</strong> and <strong>cmip6</strong>.  <br>
-There are also five different options that can be passed before the sub-commands, one we have already seen is <em>--help</em>. The others are used to modify how the tool will deal with the main query output. We will have a look at them and at <strong>ds</strong> later. <br>
-Let's start from quering some CMIP5 data, to see what we can pass to the <strong>cmip5</strong> sub-command we can simply run it with its <em>--help</em> option.</p>
+There are also five different options that can be passed before the sub-commands, one we have already seen is <code>--help</code>. The others are used to modify how the tool will deal with the main query output. We will have a look at them and at <strong>ds</strong> later. <br>
+Let's start from quering some CMIP5 data, to see what we can pass to the <strong>cmip5</strong> sub-command we can simply run it with its <code>--help</code> option.</p>
 
 </div>
 </div>
@@ -13299,9 +13302,9 @@ Options:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <em>help</em> shows all the constraints we can pass to the tool, there are also some additional options which can change the way we run our query. For the moment we can ignore these and use their default values. <br>
-Some of the constraints can be passed using an abbreviation,like <em>-v</em> instead of <em>--variable</em>. This is handy once you are more familiar with the tool. <br>
-The same option can have more than one name, for example <em>--ensemble</em> can also be passed as <em>--member</em>, this is because the terminology has changed between CMIP5 and CMIP6. <br>
+<p>The <code>--help</code> shows all the constraints we can pass to the tool, there are also some additional options which can change the way we run our query. For the moment we can ignore these and use their default values. <br>
+Some of the constraints can be passed using an abbreviation,like <code>-v</code> instead of <code>--variable</code>. This is handy once you are more familiar with the tool. <br>
+The same option can have more than one name, for example <code>--ensemble</code> can also be passed as <code>--member</code>, this is because the terminology has changed between CMIP5 and CMIP6. <br>
 You can pass how many constraints you want and pass the same constraint more than once. Let's see what happens though if we do not pass any constraint.</p>
 
 </div>
@@ -13476,7 +13479,7 @@ Everything available on ESGF is also available locally
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The tool first search on the ESGF for all the files that match the constraints we passed. It then looks for these file locally and if it finds them it returns their path on raijin.
 For all the files it can't find locally, the tool check an NCI table listing the downloads they are working on. Finally it lists missing datasets which are in the download queue, followed by the datasets that are not available locally and no one has yet requested. <br></p>
-<p>The tool list the datasets paths and dataset_ids, we used to have a --format file option but this has been removed in most recent versions. <br></p>
+<p>The tool list the datasets paths and dataset_ids, we used to have a <code>--format file</code> option but this has been removed in most recent versions. <br></p>
 <p>The query by default returns the latest available version. What if we want to have a look at all the available versions?</p>
 
 </div>
@@ -13520,7 +13523,7 @@ Everything available on ESGF is also available locally
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The option <em>--all-versions</em> is the reverse of <em>--latest</em>, which is also the default, so we get a list of all available versions. <br>
+<p>The option <code>--all-versions</code> is the reverse of <code>--latest</code>, which is also the default, so we get a list of all available versions. <br>
 Since all the ACCESS1.0 data is available on NCI (which is the authoritative source for the ACCESS models) the tool shouldn't find any missing datasets, if it does please let us know about it.</p>
 
 </div>
@@ -13626,10 +13629,155 @@ Options:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <strong>cmip6</strong> sub-command works in the same way but some constraints are different. As well as changes in terminology CMIP6 has more attributes (<em>facets</em>) that can be used to select the data. <br>
-Examples of these are the <strong>activity</strong> which groups experiments, <strong>resolution</strong> which is an approximation of the actual resolution and <strong>grid</strong>.</p>
+Examples of these are the <code>activity</code> which groups experiments, <code>resolution</code> which is an approximation of the actual resolution and <code>grid</code>.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CORDEX">CORDEX<a class="anchor-link" href="#CORDEX">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cordex --help
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Usage: clef cordex [OPTIONS] [QUERY]...
+
+  Search ESGF and local database for CORDEX files.
+
+  Constraints can be specified multiple times, in which case they are
+  combined    using OR: -v tas -v tasmin will return anything matching
+  variable = &#39;tas&#39; or variable = &#39;tasmin&#39;. The --latest flag will check ESGF
+  for the latest version available, this is the default behaviour NB. for
+  CORDEX data associated to CMIP6 use  the cmip6 command with CORDEX as
+  activity_id
+
+Options:
+  --latest / --all-versions       Return only the latest version or all of
+                                  them. Default: --latest
+
+  --replica / --no-replica        Return both original files and replicas.
+                                  Default: --no-replica
+
+  --distrib / --no-distrib        Distribute search across all ESGF nodes.
+                                  Default: --distrib
+
+  --csv / --no-csv                Send output to csv file including extra
+                                  information. Works only with --local and
+                                  --remote. Default: --no-csv
+
+  --stats / --no-stats            Write summary of query results. Works only
+                                  with --local and --remote. Default: --no-
+                                  stats
+
+  --debug / --no-debug            Show debug output. Default: --no-debug
+  -d, --domain FACET              CORDEX region name
+  -e, --experiment FACET          CMIP5 experiment of driving GCM or
+                                  &#39;evaluation&#39; for re-analysis
+
+  -dmod, --driving_model FACET    Model/analysis used to drive the model (eg.
+                                  ECMWF­ERAINT)
+
+  -m, --rcm_name FACET            Identifier of the CORDEX Regional Climate
+                                  Model
+
+  -rcmv, --rcm_version FACET      Identifier for reruns with perturbed
+                                  parameters or smaller RCM release upgrades
+
+  -v, --variable FACET            Variable name in file
+  -f, --time_frequency FACET      Output frequency indicator
+  -en, --ensemble FACET           Ensemble member of the driving GCM
+  -vrs, --version FACET           Data publication version
+  -cf, --cf_standard_name FACET   CF-Conventions name of the variable
+  -ef, --experiment_family FACET  Experiment family: All, Historical, RCP
+  -inst, --institute FACET        identifier for the institution that is
+                                  responsible for the scientific aspects of
+                                  the CORDEX simulation
+
+  --and [domain|experiment|driving_model|rcm_name|rcm_version|variable|time_frequency|ensemble|version|cf_standard_name|experiment_family|institute]
+                                  Attributes for which we want to add AND
+                                  filter, i.e. -v tasmin -v tasmax --and
+                                  variable will return only model/ensemble
+                                  that have both
+
+  --help                          Show this message and exit.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Again <strong>cordex</strong> works in the same way but some constraints are specific to its experiment design.<br>
+These are the cordex <code>domain</code>, <code>rcm_name</code> for the regional model, <code>rcm_version</code>  and the <code>driving_model</code>.<br>
+CORDEX also doesn't use tables so you always have to use f<code>--frequency</code> to select different timesteps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>clef cordex -v tas -e historical -dmod CSIRO-BOM-ACCESS1-3 -en r1i1p1 -f mon
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>/g/data/rr3/publications/CORDEX/output/AUS-44/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360J/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360K/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360L/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44i/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360J/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44i/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360K/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44i/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360L/v1/mon/tas/latest/
+
+Everything available on ESGF is also available locally
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13707,14 +13855,14 @@ Examples of these are the <strong>activity</strong> which groups experiments, <s
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this example we used the <em>--local</em> option for the main command <strong>clef</strong> to get only the local matching data path as output. <br> 
+<p>In this example we used the <code>--local</code> option for the main command <strong>clef</strong> to get only the local matching data path as output. <br> 
 Note also that:</p>
 <ul>
 <li>we are using abbreviations for the options where available; </li>
-<li>we are passing the variable <em>-v</em> option twice; </li>
-<li>we used the CMIP6 specific option <em>-g/--grid</em> to search for all data that is not on the model native grid. This doesn't indicate a grid common to all the CMIP6 output only to the model itself, the same is true for member_id and other attributes.<br></li>
+<li>we are passing the variable <code>-v</code> option twice; </li>
+<li>we used the CMIP6 specific option <code>-g/--grid</code> to search for all data that is not on the model native grid. This doesn't indicate a grid common to all the CMIP6 output only to the model itself, the same is true for member_id and other attributes.<br></li>
 </ul>
-<p><em>--local</em> is actually executing the query directly on the NCI clef.nci.org.au database, which is different from the default query where the search is executed first on the ESGF and then its results are matched locally.<br>
+<p><code>--local</code> is actually executing the query directly on the NCI clef.nci.org.au database, which is different from the default query where the search is executed first on the ESGF and then its results are matched locally.<br>
 In the example above the final result is exactly the same, whichever way we perform the query. This way of searching can give you more results if a node is offline or if a version have been unpublished from the ESGF but is still available locally.</p>
 
 </div>
@@ -13850,7 +13998,7 @@ CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20200417
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <em>--remote</em> option returns the Dataset_ids of the data matching the constraints, regardless that they are available locally or not.</p>
+<p>The <code>--remote</code> option returns the Dataset_ids of the data matching the constraints, regardless that they are available locally or not.</p>
 
 </div>
 </div>
@@ -13858,7 +14006,7 @@ CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20200417
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Please note that <em>--local</em>, <em>--remote</em> and <em>--missing</em> together with <em>--request</em>, which we will look at next, are all options of the main command <strong>clef</strong> and they need to come before any sub-commands.</p>
+<p>Please note that <code>--local</code>, <code>--remote</code> and <code>--missing</code> together with <code>--request</code>, which we will look at next, are all options of the main command <strong>clef</strong> and they need to come before any sub-commands.</p>
 
 </div>
 </div>
@@ -13877,7 +14025,7 @@ CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20200417
 This is a complex data collection, NCI, in consultation with the community, decided the best way to manage it was to have one point of reference. Part of this agreement is that NCI will download the files and update the database that <strong>clef</strong> is interrrogating. After consultation with the community a priority list was decided and NCI has started downloading anything that falls into it as soon as become available. <br> <br>
 Users can then request from the NCI helpdesk, other combinations of variables, experiments etc that do not fall into this list. <br>
 The list is available from the NCI climate confluence website: <br>
-Even without consulting the list you can use <strong>clef</strong>, as we demonstrated above, to search for a particular dataset, if it is not queued or downloaded already <strong>clef</strong> will give you an option to request it from NCI. <br>
+Even without consulting the list you can use <strong>clef</strong>, as we demonstrated above, to search for a particular dataset, if it is not queued or downloaded already <strong>clef</strong> will give you an option to request it from NCI. <br><br>
 Let's see how it works.</p>
 
 </div>
@@ -13967,7 +14115,7 @@ You can use this file to request the data via the NCI helpdesk: help@nci.org.au 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We run the same query which gave us as a result 4 missing datasets but this time we used the <em>--request</em> option after <strong>clef</strong>.<br>
+<p>We run the same query which gave us as a result 4 missing datasets but this time we used the <code>--request</code> option after <strong>clef</strong>.<br>
 The tool will execute the query remotely, then look for matches locally and on the NCI download list. Having found none gives as an option of putting in a request. <br>
 It will accept any of the following as a positive answer:</p>
 <blockquote><p>Y  YES y yes <br></p>
@@ -14015,11 +14163,24 @@ dataset_id=CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clwvi.gr.v20200620
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If I answered 'yes' the tool would have sent an e-mail to the NCI helpdesk with the text file attached, NCI can pass that file as input to their download tool and queue your request.
-NB if you are running clef from gadi you cannot send an e-mail so in that case the tool will remind you you you need to send an e-mail to the NCI helpdesk yourself to finalise the request.</p>
+<p>If I answered <strong>yes</strong> the tool would have sent an e-mail to the NCI helpdesk with the text file attached, NCI can pass that file as input to their download tool and queue your request.<br>
+NB if you are running clef from gadi you cannot send an e-mail so in that case the tool will skip the question and just remind you to send an e-mail to the NCI helpdesk yourself to finalise the request.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
