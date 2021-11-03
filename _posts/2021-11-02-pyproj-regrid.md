@@ -1,5 +1,5 @@
 ---
-title: 2021-11-02-pyproj-regrid.md
+title: Regridding between coordinate systems with Pyproj
 layout: notebook
 notebook: 2021-11-02-pyproj-regrid.html
 excerpt: >-
