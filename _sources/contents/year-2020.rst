@@ -1,0 +1,14 @@
+
+2020
+--------------------------------------------------------------------------------
+
+.. toctree::
+    :caption: 2020
+    :maxdepth: 1
+
+    /posts/2020-10-12-climate-finder-extended-command-line
+    /posts/2020-09-28-eventdetection
+    /posts/2020-09-28-climate-finder-introduction
+    /posts/2020-09-23-split-yaxis
+    /posts/2020-09-22-wrapping-pcolormesh
+    

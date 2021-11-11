@@ -1,0 +1,28 @@
+
+2018
+--------------------------------------------------------------------------------
+
+.. toctree::
+    :caption: 2018
+    :maxdepth: 1
+
+    /posts/2018-11-27-Value-when-other-is-max
+    /posts/2018-10-26-Setting-up-NetCDF-file-attributes
+    /posts/2018-10-19-mppnccombine-fast
+    /posts/2018-10-12-create-netcdf
+    /posts/2018-10-05-introduction-to-python-logging
+    /posts/2018-09-28-line-plots-with-xarray
+    /posts/2018-09-14-dask-era-interim
+    /posts/2018-09-03-storage-where-what-why-how
+    /posts/2018-08-21-visualisation-in-shiny-app
+    /posts/2018-08-16-search-cmip5-data-interactively
+    /posts/2018-08-10-Fortran-Debugging-Videos
+    /posts/2018-08-02-Merge-arrays-with-missing-data
+    /posts/2018-05-22-python-netcdf
+    /posts/2018-05-01-latlon-reference
+    /posts/2018-04-27-xarray-plot-types
+    /posts/2018-04-27-subplots
+    /posts/2018-04-24-reading-envi-met
+    /posts/2018-04-19-plotting-basics
+    /posts/2018-04-19-cartopy-maps
+    

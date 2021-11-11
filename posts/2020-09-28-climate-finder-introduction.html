@@ -1,0 +1,1401 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using CleF - Climate Finder to discover ESGF data at NCI &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using CleF 2: advanced command line functionalities" href="2020-10-12-climate-finder-extended-command-line.html" />
+    <link rel="prev" title="cmip" href="../contents/tag-cmip.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2020-09-28-climate-finder-introduction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2020-09-28-climate-finder-introduction.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2020-09-28-climate-finder-introduction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-syntax">
+   Command syntax
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmip5">
+   CMIP5
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#passing-arguments-and-options">
+     Passing arguments and options
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmip6">
+   CMIP6
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cordex">
+     CORDEX
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#controlling-the-ouput-clef-options">
+     Controlling the ouput: clef options
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requesting-new-data">
+   Requesting new data
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="using-clef-climate-finder-to-discover-esgf-data-at-nci">
+<h1>Using CleF - Climate Finder to discover ESGF data at NCI<a class="headerlink" href="#using-clef-climate-finder-to-discover-esgf-data-at-nci" title="Permalink to this headline">¶</a></h1>
+<p>This blog is the first of three showing examples of how to use the CleF (Climate Finder) python module to search for ESGF data on the NCI server. <br>
+Currently the tool is set up for CMIP5, CMIP6 and CORDEX data published by the ESGF.<br></p>
+<p>CleF is currently installed in the CMS conda module analysis3, and analysis3-unstable for the latest version. This is managed by the CMS and is available simply by running</p>
+<blockquote>
+<div><p>module use /g/data3/hh5/public/modules <br>
+module load conda/analysis3</p>
+</div></blockquote>
+<p>You need to be a member of hh5 to use the modules and of one of the CMIP projects: oi10,rr3, fs38, al33 to access the data and the clef database. <br><br>
+This blog covers the basic usage of the command line options. <br><br>
+In the next blog we’ll cover how to:</p>
+<ul class="simple">
+<li><p>save the query results as a csv file</p></li>
+<li><p>get a summary of available data</p></li>
+<li><p>run more complex queries</p></li>
+<li><p>get extra information from the ESDOC documentation as errate and citations <br></p></li>
+</ul>
+<p>In the third blog we will cover how to import and use clef in your own python code.
+<br>
+Let’s start!</p>
+<div class="section" id="command-syntax">
+<h2>Command syntax<a class="headerlink" href="#command-syntax" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run this if you haven&#39;t done so already in the terminal</span>
+<span class="c1">#!module use /g/data3/hh5/public/modules</span>
+<span class="c1">#!module load conda/analysis3-unstable</span>
+<span class="c1"># using unstable guarantees that the latest features ar eall available, but clef is also available in stable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: clef [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --remote   returns only ESGF search results
+  --local    returns only local files matching arguments in local database
+  --missing  returns only missing files matching ESGF search
+  --request  send NCI request to download missing files matching ESGF search
+  --debug    Show debug info
+  --help     Show this message and exit.
+
+Commands:
+  cmip5   Search ESGF and local database for CMIP5 files Constraints can be...
+  cmip6   Search ESGF and local database for CMIP6 files Constraints can be...
+  cordex  Search ESGF and local database for CORDEX files.
+  ds      Search local database for non-ESGF datasets
+</pre></div>
+</div>
+</div>
+</div>
+<p>By simpling running the command <strong>clef</strong> with no arguments, the tool shows the help message and then exits, basically it is equivalent to</p>
+<blockquote>
+<div><p>clef –help <br></p>
+</div></blockquote>
+<p>We can see currently there are 3 sub-commands, <strong>ds</strong> to query non-ESGF collections and one for each cmip dataset: <strong>cmip5</strong> and <strong>cmip6</strong>.  <br>
+There are also five different options that can be passed before the sub-commands, one we have already seen is <code class="docutils literal notranslate"><span class="pre">--help</span></code>. The others are used to modify how the tool will deal with the main query output. We will have a look at them and at <strong>ds</strong> later. <br>
+Let’s start from quering some CMIP5 data, to see what we can pass to the <strong>cmip5</strong> sub-command we can simply run it with its <code class="docutils literal notranslate"><span class="pre">--help</span></code> option.</p>
+</div>
+<div class="section" id="cmip5">
+<h2>CMIP5<a class="headerlink" href="#cmip5" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --help
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: clef cmip5 [OPTIONS] [QUERY]...
+
+  Search ESGF and local database for CMIP5 files
+
+  Constraints can be specified multiple times, in which case they are
+  combined    using OR: -v tas -v tasmin will return anything matching
+  variable = &#39;tas&#39; or variable = &#39;tasmin&#39;. The --latest flag will check ESGF
+  for the latest version available, this is the default behaviour
+
+Options:
+  -e, --experiment x              CMIP5 experiment: piControl, rcp85, amip ...
+  --experiment_family [Atmos-only|Control|Decadal|ESM|Historical|Idealized|Paleo|RCP]
+                                  CMIP5 experiment family: Decadal, RCP ...
+  -m, --model x                   CMIP5 model acronym: ACCESS1.3, MIROC5 ...
+  -t, --table, --mip [Amon|Omon|OImon|LImon|Lmon|6hrPlev|6hrLev|3hr|Oclim|Oyr|aero|cfOff|cfSites|cfMon|cfDay|cf3hr|day|fx|grids]
+  -v, --variable x                Variable name as shown in filanames: tas,
+                                  pr, sic ...
+
+  -en, --ensemble, --member TEXT  CMIP5 ensemble member: r#i#p#
+  --frequency [mon|day|3hr|6hr|fx|yr|monClim|subhr]
+  --realm [atmos|ocean|land|landIce|seaIce|aerosol|atmosChem|ocnBgchem]
+  --and [variable|experiment|cmor_table|realm|time_frequency|model|ensemble]
+                                  Attributes for which we want to add AND
+                                  filter, i.e. `--and variable` to apply to
+                                  variable values
+
+  --institution TEXT              Modelling group institution id: MIROC, IPSL,
+                                  MRI ...
+
+  --cf_standard_name TEXT         CF variable standard_name, use instead of
+                                  variable constraint
+
+  --latest / --all-versions       Return only the latest version or all of
+                                  them. Default: --latest
+
+  --replica / --no-replica        Return both original files and replicas.
+                                  Default: --no-replica
+
+  --distrib / --no-distrib        Distribute search across all ESGF nodes.
+                                  Default: --distrib
+
+  --csv / --no-csv                Send output to csv file including extra
+                                  information. Default: --no-csv
+
+  --stats / --no-stats            Write summary of query results, works only
+                                  with --local option. Default: --no-stats
+
+  --debug / --no-debug            Show debug output. Default: --no-debug
+  --help                          Show this message and exit.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="passing-arguments-and-options">
+<h3>Passing arguments and options<a class="headerlink" href="#passing-arguments-and-options" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">--help</span></code> shows all the constraints we can pass to the tool, there are also some additional options which can change the way we run our query. For the moment we can ignore these and use their default values. <br>
+Some of the constraints can be passed using an abbreviation,like <code class="docutils literal notranslate"><span class="pre">-v</span></code> instead of <code class="docutils literal notranslate"><span class="pre">--variable</span></code>. This is handy once you are more familiar with the tool. <br>
+The same option can have more than one name, for example <code class="docutils literal notranslate"><span class="pre">--ensemble</span></code> can also be passed as <code class="docutils literal notranslate"><span class="pre">--member</span></code>, this is because the terminology has changed between CMIP5 and CMIP6. <br>
+You can pass how many constraints you want and pass the same constraint more than once. Let’s see what happens though if we do not pass any constraint.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Too many results (3781387), try limiting your search https://esgf.nci.org.au/search/esgf-nci?query=&amp;type=File&amp;distrib=True&amp;replica=False&amp;latest=True&amp;project=CMIP5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable tasmin --experiment historical --table day --ensemble r2i1p1s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: No matches found on ESGF, check at https://esgf.nci.org.au/search/esgf-nci?query=&amp;type=File&amp;distrib=True&amp;replica=False&amp;latest=True&amp;project=CMIP5&amp;ensemble=r2i1p1s&amp;experiment=historical&amp;cmor_table=day&amp;variable=tasmin
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oops that wasn’t reasonable! I mispelled the ensemble “r2i1p1s” does not exists and the tool is telling me it cannot find any matches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable tasmin --experiment historical --table days --ensemble r2i1p1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: clef cmip5 [OPTIONS] [QUERY]...
+Try &#39;clef cmip5 --help&#39; for help.
+
+Error: Invalid value for &#39;--table&#39; / &#39;--mip&#39; / &#39;-t&#39;: invalid choice: days. (choose from Amon, Omon, OImon, LImon, Lmon, 6hrPlev, 6hrLev, 3hr, Oclim, Oyr, aero, cfOff, cfSites, cfMon, cfDay, cf3hr, day, fx, grids)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Made another spelling mistake, in this case the tool knows that I passed a wrong value and lists for me all the available options for the CMOR table. Eventually we are aiming to validate all the arguments we can, although for some it is no possible to pass all the possible values (ensemble for example).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable tasmin --experiment historical --table day --ensemble r2i1p1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/al33/replicas/CMIP5/combined/CCCma/CanCM4/historical/day/atmos/day/r2i1p1/v20120207/tasmin/
+/g/data/al33/replicas/CMIP5/combined/CCCma/CanCM4/historical/day/atmos/day/r2i1p1/v20120612/tasmin/
+/g/data/al33/replicas/CMIP5/combined/CCCma/CanESM2/historical/day/atmos/day/r2i1p1/v20120410/tasmin/
+/g/data/al33/replicas/CMIP5/combined/CNRM-CERFACS/CNRM-CM5/historical/day/atmos/day/r2i1p1/v20120703/tasmin/
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5A-LR/historical/day/atmos/day/r2i1p1/v20130506/tasmin/
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5A-MR/historical/day/atmos/day/r2i1p1/v20130506/tasmin/
+/g/data/al33/replicas/CMIP5/combined/LASG-IAP/FGOALS-s2/historical/day/atmos/day/r2i1p1/v20161204/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC-ESM/historical/day/atmos/day/r2i1p1/v20120710/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC4h/historical/day/atmos/day/r2i1p1/v20120628/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC5/historical/day/atmos/day/r2i1p1/v20120710/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadCM3/historical/day/atmos/day/r2i1p1/v20140110/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadGEM2-CC/historical/day/atmos/day/r2i1p1/v20111129/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadGEM2-ES/historical/day/atmos/day/r2i1p1/v20110418/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-LR/historical/day/atmos/day/r2i1p1/v20111006/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-MR/historical/day/atmos/day/r2i1p1/v20120503/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-P/historical/day/atmos/day/r2i1p1/v20120315/tasmin/
+/g/data/al33/replicas/CMIP5/combined/MRI/MRI-CGCM3/historical/day/atmos/day/r2i1p1/v20120701/tasmin/
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/historical/day/atmos/day/r2i1p1/v20110901/tasmin/
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-CM3/historical/day/atmos/day/r2i1p1/v20120227/tasmin/
+/g/data/rr3/publications/CMIP5/output1/CSIRO-QCCCE/CSIRO-Mk3-6-0/historical/day/atmos/day/r2i1p1/files/tasmin_20110518/
+
+Everything available on ESGF is also available locally
+</pre></div>
+</div>
+</div>
+</div>
+<p>The tool first search on the ESGF for all the files that match the constraints we passed. It then looks for these file locally and if it finds them it returns their path on raijin.
+For all the files it can’t find locally, the tool check an NCI table listing the downloads they are working on. Finally it lists missing datasets which are in the download queue, followed by the datasets that are not available locally and no one has yet requested. <br></p>
+<p>The tool list the datasets paths and dataset_ids, we used to have a <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">file</span></code> option but this has been removed in most recent versions. <br></p>
+<p>The query by default returns the latest available version. What if we want to have a look at all the available versions?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable clivi --experiment historical --table Amon -m ACCESS1.0 --all-versions
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/historical/mon/atmos/Amon/r1i1p1/files/clivi_20120115/
+/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/historical/mon/atmos/Amon/r1i1p1/files/clivi_20120727/
+/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/historical/mon/atmos/Amon/r3i1p1/files/clivi_20140402/
+
+Everything available on ESGF is also available locally
+</pre></div>
+</div>
+</div>
+</div>
+<p>The option <code class="docutils literal notranslate"><span class="pre">--all-versions</span></code> is the reverse of <code class="docutils literal notranslate"><span class="pre">--latest</span></code>, which is also the default, so we get a list of all available versions. <br>
+Since all the ACCESS1.0 data is available on NCI (which is the authoritative source for the ACCESS models) the tool shouldn’t find any missing datasets, if it does please let us know about it.</p>
+</div>
+</div>
+<div class="section" id="cmip6">
+<h2>CMIP6<a class="headerlink" href="#cmip6" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip6 --help
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: clef cmip6 [OPTIONS] [QUERY]...
+
+  Search ESGF and local database for CMIP6 files Constraints can be
+  specified multiple times, in which case they are combined using OR:  -v
+  tas -v tasmin will return anything matching variable = &#39;tas&#39; or variable =
+  &#39;tasmin&#39;. The --latest flag will check ESGF for the latest version
+  available, this is the default behaviour
+
+Options:
+  -mip, --activity [AerChemMIP|C4MIP|CDRMIP|CFMIP|CMIP|CORDEX|DAMIP|DCPP|DynVarMIP|FAFMIP|GMMIP|GeoMIP|HighResMIP|ISMIP6|LS3MIP|LUMIP|OMIP|PAMIP|PMIP|RFMIP|SIMIP|ScenarioMIP|VIACSAB|VolMIP]
+  -e, --experiment x              CMIP6 experiment, list of available depends
+                                  on activity
+
+  --source_type [AER|AGCM|AOGCM|BGC|CHEM|ISM|LAND|OGCM|RAD|SLAB]
+  -t, --table x                   CMIP6 CMOR table: Amon, SIday, Oday ...
+  -m, --model, --source_id x      CMIP6 model id: GFDL-AM4, CNRM-CM6-1 ...
+  -v, --variable x                CMIP6 variable name as in filenames
+  -mi, --member TEXT              CMIP6 member id: &lt;sub-exp-id&gt;-r#i#p#f#
+  -g, --grid, --grid_label TEXT   CMIP6 grid label: i.e. gn for the model
+                                  native grid
+
+  -nr, --resolution, --nominal_resolution TEXT
+                                  Approximate resolution: &#39;250 km&#39;, pass in
+                                  quotes
+
+  --frequency [1hr|1hrCM|1hrPt|3hr|3hrPt|6hr|6hrPt|day|dec|fx|mon|monC|monPt|subhrPt|yr|yrPt]
+  --realm [aerosol|atmos|atmosChem|land|landIce|ocean|ocnBgchem|seaIce]
+  -se, --sub_experiment_id TEXT   Only available for hindcast and forecast
+                                  experiments: sYYYY
+
+  -vl, --variant_label TEXT       Indicates a model variant: r#i#p#f#
+  --and [variable_id|experiment_id|table_id|realm|frequency|member_id|source_id|source_type|activity_id|grid|grid_label|nominal_resolution|sub_experiment_id]
+                                  Attributes for which we want to add AND
+                                  filter, i.e. `--and variable_id` to apply to
+                                  variable values
+
+  --institution TEXT              Modelling group institution id: IPSL, NOAA-
+                                  GFDL ...
+
+  --cf_standard_name TEXT         CF variable standard_name, use instead of
+                                  variable constraint
+
+  --latest / --all-versions       Return only the latest version or all of
+                                  them. Default: --latest
+
+  --replica / --no-replica        Return both original files and replicas.
+                                  Default: --no-replica
+
+  --distrib / --no-distrib        Distribute search across all ESGF nodes.
+                                  Default: --distrib
+
+  --csv / --no-csv                Send output to csv file including extra
+                                  information. Default: --no-csv
+
+  --stats / --no-stats            Write summary of query results, works only
+                                  with --local option. Default: --no-stats
+
+  --debug / --no-debug            Show debug output. Default: --no-debug
+  --help                          Show this message and exit.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong>cmip6</strong> sub-command works in the same way but some constraints are different. As well as changes in terminology CMIP6 has more attributes (<em>facets</em>) that can be used to select the data. <br>
+Examples of these are the <code class="docutils literal notranslate"><span class="pre">activity</span></code> which groups experiments, <code class="docutils literal notranslate"><span class="pre">resolution</span></code> which is an approximation of the actual resolution and <code class="docutils literal notranslate"><span class="pre">grid</span></code>.</p>
+<div class="section" id="cordex">
+<h3>CORDEX<a class="headerlink" href="#cordex" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cordex --help
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: clef cordex [OPTIONS] [QUERY]...
+
+  Search ESGF and local database for CORDEX files.
+
+  Constraints can be specified multiple times, in which case they are
+  combined    using OR: -v tas -v tasmin will return anything matching
+  variable = &#39;tas&#39; or variable = &#39;tasmin&#39;. The --latest flag will check ESGF
+  for the latest version available, this is the default behaviour NB. for
+  CORDEX data associated to CMIP6 use  the cmip6 command with CORDEX as
+  activity_id
+
+Options:
+  --latest / --all-versions       Return only the latest version or all of
+                                  them. Default: --latest
+
+  --replica / --no-replica        Return both original files and replicas.
+                                  Default: --no-replica
+
+  --distrib / --no-distrib        Distribute search across all ESGF nodes.
+                                  Default: --distrib
+
+  --csv / --no-csv                Send output to csv file including extra
+                                  information. Works only with --local and
+                                  --remote. Default: --no-csv
+
+  --stats / --no-stats            Write summary of query results. Works only
+                                  with --local and --remote. Default: --no-
+                                  stats
+
+  --debug / --no-debug            Show debug output. Default: --no-debug
+  -d, --domain FACET              CORDEX region name
+  -e, --experiment FACET          CMIP5 experiment of driving GCM or
+                                  &#39;evaluation&#39; for re-analysis
+
+  -dmod, --driving_model FACET    Model/analysis used to drive the model (eg.
+                                  ECMWF­ERAINT)
+
+  -m, --rcm_name FACET            Identifier of the CORDEX Regional Climate
+                                  Model
+
+  -rcmv, --rcm_version FACET      Identifier for reruns with perturbed
+                                  parameters or smaller RCM release upgrades
+
+  -v, --variable FACET            Variable name in file
+  -f, --time_frequency FACET      Output frequency indicator
+  -en, --ensemble FACET           Ensemble member of the driving GCM
+  -vrs, --version FACET           Data publication version
+  -cf, --cf_standard_name FACET   CF-Conventions name of the variable
+  -ef, --experiment_family FACET  Experiment family: All, Historical, RCP
+  -inst, --institute FACET        identifier for the institution that is
+                                  responsible for the scientific aspects of
+                                  the CORDEX simulation
+
+  --and [domain|experiment|driving_model|rcm_name|rcm_version|variable|time_frequency|ensemble|version|cf_standard_name|experiment_family|institute]
+                                  Attributes for which we want to add AND
+                                  filter, i.e. -v tasmin -v tasmax --and
+                                  variable will return only model/ensemble
+                                  that have both
+
+  --help                          Show this message and exit.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again <strong>cordex</strong> works in the same way but some constraints are specific to its experiment design.<br>
+These are the cordex <code class="docutils literal notranslate"><span class="pre">domain</span></code>, <code class="docutils literal notranslate"><span class="pre">rcm_name</span></code> for the regional model, <code class="docutils literal notranslate"><span class="pre">rcm_version</span></code>  and the <code class="docutils literal notranslate"><span class="pre">driving_model</span></code>.<br>
+CORDEX also doesn’t use tables so you always have to use f<code class="docutils literal notranslate"><span class="pre">--frequency</span></code> to select different timesteps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cordex -v tas -e historical -dmod CSIRO-BOM-ACCESS1-3 -en r1i1p1 -f mon
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/rr3/publications/CORDEX/output/AUS-44/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360J/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360K/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360L/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44i/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360J/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44i/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360K/v1/mon/tas/latest/
+/g/data/rr3/publications/CORDEX/output/AUS-44i/UNSW/CSIRO-BOM-ACCESS1-3/historical/r1i1p1/UNSW-WRF360L/v1/mon/tas/latest/
+
+Everything available on ESGF is also available locally
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="controlling-the-ouput-clef-options">
+<h3>Controlling the ouput: clef options<a class="headerlink" href="#controlling-the-ouput-clef-options" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip6 -e 1pctCO2 -t Amon -v tasmax -v tasmin -g gr
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1-HR/1pctCO2/r1i1p1f2/Amon/tasmax/gr/v20191021
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/1pctCO2/r1i1p1f2/Amon/tasmax/gr/v20180626
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r10i1p1f2/Amon/tasmax/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r1i1p1f2/Amon/tasmax/gr/v20181018
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r2i1p1f2/Amon/tasmax/gr/v20181031
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r3i1p1f2/Amon/tasmax/gr/v20181107
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r4i1p1f2/Amon/tasmax/gr/v20190328
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r5i1p1f2/Amon/tasmax/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r6i1p1f2/Amon/tasmax/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r7i1p1f2/Amon/tasmax/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r8i1p1f2/Amon/tasmax/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r9i1p1f2/Amon/tasmax/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-Veg/1pctCO2/r1i1p1f1/Amon/tasmax/gr/v20190702
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-Veg/1pctCO2/r1i1p1f1/Amon/tasmax/gr/v20200325
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/1pctCO2/r3i1p1f1/Amon/tasmax/gr/v20191114
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/1pctCO2/r3i1p1f1/Amon/tasmax/gr/v20200727
+/g/data/oi10/replicas/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/1pctCO2/r1i1p1f1/Amon/tasmax/gr/v20180727
+/g/data/oi10/replicas/CMIP6/CMIP/THU/CIESM/1pctCO2/r1i1p1f1/Amon/tasmax/gr/v20200417
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1-HR/1pctCO2/r1i1p1f2/Amon/tasmin/gr/v20191021
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/1pctCO2/r1i1p1f2/Amon/tasmin/gr/v20180626
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r10i1p1f2/Amon/tasmin/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r1i1p1f2/Amon/tasmin/gr/v20181018
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r2i1p1f2/Amon/tasmin/gr/v20181031
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r3i1p1f2/Amon/tasmin/gr/v20181107
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r4i1p1f2/Amon/tasmin/gr/v20190328
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r5i1p1f2/Amon/tasmin/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r6i1p1f2/Amon/tasmin/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r7i1p1f2/Amon/tasmin/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r8i1p1f2/Amon/tasmin/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/CNRM-CERFACS/CNRM-ESM2-1/1pctCO2/r9i1p1f2/Amon/tasmin/gr/v20200529
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-Veg/1pctCO2/r1i1p1f1/Amon/tasmin/gr/v20190702
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-Veg/1pctCO2/r1i1p1f1/Amon/tasmin/gr/v20200325
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/1pctCO2/r3i1p1f1/Amon/tasmin/gr/v20191114
+/g/data/oi10/replicas/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/1pctCO2/r3i1p1f1/Amon/tasmin/gr/v20200727
+/g/data/oi10/replicas/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/1pctCO2/r1i1p1f1/Amon/tasmin/gr/v20180727
+/g/data/oi10/replicas/CMIP6/CMIP/THU/CIESM/1pctCO2/r1i1p1f1/Amon/tasmin/gr/v20200417
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example we used the <code class="docutils literal notranslate"><span class="pre">--local</span></code> option for the main command <strong>clef</strong> to get only the local matching data path as output. <br>
+Note also that:</p>
+<ul class="simple">
+<li><p>we are using abbreviations for the options where available;</p></li>
+<li><p>we are passing the variable <code class="docutils literal notranslate"><span class="pre">-v</span></code> option twice;</p></li>
+<li><p>we used the CMIP6 specific option <code class="docutils literal notranslate"><span class="pre">-g/--grid</span></code> to search for all data that is not on the model native grid. This doesn’t indicate a grid common to all the CMIP6 output only to the model itself, the same is true for member_id and other attributes.<br></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">--local</span></code> is actually executing the query directly on the NCI <a class="reference external" href="http://clef.nci.org.au">clef.nci.org.au</a> database, which is different from the default query where the search is executed first on the ESGF and then its results are matched locally.<br>
+In the example above the final result is exactly the same, whichever way we perform the query. This way of searching can give you more results if a node is offline or if a version have been unpublished from the ESGF but is still available locally.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --missing cmip6 -e 1pctCO2 -v clw -v clwvi -t Amon -g gr
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available on ESGF but not locally:
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r1i1p1f1.Amon.clw.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clw.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clwvi.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r3i1p1f1.Amon.clw.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r3i1p1f1.Amon.clwvi.gr.v20200620
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1.1pctCO2.r1i1p1f2.Amon.clw.gr.v20180626
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1.1pctCO2.r1i1p1f2.Amon.clwvi.gr.v20180626
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1-HR.1pctCO2.r1i1p1f2.Amon.clw.gr.v20191021
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1-HR.1pctCO2.r1i1p1f2.Amon.clwvi.gr.v20191021
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r10i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r10i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r1i1p1f2.Amon.clw.gr.v20181018
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r1i1p1f2.Amon.clwvi.gr.v20181018
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r2i1p1f2.Amon.clw.gr.v20181031
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r2i1p1f2.Amon.clwvi.gr.v20181031
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r3i1p1f2.Amon.clw.gr.v20181107
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r3i1p1f2.Amon.clwvi.gr.v20181107
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r4i1p1f2.Amon.clw.gr.v20190328
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r4i1p1f2.Amon.clwvi.gr.v20190328
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r5i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r5i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r6i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r6i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r7i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r7i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r8i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r8i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r9i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r9i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.E3SM-Project.E3SM-1-0.1pctCO2.r1i1p1f1.Amon.clw.gr.v20190718
+CMIP6.CMIP.E3SM-Project.E3SM-1-0.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20190718
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3.1pctCO2.r3i1p1f1.Amon.clwvi.gr.v20200727
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3-Veg.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200325
+CMIP6.CMIP.IPSL.IPSL-CM6A-LR.1pctCO2.r1i1p1f1.Amon.clw.gr.v20180727
+CMIP6.CMIP.IPSL.IPSL-CM6A-LR.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20180727
+CMIP6.CMIP.NIMS-KMA.KACE-1-0-G.1pctCO2.r1i1p1f1.Amon.clw.gr.v20190916
+CMIP6.CMIP.NIMS-KMA.KACE-1-0-G.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20190916
+CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.clw.gr.v20200417
+CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200417
+</pre></div>
+</div>
+</div>
+</div>
+<p>This time we used the <em>–missing</em> option and the tool returned only the results matching the constraints that are available on the ESGF but not locally (we changed variables to make sure to get some missing data back).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --remote cmip6 -e 1pctCO2 -v tasmin -t Amon -g gr
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1-HR.1pctCO2.r1i1p1f2.Amon.tasmin.gr.v20191021
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1.1pctCO2.r1i1p1f2.Amon.tasmin.gr.v20180626
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r10i1p1f2.Amon.tasmin.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r1i1p1f2.Amon.tasmin.gr.v20181018
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r2i1p1f2.Amon.tasmin.gr.v20181031
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r3i1p1f2.Amon.tasmin.gr.v20181107
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r4i1p1f2.Amon.tasmin.gr.v20190328
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r5i1p1f2.Amon.tasmin.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r6i1p1f2.Amon.tasmin.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r7i1p1f2.Amon.tasmin.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r8i1p1f2.Amon.tasmin.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r9i1p1f2.Amon.tasmin.gr.v20200529
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3-Veg.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20200325
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3.1pctCO2.r3i1p1f1.Amon.tasmin.gr.v20200727
+CMIP6.CMIP.IPSL.IPSL-CM6A-LR.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20180727
+CMIP6.CMIP.NIMS-KMA.KACE-1-0-G.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20200115
+CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.tasmin.gr.v20200417
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--remote</span></code> option returns the Dataset_ids of the data matching the constraints, regardless that they are available locally or not.</p>
+<p>Please note that <code class="docutils literal notranslate"><span class="pre">--local</span></code>, <code class="docutils literal notranslate"><span class="pre">--remote</span></code> and <code class="docutils literal notranslate"><span class="pre">--missing</span></code> together with <code class="docutils literal notranslate"><span class="pre">--request</span></code>, which we will look at next, are all options of the main command <strong>clef</strong> and they need to come before any sub-commands.</p>
+</div>
+</div>
+<div class="section" id="requesting-new-data">
+<h2>Requesting new data<a class="headerlink" href="#requesting-new-data" title="Permalink to this headline">¶</a></h2>
+<p>What should we do if we found out there is some data we are interested to that has not been downloaded or requested yet? <br>
+This is a complex data collection, NCI, in consultation with the community, decided the best way to manage it was to have one point of reference. Part of this agreement is that NCI will download the files and update the database that <strong>clef</strong> is interrrogating. After consultation with the community a priority list was decided and NCI has started downloading anything that falls into it as soon as become available. <br> <br>
+Users can then request from the NCI helpdesk, other combinations of variables, experiments etc that do not fall into this list. <br>
+The list is available from the NCI climate confluence website: <br>
+Even without consulting the list you can use <strong>clef</strong>, as we demonstrated above, to search for a particular dataset, if it is not queued or downloaded already <strong>clef</strong> will give you an option to request it from NCI. <br><br>
+Let’s see how it works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+clef --request cmip6 -e 1pctCO2 -v clw -v clwvi -t Amon -g gr
+no
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available on ESGF but not locally:
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r1i1p1f1.Amon.clw.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clw.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clwvi.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r3i1p1f1.Amon.clw.gr.v20200620
+CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r3i1p1f1.Amon.clwvi.gr.v20200620
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1.1pctCO2.r1i1p1f2.Amon.clw.gr.v20180626
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1.1pctCO2.r1i1p1f2.Amon.clwvi.gr.v20180626
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1-HR.1pctCO2.r1i1p1f2.Amon.clw.gr.v20191021
+CMIP6.CMIP.CNRM-CERFACS.CNRM-CM6-1-HR.1pctCO2.r1i1p1f2.Amon.clwvi.gr.v20191021
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r10i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r10i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r1i1p1f2.Amon.clw.gr.v20181018
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r1i1p1f2.Amon.clwvi.gr.v20181018
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r2i1p1f2.Amon.clw.gr.v20181031
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r2i1p1f2.Amon.clwvi.gr.v20181031
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r3i1p1f2.Amon.clw.gr.v20181107
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r3i1p1f2.Amon.clwvi.gr.v20181107
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r4i1p1f2.Amon.clw.gr.v20190328
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r4i1p1f2.Amon.clwvi.gr.v20190328
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r5i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r5i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r6i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r6i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r7i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r7i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r8i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r8i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r9i1p1f2.Amon.clw.gr.v20200529
+CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.1pctCO2.r9i1p1f2.Amon.clwvi.gr.v20200529
+CMIP6.CMIP.E3SM-Project.E3SM-1-0.1pctCO2.r1i1p1f1.Amon.clw.gr.v20190718
+CMIP6.CMIP.E3SM-Project.E3SM-1-0.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20190718
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3.1pctCO2.r3i1p1f1.Amon.clwvi.gr.v20200727
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3-Veg.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200325
+CMIP6.CMIP.IPSL.IPSL-CM6A-LR.1pctCO2.r1i1p1f1.Amon.clw.gr.v20180727
+CMIP6.CMIP.IPSL.IPSL-CM6A-LR.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20180727
+CMIP6.CMIP.NIMS-KMA.KACE-1-0-G.1pctCO2.r1i1p1f1.Amon.clw.gr.v20190916
+CMIP6.CMIP.NIMS-KMA.KACE-1-0-G.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20190916
+CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.clw.gr.v20200417
+CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200417
+
+Finished writing file: CMIP6_pxp581_20200924T094632.txt
+Do you want to proceed with request for missing files? (N/Y)
+ No is default
+Your request has been saved in 
+ /home/581/pxp581/clef/docs/CMIP6_pxp581_20200924T094632.txt
+You can use this file to request the data via the NCI helpdesk: help@nci.org.au  or https://help.nci.org.au.
+</pre></div>
+</div>
+</div>
+</div>
+<p>We run the same query which gave us as a result 4 missing datasets but this time we used the <code class="docutils literal notranslate"><span class="pre">--request</span></code> option after <strong>clef</strong>.<br>
+The tool will execute the query remotely, then look for matches locally and on the NCI download list. Having found none gives as an option of putting in a request. <br>
+It will accept any of the following as a positive answer:</p>
+<blockquote>
+<div><p>Y  YES y yes <br></p>
+</div></blockquote>
+<p>With anything else or if you don’t pass anything it will assume you don’t want to put in a request.<br>
+It still saved the request in a file we can use later.<br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head -n <span class="m">4</span> CMIP6_*.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dataset_id=CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r1i1p1f1.Amon.clw.gr.v20200620
+dataset_id=CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200620
+dataset_id=CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clw.gr.v20200620
+dataset_id=CMIP6.CMIP.CAS.FGOALS-f3-L.1pctCO2.r2i1p1f1.Amon.clwvi.gr.v20200620
+</pre></div>
+</div>
+</div>
+</div>
+<p>If I answered <strong>yes</strong> the tool would have sent an e-mail to the NCI helpdesk with the text file attached, NCI can pass that file as input to their download tool and queue your request.<br>
+NB if you are running clef from gadi you cannot send an e-mail so in that case the tool will skip the question and just remind you to send an e-mail to the NCI helpdesk yourself to finalise the request.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-20.10-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-analysis3-20.10-py",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-20.10-py'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../contents/tag-cmip.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">cmip</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2020-10-12-climate-finder-extended-command-line.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Using CleF 2: advanced command line functionalities</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

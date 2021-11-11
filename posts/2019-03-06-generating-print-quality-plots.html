@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>High Resolution &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up a coupled model at a new resolution" href="2019-03-01-coupling-resolution.html" />
+    <link rel="prev" title="Fast answer" href="2019-04-02-filter-file-lists-with-sed.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2019-03-06-generating-print-quality-plots.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2019-03-06-generating-print-quality-plots.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   High Resolution
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-the-colour-palette">
+   Changing the Colour Palette
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Some students have mentioned that they had generated plots with R and submitted them in their theses, but were requested to redo the plots at high resolution and to change the colour palette.</p>
+<div class="section" id="high-resolution">
+<h1>High Resolution<a class="headerlink" href="#high-resolution" title="Permalink to this headline">¶</a></h1>
+<p>If you use RStudio, you can click on the “Export” button and export your plots to a file in either PDF or PNG format. If you save it in PDF format, by default it is high resoultion. If, however, you wish to save it as a PNG bitmap, the default resolution will be 72 dpi (dots per inch), the standard screen resolution, far too low for high quality printing, which needs to be at least 300 dpi.</p>
+<p>To see what I mean, let’s generate a plot as an example. We are will use a sample file recording maximum temperature available from the <a class="reference external" href="https://www.metoffice.gov.uk/hadobs/hadghcnd/download.html">UK Met Office</a>: <a class="reference external" href="https://www.metoffice.gov.uk/hadobs/hadghcnd/data/HadGHCND_1949-2011_TXx.nc.gz">https://www.metoffice.gov.uk/hadobs/hadghcnd/data/HadGHCND_1949-2011_TXx.nc.gz</a></p>
+<p>We will now plot make a contour map displaying the average maximum temperature for the month of January:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ncdf4</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+
+<span class="c1"># load the heatwave data file</span>
+<span class="n">ncname</span> <span class="o">&lt;-</span> <span class="s">&quot;HadGHCND_1949-2011_TXx_1.nc&quot;</span>
+<span class="n">ncin</span> <span class="o">&lt;-</span> <span class="nf">nc_open</span><span class="p">(</span><span class="n">ncname</span><span class="p">)</span>
+
+<span class="c1"># extract lat, lon and January Tmax variables</span>
+<span class="n">lats</span> <span class="o">&lt;-</span> <span class="nf">rev</span><span class="p">(</span><span class="nf">ncvar_get</span><span class="p">(</span><span class="n">ncin</span><span class="p">,</span> <span class="s">&quot;lat&quot;</span><span class="p">))</span>
+<span class="n">lons</span> <span class="o">&lt;-</span> <span class="nf">ncvar_get</span><span class="p">(</span><span class="n">ncin</span><span class="p">,</span> <span class="s">&quot;lon&quot;</span><span class="p">)</span>
+<span class="n">janVals</span> <span class="o">&lt;-</span> <span class="nf">ncvar_get</span><span class="p">(</span><span class="n">ncin</span><span class="p">,</span> <span class="s">&quot;January&quot;</span><span class="p">)</span>
+
+<span class="c1"># set up the matrix for the contour map</span>
+<span class="n">area</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="nf">dim</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="nf">dim</span><span class="p">(</span><span class="n">lats</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">lat</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">lats</span><span class="p">)){</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">lon</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">lons</span><span class="p">)){</span>
+    <span class="n">vals</span> <span class="o">&lt;-</span> <span class="n">janVals</span><span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="nf">dim</span><span class="p">(</span><span class="n">lats</span><span class="p">)</span><span class="m">+1</span><span class="o">-</span><span class="n">lat</span><span class="p">,]</span>
+    <span class="n">vals</span> <span class="o">&lt;-</span> <span class="n">vals</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">vals</span><span class="p">)]</span>
+    <span class="n">area</span><span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
+                   <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+                   <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                     <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+</pre></div>
+</div>
+<p>When saved in PNG format, you get this:
+![Default PNG resolution (zoomed in)]()
+(You might not be able to see the low resolution so well here, but if you display the image on your browser you’ll definitely see it.)</p>
+<p>The equivalent way to save to PNG file via the code is this:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatMap.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">480</span><span class="p">)</span>
+<span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
+                   <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+                   <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                     <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Increasing the resolution can be a bit tricky.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatMap2.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">480</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
+<span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
+                   <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+                   <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                     <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>![Changed resolution to 300dpi]()
+Adding the <code class="docutils literal notranslate"><span class="pre">res</span></code> parameter fixes up the resolution, but it also rescales the axes and text. Therefore, you need to increase the height and the width.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatmap3.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">960</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
+<span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
+               <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+               <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                 <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>![Doubled width and height]()</p>
+<p>That’s better.</p>
+<p>What if we want an even higher resolution, say 600dpi. So we change the first line to:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatmap4.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">2800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">2000</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and run the plot again.
+This time you might get the following error: <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">in</span> <span class="pre">plot.new()</span> <span class="pre">:</span> <span class="pre">figure</span> <span class="pre">region</span> <span class="pre">too</span> <span class="pre">large</span></code>.</p>
+<p>What this means is that your figure doesn’t fit in the default device screen that R has set. What does that mean? Well, when you run a <code class="docutils literal notranslate"><span class="pre">png()</span></code> command, you are actually telling R to set up a PNG output device on which to display your plot. That device has certain default parameters, including dimensions and margin sizes. In this case, the plot you have specified doesn’t fit in the device’s spatial parameters.</p>
+<p>You may be able to solve this problem by changing the device’s margin sizes. This may require a bit of fiddling to get them right. Margin sizes are measured in units of lines of text. (A plot has a specific text size.)</p>
+<p>By adding a <code class="docutils literal notranslate"><span class="pre">par(mar=...)</span></code> command, my error went away.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatmap4.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">2800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">2000</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+<span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
+               <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+               <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                 <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You may also get an error message saying that the margins are too big. That might indicate that:</p>
+<ol class="simple">
+<li><p>You have to make them smaller, or</p></li>
+<li><p>You haven’t set your plot dimensions to be sufficiently large, so there isn’t enough space to fit the margins.</p></li>
+</ol>
+<p>Because this is so fiddly, it might just be easier to create a PDF file first, either with the Export function as discussed, or with the following script:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">pdf</span><span class="p">(</span><span class="s">&#39;heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">40</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">25</span><span class="p">)</span>
+<span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
+               <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+               <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                 <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then you can convert it to the desired format. On the Mac, this can be done quite easily using Preview. Other tools that do this are <a class="reference external" href="https://www.imagemagick.org/">ImageMagick</a> or Adobe Acrobat. There are also a bunch of free online tools specifically for doing this kind of thing with PDFs, such as <a class="reference external" href="https://combinepdf.com/">CombinePDF</a> and <a class="reference external" href="https://smallpdf.com/">SmallPDF.com</a>.</p>
+<p>(<em>Note:</em> I had to play a bit with the <code class="docutils literal notranslate"><span class="pre">pointsize</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> to get it right.)</p>
+</div>
+<div class="section" id="changing-the-colour-palette">
+<h1>Changing the Colour Palette<a class="headerlink" href="#changing-the-colour-palette" title="Permalink to this headline">¶</a></h1>
+<p>R’s default choice of colours is not to everyone’s taste and those submitting theses have been known to be asked to change the colour palette.</p>
+<p>To set the colour palette for a plot, you just have to create a vector of colour names.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a vector with 15 shades ranging between the colours mentioned</span>
+<span class="n">colours</span> <span class="o">=</span> <span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="s">&quot;pink&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">))(</span><span class="m">15</span><span class="p">)</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatmap5.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">960</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">300</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;px&quot;</span><span class="p">)</span><span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">colours</span><span class="p">,</span>
+               <span class="n">xlim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">lats</span><span class="p">),</span>
+               <span class="n">plot.axes</span> <span class="o">=</span> <span class="p">{</span><span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">);</span><span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+                 <span class="nf">map</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-180</span><span class="p">,</span><span class="m">180</span><span class="p">),</span> <span class="n">interior</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)})</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that our colour palette has 15 shades. This needs to correspond to the number of colour levels in the plot. If you have too many shades, not all of them will be used; too few, and the colour palette will cycle (which is not very helpful).</p>
+<p>![Fixed up the palette]()</p>
+<p>For a full list of colour names in R, see <a class="reference external" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.</p>
+<p>There are other colour tools you can use in R, such as <a class="reference external" href="https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html#rcolorbrewer-package">RColorBrewer</a>.</p>
+<p>Happy plotting!</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="2019-04-02-filter-file-lists-with-sed.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Fast answer</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2019-03-01-coupling-resolution.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Setting up a coupled model at a new resolution</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

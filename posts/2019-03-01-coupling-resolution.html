@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setting up a coupled model at a new resolution &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using OPeNDAP to access data remotely: MUR example" href="2019-01-18-using-opendap.html" />
+    <link rel="prev" title="High Resolution" href="2019-03-06-generating-print-quality-plots.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2019-03-01-coupling-resolution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2019-03-01-coupling-resolution.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2019-03-01-coupling-resolution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
+   Scott Wales, CLEX CMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regridding-weights">
+   Regridding weights
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#um-grids">
+     UM Grids
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mom-cice-grids">
+     MOM/CICE Grids
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#masks-and-conservative-regridding">
+     Masks and Conservative Regridding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Regridding Weights
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#um-ancillary-interpolation">
+   UM Ancillary interpolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-model">
+   Running the model
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="setting-up-a-coupled-model-at-a-new-resolution">
+<h1>Setting up a coupled model at a new resolution<a class="headerlink" href="#setting-up-a-coupled-model-at-a-new-resolution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scott-wales-clex-cms">
+<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">¶</a></h2>
+<p>We’ve been setting up an ACCESS coupled model for a new atmosphere resolution. The process is quite involved, here’s some notes on how we’ve done it.</p>
+<p>ACCESS consists of three models - the UM atmosphere, MOM ocean and CICE sea ice models, tied together with the Oasis coupler. The coupler handles sending fields between all of the models, to do so it needs to regrid the data fields from the grid of one model to the grid of another.</p>
+</div>
+<div class="section" id="regridding-weights">
+<h2>Regridding weights<a class="headerlink" href="#regridding-weights" title="Permalink to this headline">¶</a></h2>
+<p>Oasis requires regridding weights in SCRIP format to convert a field from one model to another. Oasis can generate these itself from SCRIP descriptions of the source and target grid, or they can be generated using <a class="reference external" href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03020000000000000000">ESMF_RegridWeightGen</a> and the ESMF weights converted to SCRIP format.</p>
+<p>The most important thing here is that the masks are consistent between all the models. If they are not you will see discontinuity in the surface fields around coastlines.</p>
+<div class="section" id="um-grids">
+<h3>UM Grids<a class="headerlink" href="#um-grids" title="Permalink to this headline">¶</a></h3>
+<p>The UM mask is defined by two files - the land mask, which is 1 everywhere there is greater than 0% land in a grid cell, and the land fraction, which is the fraction of land in a grid cell. These fields are only defined on the T grid - the UM uses an <a class="reference external" href="https://en.wikipedia.org/wiki/Arakawa_grids#Arakawa_C-grid">Arakawa C grid</a>, with the scalar component termed the ‘T’ grid and the vector components termed the ‘U’ and ‘V’ grids.</p>
+<p>The coupling masks define the regions on the source and target grids which are involved in the coupling. Since we’re coupling ocean and sea ice models we want to mask out land points where the ocean fields are not defined. The mask for the UM T grid should be 1 everywhere the land fraction field is less than 1, in other words everywhere with greater than 0% ocean in a cell.</p>
+<p>For the U and V fields I used no mask, since we don’t want to conservatively interpolate vector fields and masking the offset grids is more difficult.</p>
+<p>Since the UM uses regular lat-lon grids you can create a <a class="reference external" href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03028300000000000000">GRIDSPEC grid description</a> to feed into ESMF.</p>
+</div>
+<div class="section" id="mom-cice-grids">
+<h3>MOM/CICE Grids<a class="headerlink" href="#mom-cice-grids" title="Permalink to this headline">¶</a></h3>
+<p>The MOM and CICE masks should be equal to each other. The CICE mask is found in <code class="docutils literal notranslate"><span class="pre">$ICE/INPUT/kmt.nc</span></code> as variable <code class="docutils literal notranslate"><span class="pre">kmt</span></code>, the MOM mask in <code class="docutils literal notranslate"><span class="pre">$OCN/INPUT/grid_spec.nc</span></code> as variable <code class="docutils literal notranslate"><span class="pre">wet</span></code>.</p>
+<p>The coupling mask for the MOM/CICE T grid should be equal to <code class="docutils literal notranslate"><span class="pre">wet</span></code> from <code class="docutils literal notranslate"><span class="pre">grid_spec.nc</span></code>.</p>
+<p>MOM uses a tripolar grid, all of the fields needed to create a <a class="reference external" href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03028100000000000000">SCRIP description</a> of a MOM grid may be found in <code class="docutils literal notranslate"><span class="pre">grid_spec.nc</span></code></p>
+</div>
+<div class="section" id="masks-and-conservative-regridding">
+<h3>Masks and Conservative Regridding<a class="headerlink" href="#masks-and-conservative-regridding" title="Permalink to this headline">¶</a></h3>
+<p>Whereever possible we want to be using conservative regridding - we don’t want our model to loose energy each timestep otherwise fields like the model temperature will drift. Conservative regridding ensures that the total field value sent by the source model equals the total field value received by the destination model.</p>
+<p>For conservative regridding to work, the masks of the two models must be consistent as well - there can’t be areas where the ocean model thinks it’s land and the atmosphere model thinks it’s ocean.</p>
+<p>An example point where this can happen is the ice shelves around Antarctica. The ocean model’s grid doesn’t go all the way to the south pole, so it misses the southernmost part of the Ross ice shelf. The atmosphere grid does reach the pole however, and its default land mask assumes the ice shelf is ocean. There can be other areas where this causes conflicts as well - for instance the black sea is not included in the MOM default mask.</p>
+<p>To make sure that the masks are consistent you need to do a conservative regridding of the mask from one grid to the other. The highest resolution grid should be the source, in my case I used the ocean mask. I then conservatively regridded the <code class="docutils literal notranslate"><span class="pre">wet</span></code> field from MOM to the UM grid with ESMF_RegridWeightGen. It’s important to not use masks for this interpolation, since the mask itself is what we’re interpolating and we want to conserve the land area. Also since the MOM grid doesn’t cover the entire globe I turned on the ESMF ‘–ignore_unmapped’ flag.</p>
+<p>This operation gave me an ocean fraction field on the UM grid. The ocean fraction can then be straightforwardly converted to a land fraction and land mask field to be input to the UM, although note that the interpolation can introduce a bit of noise, so the land fraction won’t be exactly 1.0 on pure land points - I used all grid cells where the land fraction was greater than 0.99 as the land mask.</p>
+<p>With a new land mask and land fraction the UM ancillaries needed to be modified</p>
+</div>
+<div class="section" id="id1">
+<h3>Regridding Weights<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>To calculate regridding weights I used <code class="docutils literal notranslate"><span class="pre">ESMF_RegridWeightGen</span></code>, a command-line tool included with ESMF. ESMF names the fields differently to SCRIP, so some modification of the output is required in order for OASIS to be able to read the files.</p>
+<p>Conservative regridding is used for scalar fields, for vector fields I used patch regridding to for smooth interpolation without introducing artefacts from the different grid resolutions.</p>
+</div>
+</div>
+<div class="section" id="um-ancillary-interpolation">
+<h2>UM Ancillary interpolation<a class="headerlink" href="#um-ancillary-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>Since the UM is using a new resolution and mask the various ancillary datasets also need to be changed. For the most part files from the Met Office archive at the target resolution were used. For fields like vegetation fraction which are only defined on land points (and missing data over the ocean) I ‘de-masked’ the ancillary field, by performing a nearest grid point interpolation from the masked source field to the same grid without a mask to remove the missing data areas. It’s important to use nearest grid point so that fields like the vegetation fractions correctly add up - some interpolation types also can result in negative values at some points which crashes the model.</p>
+<p>The aerosol climatology files had to be vertically interpolated since we had also reduced the number of vertical levels in the model run. For this I used the <a class="reference external" href="https://github.com/SciTools-incubator/python-stratify">stratify</a> python library. The vertical levels used by the UM are hybrid height levels - they vary depending on location, following the terrain up to a certain height, then above that level they are constant height levels.</p>
+<p>To convert from the source set of hybrid heights to the target hybrid heights I first converted both to true heights, using the formula from <a class="reference external" href="https://code.metoffice.gov.uk/doc/um/latest/papers/umdp_F03.pdf">UMDB F03</a>. I then used stratify to convert the aerosol fields on true source heights to the true target heights.</p>
+<p>To modify the UM ancillary files I used the <a class="reference external" href="https://code.metoffice.gov.uk/doc/um/mule/2018.07.1/">mule</a> library as well as <a class="reference external" href="https://pandas.pydata.org/">pandas</a> to group the individual 2d lat-lon field slices that are contained in UM format files into the full 4d field</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">categorise_fields</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sorts all of the 2d field slices in mule file ``m`` into a</span>
+<span class="sd">    pandas.DataFrame so that they can be grouped together into full</span>
+<span class="sd">    fields</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;field&#39;</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">fields</span><span class="p">})</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbyr</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbmon</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbdat</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbhr</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbmin</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;second&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbsec</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stash&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbuser4</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vertical_type&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbvc</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lblev</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pseudo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">lbuser5</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;blev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">blev</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;brlev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">brlev</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bhlev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">bhlev</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bhrlev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">bhrlev</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Group the 2d slices with the same field and time value together</span>
+<span class="n">ancil</span> <span class="o">=</span> <span class="n">mule</span><span class="o">.</span><span class="n">AncilFile</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">ancil_path</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">categorise_fields</span><span class="p">(</span><span class="n">ancil</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span><span class="s1">&#39;minute&#39;</span><span class="p">,</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;stash&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%04d%02d%02d</span><span class="s2">T</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2"> STASH </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">name</span>)
+
+    <span class="c1"># Stack the slices of this field/time into a 3d array</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">get_data</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">true_theta_height</span><span class="p">(</span><span class="n">level_file</span><span class="p">,</span> <span class="n">orography</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a true height field from the UM levels namelist at ``level_file``</span>
+<span class="sd">    and the orography field</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_levels</span> <span class="o">=</span> <span class="n">f90nml</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">vertlevs</span><span class="p">)[</span><span class="s1">&#39;VERTLEVS&#39;</span><span class="p">]</span>
+    
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">target_levels</span><span class="p">[</span><span class="s1">&#39;eta_theta&#39;</span><span class="p">])</span>
+    <span class="n">const_lev</span> <span class="o">=</span> <span class="n">target_levels</span><span class="p">[</span><span class="s1">&#39;first_constant_r_rho_level&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">Zsea</span> <span class="o">=</span> <span class="n">target_levels</span><span class="p">[</span><span class="s1">&#39;z_top_of_model&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">eta</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="o">/</span><span class="n">eta</span><span class="p">[</span><span class="n">const_lev</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">const_lev</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">target_Zsea</span><span class="p">[:,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">multiply</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">target_C</span><span class="p">,</span><span class="n">orog</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Z</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="running-the-model">
+<h2>Running the model<a class="headerlink" href="#running-the-model" title="Permalink to this headline">¶</a></h2>
+<p>With all of this set up the next thing to do is configure the model with all of the new files then do a short test run. A single model day should tell you if the coupling fields are being sent correctly and all of the ancillary files are at the correct resolution. With that done you can move on to longer runs to check the stability of the model.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-analysis3-py",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-py'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="2019-03-06-generating-print-quality-plots.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">High Resolution</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2019-01-18-using-opendap.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Using OPeNDAP to access data remotely: MUR example</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1063 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Line plot types &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Speeding up access to large datasets with Dask Delayed" href="2018-09-14-dask-era-interim.html" />
+    <link rel="prev" title="Basic usage of python logging module" href="2018-10-05-introduction-to-python-logging.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2018-09-28-line-plots-with-xarray.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-09-28-line-plots-with-xarray.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2018-09-28-line-plots-with-xarray.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Line plot types
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timeseries">
+     Timeseries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-lines">
+     Multiple lines
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vertical-profile">
+     Vertical profile
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#panel-plot">
+     Panel plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-more-advance-example">
+   A more advance example
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-range-in-x-or-y">
+     Different range in x or y
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>This week I am going to look at line plots with Xarray. Xarray plotting is based on Matplotlib. But Xarray gives polished plots quicker as it automatically uses the metadata in the netcdf file for labelling the plot. Also, a lot of plotting tasks can be achieved in a line. Of course, if your netcdf file is lacking information, you’ll still need to add to the plot using Matplotlib. I’ll summarise here how to plot:</p>
+<ul class="simple">
+<li><p>timeseries</p></li>
+<li><p>multi-line plots</p></li>
+<li><p>vertical profiles</p></li>
+<li><p>panel plots</p></li>
+</ul>
+<p>Some previous knowledge of Xarray is assumed. If you haven’t used Xarray before you might need to refer to the <a class="reference external" href="http://xarray.pydata.org/en/stable/index.html">Xarray documentation</a> or some previous blog posts.</p>
+<p>First, let’s get ourselves some 4D data: time, height, latitude and longitude. CMIP5 is a good source of those, let’s pick some atmospheric temperature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">xarray</span>
+
+<span class="n">datapath</span> <span class="o">=</span> <span class="s1">&#39;/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/day/atmos/day/r1i1p1/latest/ta/&#39;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">datapath</span> <span class="o">+</span> <span class="s1">&#39;ta_day_ACCESS1-3_historical_r1i1p1_19500101-19541231.nc&#39;</span><span class="p">)</span>
+<span class="n">ta</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
+<span class="n">ta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;ta&#39; (time: 1826, plev: 8, lat: 144, lon: 192)&gt;
+[403881984 values with dtype=float32]
+Coordinates:
+  * time     (time) datetime64[ns] 1950-01-01T12:00:00 1950-01-02T12:00:00 ...
+  * plev     (plev) float64 1e+05 8.5e+04 7e+04 5e+04 2.5e+04 1e+04 5e+03 1e+03
+  * lat      (lat) float64 -89.38 -88.12 -86.88 -85.62 -84.38 -83.12 -81.88 ...
+  * lon      (lon) float64 0.9375 2.812 4.688 6.562 8.438 10.31 12.19 14.06 ...
+Attributes:
+    standard_name:     air_temperature
+    long_name:         Air Temperature
+    units:             K
+    cell_methods:      time: mean
+    cell_measures:     area: areacella
+    history:           2012-06-12T22:50:20Z altered by CMOR: replaced missing...
+    associated_files:  baseURL: http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="line-plot-types">
+<h1>Line plot types<a class="headerlink" href="#line-plot-types" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="timeseries">
+<h2>Timeseries<a class="headerlink" href="#timeseries" title="Permalink to this headline">¶</a></h2>
+<p>To plot a timeseries (or a simple one line plot) is quite easy with Xarray, you simply need a 1D variable. Since ours is 4D, let’s choose to plot the temperature timeseries at 850hPa (plev=85,000) and over Canberra (35.28S, 149.13E)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">35.28</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">149.13</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">plev</span><span class="o">=</span><span class="mi">85000</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a7df0a8d0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_5_1.png" src="../_images/2018-09-28-line-plots-with-xarray_5_1.png" />
+</div>
+</div>
+<p>You can see the plot has already quite a lot of useful labels. Axes are labelled (with unit for the quantity plotted) and the spatial position of the point is at the top. You may want to customise the plot. The <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method in Xarray is calling the appropriate plot method of Matplotlib. This means you can customise your plots in the same way in Xarray as you would in Matplotlib. In particular, the line plots accept a range of properties that allow you to customise the line appearance. Here is a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D">list of all possible properties</a> for a line plot. It might also be easier to simply search the internet for an example of what you want to do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An example of customisation</span>
+
+<span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;1950-01-31&#39;</span><span class="p">),</span> <span class="n">plev</span><span class="o">=</span><span class="mi">85000</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a7b90c668&gt;]
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_7_1.png" src="../_images/2018-09-28-line-plots-with-xarray_7_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="multiple-lines">
+<h2>Multiple lines<a class="headerlink" href="#multiple-lines" title="Permalink to this headline">¶</a></h2>
+<p>Now, let’s say you want to plot the temperature timeseries at different pressure levels. Then, you need 2D data with dimensions time and pressure. Then Xarray let’s you determine which dimension should be used for different lines with the argument <code class="docutils literal notranslate"><span class="pre">hue</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;1950-01-31&#39;</span><span class="p">),</span><span class="n">plev</span><span class="o">=</span><span class="p">[</span><span class="mi">85000</span><span class="p">,</span><span class="mi">5000</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a7b71dd68&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7f7a7b73fcc0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_9_1.png" src="../_images/2018-09-28-line-plots-with-xarray_9_1.png" />
+</div>
+</div>
+<p>We again get reasonable labelling by default.</p>
+</div>
+<div class="section" id="vertical-profile">
+<h2>Vertical profile<a class="headerlink" href="#vertical-profile" title="Permalink to this headline">¶</a></h2>
+<p>A vertical profile is the same as a timeseries: get a 1D array along the vertical dimension. However, the data needs to be plotted along the x-axis and the vertical dimension along the y-axis. Xarray allows you to set this through the <code class="docutils literal notranslate"><span class="pre">y</span></code> argument of the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a7b6f2eb8&gt;]
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_12_1.png" src="../_images/2018-09-28-line-plots-with-xarray_12_1.png" />
+</div>
+</div>
+<p>Although as you see here, there is another issue to tackle. By default, Xarray will plot the dimension with increasing values. Obviously if you have a pressure dimension or a depth dimension, that is not what you want. To fix this, use the <code class="docutils literal notranslate"><span class="pre">yincrease</span></code> argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span> <span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a7b6d6d30&gt;]
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_14_1.png" src="../_images/2018-09-28-line-plots-with-xarray_14_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="panel-plot">
+<h2>Panel plot<a class="headerlink" href="#panel-plot" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say, instead of a multi-line plot, you want a panel plot of vertical profiles over Canberra for the first 10 days of 1950. Xarray let’s you do that without defining the panel plot first! You need to use the <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code> and <code class="docutils literal notranslate"><span class="pre">col_wrap</span></code> arguments. <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code> tell Xarray what dimension to use along the rows or columns. <code class="docutils literal notranslate"><span class="pre">col_wrap</span></code> tells Xarray how many columns to use. Note that panel plots are also called faceted plots such as in the Xarray documentation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;1950-01-10&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span> <span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f7a7b6368d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_16_1.png" src="../_images/2018-09-28-line-plots-with-xarray_16_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-more-advance-example">
+<h1>A more advance example<a class="headerlink" href="#a-more-advance-example" title="Permalink to this headline">¶</a></h1>
+<p>Now that we’ve seen the basics, let’s bring it all together on a more realistic example. Let’s say you want to compare Canberra and Sydney air temperature profiles in 1950. You want to compare the profiles on 1st January, 31st December and show some yearly statistics (mean, standard deviation…).</p>
+<p>First we need to calculate all the quantities we need and store them in a single DataArray. For this, you’ll want to store the quantities and add 2 coordinates: one for the city and one for the statistic. This way, you can tell Xarray to use those coordinates for your plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR_1950</span> <span class="o">=</span> <span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Canberra&#39;</span>
+<span class="c1"># We want the 1st January and 31st December. But we don&#39;t want to keep the time dimension and coordinate as the mean</span>
+<span class="c1"># does not have those. We need to keep track of the date in a new coordinate we&#39;ll call &#39;stats&#39;</span>
+<span class="n">ta_CBR_195001</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_195001</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1st January&#39;</span> 
+<span class="n">ta_CBR_195012</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-12-31&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_195012</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;31st December&#39;</span>
+<span class="n">ta_CBR_1950_mean</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950_mean</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use the <code class="docutils literal notranslate"><span class="pre">concat()</span></code> function from xarray to concatenate all the statistics in a single DataArray. This array will simply contain 3 vertical profiles. It is also possible to create the DataArray first and to fill it with the statistics. Choose whichever approach makes sense depending on your problem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR_1950_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_CBR_195001</span><span class="p">,</span> <span class="n">ta_CBR_195012</span><span class="p">,</span> <span class="n">ta_CBR_1950_mean</span><span class="p">],</span><span class="s1">&#39;stats&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;ta&#39; (stats: 3, plev: 8)&gt;
+array([[      nan, 286.02872, 279.76532, 264.2014 , 225.07121, 208.75842,
+        213.83624, 244.21983],
+       [      nan, 289.20227, 276.6931 , 259.72153, 224.56906, 209.45264,
+        216.86447, 243.77567],
+       [      nan, 281.65936, 273.80573, 257.87796, 223.91864, 210.82764,
+        214.47987, 234.8242 ]], dtype=float32)
+Coordinates:
+  * plev     (plev) float64 1e+05 8.5e+04 7e+04 5e+04 2.5e+04 1e+04 5e+03 1e+03
+    lat      float64 -35.62
+    lon      float64 149.1
+    city     &lt;U8 &#39;Canberra&#39;
+  * stats    (stats) &lt;U13 &#39;1st January&#39; &#39;31st December&#39; &#39;mean&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_SYD</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">33.87</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">151.21</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;Sydney&#39;</span>
+<span class="n">ta_SYD_195001</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_195001</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1st January&#39;</span> 
+<span class="n">ta_SYD_195012</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-12-31&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_195012</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;31st December&#39;</span>
+<span class="n">ta_SYD_1950_mean</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_1950_mean</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+<span class="n">ta_SYD_1950_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_SYD_195001</span><span class="p">,</span> <span class="n">ta_SYD_195012</span><span class="p">,</span> <span class="n">ta_SYD_1950_mean</span><span class="p">],</span><span class="s1">&#39;stats&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_1950_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;ta&#39; (stats: 3, plev: 8)&gt;
+array([[      nan, 285.57645, 281.2667 , 264.9933 , 225.27211, 208.35411,
+        213.23886, 243.64713],
+       [      nan, 291.8125 , 277.7788 , 260.8064 , 224.94211, 208.00836,
+        215.49797, 243.43637],
+       [      nan, 282.4153 , 274.38565, 258.48856, 224.57526, 209.86441,
+        213.90916, 235.06212]], dtype=float32)
+Coordinates:
+  * plev     (plev) float64 1e+05 8.5e+04 7e+04 5e+04 2.5e+04 1e+04 5e+03 1e+03
+    lat      float64 -34.38
+    lon      float64 150.9
+    city     &lt;U6 &#39;Sydney&#39;
+  * stats    (stats) &lt;U13 &#39;1st January&#39; &#39;31st December&#39; &#39;mean&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we still have to concatenate Sydney and Canberra together so we have our 6 profiles in the same array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_1950_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_CBR_1950_stats</span><span class="p">,</span> <span class="n">ta_SYD_1950_stats</span><span class="p">],</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+<span class="n">ta_1950_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;ta&#39; (city: 2, stats: 3, plev: 8)&gt;
+array([[[      nan, 286.02872, 279.76532, 264.2014 , 225.07121, 208.75842,
+         213.83624, 244.21983],
+        [      nan, 289.20227, 276.6931 , 259.72153, 224.56906, 209.45264,
+         216.86447, 243.77567],
+        [      nan, 281.65936, 273.80573, 257.87796, 223.91864, 210.82764,
+         214.47987, 234.8242 ]],
+
+       [[      nan, 285.57645, 281.2667 , 264.9933 , 225.27211, 208.35411,
+         213.23886, 243.64713],
+        [      nan, 291.8125 , 277.7788 , 260.8064 , 224.94211, 208.00836,
+         215.49797, 243.43637],
+        [      nan, 282.4153 , 274.38565, 258.48856, 224.57526, 209.86441,
+         213.90916, 235.06212]]], dtype=float32)
+Coordinates:
+  * plev     (plev) float64 1e+05 8.5e+04 7e+04 5e+04 2.5e+04 1e+04 5e+03 1e+03
+  * stats    (stats) &lt;U13 &#39;1st January&#39; &#39;31st December&#39; &#39;mean&#39;
+    lat      (city) float64 -35.62 -34.38
+    lon      (city) float64 149.1 150.9
+  * city     (city) &lt;U8 &#39;Canberra&#39; &#39;Sydney&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we just need one line to plot everything!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_1950_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;stats&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f7a7b107978&gt;
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_26_1.png" src="../_images/2018-09-28-line-plots-with-xarray_26_1.png" />
+</div>
+</div>
+<p>Note that with the averaging, the variable lost its attributes, you may need to add the long name and unit again for better labelling.</p>
+<div class="section" id="different-range-in-x-or-y">
+<h2>Different range in x or y<a class="headerlink" href="#different-range-in-x-or-y" title="Permalink to this headline">¶</a></h2>
+<p>The above example only works if all the plots have the same range. If you tried to plot the standard deviation in the panel above following this method, the plot would appear empty as the values of the standard deviation are much smaller than the temperature. Xarray provides the <code class="docutils literal notranslate"><span class="pre">sharex</span></code> argument that allows for different x axes. Obviously all plots will then use slighly different x axes then which may or may not be acceptable. Xarray also provides a <code class="docutils literal notranslate"><span class="pre">sharey</span></code> argument when the y axis needs to change and which is used in the same way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the standard deviations for Sydney and Canberra and add to the stats.</span>
+<span class="n">ta_SYD_1950_std</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_1950_std</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;std&#39;</span>
+<span class="n">ta_CBR_1950_std</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950_std</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;std&#39;</span>
+<span class="n">ta_1950_std</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_SYD_1950_std</span><span class="p">,</span> <span class="n">ta_CBR_1950_std</span><span class="p">],</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+<span class="n">ta_1950_add_stats</span><span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_1950_stats</span><span class="p">,</span> <span class="n">ta_1950_std</span><span class="p">],</span> <span class="s1">&#39;stats&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot in panel but with a different x axis range for all plots.</span>
+<span class="n">ta_1950_add_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;stats&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f7a7b330710&gt;
+</pre></div>
+</div>
+<img alt="../_images/2018-09-28-line-plots-with-xarray_30_1.png" src="../_images/2018-09-28-line-plots-with-xarray_30_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-18.04-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-analysis3-18.04-py",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-18.04-py'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="2018-10-05-introduction-to-python-logging.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><strong>Basic usage of python logging module</strong></p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2018-09-14-dask-era-interim.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Speeding up access to large datasets with Dask Delayed</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

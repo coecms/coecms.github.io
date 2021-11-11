@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast answer &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High Resolution" href="2019-03-06-generating-print-quality-plots.html" />
+    <link rel="prev" title="Per-gridpoint time correlation of two models" href="2019-07-29-multi-apply-along-axis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2019-04-02-filter-file-lists-with-sed.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2019-04-02-filter-file-lists-with-sed.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Fast answer
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-a-test-directory">
+   Making a test directory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-list-files-within-a-given-year-range">
+   How to list files within a given year range?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#globs">
+     Globs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brace-expansion">
+     Brace expansion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sed">
+   sed
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>We had a recent query on the <a class="reference external" href="https://arccss.slack.com">Slack support channel</a>
+asking how, when using <code class="docutils literal notranslate"><span class="pre">bash</span></code>, to programatically generate a listing of files
+when the year was part the filename, given a begin year and end year.</p>
+<p>What do I mean by that? Well the files looked a bit like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file</span><span class="mf">.0197</span><span class="o">-</span><span class="mf">03.</span><span class="n">nc</span>
+</pre></div>
+</div>
+<p>so in this case the file is the third month of year 197.</p>
+<p>The question was: in a script where the first and last year are stored as variables,
+how to easily make a list of files that can be looped over in <code class="docutils literal notranslate"><span class="pre">bash</span></code>?</p>
+<div class="section" id="fast-answer">
+<h1>Fast answer<a class="headerlink" href="#fast-answer" title="Permalink to this headline">¶</a></h1>
+<p>Use <code class="docutils literal notranslate"><span class="pre">eval</span></code> and brace expansion in combination with wildcard globbing, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ eval ls file.*{$begin..$end}-*.nc
+</pre></div>
+</div>
+<p>(NB: The <code class="docutils literal notranslate"><span class="pre">$</span></code> sign at the beginning of a line signifies the unix prompt, to delineate
+between a command and it’s output)</p>
+<p>If you want to know why, read on …</p>
+</div>
+<div class="section" id="making-a-test-directory">
+<h1>Making a test directory<a class="headerlink" href="#making-a-test-directory" title="Permalink to this headline">¶</a></h1>
+<p>First step, make a test directory to test solutions like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir tmp
+$ touch tmp/file.{0197..0202}-{01..12}.nc
+$ ls tmp
+</pre></div>
+</div>
+<p>This has created the following files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls tmp
+file.0197-01.nc  file.0198-07.nc  file.0200-01.nc  file.0201-07.nc
+file.0197-02.nc  file.0198-08.nc  file.0200-02.nc  file.0201-08.nc
+file.0197-03.nc  file.0198-09.nc  file.0200-03.nc  file.0201-09.nc
+file.0197-04.nc  file.0198-10.nc  file.0200-04.nc  file.0201-10.nc
+file.0197-05.nc  file.0198-11.nc  file.0200-05.nc  file.0201-11.nc
+file.0197-06.nc  file.0198-12.nc  file.0200-06.nc  file.0201-12.nc
+file.0197-07.nc  file.0199-01.nc  file.0200-07.nc  file.0202-01.nc
+file.0197-08.nc  file.0199-02.nc  file.0200-08.nc  file.0202-02.nc
+file.0197-09.nc  file.0199-03.nc  file.0200-09.nc  file.0202-03.nc
+file.0197-10.nc  file.0199-04.nc  file.0200-10.nc  file.0202-04.nc
+file.0197-11.nc  file.0199-05.nc  file.0200-11.nc  file.0202-05.nc
+file.0197-12.nc  file.0199-06.nc  file.0200-12.nc  file.0202-06.nc
+file.0198-01.nc  file.0199-07.nc  file.0201-01.nc  file.0202-07.nc
+file.0198-02.nc  file.0199-08.nc  file.0201-02.nc  file.0202-08.nc
+file.0198-03.nc  file.0199-09.nc  file.0201-03.nc  file.0202-09.nc
+file.0198-04.nc  file.0199-10.nc  file.0201-04.nc  file.0202-10.nc
+file.0198-05.nc  file.0199-11.nc  file.0201-05.nc  file.0202-11.nc
+file.0198-06.nc  file.0199-12.nc  file.0201-06.nc  file.0202-12.nc
+</pre></div>
+</div>
+<p>The above command uses brace expansion, which I will explain later.</p>
+</div>
+<div class="section" id="how-to-list-files-within-a-given-year-range">
+<h1>How to list files within a given year range?<a class="headerlink" href="#how-to-list-files-within-a-given-year-range" title="Permalink to this headline">¶</a></h1>
+<p>So, the question was, given a begin year and end year, say</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">begin</span><span class="o">=</span><span class="mi">199</span>
+<span class="n">end</span><span class="o">=</span><span class="mi">201</span>
+</pre></div>
+</div>
+<p>how can you easily obtain an ordered list of all the months in all the years between,
+and including the two years?</p>
+<p>Well firstly, the year is encoded in the filename as a left zero-padded
+4 digit number, so the first step is to use <code class="docutils literal notranslate"><span class="pre">printf</span></code> to perform this
+transformation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ begin=$(printf &quot;%04d&quot; $begin)
+$ end=$(printf &quot;%04d&quot; $end)
+$ echo $begin $end
+0199 0201
+</pre></div>
+</div>
+<p>I haven’t simply pre-pended a zero at the beginning of the year otherwise it will not
+work for years &gt; 999.</p>
+<div class="section" id="globs">
+<h2>Globs<a class="headerlink" href="#globs" title="Permalink to this headline">¶</a></h2>
+<p>Shell <a class="reference external" href="https://www.tldp.org/LDP/abs/html/globbingref.html"><code class="docutils literal notranslate"><span class="pre">globbing</span></code></a> uses wildcards
+and a process called “filename expansion” which is very useful and can be used to
+easily match the required pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls tmp/file.0199-*.nc tmp/file.0200-*.nc tmp/file.0201-*.nc
+tmp/file.0199-01.nc  tmp/file.0200-01.nc  tmp/file.0201-01.nc
+tmp/file.0199-02.nc  tmp/file.0200-02.nc  tmp/file.0201-02.nc
+tmp/file.0199-03.nc  tmp/file.0200-03.nc  tmp/file.0201-03.nc
+tmp/file.0199-04.nc  tmp/file.0200-04.nc  tmp/file.0201-04.nc
+tmp/file.0199-05.nc  tmp/file.0200-05.nc  tmp/file.0201-05.nc
+tmp/file.0199-06.nc  tmp/file.0200-06.nc  tmp/file.0201-06.nc
+tmp/file.0199-07.nc  tmp/file.0200-07.nc  tmp/file.0201-07.nc
+tmp/file.0199-08.nc  tmp/file.0200-08.nc  tmp/file.0201-08.nc
+tmp/file.0199-09.nc  tmp/file.0200-09.nc  tmp/file.0201-09.nc
+tmp/file.0199-10.nc  tmp/file.0200-10.nc  tmp/file.0201-10.nc
+tmp/file.0199-11.nc  tmp/file.0200-11.nc  tmp/file.0201-11.nc
+tmp/file.0199-12.nc  tmp/file.0200-12.nc  tmp/file.0201-12.nc
+</pre></div>
+</div>
+<p>but that is difficult to generate programmatically given arbitrary start and end
+years.</p>
+<p>It can be done using <code class="docutils literal notranslate"><span class="pre">seq</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ for year in $(seq -f &quot;%04.0f&quot; $begin $end); do echo $year; ls tmp/*$year-*.nc; done
+0199
+tmp/file.0199-01.nc  tmp/file.0199-05.nc  tmp/file.0199-09.nc
+tmp/file.0199-02.nc  tmp/file.0199-06.nc  tmp/file.0199-10.nc
+tmp/file.0199-03.nc  tmp/file.0199-07.nc  tmp/file.0199-11.nc
+tmp/file.0199-04.nc  tmp/file.0199-08.nc  tmp/file.0199-12.nc
+0200
+tmp/file.0200-01.nc  tmp/file.0200-05.nc  tmp/file.0200-09.nc
+tmp/file.0200-02.nc  tmp/file.0200-06.nc  tmp/file.0200-10.nc
+tmp/file.0200-03.nc  tmp/file.0200-07.nc  tmp/file.0200-11.nc
+tmp/file.0200-04.nc  tmp/file.0200-08.nc  tmp/file.0200-12.nc
+0201
+tmp/file.0201-01.nc  tmp/file.0201-05.nc  tmp/file.0201-09.nc
+tmp/file.0201-02.nc  tmp/file.0201-06.nc  tmp/file.0201-10.nc
+tmp/file.0201-03.nc  tmp/file.0201-07.nc  tmp/file.0201-11.nc
+tmp/file.0201-04.nc  tmp/file.0201-08.nc  tmp/file.0201-12.nc
+
+</pre></div>
+</div>
+<p>In the command above I have used <code class="docutils literal notranslate"><span class="pre">echo</span></code> to print the value of the <code class="docutils literal notranslate"><span class="pre">$year</span></code> loop
+variable to highlight this is 3 successive invocations of <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
+<p>Using this approach it might also be necessary to account for cases where there is
+no match for a specific year.</p>
+<p>If you’re looping over the values of year explicitly it might just be simpler
+to generate the filenames directly rather than using <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
+<p>Also, <code class="docutils literal notranslate"><span class="pre">seq</span></code> is a <a class="reference external" href="https://www.gnu.org/software/coreutils/manual/html_node/seq-invocation.html">commonly installed GNU utility</a>, not a
+builtin bash command, so it can’t be guaranteed to always be present.</p>
+</div>
+<div class="section" id="brace-expansion">
+<h2>Brace expansion<a class="headerlink" href="#brace-expansion" title="Permalink to this headline">¶</a></h2>
+<p>The most concise and attractive way is <a class="reference external" href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html">brace exapansion</a>. This is
+what I used above to generate the test files initially.</p>
+<p>To see how it works with a range, as above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo {0199..0201}
+0199 0200 0201
+</pre></div>
+</div>
+<p>so why not just use the variables defined above directly in a brace expansion?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo {$begin..$end}
+{0199..0201}
+</pre></div>
+</div>
+<p>It doesn’t do the brace expansion, just variable substitution. So this won’t work.</p>
+<p>To make it work you need to use <a class="reference external" href="https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html"><code class="docutils literal notranslate"><span class="pre">eval</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ eval echo {$begin..$end}
+0199 0200 0201
+</pre></div>
+</div>
+<p>which evaluates the expression <em>after</em> the variable expansion has taken place. To
+use this to get a list of the matching files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ eval ls tmp/*{$begin..$end}-*.nc
+tmp/file.0199-01.nc  tmp/file.0200-01.nc  tmp/file.0201-01.nc
+tmp/file.0199-02.nc  tmp/file.0200-02.nc  tmp/file.0201-02.nc
+tmp/file.0199-03.nc  tmp/file.0200-03.nc  tmp/file.0201-03.nc
+tmp/file.0199-04.nc  tmp/file.0200-04.nc  tmp/file.0201-04.nc
+tmp/file.0199-05.nc  tmp/file.0200-05.nc  tmp/file.0201-05.nc
+tmp/file.0199-06.nc  tmp/file.0200-06.nc  tmp/file.0201-06.nc
+tmp/file.0199-07.nc  tmp/file.0200-07.nc  tmp/file.0201-07.nc
+tmp/file.0199-08.nc  tmp/file.0200-08.nc  tmp/file.0201-08.nc
+tmp/file.0199-09.nc  tmp/file.0200-09.nc  tmp/file.0201-09.nc
+tmp/file.0199-10.nc  tmp/file.0200-10.nc  tmp/file.0201-10.nc
+tmp/file.0199-11.nc  tmp/file.0200-11.nc  tmp/file.0201-11.nc
+tmp/file.0199-12.nc  tmp/file.0200-12.nc  tmp/file.0201-12.nc
+</pre></div>
+</div>
+<p>Without <code class="docutils literal notranslate"><span class="pre">eval</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls tmp/*{$begin..$end}-*.nc
+ls: cannot access tmp/*{0199..0201}-*.nc: No such file or directory
+</pre></div>
+</div>
+<p>So you can get a list that you can iterate over using a subshell, like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ for file in $(eval ls tmp/*{$begin..$end}-*.nc); do echo $file; done
+tmp/file.0199-01.nc
+tmp/file.0199-02.nc
+tmp/file.0199-03.nc
+tmp/file.0199-04.nc
+tmp/file.0199-05.nc
+tmp/file.0199-06.nc
+tmp/file.0199-07.nc
+tmp/file.0199-08.nc
+tmp/file.0199-09.nc
+tmp/file.0199-10.nc
+tmp/file.0199-11.nc
+tmp/file.0199-12.nc
+tmp/file.0200-01.nc
+tmp/file.0200-02.nc
+tmp/file.0200-03.nc
+tmp/file.0200-04.nc
+tmp/file.0200-05.nc
+tmp/file.0200-06.nc
+tmp/file.0200-07.nc
+tmp/file.0200-08.nc
+tmp/file.0200-09.nc
+tmp/file.0200-10.nc
+tmp/file.0200-11.nc
+tmp/file.0200-12.nc
+tmp/file.0201-01.nc
+tmp/file.0201-02.nc
+tmp/file.0201-03.nc
+tmp/file.0201-04.nc
+tmp/file.0201-05.nc
+tmp/file.0201-06.nc
+tmp/file.0201-07.nc
+tmp/file.0201-08.nc
+tmp/file.0201-09.nc
+tmp/file.0201-10.nc
+tmp/file.0201-11.nc
+tmp/file.0201-12.nc
+</pre></div>
+</div>
+<p>Some people are <a class="reference external" href="https://medium.com/dot-debug/the-perils-of-bash-eval-cc5f9e309cae">wary</a>
+of using <code class="docutils literal notranslate"><span class="pre">eval</span></code>. Anything that is in that statement will be executed, and they worry about
+malicious code being injected. In this case it isn’t likely to be a problem, but bear this
+in mind</p>
+</div>
+</div>
+<div class="section" id="sed">
+<h1>sed<a class="headerlink" href="#sed" title="Permalink to this headline">¶</a></h1>
+<p>If <code class="docutils literal notranslate"><span class="pre">eval</span></code> worries you, or you just like the idea of doing yet another way, another option
+is to use the stream editor <code class="docutils literal notranslate"><span class="pre">sed</span></code>.</p>
+<p>The command below is listing all the files, and then piping (<code class="docutils literal notranslate"><span class="pre">|</span></code>) the result into <code class="docutils literal notranslate"><span class="pre">sed</span></code>.
+The sed script matches, and starts printing the input, when it encounters the first pattern,
+and stops after it encounters the second</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls tmp/* | sed -n &quot;/$begin-01/,/$end-12/p&quot;
+tmp/file.0199-01.nc
+tmp/file.0199-02.nc
+tmp/file.0199-03.nc
+tmp/file.0199-04.nc
+tmp/file.0199-05.nc
+tmp/file.0199-06.nc
+tmp/file.0199-07.nc
+tmp/file.0199-08.nc
+tmp/file.0199-09.nc
+tmp/file.0199-10.nc
+tmp/file.0199-11.nc
+tmp/file.0199-12.nc
+tmp/file.0200-01.nc
+tmp/file.0200-02.nc
+tmp/file.0200-03.nc
+tmp/file.0200-04.nc
+tmp/file.0200-05.nc
+tmp/file.0200-06.nc
+tmp/file.0200-07.nc
+tmp/file.0200-08.nc
+tmp/file.0200-09.nc
+tmp/file.0200-10.nc
+tmp/file.0200-11.nc
+tmp/file.0200-12.nc
+tmp/file.0201-01.nc
+tmp/file.0201-02.nc
+tmp/file.0201-03.nc
+tmp/file.0201-04.nc
+tmp/file.0201-05.nc
+tmp/file.0201-06.nc
+tmp/file.0201-07.nc
+tmp/file.0201-08.nc
+tmp/file.0201-09.nc
+tmp/file.0201-10.nc
+tmp/file.0201-11.nc
+tmp/file.0201-12.nc
+</pre></div>
+</div>
+<p>As above, this can be used in a <code class="docutils literal notranslate"><span class="pre">bash</span></code> loop like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ for file in $(ls tmp/* | sed -n &quot;/$begin-01/,/$end-12/p&quot;); do echo $file; done
+tmp/file.0199-01.nc
+tmp/file.0199-02.nc
+tmp/file.0199-03.nc
+tmp/file.0199-04.nc
+tmp/file.0199-05.nc
+tmp/file.0199-06.nc
+tmp/file.0199-07.nc
+tmp/file.0199-08.nc
+tmp/file.0199-09.nc
+tmp/file.0199-10.nc
+tmp/file.0199-11.nc
+tmp/file.0199-12.nc
+tmp/file.0200-01.nc
+tmp/file.0200-02.nc
+tmp/file.0200-03.nc
+tmp/file.0200-04.nc
+tmp/file.0200-05.nc
+tmp/file.0200-06.nc
+tmp/file.0200-07.nc
+tmp/file.0200-08.nc
+tmp/file.0200-09.nc
+tmp/file.0200-10.nc
+tmp/file.0200-11.nc
+tmp/file.0200-12.nc
+tmp/file.0201-01.nc
+tmp/file.0201-02.nc
+tmp/file.0201-03.nc
+tmp/file.0201-04.nc
+tmp/file.0201-05.nc
+tmp/file.0201-06.nc
+tmp/file.0201-07.nc
+tmp/file.0201-08.nc
+tmp/file.0201-09.nc
+tmp/file.0201-10.nc
+tmp/file.0201-11.nc
+tmp/file.0201-12.nc
+</pre></div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h1>
+<p>There are often many ways to accomplish even the simplest tasks, but sometimes
+the hardest thing to know is what <strong>not</strong> to do.</p>
+<p>Note also that this is very specific to <code class="docutils literal notranslate"><span class="pre">bash</span></code>. Other shells will have their own
+limits and abilities.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="2019-07-29-multi-apply-along-axis.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Per-gridpoint time correlation of two models</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2019-03-06-generating-print-quality-plots.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">High Resolution</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

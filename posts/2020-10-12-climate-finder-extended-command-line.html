@@ -1,0 +1,1482 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using CleF 2: advanced command line functionalities &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="data" href="../contents/tag-data.html" />
+    <link rel="prev" title="Using CleF - Climate Finder to discover ESGF data at NCI" href="2020-09-28-climate-finder-introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2020-10-12-climate-finder-extended-command-line.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2020-10-12-climate-finder-extended-command-line.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2020-10-12-climate-finder-extended-command-line.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#csv-file-output">
+   CSV file output
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-summary-option">
+   Query summary option
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#and-filter">
+   AND Filter
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#and-filter-on-more-than-one-attribute">
+     AND filter on more than one attribute
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-tips-on-queries">
+   More tips on queries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#about-experiment-family">
+     About experiment_family
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#citation-list-option">
+   Citation list option
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="using-clef-2-advanced-command-line-functionalities">
+<h1>Using CleF 2: advanced command line functionalities<a class="headerlink" href="#using-clef-2-advanced-command-line-functionalities" title="Permalink to this headline">¶</a></h1>
+<p>In the first CleF blog we covered the basic command line options:</p>
+<ul class="simple">
+<li><p>exploring the command and sub-commands options</p></li>
+<li><p>passing constraints to query CMIP5, CORDEX and CMIP6 data</p></li>
+<li><p>searching only the locally stored data or the ESGF published collection</p></li>
+<li><p>how to check which data has been published but not yet downloaded locally</p></li>
+<li><p>and finally how to request for data to be downloaded.
+<br></p></li>
+</ul>
+<p>In the next blog we will see how to use CleF functions directly in your own python scripts. In this blog we are still focusing on the command line and in particular on how to:</p>
+<ul class="simple">
+<li><p>save the query results as a csv file</p></li>
+<li><p>get a summary of available data</p></li>
+<li><p>run more complex queries</p></li>
+<li><p>get extra information from the ESDOC documentation as errate and citations <br></p></li>
+</ul>
+<p>A reminder that CleF is currently installed in the CMS conda module analysis3 and analysis3-unstable for the latest version. This is managed by the CMS and is available simply by running</p>
+<blockquote>
+<div><p>module use /g/data3/hh5/public/modules <br>
+module load conda/analysis3</p>
+</div></blockquote>
+<br>  
+You need to be a member of hh5 to use the modules and of one of the CMIP projects: oi10,rr3, fs38, al33 to access the data and the clef database. 
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run this if you haven&#39;t done so already in the terminal</span>
+<span class="c1">#!module use /g/data3/hh5/public/modules</span>
+<span class="c1">#!module load conda/analysis3-unstable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="csv-file-output">
+<h2>CSV file output<a class="headerlink" href="#csv-file-output" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">--csv</span></code> option added to the command line will output the query results in a csv file. Rather than getting only the files path, it will list all the available attributes.<br>
+This currently works only with the <code class="docutils literal notranslate"><span class="pre">--local</span></code> and <code class="docutils literal notranslate"><span class="pre">--remote</span></code> option, it doesn’t yet work for the standard search, which is basically a combination of the two.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip5 -v pr -v tas -e piControl  -en r1i1p1 -t Amon --csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/al33/replicas/CMIP5/combined/BCC/bcc-csm1-1-m/piControl/mon/atmos/Amon/r1i1p1/v20120705/pr
+/g/data/al33/replicas/CMIP5/combined/BCC/bcc-csm1-1/piControl/mon/atmos/Amon/r1i1p1/v1/pr
+/g/data/al33/replicas/CMIP5/combined/BNU/BNU-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120626/pr
+/g/data/al33/replicas/CMIP5/combined/CCCma/CanESM2/piControl/mon/atmos/Amon/r1i1p1/v20120412/pr
+/g/data/al33/replicas/CMIP5/combined/CCCma/CanESM2/piControl/mon/atmos/Amon/r1i1p1/v20120623/pr
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CESM/piControl/mon/atmos/Amon/r1i1p1/v20121023/pr
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CESM/piControl/mon/atmos/Amon/r1i1p1/v20170725/pr
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/piControl/mon/atmos/Amon/r1i1p1/v20121008/pr
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/piControl/mon/atmos/Amon/r1i1p1/v20170725/pr
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CMS/piControl/mon/atmos/Amon/r1i1p1/v20120717/pr
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CMS/piControl/mon/atmos/Amon/r1i1p1/v20170725/pr
+/g/data/al33/replicas/CMIP5/combined/CNRM-CERFACS/CNRM-CM5/piControl/mon/atmos/Amon/r1i1p1/v20110701/pr
+/g/data/al33/replicas/CMIP5/combined/FIO/FIO-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120522/pr
+/g/data/al33/replicas/CMIP5/combined/FIO/fio-esm/piControl/mon/atmos/Amon/r1i1p1/v20120522/pr
+/g/data/al33/replicas/CMIP5/combined/ICHEC/EC-EARTH/piControl/mon/atmos/Amon/r1i1p1/v20120622/pr
+/g/data/al33/replicas/CMIP5/combined/ICHEC/EC-EARTH/piControl/mon/atmos/Amon/r1i1p1/v20131120/pr
+/g/data/al33/replicas/CMIP5/combined/INM/inmcm4/piControl/mon/atmos/Amon/r1i1p1/v20130207/pr
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5A-LR/piControl/mon/atmos/Amon/r1i1p1/v20130506/pr
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5A-MR/piControl/mon/atmos/Amon/r1i1p1/v20111119/pr
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5B-LR/piControl/mon/atmos/Amon/r1i1p1/v20120114/pr
+/g/data/al33/replicas/CMIP5/combined/LASG-CESS/FGOALS-g2/piControl/mon/atmos/Amon/r1i1p1/v1/pr
+/g/data/al33/replicas/CMIP5/combined/LASG-CESS/FGOALS-g2/piControl/mon/atmos/Amon/r1i1p1/v20161204/pr
+/g/data/al33/replicas/CMIP5/combined/LASG-IAP/FGOALS-s2/piControl/mon/atmos/Amon/r1i1p1/v20161204/pr
+/g/data/al33/replicas/CMIP5/combined/LASG-IAP/FGOALS-s2/piControl/mon/atmos/Amon/r1i1p1/v4/pr
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC-ESM-CHEM/piControl/mon/atmos/Amon/r1i1p1/v20120710/pr
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120710/pr
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC4h/piControl/mon/atmos/Amon/r1i1p1/v20120628/pr
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC5/piControl/mon/atmos/Amon/r1i1p1/v20161012/pr
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadGEM2-CC/piControl/mon/atmos/Amon/r1i1p1/v20111109/pr
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadGEM2-ES/piControl/mon/atmos/Amon/r1i1p1/v20110524/pr
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-LR/piControl/mon/atmos/Amon/r1i1p1/v20120602/pr
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-MR/piControl/mon/atmos/Amon/r1i1p1/v20120602/pr
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-P/piControl/mon/atmos/Amon/r1i1p1/v20120602/pr
+/g/data/al33/replicas/CMIP5/combined/MRI/MRI-CGCM3/piControl/mon/atmos/Amon/r1i1p1/v20120701/pr
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-H-CC/piControl/mon/atmos/Amon/r1i1p1/v20160511/pr
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-H/piControl/mon/atmos/Amon/r1i1p1/v20160511/pr
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-R-CC/piControl/mon/atmos/Amon/r1i1p1/v20160802/pr
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-R/piControl/mon/atmos/Amon/r1i1p1/v20161004/pr
+/g/data/al33/replicas/CMIP5/combined/NCAR/CCSM4/piControl/mon/atmos/Amon/r1i1p1/v20130325/pr
+/g/data/al33/replicas/CMIP5/combined/NCAR/CCSM4/piControl/mon/atmos/Amon/r1i1p1/v20130510/pr
+/g/data/al33/replicas/CMIP5/combined/NCAR/CCSM4/piControl/mon/atmos/Amon/r1i1p1/v20160829/pr
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/piControl/mon/atmos/Amon/r1i1p1/v20110901/pr
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/piControl/mon/atmos/Amon/r1i1p1/v20120412/pr
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/piControl/mon/atmos/Amon/r1i1p1/v20200617/pr
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-ME/piControl/mon/atmos/Amon/r1i1p1/v20120225/pr
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-ME/piControl/mon/atmos/Amon/r1i1p1/v20130926/pr
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-ME/piControl/mon/atmos/Amon/r1i1p1/v20200617/pr
+/g/data/al33/replicas/CMIP5/combined/NIMR-KMA/HadGEM2-AO/piControl/mon/atmos/Amon/r1i1p1/v20130815/pr
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-CM3/piControl/mon/atmos/Amon/r1i1p1/v20120227/pr
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-ESM2G/piControl/mon/atmos/Amon/r1i1p1/v20120830/pr
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-ESM2M/piControl/mon/atmos/Amon/r1i1p1/v20130214/pr
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-BGC/piControl/mon/atmos/Amon/r1i1p1/v20130216/pr
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-CAM5/piControl/mon/atmos/Amon/r1i1p1/v20130313/pr
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-FASTCHEM/piControl/mon/atmos/Amon/r1i1p1/v20121029/pr
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-WACCM/piControl/mon/atmos/Amon/r1i1p1/v20130325/pr
+/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/piControl/mon/atmos/Amon/r1i1p1/latest/pr
+/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/piControl/mon/atmos/Amon/r1i1p1/latest/pr
+/g/data/rr3/publications/CMIP5/output1/CSIRO-QCCCE/CSIRO-Mk3-6-0/piControl/mon/atmos/Amon/r1i1p1/files/pr_20110518
+/g/data/rr3/publications/PMIP3/output/UNSW/CSIRO-Mk3L-1-2/piControl/mon/atmos/Amon/r1i1p1/files/pr_20170728
+/g/data/rr3/publications/PMIP3/output/UNSW/CSIRO-Mk3L-1-2/piControl/mon/atmos/Amon/r1i1p1/v20170728/pr
+/g/data/al33/replicas/CMIP5/combined/BCC/bcc-csm1-1-m/piControl/mon/atmos/Amon/r1i1p1/v20120705/tas
+/g/data/al33/replicas/CMIP5/combined/BCC/bcc-csm1-1/piControl/mon/atmos/Amon/r1i1p1/v1/tas
+/g/data/al33/replicas/CMIP5/combined/BNU/BNU-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120626/tas
+/g/data/al33/replicas/CMIP5/combined/CCCma/CanESM2/piControl/mon/atmos/Amon/r1i1p1/v20120412/tas
+/g/data/al33/replicas/CMIP5/combined/CCCma/CanESM2/piControl/mon/atmos/Amon/r1i1p1/v20120623/tas
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CESM/piControl/mon/atmos/Amon/r1i1p1/v20121023/tas
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CESM/piControl/mon/atmos/Amon/r1i1p1/v20170725/tas
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/piControl/mon/atmos/Amon/r1i1p1/v20121008/tas
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/piControl/mon/atmos/Amon/r1i1p1/v20170725/tas
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CMS/piControl/mon/atmos/Amon/r1i1p1/v20120717/tas
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CMS/piControl/mon/atmos/Amon/r1i1p1/v20170725/tas
+/g/data/al33/replicas/CMIP5/combined/CNRM-CERFACS/CNRM-CM5-2/piControl/mon/atmos/Amon/r1i1p1/v20130402/tas
+/g/data/al33/replicas/CMIP5/combined/CNRM-CERFACS/CNRM-CM5/piControl/mon/atmos/Amon/r1i1p1/v20110701/tas
+/g/data/al33/replicas/CMIP5/combined/FIO/FIO-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120522/tas
+/g/data/al33/replicas/CMIP5/combined/FIO/fio-esm/piControl/mon/atmos/Amon/r1i1p1/v20120522/tas
+/g/data/al33/replicas/CMIP5/combined/ICHEC/EC-EARTH/piControl/mon/atmos/Amon/r1i1p1/v20120622/tas
+/g/data/al33/replicas/CMIP5/combined/ICHEC/EC-EARTH/piControl/mon/atmos/Amon/r1i1p1/v20131120/tas
+/g/data/al33/replicas/CMIP5/combined/INM/inmcm4/piControl/mon/atmos/Amon/r1i1p1/v20130207/tas
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5A-LR/piControl/mon/atmos/Amon/r1i1p1/v20130506/tas
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5A-MR/piControl/mon/atmos/Amon/r1i1p1/v20111119/tas
+/g/data/al33/replicas/CMIP5/combined/IPSL/IPSL-CM5B-LR/piControl/mon/atmos/Amon/r1i1p1/v20120114/tas
+/g/data/al33/replicas/CMIP5/combined/LASG-CESS/FGOALS-g2/piControl/mon/atmos/Amon/r1i1p1/v1/tas
+/g/data/al33/replicas/CMIP5/combined/LASG-CESS/FGOALS-g2/piControl/mon/atmos/Amon/r1i1p1/v20161204/tas
+/g/data/al33/replicas/CMIP5/combined/LASG-IAP/FGOALS-s2/piControl/mon/atmos/Amon/r1i1p1/v20161204/tas
+/g/data/al33/replicas/CMIP5/combined/LASG-IAP/FGOALS-s2/piControl/mon/atmos/Amon/r1i1p1/v4/tas
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC-ESM-CHEM/piControl/mon/atmos/Amon/r1i1p1/v20120710/tas
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120710/tas
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC4h/piControl/mon/atmos/Amon/r1i1p1/v20120628/tas
+/g/data/al33/replicas/CMIP5/combined/MIROC/MIROC5/piControl/mon/atmos/Amon/r1i1p1/v20161012/tas
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadGEM2-CC/piControl/mon/atmos/Amon/r1i1p1/v20111109/tas
+/g/data/al33/replicas/CMIP5/combined/MOHC/HadGEM2-ES/piControl/mon/atmos/Amon/r1i1p1/v20110524/tas
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-LR/piControl/mon/atmos/Amon/r1i1p1/v20120602/tas
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-MR/piControl/mon/atmos/Amon/r1i1p1/v20120602/tas
+/g/data/al33/replicas/CMIP5/combined/MPI-M/MPI-ESM-P/piControl/mon/atmos/Amon/r1i1p1/v20120602/tas
+/g/data/al33/replicas/CMIP5/combined/MRI/MRI-CGCM3/piControl/mon/atmos/Amon/r1i1p1/v20120701/tas
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-H-CC/piControl/mon/atmos/Amon/r1i1p1/v20160511/tas
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-H/piControl/mon/atmos/Amon/r1i1p1/v20160511/tas
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-R-CC/piControl/mon/atmos/Amon/r1i1p1/v20160802/tas
+/g/data/al33/replicas/CMIP5/combined/NASA-GISS/GISS-E2-R/piControl/mon/atmos/Amon/r1i1p1/v20161004/tas
+/g/data/al33/replicas/CMIP5/combined/NCAR/CCSM4/piControl/mon/atmos/Amon/r1i1p1/v20130325/tas
+/g/data/al33/replicas/CMIP5/combined/NCAR/CCSM4/piControl/mon/atmos/Amon/r1i1p1/v20130510/tas
+/g/data/al33/replicas/CMIP5/combined/NCAR/CCSM4/piControl/mon/atmos/Amon/r1i1p1/v20160829/tas
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/piControl/mon/atmos/Amon/r1i1p1/v20110901/tas
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/piControl/mon/atmos/Amon/r1i1p1/v20120412/tas
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-M/piControl/mon/atmos/Amon/r1i1p1/v20200617/tas
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-ME/piControl/mon/atmos/Amon/r1i1p1/v20120225/tas
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-ME/piControl/mon/atmos/Amon/r1i1p1/v20130926/tas
+/g/data/al33/replicas/CMIP5/combined/NCC/NorESM1-ME/piControl/mon/atmos/Amon/r1i1p1/v20200617/tas
+/g/data/al33/replicas/CMIP5/combined/NIMR-KMA/HadGEM2-AO/piControl/mon/atmos/Amon/r1i1p1/v20130815/tas
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-CM3/piControl/mon/atmos/Amon/r1i1p1/v20120227/tas
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-ESM2G/piControl/mon/atmos/Amon/r1i1p1/v20120830/tas
+/g/data/al33/replicas/CMIP5/combined/NOAA-GFDL/GFDL-ESM2M/piControl/mon/atmos/Amon/r1i1p1/v20130214/tas
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-BGC/piControl/mon/atmos/Amon/r1i1p1/v20130216/tas
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-CAM5/piControl/mon/atmos/Amon/r1i1p1/v20130313/tas
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-FASTCHEM/piControl/mon/atmos/Amon/r1i1p1/v20121029/tas
+/g/data/al33/replicas/CMIP5/combined/NSF-DOE-NCAR/CESM1-WACCM/piControl/mon/atmos/Amon/r1i1p1/v20130325/tas
+/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/piControl/mon/atmos/Amon/r1i1p1/latest/tas
+/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/piControl/mon/atmos/Amon/r1i1p1/latest/tas
+/g/data/rr3/publications/CMIP5/output1/CSIRO-QCCCE/CSIRO-Mk3-6-0/piControl/mon/atmos/Amon/r1i1p1/files/tas_20110518
+/g/data/rr3/publications/PMIP3/output/UNSW/CSIRO-Mk3L-1-2/piControl/mon/atmos/Amon/r1i1p1/files/tas_20170728
+/g/data/rr3/publications/PMIP3/output/UNSW/CSIRO-Mk3L-1-2/piControl/mon/atmos/Amon/r1i1p1/v20170728/tas
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head -n <span class="m">4</span> CMIP5_query.csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>,model,experiment,frequency,ensemble,cmor_table,version,variable,path,fdate,tdate,time_complete
+0,BCC-CSM1.1(m),piControl,mon,r1i1p1,Amon,20120705,pr,/g/data/al33/replicas/CMIP5/combined/BCC/bcc-csm1-1-m/piControl/mon/atmos/Amon/r1i1p1/v20120705/pr,101,40012,
+1,BCC-CSM1.1,piControl,mon,r1i1p1,Amon,1,pr,/g/data/al33/replicas/CMIP5/combined/BCC/bcc-csm1-1/piControl/mon/atmos/Amon/r1i1p1/v1/pr,101,50012,
+2,BNU-ESM,piControl,mon,r1i1p1,Amon,20120626,pr,/g/data/al33/replicas/CMIP5/combined/BNU/BNU-ESM/piControl/mon/atmos/Amon/r1i1p1/v20120626/pr,14500101,20081231,True
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the first example I am passing <code class="docutils literal notranslate"><span class="pre">--csv</span></code> to a CMIP5 query with the <code class="docutils literal notranslate"><span class="pre">--local</span></code> option set.<br>
+I am hiding the cell output but the tool still prints the results on the display as well as creating the csv file.<br>
+The following example demonstrate how <code class="docutils literal notranslate"><span class="pre">--csv</span></code> works also for remote CMIP6 queries and with the flag <code class="docutils literal notranslate"><span class="pre">--and</span></code>. The <code class="docutils literal notranslate"><span class="pre">--and</span></code> flag allows for more complex filtering of the data and later we will see how it works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --remote cmip6 -v pr -v mrso -e piControl  -mi r1i1p1f1 --frequency mon --and variable_id --csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ACCESS-CM2 / r1i1p1f1 versions: v20191112
+ACCESS-ESM1-5 / r1i1p1f1 versions: v20191214
+AWI-ESM-1-1-LR / r1i1p1f1 versions: v20200212
+BCC-CSM2-MR / r1i1p1f1 versions: v20181012, v20181016
+BCC-ESM1 / r1i1p1f1 versions: v20181211, v20181214
+CAMS-CSM1-0 / r1i1p1f1 versions: v20190729, v20191212
+CESM2 / r1i1p1f1 versions: v20190320
+CESM2-FV2 / r1i1p1f1 versions: v20191120
+CESM2-WACCM / r1i1p1f1 versions: v20190320
+CESM2-WACCM-FV2 / r1i1p1f1 versions: v20191120
+CIESM / r1i1p1f1 versions: v20200417
+CMCC-CM2-SR5 / r1i1p1f1 versions: v20200616
+CanESM5 / r1i1p1f1 versions: v20190429
+E3SM-1-0 / r1i1p1f1 versions: v20190807, v20190719
+E3SM-1-1 / r1i1p1f1 versions: v20191203, v20191029, v20200324
+E3SM-1-1-ECA / r1i1p1f1 versions: v20191218, v20191216
+EC-Earth3 / r1i1p1f1 versions: v20200312
+EC-Earth3-Veg / r1i1p1f1 versions: v20200226
+GISS-E2-1-G / r1i1p1f1 versions: v20180824
+GISS-E2-1-H / r1i1p1f1 versions: v20190410
+GISS-E2-2-G / r1i1p1f1 versions: v20191120
+HadGEM3-GC31-LL / r1i1p1f1 versions: v20190628
+HadGEM3-GC31-MM / r1i1p1f1 versions: v20190920
+INM-CM4-8 / r1i1p1f1 versions: v20190605
+INM-CM5-0 / r1i1p1f1 versions: v20190619
+IPSL-CM6A-LR / r1i1p1f1 versions: v20200326
+MCM-UA-1-0 / r1i1p1f1 versions: v20190731, v20191017
+MIROC6 / r1i1p1f1 versions: v20190311, v20181212
+MPI-ESM-1-2-HAM / r1i1p1f1 versions: v20190627
+MPI-ESM1-2-HR / r1i1p1f1 versions: v20190710
+MPI-ESM1-2-LR / r1i1p1f1 versions: v20190710
+MRI-ESM2-0 / r1i1p1f1 versions: v20190222, v20190603
+NorCPM1 / r1i1p1f1 versions: v20190914
+NorESM2-LM / r1i1p1f1 versions: v20200217, v20190920
+NorESM2-MM / r1i1p1f1 versions: v20191108
+SAM0-UNICON / r1i1p1f1 versions: v20190910
+TaiESM1 / r1i1p1f1 versions: v20200211, v20200302
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head -n <span class="m">4</span> CMIP6_query.csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>,index,version,activity_id,dataset_id,experiment_id,frequency,grid,grid_label,member_id,nominal_resolution,source_id,source_type,sub_experiment_id,table_id,variable_id,score,comb
+0,0,&quot;(&#39;v20200211&#39;,)&quot;,CMIP,CMIP6.CMIP.AS-RCEC.TaiESM1.piControl.r1i1p1f1.Amon.pr.gn.v20200211|esgf.rcec.sinica.edu.tw,piControl,mon,finite-volume grid with 0.9x1.25 degree lat/lon resolution,gn,r1i1p1f1,100 km,TaiESM1,AOGCM,none,Amon,pr,1.0,&quot;(&#39;pr&#39;,)&quot;
+1,1,&quot;(&#39;v20200211&#39;,)&quot;,CMIP,CMIP6.CMIP.AS-RCEC.TaiESM1.piControl.r1i1p1f1.Amon.pr.gn.v20200211|esgf.rcec.sinica.edu.tw,piControl,mon,finite-volume grid with 0.9x1.25 degree lat/lon resolution,gn,r1i1p1f1,100 km,TaiESM1,AOGCM,none,Amon,pr,1.0,&quot;(&#39;pr&#39;,)&quot;
+2,2,&quot;(&#39;v20200211&#39;,)&quot;,CMIP,CMIP6.CMIP.AS-RCEC.TaiESM1.piControl.r1i1p1f1.Amon.pr.gn.v20200211|esgf.rcec.sinica.edu.tw,piControl,mon,finite-volume grid with 0.9x1.25 degree lat/lon resolution,gn,r1i1p1f1,100 km,TaiESM1,AOGCM,none,Amon,pr,1.0,&quot;(&#39;pr&#39;,)&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="query-summary-option">
+<h2>Query summary option<a class="headerlink" href="#query-summary-option" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">--stats</span></code> option added to the command line will print a summary of the query results<br>
+It works for both <code class="docutils literal notranslate"><span class="pre">--local</span></code> and <code class="docutils literal notranslate"><span class="pre">--remote</span></code> options, but not with the default query.<br>
+Currently it prints the following:</p>
+<ul class="simple">
+<li><p>total number of models, followed by their names</p></li>
+<li><p>total number of unique model-ensembles/members combinations</p></li>
+<li><p>number of models that have N ensembles/members, followed by their names</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip5 -v pr -e rcp85 -t Amon --stats
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Query summary
+
+42 model/s are available:
+ACCESS1.0 ACCESS1.3 BCC-CSM1.1 BCC-CSM1.1(m) BNU-ESM CCSM4 CESM1(BGC) CESM1(CAM5) CESM1(WACCM) CMCC-CESM CMCC-CM CMCC-CMS CNRM-CM5 CSIRO-Mk3.6.0 CanESM2 EC-EARTH FGOALS-s2 FGOALS_g2 FIO-ESM GFDL-CM3 GFDL-ESM2G GFDL-ESM2M GISS-E2-H GISS-E2-H-CC GISS-E2-R GISS-E2-R-CC HadGEM2-AO HadGEM2-CC HadGEM2-ES IPSL-CM5A-LR IPSL-CM5A-MR IPSL-CM5B-LR MIROC-ESM MIROC-ESM-CHEM MIROC5 MPI-ESM-LR MPI-ESM-MR MRI-CGCM3 MRI-ESM1 NorESM1-M NorESM1-ME inmcm4 
+
+A total of 100 unique model-member combinations are available.
+
+  26 model/s have 1 member/s:
+
+     ACCESS1.0: r1i1p1
+     ACCESS1.3: r1i1p1
+     BCC-CSM1.1: r1i1p1
+     BCC-CSM1.1(m): r1i1p1
+     BNU-ESM: r1i1p1
+     CESM1(BGC): r1i1p1
+     CMCC-CESM: r1i1p1
+     CMCC-CM: r1i1p1
+     CMCC-CMS: r1i1p1
+     FGOALS_g2: r1i1p1
+     GFDL-CM3: r1i1p1
+     GFDL-ESM2G: r1i1p1
+     GFDL-ESM2M: r1i1p1
+     GISS-E2-H-CC: r1i1p1
+     GISS-E2-R-CC: r1i1p1
+     HadGEM2-AO: r1i1p1
+     IPSL-CM5A-MR: r1i1p1
+     IPSL-CM5B-LR: r1i1p1
+     MIROC-ESM: r1i1p1
+     MIROC-ESM-CHEM: r1i1p1
+     MPI-ESM-MR: r1i1p1
+     MRI-CGCM3: r1i1p1
+     MRI-ESM1: r1i1p1
+     NorESM1-M: r1i1p1
+     NorESM1-ME: r1i1p1
+     inmcm4: r1i1p1
+
+  7 model/s have 3 member/s:
+
+     CESM1(CAM5): r1i1p1, r2i1p1, r3i1p1
+     CESM1(WACCM): r2i1p1, r3i1p1, r4i1p1
+     FGOALS-s2: r1i1p1, r2i1p1, r3i1p1
+     FIO-ESM: r1i1p1, r2i1p1, r3i1p1
+     HadGEM2-CC: r1i1p1, r2i1p1, r3i1p1
+     MIROC5: r1i1p1, r2i1p1, r3i1p1
+     MPI-ESM-LR: r1i1p1, r2i1p1, r3i1p1
+
+  2 model/s have 4 member/s:
+
+     HadGEM2-ES: r1i1p1, r2i1p1, r3i1p1, r4i1p1
+     IPSL-CM5A-LR: r1i1p1, r2i1p1, r3i1p1, r4i1p1
+
+  4 model/s have 5 member/s:
+
+     CNRM-CM5: r10i1p1, r1i1p1, r2i1p1, r4i1p1, r6i1p1
+     CanESM2: r1i1p1, r2i1p1, r3i1p1, r4i1p1, r5i1p1
+     GISS-E2-H: r1i1p1, r1i1p2, r1i1p3, r2i1p1, r2i1p3
+     GISS-E2-R: r1i1p1, r1i1p2, r1i1p3, r2i1p1, r2i1p3
+
+  1 model/s have 6 member/s:
+
+     CCSM4: r1i1p1, r2i1p1, r3i1p1, r4i1p1, r5i1p1, r6i1p1
+
+  1 model/s have 9 member/s:
+
+     EC-EARTH: r11i1p1, r12i1p1, r13i1p1, r1i1p1, r2i1p1, r6i1p1, r7i1p1, r8i1p1, r9i1p1
+
+  1 model/s have 10 member/s:
+
+     CSIRO-Mk3.6.0: r10i1p1, r1i1p1, r2i1p1, r3i1p1, r4i1p1, r5i1p1, r6i1p1, r7i1p1, r8i1p1, r9i1p1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip5 -v cli -e rcp85 -e rcp45 -e rcp26 -t Amon --and experiment --stats
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BNU-ESM / r1i1p1 versions: 20120510
+CSIRO-Mk3.6.0 / r10i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r1i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r2i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r3i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r4i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r5i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r6i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r7i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r8i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r9i1p1 versions: v20110518
+CanESM2 / r1i1p1 versions: 20120718
+FGOALS_g2 / r1i1p1 versions: 20161204
+GFDL-CM3 / r1i1p1 versions: 20120227
+GFDL-ESM2G / r1i1p1 versions: 20120412
+GISS-E2-H / r1i1p1 versions: 20160512
+GISS-E2-H / r1i1p2 versions: 20160512
+GISS-E2-H / r1i1p3 versions: 20160512
+GISS-E2-R / r1i1p1 versions: 20160803, 20160513, 20160512
+GISS-E2-R / r1i1p2 versions: 20160513, 20160512
+GISS-E2-R / r1i1p3 versions: 20160823, 20160513, 20160512
+HadGEM2-ES / r1i1p1 versions: 20111128, 20111206, 20130430
+HadGEM2-ES / r2i1p1 versions: 20111205, 20111129, 20120114
+HadGEM2-ES / r3i1p1 versions: 20111208, 20111205, 20120114
+HadGEM2-ES / r4i1p1 versions: 20111209, 20111205, 20120114
+IPSL-CM5A-LR / r1i1p1 versions: 20110914, 20111103, 20120114
+MIROC-ESM / r1i1p1 versions: 20120710
+MIROC-ESM-CHEM / r1i1p1 versions: 20120710
+MIROC5 / r1i1p1 versions: 20120710, 20161012
+MIROC5 / r2i1p1 versions: 20120710
+MIROC5 / r3i1p1 versions: 20120710
+MPI-ESM-LR / r1i1p1 versions: 20120315
+MPI-ESM-LR / r2i1p1 versions: 20120315
+MPI-ESM-LR / r3i1p1 versions: 20120315
+MPI-ESM-MR / r1i1p1 versions: 20120503
+MRI-CGCM3 / r1i1p1 versions: 20120701
+NorESM1-M / r1i1p1 versions: 20120412
+
+Query summary
+
+17 model/s are available:
+BNU-ESM CSIRO-Mk3.6.0 CanESM2 FGOALS_g2 GFDL-CM3 GFDL-ESM2G GISS-E2-H GISS-E2-R HadGEM2-ES IPSL-CM5A-LR MIROC-ESM MIROC-ESM-CHEM MIROC5 MPI-ESM-LR MPI-ESM-MR MRI-CGCM3 NorESM1-M 
+
+A total of 37 unique model-member combinations are available.
+
+  11 model/s have 1 member/s:
+
+     BNU-ESM: r1i1p1
+     CanESM2: r1i1p1
+     FGOALS_g2: r1i1p1
+     GFDL-CM3: r1i1p1
+     GFDL-ESM2G: r1i1p1
+     IPSL-CM5A-LR: r1i1p1
+     MIROC-ESM: r1i1p1
+     MIROC-ESM-CHEM: r1i1p1
+     MPI-ESM-MR: r1i1p1
+     MRI-CGCM3: r1i1p1
+     NorESM1-M: r1i1p1
+
+  4 model/s have 3 member/s:
+
+     GISS-E2-H: r1i1p1, r1i1p2, r1i1p3
+     GISS-E2-R: r1i1p1, r1i1p2, r1i1p3
+     MIROC5: r1i1p1, r2i1p1, r3i1p1
+     MPI-ESM-LR: r3i1p1, r1i1p1, r2i1p1
+
+  1 model/s have 4 member/s:
+
+     HadGEM2-ES: r2i1p1, r3i1p1, r4i1p1, r1i1p1
+
+  1 model/s have 10 member/s:
+
+     CSIRO-Mk3.6.0: r8i1p1, r10i1p1, r1i1p1, r2i1p1, r3i1p1, r4i1p1, r5i1p1, r6i1p1, r7i1p1, r9i1p1
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="and-filter">
+<h2>AND Filter<a class="headerlink" href="#and-filter" title="Permalink to this headline">¶</a></h2>
+<p>We added the <code class="docutils literal notranslate"><span class="pre">--and</span></code> filter flag to perform more complex queries. As the name implies this option applies the AND operator to the query results. It is easier to explain by looking at an example.<br><br>
+Let’s say that you want to find all the CMIP6 models that have both daily precipitation (pr) and soil moisture (mrso) for a particular experiment (piControl). A way of doing it would be to select separately both variables and then work out which models had both.<br>
+With the <code class="docutils literal notranslate"><span class="pre">--and</span></code> option you can query for both variables at the same time and specify you want only the models, ensemble pairs that have both of them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip6 -v pr -v mrso -e piControl  -mi r1i1p1f1 --frequency mon --and variable_id
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ACCESS-CM2 / r1i1p1f1 versions: v20191112
+ACCESS-ESM1-5 / r1i1p1f1 versions: v20191214
+AWI-ESM-1-1-LR / r1i1p1f1 versions: v20200212
+BCC-CSM2-MR / r1i1p1f1 versions: v20181016, v20181012
+BCC-ESM1 / r1i1p1f1 versions: v20181214, v20181211
+CAMS-CSM1-0 / r1i1p1f1 versions: v20191212, v20190729
+CESM2 / r1i1p1f1 versions: v20190320
+CESM2-FV2 / r1i1p1f1 versions: v20191120
+CESM2-WACCM / r1i1p1f1 versions: v20190320
+CESM2-WACCM-FV2 / r1i1p1f1 versions: v20191120
+CIESM / r1i1p1f1 versions: v20200417
+CMCC-CM2-SR5 / r1i1p1f1 versions: v20200616
+CanESM5 / r1i1p1f1 versions: v20190429
+E3SM-1-0 / r1i1p1f1 versions: v20190807, v20190719
+E3SM-1-1 / r1i1p1f1 versions: v20200324, v20191029
+E3SM-1-1-ECA / r1i1p1f1 versions: v20191216, v20191218
+EC-Earth3 / r1i1p1f1 versions: v20200312
+EC-Earth3-LR / r1i1p1f1 versions: v20200409
+EC-Earth3-Veg / r1i1p1f1 versions: v20200226
+EC-Earth3-Veg-LR / r1i1p1f1 versions: v20200213
+GISS-E2-1-G / r1i1p1f1 versions: v20180824
+GISS-E2-1-G-CC / r1i1p1f1 versions: v20190815
+GISS-E2-1-H / r1i1p1f1 versions: v20190410
+GISS-E2-2-G / r1i1p1f1 versions: v20191120
+HadGEM3-GC31-LL / r1i1p1f1 versions: v20190628
+HadGEM3-GC31-MM / r1i1p1f1 versions: v20190920
+INM-CM4-8 / r1i1p1f1 versions: v20190605
+INM-CM5-0 / r1i1p1f1 versions: v20190619
+IPSL-CM6A-LR / r1i1p1f1 versions: v20200326
+MCM-UA-1-0 / r1i1p1f1 versions: v20190731, v20191017
+MIROC6 / r1i1p1f1 versions: v20181212, v20190311
+MPI-ESM-1-2-HAM / r1i1p1f1 versions: v20190627
+MPI-ESM1-2-HR / r1i1p1f1 versions: v20190710
+MPI-ESM1-2-LR / r1i1p1f1 versions: v20190710
+MRI-ESM2-0 / r1i1p1f1 versions: v20190603, v20190222
+NorCPM1 / r1i1p1f1 versions: v20190914
+NorESM2-LM / r1i1p1f1 versions: v20200217, v20190920
+NorESM2-MM / r1i1p1f1 versions: v20191108
+SAM0-UNICON / r1i1p1f1 versions: v20190910
+TaiESM1 / r1i1p1f1 versions: v20200302, v20200211
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results are displayed as a list of the model-members pairs followed by all the available versions.<br>
+Using the option <code class="docutils literal notranslate"><span class="pre">--csv</span></code> will produce a csv where, as we saw above, the paths and other attributes values will be listed too.<br>
+Similarly using the option <code class="docutils literal notranslate"><span class="pre">--stats</span></code> will summarise the results.<br><br>
+The same will work for <code class="docutils literal notranslate"><span class="pre">--remote</span></code> and/or <strong>cmip5</strong>. For the moment <code class="docutils literal notranslate"><span class="pre">--and</span></code> works only for <code class="docutils literal notranslate"><span class="pre">--local</span></code> or <code class="docutils literal notranslate"><span class="pre">--remote</span></code> queries and not for the standard query.<br>
+NB the attributes names can be different for different datasets, in this case <code class="docutils literal notranslate"><span class="pre">variable</span></code> for CMIP5 and <code class="docutils literal notranslate"><span class="pre">variable_id</span></code> for CMIP6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --remote cmip5 -v tasmin -v tasmax -e rcp26 -t day --and variable
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CNRM-CM5 / r1i1p1 versions: v20121001
+CSIRO-Mk3.6.0 / r10i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r1i1p1 versions: v20120323
+CSIRO-Mk3.6.0 / r2i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r3i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r4i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r5i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r6i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r7i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r8i1p1 versions: v20110518
+CSIRO-Mk3.6.0 / r9i1p1 versions: v20110518
+CanESM2 / r1i1p1 versions: v20130331
+CanESM2 / r2i1p1 versions: v20130331
+CanESM2 / r3i1p1 versions: v20130331
+CanESM2 / r4i1p1 versions: v20130331, v20120410
+CanESM2 / r5i1p1 versions: v20130331, v20120410
+FGOALS-g2 / r1i1p1 versions: v20161204
+GFDL-CM3 / r1i1p1 versions: v20110601
+GFDL-ESM2G / r1i1p1 versions: v20130130
+GFDL-ESM2M / r1i1p1 versions: v20110601
+HadGEM2-AO / r1i1p1 versions: v20130815
+HadGEM2-ES / r1i1p1 versions: v20120405, v20111206
+HadGEM2-ES / r2i1p1 versions: v20111205
+HadGEM2-ES / r3i1p1 versions: v20111208
+HadGEM2-ES / r4i1p1 versions: v20111208
+IPSL-CM5A-LR / r1i1p1 versions: v20120114
+IPSL-CM5A-LR / r2i1p1 versions: v20130506
+IPSL-CM5A-LR / r3i1p1 versions: v20111119
+IPSL-CM5A-LR / r4i1p1 versions: v20120804
+IPSL-CM5A-MR / r1i1p1 versions: v20111119
+MIROC-ESM / r1i1p1 versions: v20120710
+MIROC-ESM-CHEM / r1i1p1 versions: v20120710
+MIROC5 / r1i1p1 versions: v20161012
+MIROC5 / r2i1p1 versions: v20120710
+MIROC5 / r3i1p1 versions: v20120710
+MIROC5 / r4i1p1 versions: v20131009
+MIROC5 / r5i1p1 versions: v20131009
+MPI-ESM-LR / r1i1p1 versions: v20111014
+MPI-ESM-LR / r2i1p1 versions: v20111014
+MPI-ESM-LR / r3i1p1 versions: v20111014
+MPI-ESM-MR / r1i1p1 versions: v20120503
+MRI-CGCM3 / r1i1p1 versions: v20120701
+NorESM1-M / r1i1p1 versions: v20110901
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="and-filter-on-more-than-one-attribute">
+<h3>AND filter on more than one attribute<a class="headerlink" href="#and-filter-on-more-than-one-attribute" title="Permalink to this headline">¶</a></h3>
+<p>We can passed the <em>–and</em> flag more than once if we want to apply the operator to more than one attribute.<br>
+Let’s add another experiment as a constraint to the previous CMIP6 query and see what happens.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip6 -v pr -v mrso -e piControl -e ssp585 -mi r1i1p1f1 --frequency mon --and variable_id --and experiment_id
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ACCESS-CM2 / r1i1p1f1 versions: v20191108, v20191112
+ACCESS-ESM1-5 / r1i1p1f1 versions: v20191214, v20191115
+BCC-CSM2-MR / r1i1p1f1 versions: v20181012, v20181016, v20190308, v20190314
+CESM2-WACCM / r1i1p1f1 versions: v20190320, v20200702
+CIESM / r1i1p1f1 versions: v20200605, v20200417
+CMCC-CM2-SR5 / r1i1p1f1 versions: v20200616, v20200622
+CanESM5 / r1i1p1f1 versions: v20190429
+EC-Earth3 / r1i1p1f1 versions: v20200310, v20200312
+EC-Earth3-Veg / r1i1p1f1 versions: v20200226, v20200225
+INM-CM4-8 / r1i1p1f1 versions: v20190605, v20190603
+INM-CM5-0 / r1i1p1f1 versions: v20190619, v20190724
+IPSL-CM6A-LR / r1i1p1f1 versions: v20190903, v20200326
+MIROC6 / r1i1p1f1 versions: v20190627, v20190311, v20181212
+MPI-ESM1-2-HR / r1i1p1f1 versions: v20190710
+MPI-ESM1-2-LR / r1i1p1f1 versions: v20190710
+MRI-ESM2-0 / r1i1p1f1 versions: v20190603, v20191108, v20190222
+NorESM2-LM / r1i1p1f1 versions: v20190920, v20200217, v20191108
+NorESM2-MM / r1i1p1f1 versions: v20191108
+TaiESM1 / r1i1p1f1 versions: v20200211, v20200901, v20200302
+</pre></div>
+</div>
+</div>
+</div>
+<p>The query returned less results because, although we added an experiment, we are requiring that both variables and both experiments are available for a model/member pair to be selected. <br>
+By default model/member pair (or model/ensemble pairs for CMIP5) are used to identify a simulation. As we will see in the next and last blog when the same function is imported in a python code you can define the simulation using different attributes.
+The CORDEX dataset has more default attributes to define a simulation and they are different depending if you are doing a local or remote query.
+For local queries:<br>
+<code class="docutils literal notranslate"><span class="pre">cordex_domain</span></code>, <code class="docutils literal notranslate"><span class="pre">driving_model_id</span></code>, <code class="docutils literal notranslate"><span class="pre">model_id</span></code> and <code class="docutils literal notranslate"><span class="pre">driving_model_ensemble_member</span></code><br>
+And for remote queries:<br>
+<code class="docutils literal notranslate"><span class="pre">domain</span></code>, <code class="docutils literal notranslate"><span class="pre">driving_model</span></code>, <code class="docutils literal notranslate"><span class="pre">rcm_name</span></code> and <code class="docutils literal notranslate"><span class="pre">ensemble</span></code><br>
+These differences reflect the fact that the local query uses the file attributes, while the remote query uses the ESGF facets. Unfortunately different terminology have been used.</p>
+</div>
+</div>
+<div class="section" id="more-tips-on-queries">
+<h2>More tips on queries<a class="headerlink" href="#more-tips-on-queries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="about-experiment-family">
+<h3>About experiment_family<a class="headerlink" href="#about-experiment-family" title="Permalink to this headline">¶</a></h3>
+<p>Experiment_family is a facet present only for CMIP5 and CORDEX. It allows you to select all the experiments following in the same category. The correspondent in CMIP6 is activity. However, not all experiments belong to a family and searching for both experiment and experiment_family at the same time can give unexpected results.<br>
+Let’s look at an example, if I want to get all the rcps experiments and historical I might be tempted to pass them as constraints in the same query:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM -e historical --experiment_family RCP -t Omon -v tos -en r1i1p1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: No matches found on ESGF, check at https://esgf.nci.org.au/search/esgf-nci?query=&amp;type=File&amp;distrib=True&amp;replica=False&amp;latest=True&amp;project=CMIP5&amp;ensemble=r1i1p1&amp;experiment=historical&amp;model=CMCC-CM&amp;cmor_table=Omon&amp;variable=tos&amp;experiment_family=RCP
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ESGF query uses an <em>AND</em> operator for all the constraints we pass. We couldn’t find any matches because both the experiment and experiment_family constraints have to be satisfied. Historical is not part of the RCP family and so no results are returned. Similarly if we pass rcp45 as experiment as well as the family RCP we will only get the rcp45 results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 -m CMCC-CM -e rcp45 --experiment_family RCP -t Omon -v tos -en r1i1p1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos/
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos/
+
+Everything available on ESGF is also available locally
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, it is possible to use <code class="docutils literal notranslate"><span class="pre">--experiment_family</span></code> also in the local search:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip5 -m CMCC-CM --experiment_family RCP -t Omon -v tos -en r1i1p1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20120518/tos
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp45/mon/ocean/Omon/r1i1p1/v20170725/tos
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20120528/tos
+/g/data/al33/replicas/CMIP5/combined/CMCC/CMCC-CM/rcp85/mon/ocean/Omon/r1i1p1/v20170725/tos
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="citation-list-option">
+<h2>Citation list option<a class="headerlink" href="#citation-list-option" title="Permalink to this headline">¶</a></h2>
+<p>CleF has functions that retrieve errata associated to a file and the documents available in the ESDOC system.<br> Most of these functionalities are currently working only when you use clef interactively. However, since version 1.2 we added a flag to retrieve citations also using the command line.<br>
+The <code class="docutils literal notranslate"><span class="pre">--cite</span></code> option added to the command line will create a file containing the citations of all the datasets returned by the query. It retrieves the citation information from the DKRZ WDCC server (<a class="reference external" href="https://cera-www.dkrz.de/WDCC">https://cera-www.dkrz.de/WDCC</a>). This provides citation information only for CMIP6, so this flag is only available with the <strong>cmip6</strong> sub-command.<br>
+As for the other flags illustrated above, this option works when you select either <code class="docutils literal notranslate"><span class="pre">--local</span></code> or <code class="docutils literal notranslate"><span class="pre">--remote</span></code> queries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --remote cmip6 -v clt  -e historical -t day  -mi r1i1p1f1 --cite
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CMIP6.CMIP.AS-RCEC.TaiESM1.historical.r1i1p1f1.day.clt.gn.v20200626
+CMIP6.CMIP.AWI.AWI-ESM-1-1-LR.historical.r1i1p1f1.day.clt.gn.v20200212
+CMIP6.CMIP.BCC.BCC-CSM2-MR.historical.r1i1p1f1.day.clt.gn.v20181127
+CMIP6.CMIP.BCC.BCC-ESM1.historical.r1i1p1f1.day.clt.gn.v20181220
+CMIP6.CMIP.CAS.FGOALS-f3-L.historical.r1i1p1f1.day.clt.gr.v20200605
+CMIP6.CMIP.CAS.FGOALS-g3.historical.r1i1p1f1.day.clt.gn.v20190826
+CMIP6.CMIP.CCCR-IITM.IITM-ESM.historical.r1i1p1f1.day.clt.gn.v20191226
+CMIP6.CMIP.CCCma.CanESM5.historical.r1i1p1f1.day.clt.gn.v20190429
+CMIP6.CMIP.CMCC.CMCC-CM2-HR4.historical.r1i1p1f1.day.clt.gn.v20200904
+CMIP6.CMIP.CMCC.CMCC-CM2-SR5.historical.r1i1p1f1.day.clt.gn.v20200616
+CMIP6.CMIP.CSIRO-ARCCSS.ACCESS-CM2.historical.r1i1p1f1.day.clt.gn.v20191108
+CMIP6.CMIP.CSIRO.ACCESS-ESM1-5.historical.r1i1p1f1.day.clt.gn.v20191115
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3-Veg-LR.historical.r1i1p1f1.day.clt.gr.v20200217
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3-Veg.historical.r1i1p1f1.day.clt.gr.v20200225
+CMIP6.CMIP.EC-Earth-Consortium.EC-Earth3.historical.r1i1p1f1.day.clt.gr.v20200310
+CMIP6.CMIP.HAMMOZ-Consortium.MPI-ESM-1-2-HAM.historical.r1i1p1f1.day.clt.gn.v20190627
+CMIP6.CMIP.INM.INM-CM4-8.historical.r1i1p1f1.day.clt.gr1.v20190530
+CMIP6.CMIP.INM.INM-CM5-0.historical.r1i1p1f1.day.clt.gr1.v20190610
+CMIP6.CMIP.IPSL.IPSL-CM6A-LR.historical.r1i1p1f1.day.clt.gr.v20180803
+CMIP6.CMIP.KIOST.KIOST-ESM.historical.r1i1p1f1.day.clt.gr1.v20191202
+CMIP6.CMIP.MIROC.MIROC6.historical.r1i1p1f1.day.clt.gn.v20191016
+CMIP6.CMIP.MPI-M.MPI-ESM1-2-HR.historical.r1i1p1f1.day.clt.gn.v20190710
+CMIP6.CMIP.MPI-M.MPI-ESM1-2-LR.historical.r1i1p1f1.day.clt.gn.v20190710
+CMIP6.CMIP.MRI.MRI-ESM2-0.historical.r1i1p1f1.day.clt.gn.v20190603
+CMIP6.CMIP.NCAR.CESM2-FV2.historical.r1i1p1f1.day.clt.gn.v20191120
+CMIP6.CMIP.NCAR.CESM2-WACCM-FV2.historical.r1i1p1f1.day.clt.gn.v20191120
+CMIP6.CMIP.NCAR.CESM2-WACCM.historical.r1i1p1f1.day.clt.gn.v20190227
+CMIP6.CMIP.NCAR.CESM2.historical.r1i1p1f1.day.clt.gn.v20190308
+CMIP6.CMIP.NCC.NorESM2-LM.historical.r1i1p1f1.day.clt.gn.v20190815
+CMIP6.CMIP.NCC.NorESM2-MM.historical.r1i1p1f1.day.clt.gn.v20191108
+CMIP6.CMIP.NIMS-KMA.KACE-1-0-G.historical.r1i1p1f1.day.clt.gr.v20190911
+CMIP6.CMIP.NOAA-GFDL.GFDL-CM4.historical.r1i1p1f1.day.clt.gr1.v20180701
+CMIP6.CMIP.NOAA-GFDL.GFDL-CM4.historical.r1i1p1f1.day.clt.gr2.v20180701
+CMIP6.CMIP.NUIST.NESM3.historical.r1i1p1f1.day.clt.gn.v20190812
+CMIP6.CMIP.SNU.SAM0-UNICON.historical.r1i1p1f1.day.clt.gn.v20190323
+</pre></div>
+</div>
+</div>
+</div>
+<p>The citations are listed in a cmip_citations.txt file in the current directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> head -n <span class="m">4</span> cmip_citations.txt 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lee, Wei-Liang; Liang, Hsin-Chien (2020). AS-RCEC TaiESM1.0 model output prepared for CMIP6 CMIP historical. Version v20200626. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.9755
+Danek, Christopher; Shi, Xiaoxu; Stepanek, Christian; Yang, Hu; Barbi, Dirk; Hegewald, Jan; Lohmann, Gerrit (2020). AWI AWI-ESM1.1LR model output prepared for CMIP6 CMIP historical. Version v20200212. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.9328
+Wu, Tongwen; Chu, Min; Dong, Min; Fang, Yongjie; Jie, Weihua; Li, Jianglong; Li, Weiping; Liu, Qianxia; Shi, Xueli; Xin, Xiaoge; Yan, Jinghui; Zhang, Fang; Zhang, Jie; Zhang, Li; Zhang, Yanwu (2018). BCC BCC-CSM2MR model output prepared for CMIP6 CMIP historical. Version v20181127. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2948
+Zhang, Jie; Wu, Tongwen; Shi, Xueli; Zhang, Fang; Li, Jianglong; Chu, Min; Liu, Qianxia; Yan, Jinghui; Ma, Qiang; Wei, Min (2018). BCC BCC-ESM1 model output prepared for CMIP6 CMIP historical. Version v20181220. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2949
+</pre></div>
+</div>
+</div>
+</div>
+<p>Please note that some of the more recently published datasets might not have citations information available yet on the WDCC server. CleF retrieves the information from different fields and them put them together to form a correct citation in the required format. If some of these fields are not available the citation might be incomplete, so always check the entire file before using it.<br>
+See below for an example of this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> clef --local cmip6 --model TaiESM1 --experiment ssp585 --variable pr --table Amon --cite
+<span class="o">!</span>head -n <span class="m">4</span> cmip_citations.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data/oi10/replicas/CMIP6/ScenarioMIP/AS-RCEC/TaiESM1/ssp585/r1i1p1f1/Amon/pr/gn/v20200901
+ (2018). AS-RCEC TaiESM1.0 model output prepared for CMIP6 ScenarioMIP ssp585. Earth System Grid Federation. http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.AS-RCEC.TaiESM1.ssp585
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-20.10-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-analysis3-20.10-py",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-20.10-py'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="2020-09-28-climate-finder-introduction.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Using CleF - Climate Finder to discover ESGF data at NCI</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../contents/tag-data.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">data</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

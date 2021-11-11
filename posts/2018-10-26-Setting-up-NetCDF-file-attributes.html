@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why is this important? &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="2018-10-19-mppnccombine-fast.html" />
+    <link rel="prev" title="Find the value of a variable at the times when another variable is maximum" href="2018-11-27-Value-when-other-is-max.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   The problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Badly organised code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+   Climatologies with ‘Coarsen’
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridder.html">
+   regridder
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     The problem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Badly organised code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Problem description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Fast answer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     High Resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Why is this important?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     <strong>
+      Basic usage of python logging module
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Line plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Let’s Get Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2018-10-26-Setting-up-NetCDF-file-attributes.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-10-26-Setting-up-NetCDF-file-attributes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Why is this important?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-the-global-attributes">
+   Setting the global attributes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variable-attributes">
+   Variable Attributes
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#units">
+     Units
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-few-points-about-recommended-variable-attributes">
+     A few points about recommended variable attributes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#real-life-examples-of-problems-with-variables">
+   Real-life examples of problems with variables
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filenames">
+   Filenames
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cf-convention-checkers">
+   CF Convention Checkers
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#to-summarise">
+     To summarise:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>In a recent blog post we discussed how to make a NetCDF file. Now that we know how to make one, the next step is to find out what attributes should be included in the file moving forward.</p>
+<div class="tex2jax_ignore mathjax_ignore section" id="why-is-this-important">
+<h1>Why is this important?<a class="headerlink" href="#why-is-this-important" title="Permalink to this headline">¶</a></h1>
+<p>There are 3 reasons why it’s necessary to set up the attributes correctly:</p>
+<ol class="simple">
+<li><p><strong>Personal reference:</strong> You need to be able to keep track of all the files you produce.</p></li>
+<li><p><strong>Software operation:</strong> Various NetCDF software utilities (e.g. CDO, NCO) expect a certain format and will not be able to properly process your file otherwise.</p></li>
+<li><p><strong>File sharing:</strong> Files which are intended to be shared with others, whether with colleagues, or in publications, need to follow accepted standards.</p></li>
+</ol>
+<p>The two kinds of attributes you need to set are <strong>global</strong> and <strong>variable</strong> attributes. There are <strong>Climate and Forecast (CF) conventions</strong> for setting the attributes of NetCDF files.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="setting-the-global-attributes">
+<h1>Setting the global attributes<a class="headerlink" href="#setting-the-global-attributes" title="Permalink to this headline">¶</a></h1>
+<p>Global attributes allow you and others know what this file is for. Of these, there are three levels of importance as set by the CF conventions:</p>
+<ol class="simple">
+<li><p>Highly recommended</p></li>
+<li><p>Recommended</p></li>
+<li><p>Optional - i.e. not necessarily recommended.</p></li>
+</ol>
+<p>Here is an excerpt from a random CMIP5 file I found on Raijin. (You can find it at <code class="docutils literal notranslate"><span class="pre">/g/data/rr3/publications/CMIP5/output1/UNSW/CSIRO-Mk3L-1-2/1pctCO2/mon/land/Lmon/r1i1p1/v20170728/mrro/mrro_Lmon_CSIRO-Mk3L-1-2_1pctCO2_r1i1p1_000101-014012.nc</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="k">global</span> <span class="n">attributes</span><span class="p">:</span>
+                <span class="p">:</span><span class="n">institution</span> <span class="o">=</span> <span class="s2">&quot;UNSW (University of New South Wales, Sydney, Australia)&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">institute_id</span> <span class="o">=</span> <span class="s2">&quot;UNSW&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">experiment_id</span> <span class="o">=</span> <span class="s2">&quot;1pctCO2&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;CSIRO-Mk3L-1-2 2009 atmosphere: R21 L18; ocean: 2.8x1.6 L21&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;CSIRO-Mk3L-1-2&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">forcing</span> <span class="o">=</span> <span class="s2">&quot;GHG (GHG includes only CO2)&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">parent_experiment_id</span> <span class="o">=</span> <span class="s2">&quot;piControl&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">parent_experiment_rip</span> <span class="o">=</span> <span class="s2">&quot;r1i1p1&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">branch_time</span> <span class="o">=</span> <span class="mf">0.</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">contact</span> <span class="o">=</span> <span class="s2">&quot;Steven Phipps (s.phipps@unsw.edu.au)&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;Data extracted from years 00201-00340 of experiment spi48 by Steven Phipps. 2013-07-27T05:06:01Z CMOR rewrote data to comply with CF standards and CMIP5 requirements.&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">comment</span> <span class="o">=</span> <span class="s2">&quot;Atmosphere and ocean models spun up independently for 100 and 7000 years respectively. Coupled model then spun up for 200 years before beginning this experiment. Flux adjustments applied to the fluxes of heat, freshwater and momentum.&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">references</span> <span class="o">=</span> <span class="s2">&quot;CSIRO Mk3L climate system model version 1.0 described and evaluated by Phipps, S. J., L. D. Rotstayn, H. B. Gordon, J. L. Roberts, A. C. Hirst and W. F. Budd (2011), The CSIRO Mk3L climate system model version 1.0 - Part 1: Description and evaluation, Geoscientific Model Development, 4(2), 483-509, doi:10.5194/gmd-4-483-2011. Version 1.2 described by Phipps, S. J. (2010), The CSIRO Mk3L climate system model v1.2, Technical Report No. 4, Antarctic Climate &amp; Ecosystems CRC, Hobart, Tasmania, Australia, 122pp., ISBN 978-1-921197-04-8.&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">initialization_method</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">physics_version</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">tracking_id</span> <span class="o">=</span> <span class="s2">&quot;da13f69d-6501-4ffc-bda0-98945a8d8912&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">product</span> <span class="o">=</span> <span class="s2">&quot;output&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">experiment</span> <span class="o">=</span> <span class="s2">&quot;1 percent per year CO2&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">frequency</span> <span class="o">=</span> <span class="s2">&quot;mon&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">creation_date</span> <span class="o">=</span> <span class="s2">&quot;2013-07-27T05:06:01Z&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">Conventions</span> <span class="o">=</span> <span class="s2">&quot;CF-1.4&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;CMIP5&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">table_id</span> <span class="o">=</span> <span class="s2">&quot;Table Lmon (17 July 2013) 3f17a25f6a4bcd4bb2ac6986db9359fc&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;CSIRO-Mk3L-1-2 model output prepared for CMIP5 1 percent per year CO2&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">parent_experiment</span> <span class="o">=</span> <span class="s2">&quot;pre-industrial control&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">modeling_realm</span> <span class="o">=</span> <span class="s2">&quot;land&quot;</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">realization</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span>
+                <span class="p">:</span><span class="n">cmor_version</span> <span class="o">=</span> <span class="s2">&quot;2.8.3&quot;</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The highly recommended fields are those which will be necessary for you to identify your file. They are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keywords</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Conventions</span></code> - identifying the CF version number, and potentially other conventions that may be used, such as <code class="docutils literal notranslate"><span class="pre">ACDD</span></code>, as in the above example.</p></li>
+</ul>
+<p>Note that the above example doesn’t contain <code class="docutils literal notranslate"><span class="pre">summary</span></code> or <code class="docutils literal notranslate"><span class="pre">keywords</span></code>. This would be acceptable practice if the title conveys sufficient information to potential readers.</p>
+<p>The recommended fields listed above (in order of appearance) are: <code class="docutils literal notranslate"><span class="pre">institution</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code>, <code class="docutils literal notranslate"><span class="pre">history</span></code> and <code class="docutils literal notranslate"><span class="pre">date_created</span></code> (called <code class="docutils literal notranslate"><span class="pre">creation_date</span></code> above).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">history</span></code> attribute need not be added by you. Software utilities like <code class="docutils literal notranslate"><span class="pre">cdo</span></code> and <code class="docutils literal notranslate"><span class="pre">nco</span></code> will do that for you. Sometimes this field can become quite detailed (e.g. this file was added, this file was removed, etc). You want to make sure that it remains relevant and to the point, detailing which transformations were done on the data, for example.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">source</span></code> attribute is there to provide a high-level description of how you generated your data.</p>
+<p>What should normally happen is that you would provide the highly recommended global attributes when you first create the file and add more recommended fields gradually as you refine your file or seek to publish.</p>
+<p>For a full list of <em>highly recommended</em>, <em>recommended</em> and <em>optional</em> attributes, see the <a class="reference external" href="http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_1-3">CF Attribute Convention document</a>.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="variable-attributes">
+<h1>Variable Attributes<a class="headerlink" href="#variable-attributes" title="Permalink to this headline">¶</a></h1>
+<p>Here are the variable attributes from the same file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span><span class="p">:</span>
+        <span class="n">double</span> <span class="n">time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="p">;</span>
+                <span class="n">time</span><span class="p">:</span><span class="n">bounds</span> <span class="o">=</span> <span class="s2">&quot;time_bnds&quot;</span> <span class="p">;</span>
+                <span class="n">time</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;days since 0001-1-1&quot;</span> <span class="p">;</span>
+                <span class="n">time</span><span class="p">:</span><span class="n">calendar</span> <span class="o">=</span> <span class="s2">&quot;365_day&quot;</span> <span class="p">;</span>
+                <span class="n">time</span><span class="p">:</span><span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span> <span class="p">;</span>
+                <span class="n">time</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span> <span class="p">;</span>
+                <span class="n">time</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span> <span class="p">;</span>
+        <span class="n">double</span> <span class="n">time_bnds</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">bnds</span><span class="p">)</span> <span class="p">;</span>
+        <span class="n">double</span> <span class="n">lat</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="p">;</span>
+                <span class="n">lat</span><span class="p">:</span><span class="n">bounds</span> <span class="o">=</span> <span class="s2">&quot;lat_bnds&quot;</span> <span class="p">;</span>
+                <span class="n">lat</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;degrees_north&quot;</span> <span class="p">;</span>
+                <span class="n">lat</span><span class="p">:</span><span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;Y&quot;</span> <span class="p">;</span>
+                <span class="n">lat</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span> <span class="p">;</span>
+                <span class="n">lat</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span> <span class="p">;</span>
+        <span class="n">double</span> <span class="n">lat_bnds</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">bnds</span><span class="p">)</span> <span class="p">;</span>
+        <span class="n">double</span> <span class="n">lon</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="p">;</span>
+                <span class="n">lon</span><span class="p">:</span><span class="n">bounds</span> <span class="o">=</span> <span class="s2">&quot;lon_bnds&quot;</span> <span class="p">;</span>
+                <span class="n">lon</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;degrees_east&quot;</span> <span class="p">;</span>
+                <span class="n">lon</span><span class="p">:</span><span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;X&quot;</span> <span class="p">;</span>
+                <span class="n">lon</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;longitude&quot;</span> <span class="p">;</span>
+                <span class="n">lon</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;longitude&quot;</span> <span class="p">;</span>
+        <span class="n">double</span> <span class="n">lon_bnds</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">bnds</span><span class="p">)</span> <span class="p">;</span>
+        <span class="nb">float</span> <span class="n">mrro</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">standard_name</span> <span class="o">=</span> <span class="s2">&quot;runoff_flux&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Total Runoff&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">comment</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">the total runoff (including </span><span class="se">\&quot;\&quot;</span><span class="s2">drainage</span><span class="se">\&quot;\&quot;</span><span class="s2"> through the base of the soil model) leaving the land portion of the grid cell.</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">units</span> <span class="o">=</span> <span class="s2">&quot;kg m-2 s-1&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">original_name</span> <span class="o">=</span> <span class="s2">&quot;run&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;Converted from volume flux per unit area (mm day-1) to mass flux per unit area (kg m-2 s-1) using density of 1000 kg m-3.&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">cell_methods</span> <span class="o">=</span> <span class="s2">&quot;time: mean (interval: 20 minutes) area: mean where land&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">cell_measures</span> <span class="o">=</span> <span class="s2">&quot;area: areacella&quot;</span> <span class="p">;</span>
+                <span class="n">mrro</span><span class="p">:</span><span class="n">associated_files</span> <span class="o">=</span> <span class="s2">&quot;baseURL: http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation gridspecFile: gridspec_land_fx_CSIRO-Mk3L-1-2_1pctCO2_r0i0p0.nc areacella: areacella_fx_CSIRO-Mk3L-1-2_1pctCO2_r0i0p0.nc&quot;</span> <span class="p">;</span>
+</pre></div>
+</div>
+<p>While global attributes usually won’t require tremendous precision, the same is not the case with variable attributes. The reason for this is that software utilities will expect certain standards to be adhered to completely and will not tolerate deviations.</p>
+<p>The highly recommended attributes are the <code class="docutils literal notranslate"><span class="pre">long_name</span></code>, the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> and the <code class="docutils literal notranslate"><span class="pre">units</span></code>. The <code class="docutils literal notranslate"><span class="pre">long_name</span></code> is what you call the variable, while the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> is the official name found in the <a class="reference external" href="http://cfconventions.org/Data/cf-standard-names/59/build/cf-standard-name-table.html">CF Standard Name Table</a>. Software utilities will look for the latter in the file, and will expect to find <code class="docutils literal notranslate"><span class="pre">standard_names</span></code> for <code class="docutils literal notranslate"><span class="pre">latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>. Furthermore, if you are using a search facility to search for a files with a particular variable type, it will likely look for the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code>. The only reason not to include the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> for a variable is if it doesn’t have one.</p>
+<div class="section" id="units">
+<h2>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
+<p>Units are absolutely essential to include. Without them, they may be useless to use with software utilities; and even if not, the data will be difficult to use by anyone else. Sometimes one can guess (e.g. whether a temperature is in Kelvin or degrees Celsius), but it’s not always obvious.</p>
+<p>The units provided will have to <em>essentially</em> match the CF standard’s units found in the table for the particular standard_name. I say “essentially”, because the units only need to be of the same general format. For example, the standard units for air density are <code class="docutils literal notranslate"><span class="pre">kg</span> <span class="pre">m-3</span></code>. If your file’s units for air density are <code class="docutils literal notranslate"><span class="pre">g</span> <span class="pre">cm-3</span></code> that should also work, since it is still a unit of mass / volume.</p>
+<p>If something is dimensionless, such as a percentage, ratio or mask, the unit should be recorded as <code class="docutils literal notranslate"><span class="pre">“1”</span></code>.</p>
+<p>Time variable units can be a bit tricky to define. It is always recommended to specify which calendar is being used, but if you are not using a standard calendar, this will be <strong>absolutely essential</strong>.</p>
+</div>
+<div class="section" id="a-few-points-about-recommended-variable-attributes">
+<h2>A few points about recommended variable attributes<a class="headerlink" href="#a-few-points-about-recommended-variable-attributes" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Cell_methods</span></code> tell you what transformations have been performed on the data (e.g. mean or standard deviation), which is important to make clear, given that the units will probably not reveal this. For example, are the values given for a time series the instantaneous value at a particular moment, or the average of the values for the last hour, or the average of the values between -30 minutes to +30 minutes?
+You can find more information about cell methods <a class="reference external" href="http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch07s03.html">here</a>.</p>
+<p>In some cases, you’ll need boundary attributes for a variable, such as <code class="docutils literal notranslate"><span class="pre">time_bnds</span></code>, <code class="docutils literal notranslate"><span class="pre">lat_bnds</span></code> and <code class="docutils literal notranslate"><span class="pre">lon_bnds</span></code> in the example above. You can find more information about those <a class="reference external" href="http://cfconventions.org/cf-conventions/cf-conventions.html#cell-boundaries">here</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Original_name</span></code> is important to provide if you have changed a variable name (whether for readability or other purposes). That way you can identify the original fields provided by the data source. Sometimes projects will use certain variable names. For example, CMIP6 used <code class="docutils literal notranslate"><span class="pre">tos</span></code> to refer to <code class="docutils literal notranslate"><span class="pre">sea_surface_temperature</span></code> (CF standard name).</p>
+<p>In contrast to global attributes, when it comes to variable attributes, all the above should be included from the beginning, so that you don’t lose track of what’s going on.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="real-life-examples-of-problems-with-variables">
+<h1>Real-life examples of problems with variables<a class="headerlink" href="#real-life-examples-of-problems-with-variables" title="Permalink to this headline">¶</a></h1>
+<p>Here are a couple of problematic cases that we’ve come across dealing with variable attributes:</p>
+<p><strong>Example 1: <code class="docutils literal notranslate"><span class="pre">z1</span></code> variable</strong></p>
+<p>The UM (Unified Model) defines the vertical axis with the <code class="docutils literal notranslate"><span class="pre">z1</span></code> variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>               z1:standard_name = “height” ;
+               z1:units = “m” ;
+               z1:direction = “up”
+</pre></div>
+</div>
+<p>Numerous mapping services (such as <em>wms</em>, <em>wfs</em> and <em>wcs</em>) and the NetCDF subset service, which we use when publishing data, were unable to recognise this variable until the following attribute was added:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>               z1:axis = “Z”;
+</pre></div>
+</div>
+<p><strong>Example 2: LIS time variable</strong></p>
+<p>In LIS model outputs, time is defined as a string, e.g. <code class="docutils literal notranslate"><span class="pre">200101010000</span></code>, as opposed to the required <code class="docutils literal notranslate"><span class="pre">days</span> <span class="pre">since</span> <span class="pre">&lt;reference</span> <span class="pre">date&gt;</span></code>. To use such a file with common software tools, you would need to redefine the time axis correctly.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="filenames">
+<h1>Filenames<a class="headerlink" href="#filenames" title="Permalink to this headline">¶</a></h1>
+<p>People don’t always think about it, but naming your files appropriately is probably the most important step in effectively keeping track of them. Naming directories appropriately is equally important, although it is not enough to rely on, because you may well take your file out of that directory at some point, and then you’ll lose track of all the information in the directory name.</p>
+<p>If we look at the file path of the sample file above, we can see that the information stored in the directories is replicated in the filename as well:
+<code class="docutils literal notranslate"><span class="pre">/g/data/rr3/publications/CMIP5/output1/UNSW/CSIRO-Mk3L-1-2/1pctCO2/mon/land/Lmon/r1i1p1/v20170728/mrro/mrro_Lmon_CSIRO-Mk3L-1-2_1pctCO2_r1i1p1_000101-014012.nc</span></code></p>
+<p>We can see the properties used in the path:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mon</span></code> - time frequency - monthly</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">land</span></code> - modeling realm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lmon</span></code> - land monthly</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNSW</span></code> - institution (Only in the directory names. Not normally included in the filename.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CSIRO-Mk3L-1-2</span></code> - Model name - CSIRO Mk3L model version 1.2 (Should not use <code class="docutils literal notranslate"><span class="pre">.</span></code> in filenames)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mrro</span></code> - variable name (runoff)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r1i1p1</span></code> - ensemble name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1pctCO2</span></code> - 1 percent CO2 - experiment name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">000101-014012</span></code> - dates of data in the form <code class="docutils literal notranslate"><span class="pre">yyyymm</span></code>, from year 1, month 1 to year 140, month 12. In this particular case, relative dates are used, but more often you will see absolute dates, e.g. <code class="docutils literal notranslate"><span class="pre">201810</span></code></p></li>
+</ul>
+<p>Be aware that you don’t have to have it fully worked out from the beginning. You can improve the name progressively as you go.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="cf-convention-checkers">
+<h1>CF Convention Checkers<a class="headerlink" href="#cf-convention-checkers" title="Permalink to this headline">¶</a></h1>
+<p>A CF convention checker is available on Raijin. To load it and see its command-line usage, do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data3</span><span class="o">/</span><span class="n">hh5</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">conda</span>
+<span class="n">cchecker</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>However, be aware that CF checkers are not failsafe. Files which pass the check may not work with software utilities and vice versa. More information about how to use it can be found <a class="reference external" href="https://github.com/ioos/compliance-checker#command-line-usage">here</a>.</p>
+<div class="section" id="to-summarise">
+<h2>To summarise:<a class="headerlink" href="#to-summarise" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The most essential attributes are those required by software utilities.</p></li>
+<li><p>The next most essential attributes are those which enable you and others to understand what your file is for, how it was made and what its values mean.</p></li>
+<li><p>Name your files and directories with a view to long-term usefulness.</p></li>
+<li><p>CF convention checkers exist, but are not failsafe.</p></li>
+</ul>
+<p><em>One final comment:</em> Other best practices include <strong>internal compression</strong> and <strong>chunking</strong>. We plan to discuss these in another blog post.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="2018-11-27-Value-when-other-is-max.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Find the value of a variable at the times when another variable is maximum</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="2018-10-19-mppnccombine-fast.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Introduction</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

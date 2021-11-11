@@ -1,0 +1,17 @@
+
+2019
+--------------------------------------------------------------------------------
+
+.. toctree::
+    :caption: 2019
+    :maxdepth: 1
+
+    /posts/2019-11-12_Calendars_and_monthly_data
+    /posts/2019-11-12-Calendars-and-monthly-data
+    /posts/2019-09-03-python-animation
+    /posts/2019-07-29-multi-apply-along-axis
+    /posts/2019-04-02-filter-file-lists-with-sed
+    /posts/2019-03-06-generating-print-quality-plots
+    /posts/2019-03-01-coupling-resolution
+    /posts/2019-01-18-using-opendap
+    
