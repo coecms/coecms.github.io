@@ -72,6 +72,7 @@ contents_template = jinja2.Template("""
 .. toctree::
     :caption: Tags
     :maxdepth: 2
+    :hidden:
 
     {% for t in tags -%}
     /contents/tag-{{t}}
