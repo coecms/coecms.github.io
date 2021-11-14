@@ -32,6 +32,7 @@ jobs:
       run: |
           python generate_toc.py
           jupyter-book build .
+          python add_redirects.py
 
     # Deploy the book's HTML to gh-pages branch
     - name: GitHub Pages action
