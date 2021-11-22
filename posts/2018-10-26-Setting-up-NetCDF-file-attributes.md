@@ -6,10 +6,11 @@ excerpt: >-
     How to set up NetCDF global and variable attributes according to CF conventions
 published: true
 ---
+# Setting up NetCDF file attributes
 
 In a recent blog post we discussed how to make a NetCDF file. Now that we know how to make one, the next step is to find out what attributes should be included in the file moving forward.
 
-# Why is this important?
+## Why is this important?
 There are 3 reasons why it’s necessary to set up the attributes correctly:
 1. **Personal reference:** You need to be able to keep track of all the files you produce.
 2. **Software operation:** Various NetCDF software utilities (e.g. CDO, NCO) expect a certain format and will not be able to properly process your file otherwise.
@@ -17,7 +18,7 @@ There are 3 reasons why it’s necessary to set up the attributes correctly:
 
 The two kinds of attributes you need to set are **global** and **variable** attributes. There are **Climate and Forecast (CF) conventions** for setting the attributes of NetCDF files.
 
-# Setting the global attributes
+## Setting the global attributes
 
 Global attributes allow you and others know what this file is for. Of these, there are three levels of importance as set by the CF conventions:
 1. Highly recommended
@@ -77,7 +78,7 @@ What should normally happen is that you would provide the highly recommended glo
 
 For a full list of *highly recommended*, *recommended* and *optional* attributes, see the [CF Attribute Convention document](http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_1-3).
 
-# Variable Attributes
+## Variable Attributes
 
 Here are the variable attributes from the same file:
 
@@ -121,7 +122,7 @@ While global attributes usually won’t require tremendous precision, the same i
 
 The highly recommended attributes are the `long_name`, the `standard_name` and the `units`. The `long_name` is what you call the variable, while the `standard_name` is the official name found in the [CF Standard Name Table](http://cfconventions.org/Data/cf-standard-names/59/build/cf-standard-name-table.html). Software utilities will look for the latter in the file, and will expect to find `standard_names` for `latitude`, `longitude` and `time`. Furthermore, if you are using a search facility to search for a files with a particular variable type, it will likely look for the `standard_name`. The only reason not to include the `standard_name` for a variable is if it doesn’t have one.
 
-## Units
+### Units
 
 Units are absolutely essential to include. Without them, they may be useless to use with software utilities; and even if not, the data will be difficult to use by anyone else. Sometimes one can guess (e.g. whether a temperature is in Kelvin or degrees Celsius), but it’s not always obvious.
 
@@ -131,7 +132,7 @@ If something is dimensionless, such as a percentage, ratio or mask, the unit sho
 
 Time variable units can be a bit tricky to define. It is always recommended to specify which calendar is being used, but if you are not using a standard calendar, this will be **absolutely essential**. 
 
-## A few points about recommended variable attributes
+### A few points about recommended variable attributes
 
 `Cell_methods` tell you what transformations have been performed on the data (e.g. mean or standard deviation), which is important to make clear, given that the units will probably not reveal this. For example, are the values given for a time series the instantaneous value at a particular moment, or the average of the values for the last hour, or the average of the values between -30 minutes to +30 minutes?
 You can find more information about cell methods [here](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch07s03.html).
@@ -142,7 +143,7 @@ In some cases, you’ll need boundary attributes for a variable, such as `time_b
 
 In contrast to global attributes, when it comes to variable attributes, all the above should be included from the beginning, so that you don’t lose track of what’s going on.
 
-# Real-life examples of problems with variables
+## Real-life examples of problems with variables
 
 Here are a couple of problematic cases that we’ve come across dealing with variable attributes:
 
@@ -164,7 +165,7 @@ Numerous mapping services (such as *wms*, *wfs* and *wcs*) and the NetCDF subset
 
 In LIS model outputs, time is defined as a string, e.g. `200101010000`, as opposed to the required `days since <reference date>`. To use such a file with common software tools, you would need to redefine the time axis correctly.
 
-# Filenames
+## Filenames
 
 People don’t always think about it, but naming your files appropriately is probably the most important step in effectively keeping track of them. Naming directories appropriately is equally important, although it is not enough to rely on, because you may well take your file out of that directory at some point, and then you'll lose track of all the information in the directory name.
 
@@ -184,7 +185,7 @@ We can see the properties used in the path:
 
 Be aware that you don’t have to have it fully worked out from the beginning. You can improve the name progressively as you go.
 
-# CF Convention Checkers
+## CF Convention Checkers
 
 A CF convention checker is available on Raijin. To load it and see its command-line usage, do the following:
 ```

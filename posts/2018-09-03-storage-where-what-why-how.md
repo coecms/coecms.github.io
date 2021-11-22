@@ -7,6 +7,8 @@ excerpt: >-
 categories: storage, disk
 ---
 
+# Storage - where, what, why and how?
+
 Simulations, analysis, modelling, use and/or create data.
 
 Space is limited: need to optimise storage. 
@@ -20,7 +22,7 @@ Space is limited: need to optimise storage.
 **How** can you reduce your usage to make room for MORE!
 
 
-# Where
+## Where
 
 Find your disk storage quotas and usage in one hit:
 ```
@@ -58,7 +60,7 @@ For a full list of options
 ncimonitor -h
 ```
 
-# What?
+## What?
 
 When you know where to look, to find out what is using all the disk space, you can use `ls`, `du` and `find`
 ```
@@ -86,7 +88,7 @@ ncdump -hs netcdf_file
 grib_ls grib_file
 ```
 
-# Why?
+## Why?
 
 Why do I have these in the first place? If you're running a model: check the diagnostics (output variables) being 
 produced. Do you need them all? Before starting a run, check you will have enough space to store all the data produced.
@@ -98,15 +100,15 @@ Analysing data: does your workflow involve:
 
 Explore other approaches! You may be needlessly making multiple copies of data when a different approach could eliminate this. An example is the powerful python library `xarray`, which can open multiple files as a single data set which can be subset easily in time and space.
 
-# How?
+## How?
 
 How can I use less disk space? Data triage: Why am I storing these files?
 
-## Archive if:
+### Archive if:
 
 * no longer require fast access, e.g. raw data that has been analysed
 
-## Delete if:
+### Delete if:
 
 * you don't remember what the data is or comes from
 * not required

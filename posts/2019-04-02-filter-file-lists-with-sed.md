@@ -4,6 +4,7 @@ title: Filter Lists of Files in bash Using sed
 author: Aidan Heerdegen
 categories: bash, sed
 ---
+# Filter Lists of Files in bash Using sed
 
 We had a recent query on the [Slack support channel](https://arccss.slack.com) 
 asking how, when using `bash`, to programatically generate a listing of files 

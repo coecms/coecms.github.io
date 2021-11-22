@@ -4,6 +4,8 @@ title: Generating print-quality plots in R
 author: Danny Eisenberg
 categories: plots, R, RStudio
 ---
+# Generating print-quality plots in R
+
 Some students have mentioned that they had generated plots with R and submitted them in their theses, but were requested to redo the plots at high resolution and to change the colour palette.
 
 ## High Resolution
