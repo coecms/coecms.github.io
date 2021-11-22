@@ -125,7 +125,7 @@
   excerpt: Use xesmf.Regridder to interpolate data efficiently
   tags:
   - python
-  - regridder
+  - regridding
   title: Efficient Regridding with xesmf
 2021-07-29-coarsen_climatology:
   excerpt: A reasonably recent addition to Xarray is the 'coarsen' function, which
@@ -136,3 +136,9 @@
   - xarray
   - climatology
   title: Climatologies with 'coarsen'
+
+2021-10-01-pyproj.ipynb:
+  tags: [pyproj, xarray]
+
+2021-11-02-pyproj-regrid.ipynb:
+  tags: [pyproj, xarray, regridding]
