@@ -413,12 +413,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
-     Fast answer
+     Filter Lists of Files in bash Using sed
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
-     High Resolution
+     Generating print-quality plots in R
     </a>
    </li>
    <li class="toctree-l2">
@@ -450,12 +450,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
-     Why is this important?
+     Setting up NetCDF file attributes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
-     Introduction
+     Fast MOM collation with payu and mppnncombine-fast
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,12 +480,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
-     Where
+     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
-     Let’s Get Started
+     Visualisation in a Shiny App
     </a>
    </li>
    <li class="toctree-l2">
@@ -495,7 +495,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
-     Episode 1: Terminology
+     Fortran Debugging Video Series
     </a>
    </li>
    <li class="toctree-l2">
@@ -666,41 +666,29 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Effect of rounding on coordinates with Xarray
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
-     Claire Carouge, CLEX CMS
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-problem">
    The problem
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solutions">
    Solutions
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#re-assign-coordinates">
      Re-assign coordinates
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolate-the-data">
      Interpolate the data
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-is-xarray-doing-this">
    Why is Xarray doing this
   </a>
@@ -718,14 +706,11 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="effect-of-rounding-on-coordinates-with-xarray">
 <h1>Effect of rounding on coordinates with Xarray<a class="headerlink" href="#effect-of-rounding-on-coordinates-with-xarray" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="claire-carouge-clex-cms">
-<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
+<p><strong>Claire Carouge, CLEX CMS</strong></p>
 <p>This notebook demonstrates how to work with two datasets that should have the same dimensional coordinates, but for whatever reason don’t.</p>
 <p>When doing operations involving the 2 DataArrays, Xarray will either return the results on the common locations only or return an indexing error. The solution is then to replace one set of coordinates with the other set.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-problem">
-<h1>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-problem">
+<h2>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
 <p>To demonstrate, we create two DataArrays that have a slightly different coordinate array. Note how the difference is so small that Jupyter’s default presentation obscures it by rounding.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1835,10 +1820,10 @@ Coordinates:
 </div>
 <p>There was no error, but xarray automatic broadcasting has silently ignored the second value where the coordinates are different for the 2 arrays.</p>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="solutions">
-<h1>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="re-assign-coordinates">
-<h2>Re-assign coordinates<a class="headerlink" href="#re-assign-coordinates" title="Permalink to this headline">¶</a></h2>
+<h3>Re-assign coordinates<a class="headerlink" href="#re-assign-coordinates" title="Permalink to this headline">¶</a></h3>
 <p>Usually, these issues arise when the coordinates <strong>should</strong> be identical, but aren’t.
 In that case, the easiest, straight-forward method is simply assign the coordinate array from one to the other:</p>
 <div class="cell docutils container">
@@ -2220,7 +2205,7 @@ Coordinates:
 </div>
 </div>
 <div class="section" id="interpolate-the-data">
-<h2>Interpolate the data<a class="headerlink" href="#interpolate-the-data" title="Permalink to this headline">¶</a></h2>
+<h3>Interpolate the data<a class="headerlink" href="#interpolate-the-data" title="Permalink to this headline">¶</a></h3>
 <p>If the coordinates are so different that this would lead to unacceptable errors, we can also use <code class="docutils literal notranslate"><span class="pre">xarray</span></code>’s interpolation routine to force the arrays on the same grid.</p>
 <p>Let’s first re-assign the coordinates from the beginning.</p>
 <div class="cell docutils container">
@@ -2968,14 +2953,15 @@ Coordinates:
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="why-is-xarray-doing-this">
-<h1>Why is Xarray doing this<a class="headerlink" href="#why-is-xarray-doing-this" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-is-xarray-doing-this">
+<h2>Why is Xarray doing this<a class="headerlink" href="#why-is-xarray-doing-this" title="Permalink to this headline">¶</a></h2>
 <p>Although this behaviour may seem annoying in this example, it is something that is very useful for Xarray. For example, if you have a field defined on a subset of a grid (e.g surface field) and one on the full grid (e.g on all model levels), you can get the difference, sum, etc. of the two fields directly. You don’t need to create a subset of the full grid field. Or if you have fields covering different but overlapping time periods, to subset the fields to the common period, you can do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">array1</span> <span class="o">=</span> <span class="n">array1</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">array2</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
     <span class="n">array2</span> <span class="o">=</span> <span class="n">array2</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">array1</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>That is true as long as the subset grid has a coordinate along the dimensions that are subsetted even if the dimensions do not appear in the subsetted field.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

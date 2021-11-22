@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>High Resolution &#8212; CLEX CMS Blog</title>
+    <title>Generating print-quality plots in R &#8212; CLEX CMS Blog</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Setting up a coupled model at a new resolution" href="2019-03-01-coupling-resolution.html" />
-    <link rel="prev" title="Fast answer" href="2019-04-02-filter-file-lists-with-sed.html" />
+    <link rel="prev" title="Filter Lists of Files in bash Using sed" href="2019-04-02-filter-file-lists-with-sed.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -413,12 +413,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
-     Fast answer
+     Filter Lists of Files in bash Using sed
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     High Resolution
+     Generating print-quality plots in R
     </a>
    </li>
    <li class="toctree-l2">
@@ -450,12 +450,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
-     Why is this important?
+     Setting up NetCDF file attributes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
-     Introduction
+     Fast MOM collation with payu and mppnncombine-fast
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,12 +480,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
-     Where
+     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
-     Let’s Get Started
+     Visualisation in a Shiny App
     </a>
    </li>
    <li class="toctree-l2">
@@ -495,7 +495,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
-     Episode 1: Terminology
+     Fortran Debugging Video Series
     </a>
    </li>
    <li class="toctree-l2">
@@ -649,12 +649,12 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-resolution">
    High Resolution
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#changing-the-colour-palette">
    Changing the Colour Palette
   </a>
@@ -670,9 +670,11 @@
         
               <div>
                 
-  <p>Some students have mentioned that they had generated plots with R and submitted them in their theses, but were requested to redo the plots at high resolution and to change the colour palette.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="generating-print-quality-plots-in-r">
+<h1>Generating print-quality plots in R<a class="headerlink" href="#generating-print-quality-plots-in-r" title="Permalink to this headline">¶</a></h1>
+<p>Some students have mentioned that they had generated plots with R and submitted them in their theses, but were requested to redo the plots at high resolution and to change the colour palette.</p>
 <div class="section" id="high-resolution">
-<h1>High Resolution<a class="headerlink" href="#high-resolution" title="Permalink to this headline">¶</a></h1>
+<h2>High Resolution<a class="headerlink" href="#high-resolution" title="Permalink to this headline">¶</a></h2>
 <p>If you use RStudio, you can click on the “Export” button and export your plots to a file in either PDF or PNG format. If you save it in PDF format, by default it is high resoultion. If, however, you wish to save it as a PNG bitmap, the default resolution will be 72 dpi (dots per inch), the standard screen resolution, far too low for high quality printing, which needs to be at least 300 dpi.</p>
 <p>To see what I mean, let’s generate a plot as an example. We are will use a sample file recording maximum temperature available from the <a class="reference external" href="https://www.metoffice.gov.uk/hadobs/hadghcnd/download.html">UK Met Office</a>: <a class="reference external" href="https://www.metoffice.gov.uk/hadobs/hadghcnd/data/HadGHCND_1949-2011_TXx.nc.gz">https://www.metoffice.gov.uk/hadobs/hadghcnd/data/HadGHCND_1949-2011_TXx.nc.gz</a></p>
 <p>We will now plot make a contour map displaying the average maximum temperature for the month of January:</p>
@@ -773,7 +775,7 @@ This time you might get the following error: <code class="docutils literal notra
 <p>(<em>Note:</em> I had to play a bit with the <code class="docutils literal notranslate"><span class="pre">pointsize</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> to get it right.)</p>
 </div>
 <div class="section" id="changing-the-colour-palette">
-<h1>Changing the Colour Palette<a class="headerlink" href="#changing-the-colour-palette" title="Permalink to this headline">¶</a></h1>
+<h2>Changing the Colour Palette<a class="headerlink" href="#changing-the-colour-palette" title="Permalink to this headline">¶</a></h2>
 <p>R’s default choice of colours is not to everyone’s taste and those submitting theses have been known to be asked to change the colour palette.</p>
 <p>To set the colour palette for a plot, you just have to create a vector of colour names.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a vector with 15 shades ranging between the colours mentioned</span>
@@ -790,6 +792,7 @@ This time you might get the following error: <code class="docutils literal notra
 <p>For a full list of colour names in R, see <a class="reference external" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.</p>
 <p>There are other colour tools you can use in R, such as <a class="reference external" href="https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html#rcolorbrewer-package">RColorBrewer</a>.</p>
 <p>Happy plotting!</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -821,7 +824,7 @@ This time you might get the following error: <code class="docutils literal notra
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Fast answer</p>
+            <p class="prev-next-title">Filter Lists of Files in bash Using sed</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="2019-03-01-coupling-resolution.html" title="next page">

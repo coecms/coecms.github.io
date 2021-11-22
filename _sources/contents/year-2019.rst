@@ -7,7 +7,6 @@
     :maxdepth: 1
 
     /posts/2019-11-12_Calendars_and_monthly_data
-    /posts/2019-11-12-Calendars-and-monthly-data
     /posts/2019-09-03-python-animation
     /posts/2019-07-29-multi-apply-along-axis
     /posts/2019-04-02-filter-file-lists-with-sed

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Let’s Get Started &#8212; CLEX CMS Blog</title>
+    <title>Visualisation in a Shiny App &#8212; CLEX CMS Blog</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using ARCCSSive to search CMIP5" href="2018-08-16-search-cmip5-data-interactively.html" />
-    <link rel="prev" title="Where" href="2018-09-03-storage-where-what-why-how.html" />
+    <link rel="prev" title="Storage - where, what, why and how?" href="2018-09-03-storage-where-what-why-how.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -413,12 +413,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
-     Fast answer
+     Filter Lists of Files in bash Using sed
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
-     High Resolution
+     Generating print-quality plots in R
     </a>
    </li>
    <li class="toctree-l2">
@@ -450,12 +450,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
-     Why is this important?
+     Setting up NetCDF file attributes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
-     Introduction
+     Fast MOM collation with payu and mppnncombine-fast
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,12 +480,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
-     Where
+     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Let’s Get Started
+     Visualisation in a Shiny App
     </a>
    </li>
    <li class="toctree-l2">
@@ -495,7 +495,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
-     Episode 1: Terminology
+     Fortran Debugging Video Series
     </a>
    </li>
    <li class="toctree-l2">
@@ -649,22 +649,22 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#let-s-get-started">
    Let’s Get Started
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#providing-data-for-the-app">
    Providing Data For The App
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementing-the-user-interface-ui">
    Implementing the User Interface (UI)
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementing-the-server-code">
    Implementing the Server Code
   </a>
@@ -680,11 +680,13 @@
         
               <div>
                 
-  <p>Supposing you have data you want to present in a way which will be intuitive to interpret. Perhaps you want to present it to colleagues, or perhaps as outreach to the public. What’s the best way to achieve that?</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="visualisation-in-a-shiny-app">
+<h1>Visualisation in a Shiny App<a class="headerlink" href="#visualisation-in-a-shiny-app" title="Permalink to this headline">¶</a></h1>
+<p>Supposing you have data you want to present in a way which will be intuitive to interpret. Perhaps you want to present it to colleagues, or perhaps as outreach to the public. What’s the best way to achieve that?</p>
 <p>Effective visualisation is clearly the key to conveying your point. An interactive plot in a website could really make it happen. But how do you go about doing that?</p>
 <p>Fortunately, there are a number of popular visualisation tools around designed to do this. In this post, we’re going to use Shiny, an R package that allows you to make interactive plot apps really easily. We’ll make an app which allows you to generate an interactive contour map of heatwave data.</p>
 <div class="section" id="let-s-get-started">
-<h1>Let’s Get Started<a class="headerlink" href="#let-s-get-started" title="Permalink to this headline">¶</a></h1>
+<h2>Let’s Get Started<a class="headerlink" href="#let-s-get-started" title="Permalink to this headline">¶</a></h2>
 <p>Before you can create a Shiny app, you first have to install RStudio. (See <a class="reference external" href="https://www.rstudio.com/">https://www.rstudio.com/</a> for installation and other basics about using RStudio.)</p>
 <p>Once you’ve done that, you’ll want to install some packages that we’ll be using in the Console window:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;shiny&quot;</span><span class="p">,</span> <span class="s2">&quot;ncdf4&quot;</span><span class="p">,</span> <span class="s2">&quot;maps&quot;</span><span class="p">,</span> <span class="s2">&quot;colourpicker&quot;</span><span class="p">))</span>
@@ -715,7 +717,7 @@
 <p>Now run the app. (Some versions of RStudio have a <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">App</span></code> button. Otherwise, you might need to run it from a menu item: <strong>Code -&gt; Run Region -&gt; Run All</strong>.) It should bring up for you an empty browser window, indicating that your Shiny app works, but doesn’t yet do anything.</p>
 </div>
 <div class="section" id="providing-data-for-the-app">
-<h1>Providing Data For The App<a class="headerlink" href="#providing-data-for-the-app" title="Permalink to this headline">¶</a></h1>
+<h2>Providing Data For The App<a class="headerlink" href="#providing-data-for-the-app" title="Permalink to this headline">¶</a></h2>
 <p>To correct this situation, let’s get our app to read in some data. Beforehand we downloaded some global heatwave data to our working directory which we will be using. For the purposes of this exercise, any global dataset should be fine. Above our <code class="docutils literal notranslate"><span class="pre">ui</span> <span class="pre">&lt;-</span> <span class="pre">fluidPage()</span></code> command, let’s add in the following:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the heatwave data file</span>
 <span class="n">ncname</span> <span class="o">&lt;-</span> <span class="s">&quot;hw_ANN_CAM5-1-2degree_All-Hist_run001_1959-2012.nc&quot;</span>
@@ -734,7 +736,7 @@
 </div>
 </div>
 <div class="section" id="implementing-the-user-interface-ui">
-<h1>Implementing the User Interface (UI)<a class="headerlink" href="#implementing-the-user-interface-ui" title="Permalink to this headline">¶</a></h1>
+<h2>Implementing the User Interface (UI)<a class="headerlink" href="#implementing-the-user-interface-ui" title="Permalink to this headline">¶</a></h2>
 <p>We’re now going to expand our <code class="docutils literal notranslate"><span class="pre">ui</span> <span class="pre">&lt;-</span> <span class="pre">fluidPage()</span></code> to provide the controllers that will allow us to manipulate the plot. We will put our controllers in a sidebar panel on the left and there we will put 6 controllers:</p>
 <ul class="simple">
 <li><p>A select input to select the variable from the data to plot.</p></li>
@@ -783,7 +785,7 @@
 <p>Let’s leave <code class="docutils literal notranslate"><span class="pre">shinyApp(ui,</span> <span class="pre">server)</span></code> at the bottom. If you run it now (i.e. click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">App</span></code>), you should see the controllers in the side panel, with a space to the right where our plot will go. Now to implement the plot…</p>
 </div>
 <div class="section" id="implementing-the-server-code">
-<h1>Implementing the Server Code<a class="headerlink" href="#implementing-the-server-code" title="Permalink to this headline">¶</a></h1>
+<h2>Implementing the Server Code<a class="headerlink" href="#implementing-the-server-code" title="Permalink to this headline">¶</a></h2>
 <p>We will now replace our <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">&lt;-</span> <span class="pre">function(input,</span> <span class="pre">output)</span> <span class="pre">{</span> <span class="pre">}</span></code> with server code that does something.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="p">{</span>
 
@@ -840,6 +842,7 @@ And that’s it!</p>
 <p>![Basic Heatwave App]()</p>
 <p>If you want your app to be accessible on the internet, you’ll need to find somewhere to host your application (e.g. Nectar) and use <code class="docutils literal notranslate"><span class="pre">Shiny</span> <span class="pre">Server</span></code> to run it. To see an example of how that’s done, <a class="reference external" href="https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean">read this great tutorial</a>.</p>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -870,7 +873,7 @@ And that’s it!</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Where</p>
+            <p class="prev-next-title">Storage - where, what, why and how?</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="2018-08-16-search-cmip5-data-interactively.html" title="next page">

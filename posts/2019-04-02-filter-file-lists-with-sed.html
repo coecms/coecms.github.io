@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fast answer &#8212; CLEX CMS Blog</title>
+    <title>Filter Lists of Files in bash Using sed &#8212; CLEX CMS Blog</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="High Resolution" href="2019-03-06-generating-print-quality-plots.html" />
+    <link rel="next" title="Generating print-quality plots in R" href="2019-03-06-generating-print-quality-plots.html" />
     <link rel="prev" title="Per-gridpoint time correlation of two models" href="2019-07-29-multi-apply-along-axis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -413,12 +413,12 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Fast answer
+     Filter Lists of Files in bash Using sed
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
-     High Resolution
+     Generating print-quality plots in R
     </a>
    </li>
    <li class="toctree-l2">
@@ -450,12 +450,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
-     Why is this important?
+     Setting up NetCDF file attributes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
-     Introduction
+     Fast MOM collation with payu and mppnncombine-fast
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,12 +480,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
-     Where
+     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
-     Let’s Get Started
+     Visualisation in a Shiny App
     </a>
    </li>
    <li class="toctree-l2">
@@ -495,7 +495,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
-     Episode 1: Terminology
+     Fortran Debugging Video Series
     </a>
    </li>
    <li class="toctree-l2">
@@ -649,39 +649,39 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fast-answer">
    Fast answer
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-a-test-directory">
    Making a test directory
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-list-files-within-a-given-year-range">
    How to list files within a given year range?
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#globs">
      Globs
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#brace-expansion">
      Brace expansion
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sed">
    sed
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
    Conclusion
   </a>
@@ -697,7 +697,9 @@
         
               <div>
                 
-  <p>We had a recent query on the <a class="reference external" href="https://arccss.slack.com">Slack support channel</a>
+  <div class="tex2jax_ignore mathjax_ignore section" id="filter-lists-of-files-in-bash-using-sed">
+<h1>Filter Lists of Files in bash Using sed<a class="headerlink" href="#filter-lists-of-files-in-bash-using-sed" title="Permalink to this headline">¶</a></h1>
+<p>We had a recent query on the <a class="reference external" href="https://arccss.slack.com">Slack support channel</a>
 asking how, when using <code class="docutils literal notranslate"><span class="pre">bash</span></code>, to programatically generate a listing of files
 when the year was part the filename, given a begin year and end year.</p>
 <p>What do I mean by that? Well the files looked a bit like this:</p>
@@ -708,7 +710,7 @@ when the year was part the filename, given a begin year and end year.</p>
 <p>The question was: in a script where the first and last year are stored as variables,
 how to easily make a list of files that can be looped over in <code class="docutils literal notranslate"><span class="pre">bash</span></code>?</p>
 <div class="section" id="fast-answer">
-<h1>Fast answer<a class="headerlink" href="#fast-answer" title="Permalink to this headline">¶</a></h1>
+<h2>Fast answer<a class="headerlink" href="#fast-answer" title="Permalink to this headline">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">eval</span></code> and brace expansion in combination with wildcard globbing, e.g.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ eval ls file.*{$begin..$end}-*.nc
 </pre></div>
@@ -718,7 +720,7 @@ between a command and it’s output)</p>
 <p>If you want to know why, read on …</p>
 </div>
 <div class="section" id="making-a-test-directory">
-<h1>Making a test directory<a class="headerlink" href="#making-a-test-directory" title="Permalink to this headline">¶</a></h1>
+<h2>Making a test directory<a class="headerlink" href="#making-a-test-directory" title="Permalink to this headline">¶</a></h2>
 <p>First step, make a test directory to test solutions like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir tmp
 $ touch tmp/file.{0197..0202}-{01..12}.nc
@@ -750,7 +752,7 @@ file.0198-06.nc  file.0199-12.nc  file.0201-06.nc  file.0202-12.nc
 <p>The above command uses brace expansion, which I will explain later.</p>
 </div>
 <div class="section" id="how-to-list-files-within-a-given-year-range">
-<h1>How to list files within a given year range?<a class="headerlink" href="#how-to-list-files-within-a-given-year-range" title="Permalink to this headline">¶</a></h1>
+<h2>How to list files within a given year range?<a class="headerlink" href="#how-to-list-files-within-a-given-year-range" title="Permalink to this headline">¶</a></h2>
 <p>So, the question was, given a begin year and end year, say</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">begin</span><span class="o">=</span><span class="mi">199</span>
 <span class="n">end</span><span class="o">=</span><span class="mi">201</span>
@@ -770,7 +772,7 @@ $ echo $begin $end
 <p>I haven’t simply pre-pended a zero at the beginning of the year otherwise it will not
 work for years &gt; 999.</p>
 <div class="section" id="globs">
-<h2>Globs<a class="headerlink" href="#globs" title="Permalink to this headline">¶</a></h2>
+<h3>Globs<a class="headerlink" href="#globs" title="Permalink to this headline">¶</a></h3>
 <p>Shell <a class="reference external" href="https://www.tldp.org/LDP/abs/html/globbingref.html"><code class="docutils literal notranslate"><span class="pre">globbing</span></code></a> uses wildcards
 and a process called “filename expansion” which is very useful and can be used to
 easily match the required pattern:</p>
@@ -821,7 +823,7 @@ to generate the filenames directly rather than using <code class="docutils liter
 builtin bash command, so it can’t be guaranteed to always be present.</p>
 </div>
 <div class="section" id="brace-expansion">
-<h2>Brace expansion<a class="headerlink" href="#brace-expansion" title="Permalink to this headline">¶</a></h2>
+<h3>Brace expansion<a class="headerlink" href="#brace-expansion" title="Permalink to this headline">¶</a></h3>
 <p>The most concise and attractive way is <a class="reference external" href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html">brace exapansion</a>. This is
 what I used above to generate the test files initially.</p>
 <p>To see how it works with a range, as above:</p>
@@ -909,7 +911,7 @@ in mind</p>
 </div>
 </div>
 <div class="section" id="sed">
-<h1>sed<a class="headerlink" href="#sed" title="Permalink to this headline">¶</a></h1>
+<h2>sed<a class="headerlink" href="#sed" title="Permalink to this headline">¶</a></h2>
 <p>If <code class="docutils literal notranslate"><span class="pre">eval</span></code> worries you, or you just like the idea of doing yet another way, another option
 is to use the stream editor <code class="docutils literal notranslate"><span class="pre">sed</span></code>.</p>
 <p>The command below is listing all the files, and then piping (<code class="docutils literal notranslate"><span class="pre">|</span></code>) the result into <code class="docutils literal notranslate"><span class="pre">sed</span></code>.
@@ -996,11 +998,12 @@ tmp/file.0201-12.nc
 </div>
 </div>
 <div class="section" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h1>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>There are often many ways to accomplish even the simplest tasks, but sometimes
 the hardest thing to know is what <strong>not</strong> to do.</p>
 <p>Note also that this is very specific to <code class="docutils literal notranslate"><span class="pre">bash</span></code>. Other shells will have their own
 limits and abilities.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -1038,7 +1041,7 @@ limits and abilities.</p>
     <a class='right-next' id="next-link" href="2019-03-06-generating-print-quality-plots.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">High Resolution</p>
+        <p class="prev-next-title">Generating print-quality plots in R</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -413,12 +413,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
-     Fast answer
+     Filter Lists of Files in bash Using sed
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
-     High Resolution
+     Generating print-quality plots in R
     </a>
    </li>
    <li class="toctree-l2">
@@ -450,12 +450,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
-     Why is this important?
+     Setting up NetCDF file attributes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
-     Introduction
+     Fast MOM collation with payu and mppnncombine-fast
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,12 +480,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
-     Where
+     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
-     Let’s Get Started
+     Visualisation in a Shiny App
     </a>
    </li>
    <li class="toctree-l2">
@@ -495,7 +495,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
-     Episode 1: Terminology
+     Fortran Debugging Video Series
     </a>
    </li>
    <li class="toctree-l2">
@@ -672,11 +672,6 @@
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-     Scott Wales, CLEX CMS
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#groupby">
      Groupby
     </a>
@@ -706,8 +701,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="climatologies-with-coarsen">
 <h1>Climatologies with ‘Coarsen’<a class="headerlink" href="#climatologies-with-coarsen" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="scott-wales-clex-cms">
-<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">¶</a></h2>
+<p><strong>Scott Wales, CLEX CMS</strong></p>
 <p>A reasonably recent addition to Xarray is the ‘coarsen’ function, which allows you to resample a DataArray at a regular frequency. For well-behaved datasets this provides some interesting opportunities for optimisation, getting around the inefficiencies of ‘groupby’ from needing to work with arbitrary time spacings.</p>
 <p>Let’s look at how ‘coarsen’ can be used to calculate a monthly climatology with less computational complexity than ‘groupby’ (note that this will only work with Conda analysis3 environment 21.07 or later)</p>
 <div class="cell docutils container">
@@ -766,7 +760,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/fs38/publications/CMIP6/CMIP/CSIRO/ACCESS-ESM1-5/historical/r1i1p1f1/Amon/ta/gn/latest/*.nc&#39;</span><span class="p">,</span>
                            <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;plev&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mi">144</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="mi">192</span><span class="p">})</span><span class="o">.</span><span class="n">ta</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>

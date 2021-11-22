@@ -413,12 +413,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
-     Fast answer
+     Filter Lists of Files in bash Using sed
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
-     High Resolution
+     Generating print-quality plots in R
     </a>
    </li>
    <li class="toctree-l2">
@@ -450,12 +450,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
-     Why is this important?
+     Setting up NetCDF file attributes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
-     Introduction
+     Fast MOM collation with payu and mppnncombine-fast
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,12 +480,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
-     Where
+     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
-     Let’s Get Started
+     Visualisation in a Shiny App
     </a>
    </li>
    <li class="toctree-l2">
@@ -495,7 +495,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
-     Episode 1: Terminology
+     Fortran Debugging Video Series
     </a>
    </li>
    <li class="toctree-l2">
@@ -666,39 +666,27 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Example to improve code design
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
-     Claire Carouge, CLEX CMS
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#badly-organised-code">
    Badly organised code
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#analysis">
      Analysis
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#reading-the-data">
        Reading the data
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#select-the-data">
        Select the data
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#perform-the-analysis">
        Perform the analysis
       </a>
@@ -707,41 +695,39 @@
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#better-code-structure">
    Better code structure
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#reading-and-select-the-data">
      Reading and select the data
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      Analysis
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plot-the-data">
      Plot the data
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plotting">
-       Plotting
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting">
+     Plotting
+    </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
    Conclusion
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#disclaimer">
    Disclaimer
   </a>
@@ -759,8 +745,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="example-to-improve-code-design">
 <h1>Example to improve code design<a class="headerlink" href="#example-to-improve-code-design" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="claire-carouge-clex-cms">
-<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
+<p><strong>Claire Carouge, CLEX CMS</strong></p>
 <p>We are often asked how to organise a code for tasks such as:</p>
 <ul class="simple">
 <li><p>performing the same analysis on different models or grid resolutions</p></li>
@@ -780,10 +765,8 @@
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="badly-organised-code">
-<h1>Badly organised code<a class="headerlink" href="#badly-organised-code" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="badly-organised-code">
+<h2>Badly organised code<a class="headerlink" href="#badly-organised-code" title="Permalink to this headline">¶</a></h2>
 <p>The following code is correct as it gives the correct answer but it is prone to errors because the code is repeated. This increases the risk of typos. For more complex analyses, it can also make it harder to test as it is not modular. And it can be time-consuming to add extra data to the analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1808,7 +1791,7 @@ Attributes:
 </div>
 </div>
 <div class="section" id="analysis">
-<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h3>
 <p>The code has three parts:</p>
 <ul class="simple">
 <li><p>read in the data</p></li>
@@ -1818,24 +1801,24 @@ Attributes:
 <p>There are also some checks done either with displaying the data or plotting the data.</p>
 <p>The code has a lot of similar lines with only an option that changes between the lines. It was quite long to write as each time I had to be careful to use the correct name.</p>
 <div class="section" id="reading-the-data">
-<h3>Reading the data<a class="headerlink" href="#reading-the-data" title="Permalink to this headline">¶</a></h3>
+<h4>Reading the data<a class="headerlink" href="#reading-the-data" title="Permalink to this headline">¶</a></h4>
 <p>The part to read the data is essentially composed of 2 sets of copied lines, changing only the inputs: once for the historical data path and once for the pi-Control data path.</p>
 </div>
 <div class="section" id="select-the-data">
-<h3>Select the data<a class="headerlink" href="#select-the-data" title="Permalink to this headline">¶</a></h3>
+<h4>Select the data<a class="headerlink" href="#select-the-data" title="Permalink to this headline">¶</a></h4>
 <p>This part is very short. Although the part to select only the surface layer (<code class="docutils literal notranslate"><span class="pre">isel(solth=0)</span></code>) is repeated, it is only one line so it’s fine to keep.</p>
 </div>
 <div class="section" id="perform-the-analysis">
-<h3>Perform the analysis<a class="headerlink" href="#perform-the-analysis" title="Permalink to this headline">¶</a></h3>
+<h4>Perform the analysis<a class="headerlink" href="#perform-the-analysis" title="Permalink to this headline">¶</a></h4>
 <p>In this case, we have 2 sets of four lines. For each dataset, we have a different line for each season. In short, we are performing the same analysis on 2 datasets for 4 options each time. We could simplify that with a function that would calculate the analysis for all 4 options at once.</p>
 <p>Now let’s see how we can rewrite the code in a more modular way and limiting copied lines</p>
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="better-code-structure">
-<h1>Better code structure<a class="headerlink" href="#better-code-structure" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="better-code-structure">
+<h2>Better code structure<a class="headerlink" href="#better-code-structure" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="reading-and-select-the-data">
-<h2>Reading and select the data<a class="headerlink" href="#reading-and-select-the-data" title="Permalink to this headline">¶</a></h2>
+<h3>Reading and select the data<a class="headerlink" href="#reading-and-select-the-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to read in the data</span>
@@ -2853,7 +2836,7 @@ We also define two dictionaries:</p>
 <p>This structures allows us to expand to more experiments more easily. One just needs to add an experiment name and path to the <code class="docutils literal notranslate"><span class="pre">experiments</span></code> dictionary. Everything else is then computed for all datasets via a loop through the keys of the <code class="docutils literal notranslate"><span class="pre">experiments</span></code> or <code class="docutils literal notranslate"><span class="pre">data</span></code> dictionaries.</p>
 </div>
 <div class="section" id="id1">
-<h2>Analysis<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h3>Analysis<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>For our analysis, we will define dictionaries and functions again. This will reduce the number of copied lines from 8 to 0.</p>
 <p>In this way, we also remove any hard-written reference to the name of the experiments and it will work for any number of experiments. The final dictionary <code class="docutils literal notranslate"><span class="pre">pct_dict</span></code> contains a dictionary associated with each key, i.e. a dictionary of dictionaries. The keys of <code class="docutils literal notranslate"><span class="pre">pct_dict</span></code> are the names of the experiments originally defined in <code class="docutils literal notranslate"><span class="pre">experiments</span></code></p>
 <div class="cell docutils container">
@@ -2907,7 +2890,7 @@ Coordinates:
 </div>
 </div>
 <div class="section" id="plot-the-data">
-<h2>Plot the data<a class="headerlink" href="#plot-the-data" title="Permalink to this headline">¶</a></h2>
+<h3>Plot the data<a class="headerlink" href="#plot-the-data" title="Permalink to this headline">¶</a></h3>
 <p>The easiest way to perform a panel plot of all the percentiles is to get the data in a DataArray instead of a dictionary.</p>
 <p>For this, we give two solutions:</p>
 <ul class="simple">
@@ -2992,6 +2975,7 @@ Coordinates:
 </div>
 </div>
 <p>We could also simply call <code class="docutils literal notranslate"><span class="pre">dictionary_to_dataarray</span></code> from <code class="docutils literal notranslate"><span class="pre">season_quantile</span></code> to transform the dictionary into a dataarray just before returning the result. All of these ways to do it are quite equivalent. If you know you want a DataArray, you may as well write a function that gives you a DataArray.</p>
+</div>
 <div class="section" id="plotting">
 <h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -3044,9 +3028,8 @@ Coordinates:
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>When you wonder how to organise your code, keep those principles in mind:</p>
 <ul class="simple">
 <li><p>reduce the number of lines that are copied with a single option changed.</p></li>
@@ -3054,10 +3037,11 @@ Coordinates:
 </ul>
 <p>Dictionaries and functions are often useful to reach those goals. The final version of the code isn’t necessarily shorter but it is more flexible and contains functions that could prove useful to re-use in other analyses.</p>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="disclaimer">
-<h1>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>
 <p>For this specific analysis we don’t need the dictionary or function. We only do so here to create a simple example for people to understand. Normally, the seasonal quantiles can be calculated with:</p>
 <p><code class="docutils literal notranslate"><span class="pre">hist_pct</span> <span class="pre">=</span> <span class="pre">historical[&quot;tsl&quot;].groupby('time.season').quantile(0.9,</span> <span class="pre">dim=&quot;time&quot;)</span></code></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
