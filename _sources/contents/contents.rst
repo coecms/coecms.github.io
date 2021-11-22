@@ -21,7 +21,7 @@
     /contents/tag-events
     /contents/tag-plotting
     /contents/tag-python
-    /contents/tag-regridder
+    /contents/tag-regridding
     /contents/tag-xarray
     
 

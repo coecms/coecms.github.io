@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Line plot types &#8212; CLEX CMS Blog</title>
+    <title>Review of line plots with Xarray &#8212; CLEX CMS Blog</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -54,7 +54,10 @@
     <link rel="next" title="Speeding up access to large datasets with Dask Delayed" href="2018-09-14-dask-era-interim.html" />
     <link rel="prev" title="Basic usage of python logging module" href="2018-10-05-introduction-to-python-logging.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -93,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Latest
  </span>
@@ -111,12 +114,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-10-01-different_coordinates.html">
-   The problem
+   Effect of rounding on coordinates with Xarray
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-09-30-code-design.html">
-   Badly organised code
+   Example to improve code design
   </a>
  </li>
  <li class="toctree-l1">
@@ -125,7 +128,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tags
  </span>
@@ -264,8 +267,8 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/tag-regridder.html">
-   regridder
+  <a class="reference internal" href="../contents/tag-regridding.html">
+   regridding
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
@@ -298,7 +301,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Archive
  </span>
@@ -326,12 +329,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-10-01-different_coordinates.html">
-     The problem
+     Effect of rounding on coordinates with Xarray
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-09-30-code-design.html">
-     Badly organised code
+     Example to improve code design
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +398,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
-     Problem description
+     Compare data with different calendars
     </a>
    </li>
    <li class="toctree-l2">
@@ -462,14 +465,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
-     <strong>
-      Basic usage of python logging module
-     </strong>
+     Basic usage of python logging module
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Line plot types
+     Review of line plots with Xarray
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,8 +489,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
      Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
     </a>
    </li>
    <li class="toctree-l2">
@@ -528,6 +539,28 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
  </li>
 </ul>
 
@@ -635,6 +668,18 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
+   Review of line plots with Xarray
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
+     Claire Carouge, CLEX CMS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#line-plot-types">
    Line plot types
   </a>
   <ul class="visible nav section-nav flex-column">
@@ -683,7 +728,11 @@
         
               <div>
                 
-  <p>This week I am going to look at line plots with Xarray. Xarray plotting is based on Matplotlib. But Xarray gives polished plots quicker as it automatically uses the metadata in the netcdf file for labelling the plot. Also, a lot of plotting tasks can be achieved in a line. Of course, if your netcdf file is lacking information, you’ll still need to add to the plot using Matplotlib. I’ll summarise here how to plot:</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="review-of-line-plots-with-xarray">
+<h1>Review of line plots with Xarray<a class="headerlink" href="#review-of-line-plots-with-xarray" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="claire-carouge-clex-cms">
+<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
+<p>This week I am going to look at line plots with Xarray. Xarray plotting is based on Matplotlib. But Xarray gives polished plots quicker as it automatically uses the metadata in the netcdf file for labelling the plot. Also, a lot of plotting tasks can be achieved in a line. Of course, if your netcdf file is lacking information, you’ll still need to add to the plot using Matplotlib. I’ll summarise here how to plot:</p>
 <ul class="simple">
 <li><p>timeseries</p></li>
 <li><p>multi-line plots</p></li>
@@ -721,6 +770,8 @@ Attributes:
     history:           2012-06-12T22:50:20Z altered by CMOR: replaced missing...
     associated_files:  baseURL: http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation...
 </pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -997,45 +1048,36 @@ Coordinates:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-18.04-py"
+            mode: "conda-env-analysis3-21.10-py"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-18.04-py",
+            kernelName: "conda-env-analysis3-21.10-py",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-18.04-py'</script>
+    <script>kernelName = 'conda-env-analysis3-21.10-py'</script>
 
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="2018-10-05-introduction-to-python-logging.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><strong>Basic usage of python logging module</strong></p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="2018-10-05-introduction-to-python-logging.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Basic usage of python logging module</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2018-09-14-dask-era-interim.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Speeding up access to large datasets with Dask Delayed</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="2018-09-14-dask-era-interim.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Speeding up access to large datasets with Dask Delayed</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -1056,8 +1098,7 @@ Coordinates:
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
