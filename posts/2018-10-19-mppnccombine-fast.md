@@ -7,8 +7,7 @@ excerpt: >-
 categories: MOM, collate, mpi
 published: true
 ---
-
-# Introduction
+# Fast MOM collation with payu and mppnncombine-fast
 
 MOM ocean outputs (and restarts) are usually tiled: the output is distributed over multiple files
 because it is faster. After the model is run the tile outputs are joined back together using a
@@ -29,7 +28,7 @@ to directly copy compressed data without the extra steps of decompression and re
 
 
 
-# Requirements
+## Requirements
 
 1. You will need a `mppnccombine-fast` executable. Either use one I have compiled ``/short/public/aph502/mppnccombine-fast`` or get the [the source](https://www.github.com/coecms/mppnccombine-fast) and compile your own version
 
@@ -75,7 +74,7 @@ Don't *have* to specify `flags`, `enable` or `exe` unless you need to specify va
 
 There are fewer `flags`, as `mppnccombine-fast` has fewer command options than `mppnccombine`
    
-# Resource requirements
+## Resource requirements
 
 Memory use should only depend on chunksize in the compressed file, not on the overall size of the file being written. Unfortunately a memory leak bug in the underlying ``HDF5`` library means memory use will go up with the number of times data is written to a collated file. It is difficult to predict, but 2-4GB per thread has been the upper limit observed so far.
 
@@ -84,7 +83,7 @@ Walltime should be minutes. There is no speed-up for low resolution outputs (MPI
 There is a minimum of 2 cpus. Speed improvements up to 8 cpus in some cases has been observed, but experimentation is required to optimise this for any particular configuration, as the size and number of diagnostics can vary a great deal.
 
 
-# Layout affects efficiency
+## Layout affects efficiency
 
 Chunk sizes are chosen automatically by netCDF4 and depend on tile size. Inconsistent tile sizes leads to inconsistent chunk sizes. Inconsistent chunk sizes makes `mppnccombine-fast` slow as it has to do the uncompress/compress step for tiles which are not the same as the first
 
