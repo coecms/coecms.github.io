@@ -1,0 +1,138 @@
+2018-04-19-cartopy-maps:
+  excerpt: Cartopy improves plots on maps
+  title: Improving map plots with Cartopy
+2018-04-19-plotting-basics:
+  excerpt: Let's look at some basic plotting with Python
+  title: Plotting Basics
+2018-04-24-reading-envi-met:
+  excerpt: null
+  title: Reading ENVI_MET files
+2018-04-27-subplots:
+  excerpt: An advanced plot with multiple subplots and colour bars
+  title: Subplots
+2018-04-27-xarray-plot-types:
+  excerpt: A few of the basic plot types that Xarray offers
+  title: Xarray plot types
+2018-05-01-latlon-reference:
+  excerpt: I keep forgetting where continents are. Let's make a map to help with that
+    using Cartopy
+  title: Python Tuesday - Lat-Lon reference chart
+2018-05-22-python-netcdf:
+  excerpt: null
+  title: NetCDF Python library overview
+2018-08-02-Merge-arrays-with-missing-data:
+  excerpt: How to merge two datasets of the same quantity together with proper handling
+    of missing data.
+  title: Merge arrays with missing data
+2018-08-10-Fortran-Debugging-Videos:
+  excerpt: Presentation of Fortran Debugging Video Series
+  title: Fortran Debugging Video Series
+2018-08-16-search-cmip5-data-interactively:
+  excerpt: How to use the ARCCSSive module to search and access CMIP5 data interactively
+    in your python code.
+  title: How to search CMIP5 data interactively
+2018-08-21-visualisation-in-shiny-app:
+  excerpt: How to use the R Shiny package to create cool visualisation apps
+  title: Visualisation in a Shiny App
+2018-09-03-storage-where-what-why-how:
+  excerpt: Where is my stuff? What even is it? Why is it taking up so much space and
+    how can I fix it?
+  title: Storage - where, what, why and how?
+2018-09-14-dask-era-interim:
+  excerpt: Using the power of Dask to start working with lots of files quickly
+  title: Speeding up large dataset loads with Dask
+2018-09-28-line-plots-with-xarray:
+  excerpt: Demonstrating how to quickly plot timeseries and vertical profiles with
+    Xarray.
+  title: Line plots with Xarray
+2018-10-05-introduction-to-python-logging:
+  excerpt: Basic introduction of python logging module to add debug statements to
+    your code.
+  title: Introduction to python logging
+2018-10-12-create-netcdf:
+  excerpt: Quick guide on creating NetCDF files with Fortran and Python (xarray)
+  title: Creating NetCDF Files
+2018-10-19-mppnccombine-fast:
+  excerpt: Introducing payu support for a new program for fast collation of tiled
+    MOM outputs (or any other FMS based model)
+  title: Fast MOM collation with payu and mppnncombine-fast
+2018-10-26-Setting-up-NetCDF-file-attributes:
+  excerpt: How to set up NetCDF global and variable attributes according to CF conventions
+  title: Setting up NetCDF file attributes
+2018-11-27-Value-when-other-is-max:
+  excerpt: Investigate how to find the values of variable B at the times variable
+    A is maximum.
+  title: Using a variable to mask another variable
+2019-01-18-using-opendap:
+  excerpt: A short introduction to opendap and an example of how to use xarray and
+    opendap to access a remote dataset.
+  title: How to use opendap to access remote files.
+2019-03-01-coupling-resolution:
+  excerpt: null
+  title: Changing resolution in the ACCESS coupled model
+2019-03-06-generating-print-quality-plots:
+  excerpt: null
+  title: Generating print-quality plots in R
+2019-04-02-filter-file-lists-with-sed:
+  excerpt: null
+  title: Filter Lists of Files in bash Using sed
+2019-07-29-multi-apply-along-axis:
+  excerpt: Use a trick with Numpy's apply_along_axis() to process multiple arrays
+  title: Time correlation at each gridpoint of multiple datasets
+2019-09-03-python-animation:
+  excerpt: Quick guide on creating animated gifs and mp4 videos of datasets
+  title: Animating fields with Python
+2019-11-12-Calendars-and-monthly-data:
+  excerpt: To compare timeseries on different calendars, you first need to get all
+    data on the same calendar. This blog shows a method in a simple case of monthly
+    data.
+  title: Aligning dates for monthly data on different calendars
+2019-11-12_Calendars_and_monthly_data:
+  excerpt: null
+  title: 2019-11-12_Calendars_and_monthly_data.md
+2020-09-22-wrapping-pcolormesh:
+  excerpt: How to avoid blank gaps at the meridian and poles
+  tags:
+  - python
+  - plotting
+  title: Wrapping pyplot.pcolormesh around the globe
+2020-09-23-split-yaxis:
+  excerpt: Making a plot where the top and bottom half have different axis ranges
+  tags:
+  - python
+  - plotting
+  title: Plots with a split y axis
+2020-09-28-climate-finder-introduction:
+  excerpt: 'Using CleF command line to query CMIP5 and CMIP6 data at NCI '
+  tags:
+  - data
+  - cmip
+  title: CleF - Climate Finder basic commands
+2020-09-28-eventdetection:
+  excerpt: Calculating basic statistics on events
+  tags:
+  - python
+  - events
+  title: Basic event detection
+2020-10-12-climate-finder-extended-command-line:
+  excerpt: Advanced usage of CleF command line options to query CMIP5 and CMIP6 data
+    at NCI
+  tags:
+  - data
+  - cmip
+  title: CleF - Climate Finder advanced command line options
+2021-04-09-xesmf-regrid:
+  excerpt: Use xesmf.Regridder to interpolate data efficiently
+  tags:
+  - python
+  - regridder
+  title: Efficient Regridding with xesmf
+2021-07-29-coarsen_climatology:
+  excerpt: A reasonably recent addition to Xarray is the 'coarsen' function, which
+    allows you to resample a DataArray at a regular frequency. For well-behaved datasets
+    this provides some interesting opportunities for optimisation, getting around
+    the inefficiencies of 'groupby' from needing to work with arbitrary time spacings.
+  tags:
+  - xarray
+  - climatology
+  title: Climatologies with 'coarsen'
