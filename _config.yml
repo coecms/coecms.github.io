@@ -30,3 +30,16 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+sphinx:
+    config:
+        intersphinx_mapping:
+            numpy:
+                - https://numpy.org/doc/stable/
+                - null
+            xarray:
+                - http://xarray.pydata.org/en/stable/
+                - null
+            dask:
+                - https://docs.dask.org/en/stable/
+                - null
