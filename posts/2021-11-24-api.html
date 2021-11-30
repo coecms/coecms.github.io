@@ -1,0 +1,3398 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Calculation with Xarray + Dask &#8212; CLEX CMS Blog</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Regridding from one coordinate system to another with pyproj" href="2021-11-02-pyproj-regrid.html" />
+    <link rel="prev" title="CLEX CMS Blog" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CLEX CMS Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   CLEX CMS Blog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Latest
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   API Calculation with Xarray + Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+   Regridding from one coordinate system to another with pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-pyproj.html">
+   Converting between coordinate systems with Pyproj
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-10-01-different_coordinates.html">
+   Effect of rounding on coordinates with Xarray
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2021-09-30-code-design.html">
+   Example to improve code design
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tags
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-climatology.html">
+   climatology
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-cmip.html">
+   cmip
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-dask.html">
+   dask
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     API Calculation with Xarray + Dask
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-data.html">
+   data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-events.html">
+   events
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-plotting.html">
+   plotting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-pyproj.html">
+   pyproj
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-python.html">
+   python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/tag-regridding.html">
+   regridding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-xarray.html">
+   xarray
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     API Calculation with Xarray + Dask
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Archive
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/year-2021.html">
+   2021
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     API Calculation with Xarray + Dask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-10-01-different_coordinates.html">
+     Effect of rounding on coordinates with Xarray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-09-30-code-design.html">
+     Example to improve code design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-07-29-coarsen_climatology.html">
+     Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2021-04-09-xesmf-regrid.html">
+     Using xesmf to efficiently regrid data to another resolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2020.html">
+   2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
+     Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-eventdetection.html">
+     Basic event statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-28-climate-finder-introduction.html">
+     Using CleF - Climate Finder to discover ESGF data at NCI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-23-split-yaxis.html">
+     Split Y Axis plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">
+     Wrapping gridded data around the globe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2019.html">
+   2019
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
+     Compare data with different calendars
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-09-03-python-animation.html">
+     How to animate 2D fields
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">
+     Per-gridpoint time correlation of two models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">
+     Filter Lists of Files in bash Using sed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">
+     Generating print-quality plots in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-03-01-coupling-resolution.html">
+     Setting up a coupled model at a new resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2019-01-18-using-opendap.html">
+     Using OPeNDAP to access data remotely: MUR example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2018.html">
+   2018
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
+     Find the value of a variable at the times when another variable is maximum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
+     Setting up NetCDF file attributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
+     Fast MOM collation with payu and mppnncombine-fast
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-12-create-netcdf.html">
+     How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
+     Basic usage of python logging module
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
+     Review of line plots with Xarray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-14-dask-era-interim.html">
+     Speeding up access to large datasets with Dask Delayed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-09-03-storage-where-what-why-how.html">
+     Storage - where, what, why and how?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">
+     Visualisation in a Shiny App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
+     Fortran Debugging Video Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-22-python-netcdf.html">
+     Python Tuesday: NetCDF Python library overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-05-01-latlon-reference.html">
+     Making a lat-lon reference plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-xarray-plot-types.html">
+     Xarray plot types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-27-subplots.html">
+     Subplots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-24-reading-envi-met.html">
+     Reading ENVI_MET files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-plotting-basics.html">
+     Python Plotting Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-04-19-cartopy-maps.html">
+     Improving maps with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/posts/2021-11-24-api.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2021-11-24-api.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2021-11-24-api.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculation-on-a-single-point">
+   Calculation on a single point
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculation-over-the-whole-grid">
+   Calculation over the whole grid
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convert-to-a-function">
+   Convert to a function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#passing-the-last-timestep">
+   Passing the last timestep
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pure-dask-advanced">
+   Pure Dask (Advanced)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="api-calculation-with-xarray-dask">
+<h1>API Calculation with Xarray + Dask<a class="headerlink" href="#api-calculation-with-xarray-dask" title="Permalink to this headline">¶</a></h1>
+<p><strong>Scott Wales, CLEX CMS</strong></p>
+<p>Let’s look at how we can calculate the <a class="reference external" href="https://glossary.ametsoc.org/wiki/Antecedent_precipitation_index">antecedent precipitation index (API)</a> on a large dataset with Xarray and Dask.</p>
+<p>API is defined from precipitation in a recursive way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">API</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span> <span class="o">=</span> <span class="n">precip</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span>
+<span class="n">API</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">API</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">precip</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>with k &lt; 1, so that precipitation on previous days impacts the API but that impact decays over time.</p>
+<p>To start out with, let’s import some libraries and set up a Dask cluster - I’m running this notebook on <a class="reference external" href="https://ood.nci.org.au">https://ood.nci.org.au</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">dask.array</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xarray</span><span class="o">.</span><span class="n">set_options</span><span class="p">(</span><span class="n">display_expand_data</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">climtas.nci</span>
+<span class="n">climtas</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px;">Client</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-138a2be4-4d9a-11ec-bc04-fa163e54927d</p>
+        <table style="width: 100%; text-align: left;">
+
+        <tr>
+
+            <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
+            <td style="text-align: left;"><strong>Cluster type:</strong> distributed.LocalCluster</td>
+
+        </tr>
+
+
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard: </strong> <a href="/node/ood-vn6/26243/proxy/8787/status" target="_blank">/node/ood-vn6/26243/proxy/8787/status</a>
+                </td>
+                <td style="text-align: left;"></td>
+            </tr>
+
+
+        </table>
+
+
+            <details>
+            <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
+            <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
+    </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">2ca2f1f4</p>
+        <table style="width: 100%; text-align: left;">
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard:</strong> <a href="/node/ood-vn6/26243/proxy/8787/status" target="_blank">/node/ood-vn6/26243/proxy/8787/status</a>
+                </td>
+                <td style="text-align: left;">
+                    <strong>Workers:</strong> 4
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Total threads:</strong> 4
+                </td>
+                <td style="text-align: left;">
+                    <strong>Total memory:</strong> 11.23 GiB
+                </td>
+            </tr>
+
+            <tr>
+    <td style="text-align: left;"><strong>Status:</strong> running</td>
+    <td style="text-align: left;"><strong>Using processes:</strong> True</td>
+</tr>
+
+
+        </table>
+
+        <details>
+            <summary style="margin-bottom: 20px;">
+                <h3 style="display: inline;">Scheduler Info</h3>
+            </summary>
+
+            <div style="">
+    <div>
+        <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
+        <div style="margin-left: 48px;">
+            <h3 style="margin-bottom: 0px;">Scheduler</h3>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-6dc9cf31-2835-4499-9198-67d1dea14566</p>
+            <table style="width: 100%; text-align: left;">
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Comm:</strong> tcp://127.0.0.1:37215
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Workers:</strong> 4
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Dashboard:</strong> <a href="/node/ood-vn6/26243/proxy/8787/status" target="_blank">/node/ood-vn6/26243/proxy/8787/status</a>
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total threads:</strong> 4
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Started:</strong> Just now
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total memory:</strong> 11.23 GiB
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <details style="margin-left: 48px;">
+        <summary style="margin-bottom: 20px;">
+            <h3 style="display: inline;">Workers</h3>
+        </summary>
+
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 0</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://10.0.128.134:44215
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="/node/ood-vn6/26243/proxy/37089/status" target="_blank">/node/ood-vn6/26243/proxy/37089/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 2.81 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:44571
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /local/w35/saw562/tmp/dask-worker-space/worker-tlpd51xc
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 1</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://10.0.128.134:39293
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="/node/ood-vn6/26243/proxy/45357/status" target="_blank">/node/ood-vn6/26243/proxy/45357/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 2.81 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:42113
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /local/w35/saw562/tmp/dask-worker-space/worker-bsooahpt
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 2</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://10.0.128.134:37385
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="/node/ood-vn6/26243/proxy/38909/status" target="_blank">/node/ood-vn6/26243/proxy/38909/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 2.81 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:44871
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /local/w35/saw562/tmp/dask-worker-space/worker-hwk_syl7
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 3</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://10.0.128.134:39297
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="/node/ood-vn6/26243/proxy/40713/status" target="_blank">/node/ood-vn6/26243/proxy/40713/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 2.81 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:33853
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /local/w35/saw562/tmp/dask-worker-space/worker-p3qi1ruc
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+
+    </details>
+</div>
+
+        </details>
+    </div>
+</div>
+            </details>
+
+
+    </div>
+</div></div></div>
+</div>
+<p>For our sample dataset, I’ll use FROGs, which provides precip from a number of datasets regridded to a common one degree grid. The data is chunked by default with one chunk per year in the time axis, since that’s how the files themselves are split up.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;</span><span class="p">)</span>
+<span class="n">precip</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">rain</span>
+<span class="n">precip</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;rain&#x27; (time: 15341, lat: 180, lon: 360)&gt;
+dask.array&lt;chunksize=(365, 180, 360), meta=np.ndarray&gt;
+Coordinates:
+  * time     (time) datetime64[ns] 1979-01-01T13:30:00 ... 2020-12-31
+  * lon      (lon) float64 -179.5 -178.5 -177.5 -176.5 ... 177.5 178.5 179.5
+  * lat      (lat) float64 -89.5 -88.5 -87.5 -86.5 -85.5 ... 86.5 87.5 88.5 89.5
+Attributes:
+    standard_name:  lwe_precipitation_rate
+    long_name:      Total precipitation, ERA5 reanalysis daily accumulated ra...
+    units:          mm/day
+    comment:        This daily precipitation is prepared by creating a accumu...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'rain'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 15341</li><li><span class='xr-has-index'>lat</span>: 180</li><li><span class='xr-has-index'>lon</span>: 360</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-3a96f6fd-f57e-4703-b900-f607333bcfe8' class='xr-array-in' type='checkbox' ><label for='section-3a96f6fd-f57e-4703-b900-f607333bcfe8' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(365, 180, 360), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 3.70 GiB </td>
+                        <td> 90.47 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (15341, 180, 360) </td>
+                        <td> (366, 180, 360) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 126 Tasks </td>
+                        <td> 42 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="160" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="26" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="26" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="13" y2="29" />
+  <line x1="16" y1="6" x2="16" y2="32" />
+  <line x1="20" y1="10" x2="20" y2="36" />
+  <line x1="23" y1="13" x2="23" y2="39" />
+  <line x1="28" y1="18" x2="28" y2="44" />
+  <line x1="31" y1="21" x2="31" y2="48" />
+  <line x1="35" y1="25" x2="35" y2="51" />
+  <line x1="38" y1="28" x2="38" y2="54" />
+  <line x1="41" y1="31" x2="41" y2="58" />
+  <line x1="46" y1="36" x2="46" y2="63" />
+  <line x1="50" y1="40" x2="50" y2="66" />
+  <line x1="53" y1="43" x2="53" y2="69" />
+  <line x1="57" y1="47" x2="57" y2="73" />
+  <line x1="60" y1="50" x2="60" y2="76" />
+  <line x1="65" y1="55" x2="65" y2="81" />
+  <line x1="68" y1="58" x2="68" y2="85" />
+  <line x1="72" y1="62" x2="72" y2="88" />
+  <line x1="75" y1="65" x2="75" y2="91" />
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,96.78246252165783 10.0,26.19422722754018" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="39" y2="0" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="43" y2="3" />
+  <line x1="16" y1="6" x2="46" y2="6" />
+  <line x1="20" y1="10" x2="50" y2="10" />
+  <line x1="23" y1="13" x2="53" y2="13" />
+  <line x1="28" y1="18" x2="58" y2="18" />
+  <line x1="31" y1="21" x2="61" y2="21" />
+  <line x1="35" y1="25" x2="65" y2="25" />
+  <line x1="38" y1="28" x2="68" y2="28" />
+  <line x1="41" y1="31" x2="71" y2="31" />
+  <line x1="46" y1="36" x2="76" y2="36" />
+  <line x1="50" y1="40" x2="80" y2="40" />
+  <line x1="53" y1="43" x2="83" y2="43" />
+  <line x1="57" y1="47" x2="87" y2="47" />
+  <line x1="60" y1="50" x2="90" y2="50" />
+  <line x1="65" y1="55" x2="95" y2="55" />
+  <line x1="68" y1="58" x2="98" y2="58" />
+  <line x1="72" y1="62" x2="102" y2="62" />
+  <line x1="75" y1="65" x2="105" y2="65" />
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="39" y1="0" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 39.943215098459234,0.0 110.53145039257689,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="96" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+  <line x1="110" y1="70" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.58823529411765,70.58823529411765 110.53145039257689,70.58823529411765 110.53145039257689,96.78246252165783 80.58823529411765,96.78246252165783" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="95.559843" y="116.782463" font-size="1.0rem" font-weight="100" text-anchor="middle" >360</text>
+  <text x="130.531450" y="83.685349" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,130.531450,83.685349)">180</text>
+  <text x="35.294118" y="81.488345" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,81.488345)">15341</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-e85ca027-dd77-4368-9230-451757c895f7' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e85ca027-dd77-4368-9230-451757c895f7' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1979-01-01T13:30:00 ... 2020-12-31</div><input id='attrs-50551854-a268-4016-9e08-ed023116b267' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-50551854-a268-4016-9e08-ed023116b267' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f413fbb8-900f-4b18-aebe-b8afe9006d0c' class='xr-var-data-in' type='checkbox'><label for='data-f413fbb8-900f-4b18-aebe-b8afe9006d0c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>The time values of the grid, following the standard CF calendar, in days, centred, since 1970-01-01 00:00:00</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1979-01-01T13:30:00.000000000&#x27;, &#x27;1979-01-02T12:00:00.000000000&#x27;,
+       &#x27;1979-01-03T12:00:00.000000000&#x27;, ..., &#x27;2020-12-29T00:00:00.000000000&#x27;,
+       &#x27;2020-12-30T00:00:00.000000000&#x27;, &#x27;2020-12-31T00:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-179.5 -178.5 ... 178.5 179.5</div><input id='attrs-4985169f-af5a-475b-abaf-8f31f583f7a1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4985169f-af5a-475b-abaf-8f31f583f7a1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-70f6939f-fa04-4984-abb6-c9cd87972f97' class='xr-var-data-in' type='checkbox'><label for='data-70f6939f-fa04-4984-abb6-c9cd87972f97' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>comment :</span></dt><dd>The longitude values of the grid, in degrees, ranging between [-179.5; 179.5]. The grid is centred, i.e., a value of +0.5 corresponds to the degree [0W, 1W]</dd></dl></div><div class='xr-var-data'><pre>array([-179.5, -178.5, -177.5, ...,  177.5,  178.5,  179.5])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-89.5 -88.5 -87.5 ... 88.5 89.5</div><input id='attrs-3753ef4a-9afa-45e3-95bc-5e63777949d0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3753ef4a-9afa-45e3-95bc-5e63777949d0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b28a2908-ac23-44d1-bc1a-a01288618ab9' class='xr-var-data-in' type='checkbox'><label for='data-b28a2908-ac23-44d1-bc1a-a01288618ab9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>comment :</span></dt><dd>The latitude values of the grid, in degrees, ranging between [-89.5; 89.5]. The grid is centred, i.e., a value of +0.5 corresponds to the degree [0N, 1N]</dd></dl></div><div class='xr-var-data'><pre>array([-89.5, -88.5, -87.5, -86.5, -85.5, -84.5, -83.5, -82.5, -81.5, -80.5,
+       -79.5, -78.5, -77.5, -76.5, -75.5, -74.5, -73.5, -72.5, -71.5, -70.5,
+       -69.5, -68.5, -67.5, -66.5, -65.5, -64.5, -63.5, -62.5, -61.5, -60.5,
+       -59.5, -58.5, -57.5, -56.5, -55.5, -54.5, -53.5, -52.5, -51.5, -50.5,
+       -49.5, -48.5, -47.5, -46.5, -45.5, -44.5, -43.5, -42.5, -41.5, -40.5,
+       -39.5, -38.5, -37.5, -36.5, -35.5, -34.5, -33.5, -32.5, -31.5, -30.5,
+       -29.5, -28.5, -27.5, -26.5, -25.5, -24.5, -23.5, -22.5, -21.5, -20.5,
+       -19.5, -18.5, -17.5, -16.5, -15.5, -14.5, -13.5, -12.5, -11.5, -10.5,
+        -9.5,  -8.5,  -7.5,  -6.5,  -5.5,  -4.5,  -3.5,  -2.5,  -1.5,  -0.5,
+         0.5,   1.5,   2.5,   3.5,   4.5,   5.5,   6.5,   7.5,   8.5,   9.5,
+        10.5,  11.5,  12.5,  13.5,  14.5,  15.5,  16.5,  17.5,  18.5,  19.5,
+        20.5,  21.5,  22.5,  23.5,  24.5,  25.5,  26.5,  27.5,  28.5,  29.5,
+        30.5,  31.5,  32.5,  33.5,  34.5,  35.5,  36.5,  37.5,  38.5,  39.5,
+        40.5,  41.5,  42.5,  43.5,  44.5,  45.5,  46.5,  47.5,  48.5,  49.5,
+        50.5,  51.5,  52.5,  53.5,  54.5,  55.5,  56.5,  57.5,  58.5,  59.5,
+        60.5,  61.5,  62.5,  63.5,  64.5,  65.5,  66.5,  67.5,  68.5,  69.5,
+        70.5,  71.5,  72.5,  73.5,  74.5,  75.5,  76.5,  77.5,  78.5,  79.5,
+        80.5,  81.5,  82.5,  83.5,  84.5,  85.5,  86.5,  87.5,  88.5,  89.5])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-80bb015b-136a-4851-962a-da58c5d39d62' class='xr-section-summary-in' type='checkbox'  checked><label for='section-80bb015b-136a-4851-962a-da58c5d39d62' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>lwe_precipitation_rate</dd><dt><span>long_name :</span></dt><dd>Total precipitation, ERA5 reanalysis daily accumulated rainfall from 0h to 0h</dd><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>comment :</span></dt><dd>This daily precipitation is prepared by creating a accumulation over 24h from the source 18hr precipitation, regridded from 0.25 x 0.25 degree to 1 x 1 degree with Python library xESMF. Units have been converted from m to mm/day (data*1000).</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="section" id="calculation-on-a-single-point">
+<h2>Calculation on a single point<a class="headerlink" href="#calculation-on-a-single-point" title="Permalink to this headline">¶</a></h2>
+<p>To start out with, let’s make sure we can do the calculation on a single grid point.</p>
+<p>Start out by saving the grid point’s precip time series in a variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precip_mel</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">37.81</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">144.96</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-why-the-load admonition">
+<p class="admonition-title">Why the .load()?</p>
+<p>I’ve done a <code class="docutils literal notranslate"><span class="pre">.load()</span></code> here because we’ll be looping over time. Without the <code class="docutils literal notranslate"><span class="pre">.load()</span></code> Dask will try to read from the file at every loop iteration, with it it will only read from the file once - though this does come at the cost of more memory usage so we need to be carefull of how large the grid is that we’re loading.</p>
+</div>
+<p>Now we can do the calculation. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.zeros_like.html#numpy.zeros_like" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.zeros_like()</span></code></a> will create an empty array that’s the same shape as the input array, which we’ll use to store the API values. Then we can just implement the algorithm with a loop</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empty array to store the output</span>
+<span class="n">api_mel</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_mel</span><span class="p">)</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.95</span>
+
+<span class="c1"># Initial value is precip(t0)</span>
+<span class="n">api_mel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">precip_mel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Following values are k * api(t - 1) + precip(t)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">precip_mel</span><span class="p">)):</span>
+    <span class="n">api_mel</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_mel</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">precip_mel</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting the values they look ok, API is higher than the original precip values because of the accumulation but has the same sort of peak structure showing the decay is working as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">precip_mel</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">api_mel</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;API&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">precip_mel</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">precip_mel</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;precip&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2021-11-24-api_10_0.png" src="../_images/2021-11-24-api_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="calculation-over-the-whole-grid">
+<h2>Calculation over the whole grid<a class="headerlink" href="#calculation-over-the-whole-grid" title="Permalink to this headline">¶</a></h2>
+<p>With the caluclation working on a single grid point, let’s look at expanding it to the whole grid. It’s generally much more efficient to work on the whole grid at once, rather than single grid points one at a time, because of the way data gets laid out in the file.</p>
+<p>The calculation looks much like the single grid point calculation, we’ve just added the extra dimensions when indexing the arrays</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precip_year</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1980&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="n">api_year</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_year</span><span class="p">)</span>
+
+<span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">precip_year</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
+    <span class="n">api_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_year</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A quick plot of the final time looks reasonable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">api_year</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2021-11-24-api_14_0.png" src="../_images/2021-11-24-api_14_0.png" />
+</div>
+</div>
+<p>We’ve calculated a year of data, so let’s save it to a netcdf file. First convert the numpy array to an xarray object - we can grab the coordinates from the original precip data, then save to file with <code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.DataArray.to_netcdf()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_year</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_year</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip_year</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+<span class="n">api_year</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1980.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="convert-to-a-function">
+<h2>Convert to a function<a class="headerlink" href="#convert-to-a-function" title="Permalink to this headline">¶</a></h2>
+<p>With a single year working we should make a function to consolidate where we’ve got to so far and to make sure we can easily change the year, without needing to do lots of copying and pasting.</p>
+<p>This won’t be the final function, for now this will only work properly for 1980, but it’s important to be methodical and make sure what we’ve already done is still working.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the API measure for a given year</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">precip_year</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+    <span class="n">api_year</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_year</span><span class="p">)</span>
+
+    <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">precip_year</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
+        <span class="n">api_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_year</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+        
+    <span class="n">api_year</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_year</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip_year</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">api_year</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1980&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.27 s, sys: 262 ms, total: 1.53 s
+Wall time: 2.34 s
+</pre></div>
+</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;api&#x27; (time: 366, lat: 180, lon: 360)&gt;
+0.01768 0.01768 0.01768 0.01768 0.01632 ... 4.527 4.523 4.533 4.528 4.527
+Coordinates:
+  * time     (time) datetime64[ns] 1980-01-01T12:00:00 ... 1980-12-31T12:00:00
+  * lon      (lon) float64 -179.5 -178.5 -177.5 -176.5 ... 177.5 178.5 179.5
+  * lat      (lat) float64 -89.5 -88.5 -87.5 -86.5 -85.5 ... 86.5 87.5 88.5 89.5</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'api'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 366</li><li><span class='xr-has-index'>lat</span>: 180</li><li><span class='xr-has-index'>lon</span>: 360</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ffb91867-6a3e-4cb2-88b1-33303032e08f' class='xr-array-in' type='checkbox' ><label for='section-ffb91867-6a3e-4cb2-88b1-33303032e08f' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.01768 0.01768 0.01768 0.01768 0.01632 ... 4.523 4.533 4.528 4.527</span></div><div class='xr-array-data'><pre>array([[[0.01767761, 0.01767761, 0.01767761, ..., 0.01767761,
+         0.01767761, 0.01767761],
+        [0.16861725, 0.16589761, 0.15773872, ..., 0.18901448,
+         0.17949577, 0.17133687],
+        [0.41746366, 0.4161038 , 0.4229029 , ..., 0.42018327,
+         0.41746366, 0.4120244 ],
+        ...,
+        [0.04215431, 0.04487394, 0.04351413, ..., 0.04759357,
+         0.04487394, 0.04215431],
+        [0.04487394, 0.04487394, 0.04487394, ..., 0.05439266,
+         0.05167302, 0.05031321],
+        [0.066631  , 0.066631  , 0.066631  , ..., 0.07207027,
+         0.07207027, 0.06935064]],
+
+       [[0.05894805, 0.05894805, 0.05894805, ..., 0.06030786,
+         0.06030786, 0.06030786],
+        [0.32200456, 0.31942087, 0.31166995, ..., 0.3468212 ,
+         0.3391382 , 0.32730782],
+        [0.8602879 , 0.88075304, 0.9089693 , ..., 0.8723902 ,
+         0.8602879 , 0.8388028 ],
+...
+        [5.651482  , 5.66441   , 5.668544  , ..., 5.4923625 ,
+         5.56027   , 5.611495  ],
+        [5.052609  , 5.0709877 , 5.069583  , ..., 5.049734  ,
+         5.0416374 , 5.0543537 ],
+        [4.745502  , 4.7552304 , 4.751371  , ..., 4.7600756 ,
+         4.7546854 , 4.756812  ]],
+
+       [[3.2373145 , 3.245625  , 3.248426  , ..., 3.2445123 ,
+         3.2476687 , 3.255358  ],
+        [2.1031456 , 2.164625  , 2.20095   , ..., 1.9554576 ,
+         1.9711627 , 2.0395157 ],
+        [1.5107511 , 1.6148776 , 1.7048018 , ..., 1.2923038 ,
+         1.3440533 , 1.4011242 ],
+        ...,
+        [5.385226  , 5.397507  , 5.395995  , ..., 5.2367816 ,
+         5.298574  , 5.347238  ],
+        [4.824455  , 4.8419147 , 4.837861  , ..., 4.824444  ,
+         4.815392  , 4.8261123 ],
+        [4.5163856 , 4.5256276 , 4.521961  , ..., 4.5329504 ,
+         4.5278296 , 4.52713   ]]], dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-2fb8b71e-395f-4ca7-add2-c94cce34d462' class='xr-section-summary-in' type='checkbox'  checked><label for='section-2fb8b71e-395f-4ca7-add2-c94cce34d462' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1980-01-01T12:00:00 ... 1980-12-...</div><input id='attrs-1af1c878-529b-4628-8440-198398c07699' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1af1c878-529b-4628-8440-198398c07699' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-711b1b9e-b6de-4198-a674-6d6f56410207' class='xr-var-data-in' type='checkbox'><label for='data-711b1b9e-b6de-4198-a674-6d6f56410207' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>The time values of the grid, following the standard CF calendar, in days, centred, since 1970-01-01 00:00:00</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1980-01-01T12:00:00.000000000&#x27;, &#x27;1980-01-02T12:00:00.000000000&#x27;,
+       &#x27;1980-01-03T12:00:00.000000000&#x27;, ..., &#x27;1980-12-29T12:00:00.000000000&#x27;,
+       &#x27;1980-12-30T12:00:00.000000000&#x27;, &#x27;1980-12-31T12:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-179.5 -178.5 ... 178.5 179.5</div><input id='attrs-836e3910-0d49-4e76-90cb-12d8ad295cff' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-836e3910-0d49-4e76-90cb-12d8ad295cff' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2935565a-953f-4368-8b53-def3c123e671' class='xr-var-data-in' type='checkbox'><label for='data-2935565a-953f-4368-8b53-def3c123e671' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>comment :</span></dt><dd>The longitude values of the grid, in degrees, ranging between [-179.5; 179.5]. The grid is centred, i.e., a value of +0.5 corresponds to the degree [0W, 1W]</dd></dl></div><div class='xr-var-data'><pre>array([-179.5, -178.5, -177.5, ...,  177.5,  178.5,  179.5])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-89.5 -88.5 -87.5 ... 88.5 89.5</div><input id='attrs-76c5a53e-6860-49d3-9572-97681096d327' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-76c5a53e-6860-49d3-9572-97681096d327' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0b3417f3-a79a-4d9f-a500-b0d79c29120f' class='xr-var-data-in' type='checkbox'><label for='data-0b3417f3-a79a-4d9f-a500-b0d79c29120f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>comment :</span></dt><dd>The latitude values of the grid, in degrees, ranging between [-89.5; 89.5]. The grid is centred, i.e., a value of +0.5 corresponds to the degree [0N, 1N]</dd></dl></div><div class='xr-var-data'><pre>array([-89.5, -88.5, -87.5, -86.5, -85.5, -84.5, -83.5, -82.5, -81.5, -80.5,
+       -79.5, -78.5, -77.5, -76.5, -75.5, -74.5, -73.5, -72.5, -71.5, -70.5,
+       -69.5, -68.5, -67.5, -66.5, -65.5, -64.5, -63.5, -62.5, -61.5, -60.5,
+       -59.5, -58.5, -57.5, -56.5, -55.5, -54.5, -53.5, -52.5, -51.5, -50.5,
+       -49.5, -48.5, -47.5, -46.5, -45.5, -44.5, -43.5, -42.5, -41.5, -40.5,
+       -39.5, -38.5, -37.5, -36.5, -35.5, -34.5, -33.5, -32.5, -31.5, -30.5,
+       -29.5, -28.5, -27.5, -26.5, -25.5, -24.5, -23.5, -22.5, -21.5, -20.5,
+       -19.5, -18.5, -17.5, -16.5, -15.5, -14.5, -13.5, -12.5, -11.5, -10.5,
+        -9.5,  -8.5,  -7.5,  -6.5,  -5.5,  -4.5,  -3.5,  -2.5,  -1.5,  -0.5,
+         0.5,   1.5,   2.5,   3.5,   4.5,   5.5,   6.5,   7.5,   8.5,   9.5,
+        10.5,  11.5,  12.5,  13.5,  14.5,  15.5,  16.5,  17.5,  18.5,  19.5,
+        20.5,  21.5,  22.5,  23.5,  24.5,  25.5,  26.5,  27.5,  28.5,  29.5,
+        30.5,  31.5,  32.5,  33.5,  34.5,  35.5,  36.5,  37.5,  38.5,  39.5,
+        40.5,  41.5,  42.5,  43.5,  44.5,  45.5,  46.5,  47.5,  48.5,  49.5,
+        50.5,  51.5,  52.5,  53.5,  54.5,  55.5,  56.5,  57.5,  58.5,  59.5,
+        60.5,  61.5,  62.5,  63.5,  64.5,  65.5,  66.5,  67.5,  68.5,  69.5,
+        70.5,  71.5,  72.5,  73.5,  74.5,  75.5,  76.5,  77.5,  78.5,  79.5,
+        80.5,  81.5,  82.5,  83.5,  84.5,  85.5,  86.5,  87.5,  88.5,  89.5])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4534fb53-8028-44ec-8a0b-6012f19ed7aa' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4534fb53-8028-44ec-8a0b-6012f19ed7aa' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</div>
+</div>
+<div class="section" id="passing-the-last-timestep">
+<h2>Passing the last timestep<a class="headerlink" href="#passing-the-last-timestep" title="Permalink to this headline">¶</a></h2>
+<p>With a basic function written we can now think about how to fix its problems. You might have noticed that in the previous function each year is calculated independently, so</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">API</span><span class="p">[</span><span class="mi">1981</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">]</span> <span class="o">=</span> <span class="n">precip</span><span class="p">[</span><span class="mi">1981</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>when it should in fact be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">API</span><span class="p">[</span><span class="mi">1981</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">API</span><span class="p">[</span><span class="mi">1980</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span><span class="p">]</span> <span class="o">+</span> <span class="n">precip</span><span class="p">[</span><span class="mi">1981</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We need some way to pass in the previous year’s api values to our function, but only if we’re not calculating the first year. We can do this with an argument that defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>, which looks like</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>If a value is not given, like <code class="docutils literal notranslate"><span class="pre">api_at_year(precip,</span> <span class="pre">'1980')</span></code> then <code class="docutils literal notranslate"><span class="pre">previous_api</span></code> will be <code class="docutils literal notranslate"><span class="pre">None</span></code>, which we can check with an if statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">previous_api</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># First year</span>
+    <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+</pre></div>
+</div>
+<p>If we do pass a <code class="docutils literal notranslate"><span class="pre">previous_api</span></code> value, like <code class="docutils literal notranslate"><span class="pre">api_at_year(precip,</span> <span class="pre">'1981',</span> <span class="pre">api_1980)</span></code>, then we follow the else branch to use the correct formula:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Following years</span>
+    <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">previous_api</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the API measure for a given year</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">precip_year</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+    <span class="n">api_year</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_year</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">previous_api</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># First year</span>
+        <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Following years</span>
+        <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">previous_api</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">precip_year</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
+        <span class="n">api_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_year</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+        
+    <span class="n">api_year</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_year</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip_year</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">api_year</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can call the function multiple times for each year. We could store each year’s values in its own variable, like</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">api_1980</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1980&#39;</span><span class="p">)</span>
+<span class="n">api_1981</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1981&#39;</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api_1980</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>but these variables will then stick around and fill up memory. It’s better to save the values to file as we go, re-using the variable name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1980&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1980.nc&#39;</span><span class="p">)</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1981&#39;</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1981.nc&#39;</span><span class="p">)</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1982&#39;</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1982.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that everything on the right side of an assignment <code class="docutils literal notranslate"><span class="pre">=</span></code> gets evaluated before the variable is assigned, so in</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1981&#39;</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the <code class="docutils literal notranslate"><span class="pre">api</span></code> on the right side refers to the value from the previous assignment, so the 1980 values</p>
+</div>
+<p>There’s obvious repetition here, so we may as well convert it to a loop rather than writing the same two lines multiple times. I’ve set <code class="docutils literal notranslate"><span class="pre">api</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> explicitly so that 1980 looks the same as the rest of the years, it will still take the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">previous_api</span> <span class="pre">is</span> <span class="pre">None</span></code> branch of the if statement</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">1990</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1980
+1981
+1982
+1983
+1984
+1985
+1986
+1987
+1988
+1989
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check that the files were properly created as expected - you may also want to try plotting some of the values in these files</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> ls /local/w35/saw562/tmp/frogs_era5_api_*.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/local/w35/saw562/tmp/frogs_era5_api_1980.nc
+/local/w35/saw562/tmp/frogs_era5_api_1981.nc
+/local/w35/saw562/tmp/frogs_era5_api_1982.nc
+/local/w35/saw562/tmp/frogs_era5_api_1983.nc
+/local/w35/saw562/tmp/frogs_era5_api_1984.nc
+/local/w35/saw562/tmp/frogs_era5_api_1985.nc
+/local/w35/saw562/tmp/frogs_era5_api_1986.nc
+/local/w35/saw562/tmp/frogs_era5_api_1987.nc
+/local/w35/saw562/tmp/frogs_era5_api_1988.nc
+/local/w35/saw562/tmp/frogs_era5_api_1989.nc
+/local/w35/saw562/tmp/frogs_era5_api_full.nc
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pure-dask-advanced">
+<h2>Pure Dask (Advanced)<a class="headerlink" href="#pure-dask-advanced" title="Permalink to this headline">¶</a></h2>
+<p>What we’ve done so far works well as long as a year’s worth of data fits into memory. If it doesn’t you can always split the data more finely, say by splitting the data by month instead of year.</p>
+<p>Another way to go about it is to use the Dask chunks as the mechanism to split the data. The basic idea is very similar to what we’ve already done, we just need to learn how to do the loop over dask chunks instead of years.</p>
+<p>Dask provides the <a class="reference external" href="https://docs.dask.org/en/stable/generated/dask.array.map_blocks.html#dask.array.map_blocks" title="(in Dask)"><code class="xref py py-func docutils literal notranslate"><span class="pre">dask.array.map_blocks()</span></code></a> function that allows you to run a function on every chunk of an array. We do lose all of the Xarray metadata when we use this, we can only use basic numpy array functions. Here’s the stripped down function we’ll use with <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_block</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">prev</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the API measure for a dask chunk</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        block: a 3d numpy array with precip values, </span>
+<span class="sd">            time should be the first dimension</span>
+<span class="sd">            </span>
+<span class="sd">        prev: a 2d numpy array with the api value </span>
+<span class="sd">            immediately preceding the first time in</span>
+<span class="sd">            block, or None if this is the first time</span>
+<span class="sd">            step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">prev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">api</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">api</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">prev</span> <span class="o">+</span> <span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">block</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">api</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">block</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+    
+    <span class="k">return</span> <span class="n">api</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> runs the function on each chunk independently, which is fine if the data is chunked horizontally but if the chunking is over time then we need some way of passing in the previous time’s API value.</p>
+<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="http://xarray.pydata.org/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v0.20.2.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">})</span>
+<span class="n">precip</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">rain</span>
+<span class="n">precip</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 3.70 GiB </td>
+                        <td> 11.31 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (15341, 180, 360) </td>
+                        <td> (366, 90, 90) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 714 Tasks </td>
+                        <td> 336 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="160" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="13" x2="80" y2="83" />
+  <line x1="10" y1="26" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="26" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="13" y2="29" />
+  <line x1="16" y1="6" x2="16" y2="32" />
+  <line x1="20" y1="10" x2="20" y2="36" />
+  <line x1="23" y1="13" x2="23" y2="39" />
+  <line x1="28" y1="18" x2="28" y2="44" />
+  <line x1="31" y1="21" x2="31" y2="48" />
+  <line x1="35" y1="25" x2="35" y2="51" />
+  <line x1="38" y1="28" x2="38" y2="54" />
+  <line x1="41" y1="31" x2="41" y2="58" />
+  <line x1="46" y1="36" x2="46" y2="63" />
+  <line x1="50" y1="40" x2="50" y2="66" />
+  <line x1="53" y1="43" x2="53" y2="69" />
+  <line x1="57" y1="47" x2="57" y2="73" />
+  <line x1="60" y1="50" x2="60" y2="76" />
+  <line x1="65" y1="55" x2="65" y2="81" />
+  <line x1="68" y1="58" x2="68" y2="85" />
+  <line x1="72" y1="62" x2="72" y2="88" />
+  <line x1="75" y1="65" x2="75" y2="91" />
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,96.78246252165783 10.0,26.19422722754018" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="39" y2="0" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="43" y2="3" />
+  <line x1="16" y1="6" x2="46" y2="6" />
+  <line x1="20" y1="10" x2="50" y2="10" />
+  <line x1="23" y1="13" x2="53" y2="13" />
+  <line x1="28" y1="18" x2="58" y2="18" />
+  <line x1="31" y1="21" x2="61" y2="21" />
+  <line x1="35" y1="25" x2="65" y2="25" />
+  <line x1="38" y1="28" x2="68" y2="28" />
+  <line x1="41" y1="31" x2="71" y2="31" />
+  <line x1="46" y1="36" x2="76" y2="36" />
+  <line x1="50" y1="40" x2="80" y2="40" />
+  <line x1="53" y1="43" x2="83" y2="43" />
+  <line x1="57" y1="47" x2="87" y2="47" />
+  <line x1="60" y1="50" x2="90" y2="50" />
+  <line x1="65" y1="55" x2="95" y2="55" />
+  <line x1="68" y1="58" x2="98" y2="58" />
+  <line x1="72" y1="62" x2="102" y2="62" />
+  <line x1="75" y1="65" x2="105" y2="65" />
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="17" y1="0" x2="88" y2="70" />
+  <line x1="24" y1="0" x2="95" y2="70" />
+  <line x1="32" y1="0" x2="103" y2="70" />
+  <line x1="39" y1="0" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 39.943215098459234,0.0 110.53145039257689,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="83" x2="110" y2="83" />
+  <line x1="80" y1="96" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+  <line x1="88" y1="70" x2="88" y2="96" />
+  <line x1="95" y1="70" x2="95" y2="96" />
+  <line x1="103" y1="70" x2="103" y2="96" />
+  <line x1="110" y1="70" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.58823529411765,70.58823529411765 110.53145039257689,70.58823529411765 110.53145039257689,96.78246252165783 80.58823529411765,96.78246252165783" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="95.559843" y="116.782463" font-size="1.0rem" font-weight="100" text-anchor="middle" >360</text>
+  <text x="130.531450" y="83.685349" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,130.531450,83.685349)">180</text>
+  <text x="35.294118" y="81.488345" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,81.488345)">15341</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>Once we have a Dask array, <a class="reference external" href="https://docs.dask.org/en/stable/generated/dask.array.Array.blocks.html#dask.array.Array.blocks" title="(in Dask)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dask.array.Array.blocks</span></code></a> lets us access the individual chunks. We can index <code class="docutils literal notranslate"><span class="pre">.blocks</span></code> as if it were a numpy array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precip</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 11.28 MiB </td>
+                        <td> 11.28 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (365, 90, 90) </td>
+                        <td> (365, 90, 90) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 715 Tasks </td>
+                        <td> 1 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="173" height="163" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="42" x2="80" y2="113" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="42" style="stroke-width:2" />
+  <line x1="80" y1="70" x2="80" y2="113" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,113.43523039231732 10.0,42.84699509819968" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="52" y2="0" style="stroke-width:2" />
+  <line x1="80" y1="70" x2="123" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="52" y1="0" x2="123" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 52.84699509819968,0.0 123.43523039231732,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="123" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="113" x2="123" y2="113" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="113" style="stroke-width:2" />
+  <line x1="123" y1="70" x2="123" y2="113" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.58823529411765,70.58823529411765 123.43523039231732,70.58823529411765 123.43523039231732,113.43523039231732 80.58823529411765,113.43523039231732" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="102.011733" y="133.435230" font-size="1.0rem" font-weight="100" text-anchor="middle" >90</text>
+  <text x="143.435230" y="92.011733" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,143.435230,92.011733)">90</text>
+  <text x="35.294118" y="98.141113" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,98.141113)">365</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>We can also iterate over <code class="docutils literal notranslate"><span class="pre">.blocks</span></code>, which will iterate over the first dimension, giving all the lat and lon chunks for that time chunk</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">precip</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 90.23 MiB </td>
+                        <td> 11.28 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (365, 180, 360) </td>
+                        <td> (365, 90, 90) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 722 Tasks </td>
+                        <td> 8 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="248" height="179" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="29" x2="80" y2="100" />
+  <line x1="10" y1="59" x2="80" y2="129" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="59" style="stroke-width:2" />
+  <line x1="80" y1="70" x2="80" y2="129" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,129.76631748589847 10.0,59.17808219178083" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="128" y2="0" style="stroke-width:2" />
+  <line x1="80" y1="70" x2="198" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="39" y1="0" x2="110" y2="70" />
+  <line x1="69" y1="0" x2="139" y2="70" />
+  <line x1="98" y1="0" x2="169" y2="70" />
+  <line x1="128" y1="0" x2="198" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 128.35616438356166,0.0 198.9443996776793,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="198" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="100" x2="198" y2="100" />
+  <line x1="80" y1="129" x2="198" y2="129" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="129" style="stroke-width:2" />
+  <line x1="110" y1="70" x2="110" y2="129" />
+  <line x1="139" y1="70" x2="139" y2="129" />
+  <line x1="169" y1="70" x2="169" y2="129" />
+  <line x1="198" y1="70" x2="198" y2="129" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.58823529411765,70.58823529411765 198.9443996776793,70.58823529411765 198.9443996776793,129.76631748589847 80.58823529411765,129.76631748589847" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="139.766317" y="149.766317" font-size="1.0rem" font-weight="100" text-anchor="middle" >360</text>
+  <text x="218.944400" y="100.177276" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,218.944400,100.177276)">180</text>
+  <text x="35.294118" y="114.472200" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,114.472200)">365</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>This loop now works like the loop over years that we had before. For each group of lat and lon chunks at a time chunk, use <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> to compute the API for those chunks. Save the final timestep from those chunks to pass in as the previous values for the next group. Once all of the groups have been processed concatenate them back together into a single array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">precip</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">map_blocks</span><span class="p">(</span><span class="n">api_block</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">block</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+    <span class="n">prev</span> <span class="o">=</span> <span class="n">api</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span>
+    
+    <span class="n">api_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
+    
+<span class="n">api_dask</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">api_blocks</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">api_dask</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 3.70 GiB </td>
+                        <td> 11.31 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (15341, 180, 360) </td>
+                        <td> (366, 90, 90) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 2050 Tasks </td>
+                        <td> 336 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="160" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="13" x2="80" y2="83" />
+  <line x1="10" y1="26" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="26" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="13" y2="29" />
+  <line x1="16" y1="6" x2="16" y2="32" />
+  <line x1="20" y1="10" x2="20" y2="36" />
+  <line x1="23" y1="13" x2="23" y2="39" />
+  <line x1="28" y1="18" x2="28" y2="44" />
+  <line x1="31" y1="21" x2="31" y2="48" />
+  <line x1="35" y1="25" x2="35" y2="51" />
+  <line x1="38" y1="28" x2="38" y2="54" />
+  <line x1="41" y1="31" x2="41" y2="58" />
+  <line x1="46" y1="36" x2="46" y2="63" />
+  <line x1="50" y1="40" x2="50" y2="66" />
+  <line x1="53" y1="43" x2="53" y2="69" />
+  <line x1="57" y1="47" x2="57" y2="73" />
+  <line x1="60" y1="50" x2="60" y2="76" />
+  <line x1="65" y1="55" x2="65" y2="81" />
+  <line x1="68" y1="58" x2="68" y2="85" />
+  <line x1="72" y1="62" x2="72" y2="88" />
+  <line x1="75" y1="65" x2="75" y2="91" />
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,96.78246252165783 10.0,26.19422722754018" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="39" y2="0" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="43" y2="3" />
+  <line x1="16" y1="6" x2="46" y2="6" />
+  <line x1="20" y1="10" x2="50" y2="10" />
+  <line x1="23" y1="13" x2="53" y2="13" />
+  <line x1="28" y1="18" x2="58" y2="18" />
+  <line x1="31" y1="21" x2="61" y2="21" />
+  <line x1="35" y1="25" x2="65" y2="25" />
+  <line x1="38" y1="28" x2="68" y2="28" />
+  <line x1="41" y1="31" x2="71" y2="31" />
+  <line x1="46" y1="36" x2="76" y2="36" />
+  <line x1="50" y1="40" x2="80" y2="40" />
+  <line x1="53" y1="43" x2="83" y2="43" />
+  <line x1="57" y1="47" x2="87" y2="47" />
+  <line x1="60" y1="50" x2="90" y2="50" />
+  <line x1="65" y1="55" x2="95" y2="55" />
+  <line x1="68" y1="58" x2="98" y2="58" />
+  <line x1="72" y1="62" x2="102" y2="62" />
+  <line x1="75" y1="65" x2="105" y2="65" />
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="17" y1="0" x2="88" y2="70" />
+  <line x1="24" y1="0" x2="95" y2="70" />
+  <line x1="32" y1="0" x2="103" y2="70" />
+  <line x1="39" y1="0" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 39.943215098459234,0.0 110.53145039257689,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="83" x2="110" y2="83" />
+  <line x1="80" y1="96" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+  <line x1="88" y1="70" x2="88" y2="96" />
+  <line x1="95" y1="70" x2="95" y2="96" />
+  <line x1="103" y1="70" x2="103" y2="96" />
+  <line x1="110" y1="70" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.58823529411765,70.58823529411765 110.53145039257689,70.58823529411765 110.53145039257689,96.78246252165783 80.58823529411765,96.78246252165783" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="95.559843" y="116.782463" font-size="1.0rem" font-weight="100" text-anchor="middle" >360</text>
+  <text x="130.531450" y="83.685349" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,130.531450,83.685349)">180</text>
+  <text x="35.294118" y="81.488345" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,81.488345)">15341</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div>
+</div>
+<p>Finally convert the Dask array to Xarray and save to a file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_dask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_full.nc&#39;</span><span class="p">)</span>
+<span class="n">api</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 13.2 s, sys: 3.12 s, total: 16.3 s
+Wall time: 2min
+</pre></div>
+</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;api&#x27; (time: 15341, lat: 180, lon: 360)&gt;
+dask.array&lt;chunksize=(365, 90, 90), meta=np.ndarray&gt;
+Coordinates:
+  * time     (time) datetime64[ns] 1979-01-01T13:30:00 ... 2020-12-31
+  * lon      (lon) float64 -179.5 -178.5 -177.5 -176.5 ... 177.5 178.5 179.5
+  * lat      (lat) float64 -89.5 -88.5 -87.5 -86.5 -85.5 ... 86.5 87.5 88.5 89.5</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'api'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 15341</li><li><span class='xr-has-index'>lat</span>: 180</li><li><span class='xr-has-index'>lon</span>: 360</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-253f144d-edc9-4b7a-b133-95ee361d0edf' class='xr-array-in' type='checkbox' ><label for='section-253f144d-edc9-4b7a-b133-95ee361d0edf' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(365, 90, 90), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 3.70 GiB </td>
+                        <td> 11.31 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (15341, 180, 360) </td>
+                        <td> (366, 90, 90) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 2050 Tasks </td>
+                        <td> 336 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="160" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="13" x2="80" y2="83" />
+  <line x1="10" y1="26" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="26" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="13" y2="29" />
+  <line x1="16" y1="6" x2="16" y2="32" />
+  <line x1="20" y1="10" x2="20" y2="36" />
+  <line x1="23" y1="13" x2="23" y2="39" />
+  <line x1="28" y1="18" x2="28" y2="44" />
+  <line x1="31" y1="21" x2="31" y2="48" />
+  <line x1="35" y1="25" x2="35" y2="51" />
+  <line x1="38" y1="28" x2="38" y2="54" />
+  <line x1="41" y1="31" x2="41" y2="58" />
+  <line x1="46" y1="36" x2="46" y2="63" />
+  <line x1="50" y1="40" x2="50" y2="66" />
+  <line x1="53" y1="43" x2="53" y2="69" />
+  <line x1="57" y1="47" x2="57" y2="73" />
+  <line x1="60" y1="50" x2="60" y2="76" />
+  <line x1="65" y1="55" x2="65" y2="81" />
+  <line x1="68" y1="58" x2="68" y2="85" />
+  <line x1="72" y1="62" x2="72" y2="88" />
+  <line x1="75" y1="65" x2="75" y2="91" />
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,96.78246252165783 10.0,26.19422722754018" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="39" y2="0" style="stroke-width:2" />
+  <line x1="13" y1="3" x2="43" y2="3" />
+  <line x1="16" y1="6" x2="46" y2="6" />
+  <line x1="20" y1="10" x2="50" y2="10" />
+  <line x1="23" y1="13" x2="53" y2="13" />
+  <line x1="28" y1="18" x2="58" y2="18" />
+  <line x1="31" y1="21" x2="61" y2="21" />
+  <line x1="35" y1="25" x2="65" y2="25" />
+  <line x1="38" y1="28" x2="68" y2="28" />
+  <line x1="41" y1="31" x2="71" y2="31" />
+  <line x1="46" y1="36" x2="76" y2="36" />
+  <line x1="50" y1="40" x2="80" y2="40" />
+  <line x1="53" y1="43" x2="83" y2="43" />
+  <line x1="57" y1="47" x2="87" y2="47" />
+  <line x1="60" y1="50" x2="90" y2="50" />
+  <line x1="65" y1="55" x2="95" y2="55" />
+  <line x1="68" y1="58" x2="98" y2="58" />
+  <line x1="72" y1="62" x2="102" y2="62" />
+  <line x1="75" y1="65" x2="105" y2="65" />
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="17" y1="0" x2="88" y2="70" />
+  <line x1="24" y1="0" x2="95" y2="70" />
+  <line x1="32" y1="0" x2="103" y2="70" />
+  <line x1="39" y1="0" x2="110" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 39.943215098459234,0.0 110.53145039257689,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="83" x2="110" y2="83" />
+  <line x1="80" y1="96" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
+  <line x1="88" y1="70" x2="88" y2="96" />
+  <line x1="95" y1="70" x2="95" y2="96" />
+  <line x1="103" y1="70" x2="103" y2="96" />
+  <line x1="110" y1="70" x2="110" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.58823529411765,70.58823529411765 110.53145039257689,70.58823529411765 110.53145039257689,96.78246252165783 80.58823529411765,96.78246252165783" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="95.559843" y="116.782463" font-size="1.0rem" font-weight="100" text-anchor="middle" >360</text>
+  <text x="130.531450" y="83.685349" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,130.531450,83.685349)">180</text>
+  <text x="35.294118" y="81.488345" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,81.488345)">15341</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-5f912881-4724-4c2b-a3c6-c9addeab8ae3' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5f912881-4724-4c2b-a3c6-c9addeab8ae3' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1979-01-01T13:30:00 ... 2020-12-31</div><input id='attrs-fd5a1a40-cbb2-4836-9f09-073836e9a664' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fd5a1a40-cbb2-4836-9f09-073836e9a664' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3838d947-61f1-47bc-89b3-3b542ba22730' class='xr-var-data-in' type='checkbox'><label for='data-3838d947-61f1-47bc-89b3-3b542ba22730' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>The time values of the grid, following the standard CF calendar, in days, centred, since 1970-01-01 00:00:00</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1979-01-01T13:30:00.000000000&#x27;, &#x27;1979-01-02T12:00:00.000000000&#x27;,
+       &#x27;1979-01-03T12:00:00.000000000&#x27;, ..., &#x27;2020-12-29T00:00:00.000000000&#x27;,
+       &#x27;2020-12-30T00:00:00.000000000&#x27;, &#x27;2020-12-31T00:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-179.5 -178.5 ... 178.5 179.5</div><input id='attrs-90804240-4f24-42df-a9b2-96c6e7b0c5b8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-90804240-4f24-42df-a9b2-96c6e7b0c5b8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-208bab50-a103-480b-877e-d0032d1db1ac' class='xr-var-data-in' type='checkbox'><label for='data-208bab50-a103-480b-877e-d0032d1db1ac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>comment :</span></dt><dd>The longitude values of the grid, in degrees, ranging between [-179.5; 179.5]. The grid is centred, i.e., a value of +0.5 corresponds to the degree [0W, 1W]</dd></dl></div><div class='xr-var-data'><pre>array([-179.5, -178.5, -177.5, ...,  177.5,  178.5,  179.5])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-89.5 -88.5 -87.5 ... 88.5 89.5</div><input id='attrs-2b3767c7-1806-4b4e-b2eb-48304f6d3b46' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2b3767c7-1806-4b4e-b2eb-48304f6d3b46' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-21fd98bf-7ff7-406d-86ac-d1e7b7df3c14' class='xr-var-data-in' type='checkbox'><label for='data-21fd98bf-7ff7-406d-86ac-d1e7b7df3c14' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>comment :</span></dt><dd>The latitude values of the grid, in degrees, ranging between [-89.5; 89.5]. The grid is centred, i.e., a value of +0.5 corresponds to the degree [0N, 1N]</dd></dl></div><div class='xr-var-data'><pre>array([-89.5, -88.5, -87.5, -86.5, -85.5, -84.5, -83.5, -82.5, -81.5, -80.5,
+       -79.5, -78.5, -77.5, -76.5, -75.5, -74.5, -73.5, -72.5, -71.5, -70.5,
+       -69.5, -68.5, -67.5, -66.5, -65.5, -64.5, -63.5, -62.5, -61.5, -60.5,
+       -59.5, -58.5, -57.5, -56.5, -55.5, -54.5, -53.5, -52.5, -51.5, -50.5,
+       -49.5, -48.5, -47.5, -46.5, -45.5, -44.5, -43.5, -42.5, -41.5, -40.5,
+       -39.5, -38.5, -37.5, -36.5, -35.5, -34.5, -33.5, -32.5, -31.5, -30.5,
+       -29.5, -28.5, -27.5, -26.5, -25.5, -24.5, -23.5, -22.5, -21.5, -20.5,
+       -19.5, -18.5, -17.5, -16.5, -15.5, -14.5, -13.5, -12.5, -11.5, -10.5,
+        -9.5,  -8.5,  -7.5,  -6.5,  -5.5,  -4.5,  -3.5,  -2.5,  -1.5,  -0.5,
+         0.5,   1.5,   2.5,   3.5,   4.5,   5.5,   6.5,   7.5,   8.5,   9.5,
+        10.5,  11.5,  12.5,  13.5,  14.5,  15.5,  16.5,  17.5,  18.5,  19.5,
+        20.5,  21.5,  22.5,  23.5,  24.5,  25.5,  26.5,  27.5,  28.5,  29.5,
+        30.5,  31.5,  32.5,  33.5,  34.5,  35.5,  36.5,  37.5,  38.5,  39.5,
+        40.5,  41.5,  42.5,  43.5,  44.5,  45.5,  46.5,  47.5,  48.5,  49.5,
+        50.5,  51.5,  52.5,  53.5,  54.5,  55.5,  56.5,  57.5,  58.5,  59.5,
+        60.5,  61.5,  62.5,  63.5,  64.5,  65.5,  66.5,  67.5,  68.5,  69.5,
+        70.5,  71.5,  72.5,  73.5,  74.5,  75.5,  76.5,  77.5,  78.5,  79.5,
+        80.5,  81.5,  82.5,  83.5,  84.5,  85.5,  86.5,  87.5,  88.5,  89.5])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ff39494a-9218-445a-82b2-a43c2ac60f60' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ff39494a-9218-445a-82b2-a43c2ac60f60' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</div>
+<p>As a check, make sure the values from the chunked calculation match the very first 1D calculation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_full.nc&#39;</span><span class="p">)</span>
+
+<span class="n">numpy</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">37.81</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">144.96</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">api_mel</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>There are a few points to keep in mind here:</p>
+<ul class="simple">
+<li><p>In the majority of cases it’s better to operate on the whole horizontal grid, rather than one grid point at a time</p></li>
+<li><p>Build up your analysis in stages - here we first computed a single year, then changed that into a function, then updated the function to deal with the successive years</p></li>
+<li><p>Check often to make sure your results are sensible, e.g. by plotting values</p></li>
+</ul>
+<p>We’ve focussed more on memory use than speed here, if improved speed is desired you could look at functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.signal.lfilter.html#scipy.signal.lfilter" title="(in SciPy v1.7.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.lfilter()</span></code></a> or using <a class="reference external" href="https://numba.pydata.org/">numba</a> instead of the loop over timesteps.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-analysis3-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-analysis3-py",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-analysis3-py'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">CLEX CMS Blog</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2021-11-02-pyproj-regrid.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Regridding from one coordinate system to another with pyproj</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By CLEX CMS<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

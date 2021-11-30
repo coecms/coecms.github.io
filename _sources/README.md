@@ -7,6 +7,11 @@ http://climate-cms.org
 
 See the jupyter-book docs for info on creating posts - https://jupyterbook.org/intro.html
 
+
+[Creating special blocks (notes, warnings etc.)](https://jupyterbook.org/content/content-blocks.html#notes-warnings-and-other-admonitions)
+
+Link to external documentation with "{func}`xarray.open_dataset`"
+
 ---
 To create a new blog post:
 

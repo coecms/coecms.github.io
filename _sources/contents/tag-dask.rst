@@ -1,13 +1,10 @@
 
-xarray
+dask
 --------------------------------------------------------------------------------
 
 .. toctree::
-    :caption: xarray
+    :caption: dask
     :maxdepth: 1
 
-    /posts/2021-07-29-coarsen_climatology
-    /posts/2021-10-01-pyproj
-    /posts/2021-11-02-pyproj-regrid
     /posts/2021-11-24-api
     

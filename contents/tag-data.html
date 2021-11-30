@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="events" href="tag-events.html" />
-    <link rel="prev" title="Using CleF 2: advanced command line functionalities" href="../posts/2020-10-12-climate-finder-extended-command-line.html" />
+    <link rel="prev" title="dask" href="tag-dask.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -103,6 +103,11 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../posts/2021-11-24-api.html">
+   API Calculation with Xarray + Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../posts/2021-11-02-pyproj-regrid.html">
    Regridding from one coordinate system to another with pyproj
   </a>
@@ -120,11 +125,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../posts/2021-09-30-code-design.html">
    Example to improve code design
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../posts/2021-07-29-coarsen_climatology.html">
-   Climatologies with ‘Coarsen’
   </a>
  </li>
 </ul>
@@ -173,12 +173,29 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="tag-dask.html">
+   dask
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-11-24-api.html">
+     API Calculation with Xarray + Dask
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
    data
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -199,8 +216,8 @@
   <a class="reference internal" href="tag-events.html">
    events
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -216,8 +233,8 @@
   <a class="reference internal" href="tag-plotting.html">
    plotting
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -235,11 +252,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
+  <a class="reference internal" href="tag-pyproj.html">
+   pyproj
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="tag-python.html">
    python
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -270,8 +309,8 @@
   <a class="reference internal" href="tag-regridding.html">
    regridding
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -281,14 +320,19 @@
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="tag-xarray.html">
    xarray
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -296,6 +340,21 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../posts/2021-07-29-coarsen_climatology.html">
      Climatologies with ‘Coarsen’
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-10-01-pyproj.html">
+     Converting between coordinate systems with Pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-11-02-pyproj-regrid.html">
+     Regridding from one coordinate system to another with pyproj
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-11-24-api.html">
+     API Calculation with Xarray + Dask
     </a>
    </li>
   </ul>
@@ -311,12 +370,17 @@
   <a class="reference internal" href="year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../posts/2021-11-24-api.html">
+     API Calculation with Xarray + Dask
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../posts/2021-11-02-pyproj-regrid.html">
      Regridding from one coordinate system to another with pyproj
@@ -353,8 +417,8 @@
   <a class="reference internal" href="year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -390,8 +454,8 @@
   <a class="reference internal" href="year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -437,8 +501,8 @@
   <a class="reference internal" href="year-2018.html">
    2018
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -688,11 +752,11 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../posts/2020-10-12-climate-finder-extended-command-line.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="tag-dask.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Using CleF 2: advanced command line functionalities</p>
+            <p class="prev-next-title">dask</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="tag-events.html" title="next page">
