@@ -137,8 +137,11 @@
   - climatology
   title: Climatologies with 'coarsen'
 
-2021-10-01-pyproj.ipynb:
+2021-10-01-pyproj:
   tags: [pyproj, xarray]
 
-2021-11-02-pyproj-regrid.ipynb:
+2021-11-02-pyproj-regrid:
   tags: [pyproj, xarray, regridding]
+
+2021-11-24-api:
+    tags: [xarray, dask]
