@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Using ARCCSSive to search CMIP5 &#8212; CLEX CMS Blog</title>
+    <title>Trajectories in regions &#8212; CLEX CMS Blog</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fortran Debugging Video Series" href="2018-08-10-Fortran-Debugging-Videos.html" />
-    <link rel="prev" title="Visualisation in a Shiny App" href="2018-08-21-visualisation-in-shiny-app.html" />
+    <link rel="next" title="API Calculation with Xarray + Dask" href="2021-11-24-api.html" />
+    <link rel="prev" title="CLEX CMS Blog" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -101,9 +101,9 @@
   Latest
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Trajectories in regions
   </a>
  </li>
@@ -366,18 +366,18 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
   <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="2021-12-08-trajectories.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Trajectories in regions
     </a>
    </li>
@@ -502,16 +502,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
      Find the value of a variable at the times when another variable is maximum
@@ -557,8 +557,8 @@
      Visualisation in a Shiny App
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
      Using ARCCSSive to search CMIP5
     </a>
    </li>
@@ -672,7 +672,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/posts/2018-08-16-search-cmip5-data-interactively.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/posts/2021-12-08-trajectories.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -692,7 +692,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-08-16-search-cmip5-data-interactively.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2021-12-08-trajectories.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -713,7 +713,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2018-08-16-search-cmip5-data-interactively.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2021-12-08-trajectories.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -736,8 +736,23 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#paola-petrelli-clex-cms">
-   Paola Petrelli, CLEX CMS
+  <a class="reference internal nav-link" href="#sample-data">
+   Sample data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#investigating-the-data">
+   Investigating the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#looking-at-all-datasets">
+   Looking at all datasets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selecting-linear-vs-cycling-trajectories">
+   Selecting linear vs cycling trajectories
   </a>
  </li>
 </ul>
@@ -751,149 +766,220 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="using-arccssive-to-search-cmip5">
-<h1>Using ARCCSSive to search CMIP5<a class="headerlink" href="#using-arccssive-to-search-cmip5" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="paola-petrelli-clex-cms">
-<h2>Paola Petrelli, CLEX CMS<a class="headerlink" href="#paola-petrelli-clex-cms" title="Permalink to this headline">¶</a></h2>
-<p>We created a database that contains information on the CMIP5 data available on raijin. We then created a python module <strong>ARCCSSive</strong> to help users accessing and interrogating the database. You might have used already one of our custom scripts that allows you to search for the files location directly from the command line, like <em>search_replica</em> .
-Let’s have a look now on how to search the database interactively so you can perform a search and work with the results directly from your python script.</p>
-<p>First of all we need to load the conda/analysis27 environment, available both on raijin and the VDI, so we can use ARCCSSive.</p>
-<p>    module use /g/data/hh5/public/modules</p>
-<p>    module load conda/analysis27</p>
-<p>The current version of ARCCSSive only works with python2, we are working on a new version in preparation for CMIP6, ARCCSSive2 will be available in conda/analysis3 .</p>
-<p>We will also import numpy to do some simple calculation and netCDF4 function MFDataset( ) to open multiple netcdf files at once.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="trajectories-in-regions">
+<h1>Trajectories in regions<a class="headerlink" href="#trajectories-in-regions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Scott Wales, CLEX CMS</strong></p>
+<p>A recent code break question went as follows: I have a set of trajectory paths, running over a domain that has been split into regions so that I know what region each trajectory is in at each time. How can I identify which trajectories go in a path along unique regions and which cycle back and forth between a small number of regions, given that I have several million trajectories to analyse?</p>
+<p>With such a large number of trajectories we want to try and find a solution that doesn’t need to loop over each trajectory. It’s going to be much more efficient if we can find a solution that works on the whole dataset at once.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ARCCSSive</span> <span class="kn">import</span> <span class="n">CMIP5</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">MFDataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>After having imported the module <strong>CMIP5</strong> from ARCCSSive, we create a connection to the database.</p>
+<div class="section" id="sample-data">
+<h2>Sample data<a class="headerlink" href="#sample-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start out with some sample data to explore the problem. We don’t need the full dataset for this - I’ll make 100 random walks along 10 regions. At each timestep there is about a 1/10 chance to change regions, either to the left or right.</p>
+<p>I’ll start out with each trajectory at time 0 being in a random region. At each timestep I’ll choose to step a distance randomly chosen from <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">0,</span> <span class="pre">1]</span></code>, with a step size of <code class="docutils literal notranslate"><span class="pre">0</span></code> more heavily favoured so the result isn’t pure noise</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># step1: connect to the database</span>
-<span class="n">db</span><span class="o">=</span><span class="n">CMIP5</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then we use the <strong>outputs( )</strong> function to search the database. outputs( ) gets the <em>experiment, model, mip, ensemble</em> and <em>variable</em> as arguments. Any of these can be left out, so if we want to find all the models that have a r1i1p1 ensemble of historical monthly data for surface temperature, we pass all the corresponding arguments except <em>model</em>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># step2: search database without specifying the model</span>
-<span class="n">outs</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">outputs</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="s1">&#39;historical&#39;</span><span class="p">,</span><span class="n">mip</span><span class="o">=</span><span class="s1">&#39;Amon&#39;</span><span class="p">,</span><span class="n">ensemble</span><span class="o">=</span><span class="s1">&#39;r1i1p1&#39;</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s1">&#39;tasmax&#39;</span><span class="p">)</span>
-<span class="c1"># we can see how many results were returned by the search</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Search found </span><span class="si">%s</span><span class="s2"> results&quot;</span> <span class="o">%</span> <span class="n">outs</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Search found 45 results
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s have a look at one of the results</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ARCCSSive.CMIP5.Model.Instance at 0x7f4040b48fd0&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<p>It is a special object called <strong>Instance</strong> which represent a row from the database Instance table.
-Each instance is defined by the arguments we listed above and can have one or more versions.
-It is the <strong>Version</strong> table that contains the directory path the we need to access the files.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">outs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">versions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">outs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">versions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;ARCCSSive.CMIP5.Model.Version object at 0x7f4040c25ed0&gt;, &lt;ARCCSSive.CMIP5.Model.Version object at 0x7f4040c25f90&gt;]
-/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/mon/atmos/Amon/r1i1p1/v20120413/tasmax
-</pre></div>
-</div>
-</div>
-</div>
-<p>Most of the time we are interested only in the latest available version, we can use the <em>latest( )</em> function to do so.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">outs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">latest</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">outs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">latest</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;ARCCSSive.CMIP5.Model.Version object at 0x7f4040b7e8d0&gt;]
-/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/mon/atmos/Amon/r1i1p1/v20130325/tasmax
-</pre></div>
-</div>
-</div>
-</div>
-<p>Unfortunately the CMIP5 replica directory often contains one or more copies of the same version. This is why <em>latest( )</em> always return a list and not only one version. So we need to use the “0” index to select one version.
-NB. NCI is in the process of creating a new cleaner copy of CMIP5 which will eventually solve all these issues.</p>
-<p>Let’s now define a simple function which will get tasmax as input an return a mean value:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-<span class="k">def</span> <span class="nf">var_mean</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; calculate max value for variable &#39;&#39;&#39;</span>
-    <span class="c1"># open ensemble files as one aggregated file using MFDataset</span>
-    <span class="c1"># Glob is required here in order to expand the path if using python 2, for python 3 is not needed</span>
-    <span class="c1">#</span>
-    <span class="c1"># using path+&quot;/*.nc&quot; should be sufficient, unfortunately GISS models break conventions and they put all variables in one directory</span>
-    <span class="c1">#  so I&#39;m using &quot;/&quot;+var+&quot;_*.nc&quot; just in case</span>
-    <span class="c1">#</span>
-    <span class="n">expanded_path</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot;_*.nc&quot;</span><span class="p">)</span>
-    <span class="n">nc</span><span class="o">=</span><span class="n">MFDataset</span><span class="p">(</span><span class="n">expanded_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">var</span><span class="p">][:]</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now that we have defined a function let’s pass the search results path to it, in this way we can calculate the mean on all the tasmax ensembles we found.</p>
-<p>Let’s now run the function for the results returned by the search, we used only the first 6 instances in this example. We simply have to pass the <em>path</em> attribute to the function. Rememebr path is defined in the Version table, along with the <em>version</em> label, while the <em>model</em> name is a  field on the Instance table.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># step3: retrieve path for each version returned by search and pass it to function.</span>
-<span class="c1"># I&#39;m limiting this to the first 6 results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traj_id</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span> <span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;MS&#39;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">times</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">traj_id</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 
-<span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">outs</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">variable</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">model</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">versions</span><span class="p">:</span>
-        <span class="n">varmean</span><span class="o">=</span><span class="n">var_mean</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean value for variable </span><span class="si">%s</span><span class="s1">, model </span><span class="si">%s</span><span class="s1"> , version </span><span class="si">%s</span><span class="s1"> is </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">varmean</span><span class="p">))</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Set the region at t=0</span>
+<span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">traj_id</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">times</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+    <span class="c1"># At time t, have each trajectory either stay at the same region or move +/- 1 region</span>
+    <span class="c1"># The randint call gives a random integer in the range [-10, 11). Dividing this by</span>
+    <span class="c1"># 10 and getting the integer part weights the distribution - it&#39;s much more likely</span>
+    <span class="c1"># to stay in the same region than to move regions</span>
+    <span class="n">values</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="n">traj_id</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+
+<span class="c1"># Wrap the region numbers, getting the values mod 10</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">%</span> <span class="n">states</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we look at a single walk we can see how it transitions between the regions over time. I’m just considering a 1d distribution of regions so the trajectory can only switch between two neighbours, e.g. having each region be a different longitude band. In a real dataset the regions may be arranged in a more complex manner.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean value for variable tasmax, model HadCM3 , version v20110823 is 278.319
-Mean value for variable tasmax, model MIROC4h , version v20110729 is 280.866
-Mean value for variable tasmax, model MIROC4h , version v20120628 is 280.866
-Mean value for variable tasmax, model CNRM-CM5-2 , version v20130401 is 279.091
-Mean value for variable tasmax, model CMCC-CM , version v20121008 is 279.159
-Mean value for variable tasmax, model MPI-ESM-MR , version v20120503 is 279.87
+<img alt="../_images/2021-12-08-trajectories_5_0.png" src="../_images/2021-12-08-trajectories_5_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="investigating-the-data">
+<h2>Investigating the data<a class="headerlink" href="#investigating-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We can see how long a single trajectory spends in each region by creating a histogram with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total time spent in each state</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  0,  0,  1,  5, 37, 30, 42,  5,  0])
 </pre></div>
 </div>
 </div>
 </div>
-<p>There are ways to execute more complex searches and/or filtering of the results returned by the <em>outputs( )</em> function.
-If you think this could be useful for you a more detailed explanations and examples of filters is
-available in the <a class="reference external" href="https://training.nci.org.au/mod/lesson/view.php?id=372"><strong>ARCCSSive training</strong></a> .</p>
-<p>As for other NCI online trainings you need to use your NCI account to login. The ARCCSSive training is part of a CMIP5 induction. If you are new to CMIP5 then it is a good idea to check the entire training.</p>
+<p>Another thing we can check is at what times the trajectory moves between regions - this will be when the region at time <code class="docutils literal notranslate"><span class="pre">t</span></code> is different to the region at <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">-</span> <span class="pre">1</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State transitions</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span> <span class="o">-</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
+<span class="n">diff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.,  0.,  0., ...,  0.,  0.,  0.],
+       [ 0.,  0.,  0., ...,  0.,  0.,  0.],
+       [ 0.,  0.,  0., ...,  0.,  0.,  0.],
+       ...,
+       [ 0.,  0.,  0., ...,  0.,  1.,  0.],
+       [ 0.,  0.,  0., ...,  0., -1.,  0.],
+       [ 0.,  0.,  0., ...,  0.,  1., -9.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we use this as a mask with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.where()</span></code></a> we can find out which region was entered</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transitions into each state</span>
+<span class="n">entries</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diff</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:],</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">entries</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 4., nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       ...,
+       [nan, nan, nan, ..., nan,  5., nan],
+       [nan, nan, nan, ..., nan,  4., nan],
+       [nan, nan, nan, ..., nan,  5.,  0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another histogram then tells us how many times a trajectory entered each region</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total entries into each state</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">entries</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 1, 3, 4, 2, 1, 0])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="looking-at-all-datasets">
+<h2>Looking at all datasets<a class="headerlink" href="#looking-at-all-datasets" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a> only works with 1d data, to use it on all trajectories at once we can combine it with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.apply_along_axis.html#numpy.apply_along_axis" title="(in NumPy v1.21)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.apply_along_axis()</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Applying to the total dataset</span>
+<span class="n">entries_hist</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">entries</span><span class="p">)</span>
+<span class="n">entries_hist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 1, 3, 4, 2, 1, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve now got some data to analyse to solve the original problem. If a trajectory passes from region to region it will have a small number of entries into a large number of regions. If on the other hand it cycles back and forth between two regions it will have a large number of entries into a small number of regions.</p>
+<p>Quantifying this is left to the reader.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">entries_hist</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trajectory id&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total region transitions&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2021-12-08-trajectories_18_0.png" src="../_images/2021-12-08-trajectories_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">entries_hist</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trajectory id&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;maximum transitions into a single region&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2021-12-08-trajectories_19_0.png" src="../_images/2021-12-08-trajectories_19_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_entered</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">entries_hist</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">entries_hist</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">states_entered</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trajectory id&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;maximum transitions into a single region</span><span class="se">\n</span><span class="s1">/ regions entered&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2021-12-08-trajectories_20_0.png" src="../_images/2021-12-08-trajectories_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="selecting-linear-vs-cycling-trajectories">
+<h2>Selecting linear vs cycling trajectories<a class="headerlink" href="#selecting-linear-vs-cycling-trajectories" title="Permalink to this headline">¶</a></h2>
+<p>For this toy problem I’ll use the metric of the total number of times a trajectory moves between regions divided by the number of regions the trajectory spends any time in. When this metric is below 0.5 I’ll say the trajectory is linear, when over 1.5 I’ll say it’s cycling. These limits may be very different for a real-world dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metric</span> <span class="o">=</span> <span class="n">entries_hist</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">states_entered</span>
+
+<span class="n">linear</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">metric</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cycling</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">metric</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="n">linear</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="n">cycling</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;cycling&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2021-12-08-trajectories_22_0.png" src="../_images/2021-12-08-trajectories_22_0.png" />
+</div>
+</div>
 </div>
 </div>
 
@@ -906,33 +992,33 @@ available in the <a class="reference external" href="https://training.nci.org.au
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-21.07-py"
+            mode: "conda-env-analysis3-py"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-21.07-py",
+            kernelName: "conda-env-analysis3-py",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-21.07-py'</script>
+    <script>kernelName = 'conda-env-analysis3-py'</script>
 
               </div>
               
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="2018-08-21-visualisation-in-shiny-app.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Visualisation in a Shiny App</p>
+            <p class="prev-next-title">CLEX CMS Blog</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="2018-08-10-Fortran-Debugging-Videos.html" title="next page">
+    <a class='right-next' id="next-link" href="2021-11-24-api.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fortran Debugging Video Series</p>
+        <p class="prev-next-title">API Calculation with Xarray + Dask</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
