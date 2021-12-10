@@ -15,15 +15,23 @@
     :maxdepth: 2
     :hidden:
 
+    /contents/tag-bash
     /contents/tag-climatology
     /contents/tag-cmip
     /contents/tag-dask
     /contents/tag-data
+    /contents/tag-debug
     /contents/tag-events
+    /contents/tag-fortran
+    /contents/tag-model
+    /contents/tag-netcdf
+    /contents/tag-payu
     /contents/tag-plotting
     /contents/tag-pyproj
     /contents/tag-python
+    /contents/tag-r
     /contents/tag-regridding
+    /contents/tag-video
     /contents/tag-xarray
     
 
