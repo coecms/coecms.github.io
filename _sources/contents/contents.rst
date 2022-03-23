@@ -25,6 +25,8 @@
     /contents/tag-fortran
     /contents/tag-model
     /contents/tag-netcdf
+    /contents/tag-paleoclimate
+    /contents/tag-pandas
     /contents/tag-payu
     /contents/tag-plotting
     /contents/tag-pyproj
