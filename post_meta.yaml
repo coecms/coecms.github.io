@@ -226,3 +226,6 @@
 
 2021-11-24-api:
     tags: [xarray, dask]
+
+2022-03-15-reading-nonstandard-data:
+    tags: [xarray, pandas, paleoclimate]
