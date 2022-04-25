@@ -1,0 +1,7 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+
+# Latest, Tags, Archive are all set up by generate_toc.py and included in index.md, not added here

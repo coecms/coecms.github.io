@@ -1,12 +1,4 @@
-_site
-.sass-cache
-.jekyll-metadata
-
-*.swp
-.vagrant
+_build
+contents
+*.sw?
 .ipynb_checkpoints
-*.log
-
-# Some temporary files for the Python Animation notebook
-images/Python_Animation/*.png
-notebooks/None*png
