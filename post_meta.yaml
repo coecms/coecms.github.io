@@ -71,13 +71,6 @@
   tags:
   - r
   - plotting
-2018-09-03-storage-where-what-why-how:
-  excerpt: Where is my stuff? What even is it? Why is it taking up so much space and
-    how can I fix it?
-  title: Storage - where, what, why and how?
-  tags:
-  - data
-  - netcdf
 2018-09-14-dask-era-interim:
   excerpt: Using the power of Dask to start working with lots of files quickly
   title: Speeding up large dataset loads with Dask
@@ -229,3 +222,8 @@
 
 2022-03-15-reading-nonstandard-data:
     tags: [xarray, pandas, paleoclimate]
+2022-04-26-storage-where-what-why-how:
+  excerpt: Where is my stuff? What even is it? Why is it taking up so much space and
+    how can I fix it?
+  title: Storage - where, what, why and how?
+  tags: [data, netcdf, storage]

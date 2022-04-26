@@ -35,16 +35,13 @@ nci_account -P project_id
 To query usage for an on-disk file system, NCI provides commands which report on filesystem usage, updated daily. On NCI systems, it is the project owning a file that determines how it is accounted for, not where the file resides on the filesystem
 ```
 nci-files-report --group project_id
-    reports user information for files on scratch or gdata owned by the group <project_id>
-
-gdata_files_report -P project_id
-    reports user information for files in the <project_id>'s scratch and gdata folders.
 ```
 
 CMS has put in place a `Grafana` server for visualising a range of accounting statistics for CLEx. You can access [this server](https://accessdev.nci.org.au/grafana/login:) using your NCI credentials.
-```
-You can access a range of useful statistics by user and group via the [`user-report` dashboard](https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1)
-```
+
+You can access a range of useful statistics by user and group via the [User Report dashboard](https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1)
+
+![Grafana User Report](../images/grafana_example.png "Grafana User Report")
 
 More details on how to use these and other accounting tools are available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Accounting_at_NCI).
 
@@ -75,7 +72,15 @@ xconv history_file
 ncdump -hs netcdf_file
 grib_ls grib_file
 ```
-
+On May 2022 NCI started the [purging of old files on /scratch](https://protect-au.mimecast.com/s/wd_aC6X1k7Cr7wn0zipvCNT?domain=opus.nci.org.au). `nci-file-expiry` is the new tool NCI provides for users to check which files will expire soon, which have been quarantined and how to get them out of quarantine.
+To check which files will expire soon use:
+```
+nci-file-expiry list-warnings
+```
+To see all the available options:
+```
+nci-file-expiry -h
+```   
 ## Why?
 
 Why do I have these in the first place? If you're running a model: check the diagnostics (output variables) being 
@@ -144,6 +149,13 @@ Alternatively convert to compressed netCDF4.
 ```
 ~access/bin/um2netcdf.py -i um_file -o um_file.nc -k 4 -d 5
 ```
+### ACCESS model output
+Chloe Mackallah (CSIRO) created a very useful tool to help sorting the ACCESS model output: the [ACCESS Archiver](https://git.nci.org.au/cm2704/ACCESS-Archiver).
+```{admonition} From the documentation:
+The ACCESS Archiver is designed to archive model output from ACCESS simulations. It's focus is to copy ACCESS model output from its initial location to a secondary location (typically from /scratch to /g/data), while converting UM files to netCDF, compressing MOM/CICE files, and culling restart files to 10-yearly. Saves 50-80% of storage space due to conversion and compression.
+Supported versions are CM2 (coupled, amip & chem versions), ESM1.5 (script & payu versions), OM2[-025]
+```
+Please note that you need to use your NCI credential to get access to the repository.
 
 ### Text files and binary
 Text files and binary files generally compress well, a lot of redundant information. This is lossless compression
@@ -187,13 +199,13 @@ tar -xvf tarfile.tar.gz
 
 ## Move data up the storage hierarchy: 
 ```
-short	<	gdata 	< 	massdata
+scratch	<	gdata 	< 	massdata
 ```
 In general the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.
 
-Have a data workflow that moves data from short to gdata to massdata in a planned manner. 
+Have a data workflow that moves data from scratch to gdata to massdata in a planned manner. 
 
-If inode quota is already tight on short, files must be aggregated when moving up the hierarchy. massdata is faster with larger file sizes due to physical limits of tape.
+If inode quota is already tight on scratch, files must be aggregated when moving up the hierarchy. Massdata is faster with larger file sizes due to physical limits of tape.
 
 ### Moving data between disks
 Moving data up the storage hierarchy means copying data from one on-disk filesystem to another. Can use `cp`
@@ -211,7 +223,7 @@ rsync --ignore-existing -vrltoD --safe-links origin destination
 ```
 
 ### Moving data between disk and tape
-The "highest" position on the storage hierarchy is the tape based mass data store.
+The "highest" position on the storage hierarchy is the tape based massdata store.
 
 But but but …
 
@@ -257,10 +269,4 @@ As above, but specify project
 	mdssdiff -P project_id -cl -r localdir -p $USER/remotedir
 ```
 
-### Moving data between disk and tape: In the future
-
-There are plans to make it easier and more attractive to transfer files to massdata by creating more supporting software tools:
-
-`mdssprep` - traverse a directory structure, archiving as required, and recording a manifest describing all files
-
-`mdssfind` - find files that have been transferred to massdata and optionally call mdssdiff to copy them back to a local directory
+More infomration on the NCI tape system and mdss is available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Archiving_data).
