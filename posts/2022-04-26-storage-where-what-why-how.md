@@ -34,31 +34,19 @@ nci_account -P project_id
 ```
 To query usage for an on-disk file system, NCI provides commands which report on filesystem usage, updated daily. On NCI systems, it is the project owning a file that determines how it is accounted for, not where the file resides on the filesystem
 ```
-short_files_report -G project_id
-gdata1_files_report -G project_id
+nci-files-report --group project_id
+    reports user information for files on scratch or gdata owned by the group <project_id>
+
+gdata_files_report -P project_id
+    reports user information for files in the <project_id>'s scratch and gdata folders.
 ```
 
-For Centre of Excellence projects (and a few others), we track usage over time using `ncimonitor`. To access this command:
+CMS has put in place a `Grafana` server for visualising a range of accounting statistics for CLEx. You can access [this server](https://accessdev.nci.org.au/grafana/login:) using your NCI credentials.
 ```
-module use /g/data3/hh5/public/modules
-module load conda
+You can access a range of useful statistics by user and group via the [`user-report` dashboard](https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1)
 ```
-```
-ncimonitor -P project_id --short --gdata --showtotal
-```
-Show only your usage
-```
-ncimonitor -P project_id --short --gdata -u $USER
-ncimonitor -P project_id --short --inodes -u $USER
-```
-Look at the change in your short file usage since the beginning of the quarter
-```
-ncimonitor -P project_id --short -u $USER --delta
-```
-For a full list of options
-```
-ncimonitor -h
-```
+
+More details on how to use these and other accounting tools are available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Accounting_at_NCI).
 
 ## What?
 
