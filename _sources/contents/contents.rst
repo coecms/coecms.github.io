@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2022-04-26-storage-where-what-why-how
     /posts/2022-03-15-reading-nonstandard-data
     /posts/2021-12-08-trajectories
     /posts/2021-11-24-api
     /posts/2021-11-02-pyproj-regrid
-    /posts/2021-10-01-pyproj
     
 
 .. toctree::
@@ -33,6 +33,7 @@
     /contents/tag-python
     /contents/tag-r
     /contents/tag-regridding
+    /contents/tag-storage
     /contents/tag-video
     /contents/tag-xarray
     

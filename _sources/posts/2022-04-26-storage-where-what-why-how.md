@@ -34,31 +34,16 @@ nci_account -P project_id
 ```
 To query usage for an on-disk file system, NCI provides commands which report on filesystem usage, updated daily. On NCI systems, it is the project owning a file that determines how it is accounted for, not where the file resides on the filesystem
 ```
-short_files_report -G project_id
-gdata1_files_report -G project_id
+nci-files-report --group project_id
 ```
 
-For Centre of Excellence projects (and a few others), we track usage over time using `ncimonitor`. To access this command:
-```
-module use /g/data3/hh5/public/modules
-module load conda
-```
-```
-ncimonitor -P project_id --short --gdata --showtotal
-```
-Show only your usage
-```
-ncimonitor -P project_id --short --gdata -u $USER
-ncimonitor -P project_id --short --inodes -u $USER
-```
-Look at the change in your short file usage since the beginning of the quarter
-```
-ncimonitor -P project_id --short -u $USER --delta
-```
-For a full list of options
-```
-ncimonitor -h
-```
+CMS has put in place a `Grafana` server for visualising a range of accounting statistics for CLEX. You can access [this server](https://accessdev.nci.org.au/grafana/login:) using your NCI credentials.
+
+You can access a range of useful statistics by user and group via the [User Report dashboard](https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1)
+
+![Grafana User Report](../images/grafana_example.png "Grafana User Report")
+
+More details on how to use these and other accounting tools are available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Accounting_at_NCI).
 
 ## What?
 
@@ -87,10 +72,18 @@ xconv history_file
 ncdump -hs netcdf_file
 grib_ls grib_file
 ```
-
+On May 2022 NCI started the [purging of old files on /scratch](https://protect-au.mimecast.com/s/wd_aC6X1k7Cr7wn0zipvCNT?domain=opus.nci.org.au). `nci-file-expiry` is the new tool NCI provides for users to check which files will expire soon, which have been quarantined and how to get them out of quarantine.
+To check which files will expire soon use:
+```
+nci-file-expiry list-warnings
+```
+To see all the available options:
+```
+nci-file-expiry -h
+```   
 ## Why?
 
-Why do I have these in the first place? If you're running a model: check the diagnostics (output variables) being 
+Why do I produce this data? If you're running a model: check the diagnostics (output variables) being 
 produced. Do you need them all? Before starting a run, check you will have enough space to store all the data produced.
 
 Analysing data: does your workflow involve:
@@ -111,9 +104,9 @@ How can I use less disk space? Data triage: Why am I storing these files?
 ### Delete if:
 
 * you don't remember what the data is or comes from
-* not required
+* not required, as in case of failed simulations
 * duplicates of data available with similar access time (on disk, readable) or with a longer access time (mass data, off-site) if no longer require fast access
-* intermediate data for analysis (keep scripts to regenerate (version control))
+* intermediate data for analysis (keep scripts to regenerate under version control, ideally on GitHub or similar)
 
 ## How can I use less disk space for the files/fields I must keep?
 ### Netcdf files
@@ -143,19 +136,32 @@ nccompress -h
 
 You can reduce the precision of netCDF data, known as packing.
 
-The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally halves size of file. 
+The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally, halves size of file. 
 
-Useful when data is produced: problems can be corrected and data regenerated. We don't recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, `nco` (`module load nco`) has a tool for packing
+Packing is more reliable when data is produced, as problems can be corrected, and data regenerated. We don't recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, `nco` (`module load nco`) has a tool for packing
 ```
 ncpdq -L 5 infile.nc outfile.nc
+
 ```
+**Bit Grooming: Precision-Preserving Compression**
+
+[Bit grooming](https://gmd.copernicus.org/articles/9/3199/2016/) is a form of precision-preserving compression, similar to packing, but does not suffer from the degradation of precision within the narrow dynamic range of values chosen. It is an active area of research, and new algorithms/approaches are being developed. Generally, these approaches remove spurious precision from scientific data, usually model output, that has no informational value, and by doing so makes the data more compressible. In a real-world application the data was less than half the size of the same data only using compression.
 
 ### UM history files
-UM history files can be compressed with tools like gzip, but this can be time consuming and the file must be uncompressed before using.
+UM history files can be compressed with tools like gzip, but this can be time consuming, and the file must be uncompressed before using.
 Alternatively convert to compressed netCDF4.
 ```
-~access/bin/um2netcdf.py -i um_file -o um_file.nc -k 4 -d 5
+module use /g/data/access/projects/access/modules/
+module load pythonlib/um2netcdf4
+um2netcdf4.py -i um_file -o um_file.nc -k 4 -d 5
 ```
+### ACCESS model output
+Chloe Mackallah (CSIRO) created a very useful tool to help sorting the ACCESS model output: the [ACCESS Archiver](https://git.nci.org.au/cm2704/ACCESS-Archiver).
+```{admonition} From the documentation:
+The ACCESS Archiver is designed to archive model output from ACCESS simulations. Its focus is to copy ACCESS model output from its initial location to a secondary location (typically from /scratch to /g/data), while converting UM files to netCDF, compressing MOM/CICE files, and culling restart files to 10-yearly. Saves 50-80% of storage space due to conversion and compression.
+Supported versions are CM2 (coupled, amip & chem versions), ESM1.5 (script & payu versions), OM2[-025]
+```
+Please note that you need to use your NCI credential to get access to the repository.
 
 ### Text files and binary
 Text files and binary files generally compress well, a lot of redundant information. This is lossless compression
@@ -174,7 +180,7 @@ There is a limit on inodes (number of files) on NCI machine. If you are close to
 
 One solution if you have a large number of netCDF files is to aggregate them. 
 
-Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata is repeated, so it is redundant, this approach saves on space as well.
+Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata are repeated, so it is redundant, this approach can save a lot of storage space as well.
 
 Use `nco` (`module load nco`)
 ```
@@ -199,13 +205,13 @@ tar -xvf tarfile.tar.gz
 
 ## Move data up the storage hierarchy: 
 ```
-short	<	gdata 	< 	massdata
+scratch	<	gdata 	< 	massdata
 ```
-In general the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.
+In general, the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.
 
-Have a data workflow that moves data from short to gdata to massdata in a planned manner. 
+Have a data workflow that moves data from scratch to gdata to massdata in a planned manner. 
 
-If inode quota is already tight on short, files must be aggregated when moving up the hierarchy. massdata is faster with larger file sizes due to physical limits of tape.
+If inode quota is already tight on scratch, files must be aggregated when moving up the hierarchy. Massdata is faster with larger file sizes due to physical limits of tape.
 
 ### Moving data between disks
 Moving data up the storage hierarchy means copying data from one on-disk filesystem to another. Can use `cp`
@@ -223,7 +229,7 @@ rsync --ignore-existing -vrltoD --safe-links origin destination
 ```
 
 ### Moving data between disk and tape
-The "highest" position on the storage hierarchy is the tape based mass data store.
+The "highest" position on the storage hierarchy is the tape based massdata store.
 
 But but but …
 
@@ -238,7 +244,9 @@ mdss -P project_id put -r localdir $USER/remotedir
 mdss -P project_id get -r localdir $USER/remotedir
 ```
 
-You can put large amounts of data with netmv / netcp. Makes tar file of a directory, can be slow and increase disk usage in short term. Data must be retrieved in large quanta. Using mdss to transfer as-is will generally time out before all data is transferred.
+You can put large amounts of data with netmv / netcp. These tools make a tar file of the directory you are trying to move, can be slow and increase disk usage dramatically in short term. Data must also be retrieved again in large quanta. This is usually not recommended.
+
+Using the mdss command to transfer on a login node will generally time out before all data is transferred. So, the best option is probably to use an interactive PBS job, or create a script, and use mdss put -r.
 
 If a data transfer times out before it is finished, it can be difficult to determine what has been transferred successfully, and extremely difficult to then transfer only what wasn't successfully written.
 
@@ -269,10 +277,4 @@ As above, but specify project
 	mdssdiff -P project_id -cl -r localdir -p $USER/remotedir
 ```
 
-### Moving data between disk and tape: In the future
-
-There are plans to make it easier and more attractive to transfer files to massdata by creating more supporting software tools:
-
-`mdssprep` - traverse a directory structure, archiving as required, and recording a manifest describing all files
-
-`mdssfind` - find files that have been transferred to massdata and optionally call mdssdiff to copy them back to a local directory
+More information on the NCI tape system and mdss is available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Archiving_data).

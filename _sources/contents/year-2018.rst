@@ -13,7 +13,6 @@
     /posts/2018-10-05-introduction-to-python-logging
     /posts/2018-09-28-line-plots-with-xarray
     /posts/2018-09-14-dask-era-interim
-    /posts/2018-09-03-storage-where-what-why-how
     /posts/2018-08-21-visualisation-in-shiny-app
     /posts/2018-08-16-search-cmip5-data-interactively
     /posts/2018-08-10-Fortran-Debugging-Videos

@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fast MOM collation with payu and mppnncombine-fast" href="2018-10-19-mppnccombine-fast.html" />
-    <link rel="prev" title="data" href="../contents/tag-data.html" />
+    <link rel="next" title="An example of reading non-standard data using pandas and xarray" href="2022-03-15-reading-nonstandard-data.html" />
+    <link rel="prev" title="CLEX CMS Blog" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -103,7 +103,12 @@ const thebe_selector_output = ".output, .cell_output"
   Latest
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Storage - where, what, why and how?
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
@@ -122,11 +127,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2021-11-02-pyproj-regrid.html">
    Regridding from one coordinate system to another with pyproj
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-10-01-pyproj.html">
-   Converting between coordinate systems with Pyproj
   </a>
  </li>
 </ul>
@@ -234,11 +234,6 @@ const thebe_selector_output = ".output, .cell_output"
      Using ARCCSSive to search CMIP5
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Storage - where, what, why and how?
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-19-mppnccombine-fast.html">
      Fast MOM collation with payu and mppnncombine-fast
@@ -262,6 +257,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">
      Using CleF 2: advanced command line functionalities
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Storage - where, what, why and how?
     </a>
    </li>
   </ul>
@@ -354,11 +354,6 @@ const thebe_selector_output = ".output, .cell_output"
      Python Tuesday: NetCDF Python library overview
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Storage - where, what, why and how?
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
@@ -367,6 +362,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">
      Setting up NetCDF file attributes
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Storage - where, what, why and how?
     </a>
    </li>
   </ul>
@@ -677,12 +677,29 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../contents/tag-storage.html">
+   storage
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Storage - where, what, why and how?
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../contents/tag-video.html">
    video
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -698,8 +715,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/tag-xarray.html">
    xarray
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -783,16 +800,21 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../contents/year-2022.html">
    2022
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-  <label for="toctree-checkbox-21">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Storage - where, what, why and how?
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
      An example of reading non-standard data using pandas and xarray
@@ -804,8 +826,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
-  <label for="toctree-checkbox-22">
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -856,8 +878,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -893,8 +915,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -936,16 +958,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">
      Find the value of a variable at the times when another variable is maximum
@@ -979,11 +1001,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-14-dask-era-interim.html">
      Speeding up access to large datasets with Dask Delayed
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Storage - where, what, why and how?
     </a>
    </li>
    <li class="toctree-l2">
@@ -1106,7 +1123,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/posts/2018-09-03-storage-where-what-why-how.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/posts/2022-04-26-storage-where-what-why-how.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -1126,7 +1143,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-09-03-storage-where-what-why-how.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2022-04-26-storage-where-what-why-how.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -1200,6 +1217,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#access-model-output">
+     ACCESS model output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#text-files-and-binary">
      Text files and binary
     </a>
@@ -1224,11 +1246,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#moving-data-between-disk-and-tape">
      Moving data between disk and tape
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#moving-data-between-disk-and-tape-in-the-future">
-     Moving data between disk and tape: In the future
     </a>
    </li>
   </ul>
@@ -1301,6 +1318,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#access-model-output">
+     ACCESS model output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#text-files-and-binary">
      Text files and binary
     </a>
@@ -1325,11 +1347,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#moving-data-between-disk-and-tape">
      Moving data between disk and tape
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#moving-data-between-disk-and-tape-in-the-future">
-     Moving data between disk and tape: In the future
     </a>
    </li>
   </ul>
@@ -1362,31 +1379,13 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>To query usage for an on-disk file system, NCI provides commands which report on filesystem usage, updated daily. On NCI systems, it is the project owning a file that determines how it is accounted for, not where the file resides on the filesystem</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">short_files_report</span> <span class="o">-</span><span class="n">G</span> <span class="n">project_id</span>
-<span class="n">gdata1_files_report</span> <span class="o">-</span><span class="n">G</span> <span class="n">project_id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nci</span><span class="o">-</span><span class="n">files</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">group</span> <span class="n">project_id</span>
 </pre></div>
 </div>
-<p>For Centre of Excellence projects (and a few others), we track usage over time using <code class="docutils literal notranslate"><span class="pre">ncimonitor</span></code>. To access this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data3</span><span class="o">/</span><span class="n">hh5</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">conda</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncimonitor</span> <span class="o">-</span><span class="n">P</span> <span class="n">project_id</span> <span class="o">--</span><span class="n">short</span> <span class="o">--</span><span class="n">gdata</span> <span class="o">--</span><span class="n">showtotal</span>
-</pre></div>
-</div>
-<p>Show only your usage</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ncimonitor -P project_id --short --gdata -u $USER
-ncimonitor -P project_id --short --inodes -u $USER
-</pre></div>
-</div>
-<p>Look at the change in your short file usage since the beginning of the quarter</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ncimonitor -P project_id --short -u $USER --delta
-</pre></div>
-</div>
-<p>For a full list of options</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncimonitor</span> <span class="o">-</span><span class="n">h</span>
-</pre></div>
-</div>
+<p>CMS has put in place a <code class="docutils literal notranslate"><span class="pre">Grafana</span></code> server for visualising a range of accounting statistics for CLEX. You can access <a class="reference external" href="https://accessdev.nci.org.au/grafana/login:">this server</a> using your NCI credentials.</p>
+<p>You can access a range of useful statistics by user and group via the <a class="reference external" href="https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1">User Report dashboard</a></p>
+<p><img alt="Grafana User Report" src="../_images/grafana_example.png" /></p>
+<p>More details on how to use these and other accounting tools are available from the <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au/Accounting_at_NCI">CMS wiki</a>.</p>
 </div>
 <div class="section" id="what">
 <h2>What?<a class="headerlink" href="#what" title="Permalink to this headline">¶</a></h2>
@@ -1413,10 +1412,19 @@ Press ‘?’ to get help on the options available. ‘g’ changes the layout. 
 <span class="n">grib_ls</span> <span class="n">grib_file</span>
 </pre></div>
 </div>
+<p>On May 2022 NCI started the <a class="reference external" href="https://protect-au.mimecast.com/s/wd_aC6X1k7Cr7wn0zipvCNT?domain=opus.nci.org.au">purging of old files on /scratch</a>. <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> is the new tool NCI provides for users to check which files will expire soon, which have been quarantined and how to get them out of quarantine.
+To check which files will expire soon use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nci</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="n">expiry</span> <span class="nb">list</span><span class="o">-</span><span class="n">warnings</span>
+</pre></div>
+</div>
+<p>To see all the available options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nci</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="n">expiry</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="why">
 <h2>Why?<a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h2>
-<p>Why do I have these in the first place? If you’re running a model: check the diagnostics (output variables) being
+<p>Why do I produce this data? If you’re running a model: check the diagnostics (output variables) being
 produced. Do you need them all? Before starting a run, check you will have enough space to store all the data produced.</p>
 <p>Analysing data: does your workflow involve:</p>
 <ul class="simple">
@@ -1438,9 +1446,9 @@ produced. Do you need them all? Before starting a run, check you will have enoug
 <h3>Delete if:<a class="headerlink" href="#delete-if" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>you don’t remember what the data is or comes from</p></li>
-<li><p>not required</p></li>
+<li><p>not required, as in case of failed simulations</p></li>
 <li><p>duplicates of data available with similar access time (on disk, readable) or with a longer access time (mass data, off-site) if no longer require fast access</p></li>
-<li><p>intermediate data for analysis (keep scripts to regenerate (version control))</p></li>
+<li><p>intermediate data for analysis (keep scripts to regenerate under version control, ideally on GitHub or similar)</p></li>
 </ul>
 </div>
 </div>
@@ -1466,19 +1474,34 @@ produced. Do you need them all? Before starting a run, check you will have enoug
 </div>
 <p><strong>Packing</strong></p>
 <p>You can reduce the precision of netCDF data, known as packing.</p>
-<p>The CF conventions have standard attributes that CF compliant tools support: variable attributes <code class="docutils literal notranslate"><span class="pre">scale_factor</span></code> and <code class="docutils literal notranslate"><span class="pre">add_offset</span></code> are used to reduce the precision of the variable. Generally halves size of file.</p>
-<p>Useful when data is produced: problems can be corrected and data regenerated. We don’t recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, <code class="docutils literal notranslate"><span class="pre">nco</span></code> (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">nco</span></code>) has a tool for packing</p>
+<p>The CF conventions have standard attributes that CF compliant tools support: variable attributes <code class="docutils literal notranslate"><span class="pre">scale_factor</span></code> and <code class="docutils literal notranslate"><span class="pre">add_offset</span></code> are used to reduce the precision of the variable. Generally, halves size of file.</p>
+<p>Packing is more reliable when data is produced, as problems can be corrected, and data regenerated. We don’t recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, <code class="docutils literal notranslate"><span class="pre">nco</span></code> (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">nco</span></code>) has a tool for packing</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncpdq</span> <span class="o">-</span><span class="n">L</span> <span class="mi">5</span> <span class="n">infile</span><span class="o">.</span><span class="n">nc</span> <span class="n">outfile</span><span class="o">.</span><span class="n">nc</span>
+
 </pre></div>
 </div>
+<p><strong>Bit Grooming: Precision-Preserving Compression</strong></p>
+<p><a class="reference external" href="https://gmd.copernicus.org/articles/9/3199/2016/">Bit grooming</a> is a form of precision-preserving compression, similar to packing, but does not suffer from the degradation of precision within the narrow dynamic range of values chosen. It is an active area of research, and new algorithms/approaches are being developed. Generally, these approaches remove spurious precision from scientific data, usually model output, that has no informational value, and by doing so makes the data more compressible. In a real-world application the data was less than half the size of the same data only using compression.</p>
 </div>
 <div class="section" id="um-history-files">
 <h3>UM history files<a class="headerlink" href="#um-history-files" title="Permalink to this headline">¶</a></h3>
-<p>UM history files can be compressed with tools like gzip, but this can be time consuming and the file must be uncompressed before using.
+<p>UM history files can be compressed with tools like gzip, but this can be time consuming, and the file must be uncompressed before using.
 Alternatively convert to compressed netCDF4.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">access</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">um2netcdf</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">i</span> <span class="n">um_file</span> <span class="o">-</span><span class="n">o</span> <span class="n">um_file</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">k</span> <span class="mi">4</span> <span class="o">-</span><span class="n">d</span> <span class="mi">5</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">access</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">pythonlib</span><span class="o">/</span><span class="n">um2netcdf4</span>
+<span class="n">um2netcdf4</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">i</span> <span class="n">um_file</span> <span class="o">-</span><span class="n">o</span> <span class="n">um_file</span><span class="o">.</span><span class="n">nc</span> <span class="o">-</span><span class="n">k</span> <span class="mi">4</span> <span class="o">-</span><span class="n">d</span> <span class="mi">5</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="access-model-output">
+<h3>ACCESS model output<a class="headerlink" href="#access-model-output" title="Permalink to this headline">¶</a></h3>
+<p>Chloe Mackallah (CSIRO) created a very useful tool to help sorting the ACCESS model output: the <a class="reference external" href="https://git.nci.org.au/cm2704/ACCESS-Archiver">ACCESS Archiver</a>.</p>
+<div class="admonition-from-the-documentation admonition">
+<p class="admonition-title">From the documentation:</p>
+<p>The ACCESS Archiver is designed to archive model output from ACCESS simulations. Its focus is to copy ACCESS model output from its initial location to a secondary location (typically from /scratch to /g/data), while converting UM files to netCDF, compressing MOM/CICE files, and culling restart files to 10-yearly. Saves 50-80% of storage space due to conversion and compression.
+Supported versions are CM2 (coupled, amip &amp; chem versions), ESM1.5 (script &amp; payu versions), OM2[-025]</p>
+</div>
+<p>Please note that you need to use your NCI credential to get access to the repository.</p>
 </div>
 <div class="section" id="text-files-and-binary">
 <h3>Text files and binary<a class="headerlink" href="#text-files-and-binary" title="Permalink to this headline">¶</a></h3>
@@ -1497,7 +1520,7 @@ Alternatively convert to compressed netCDF4.</p>
 <h2>How can I reduce the number of files I store?<a class="headerlink" href="#how-can-i-reduce-the-number-of-files-i-store" title="Permalink to this headline">¶</a></h2>
 <p>There is a limit on inodes (number of files) on NCI machine. If you are close to this limit you need to reduce the number of files you are storing.</p>
 <p>One solution if you have a large number of netCDF files is to aggregate them.</p>
-<p>Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata is repeated, so it is redundant, this approach saves on space as well.</p>
+<p>Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata are repeated, so it is redundant, this approach can save a lot of storage space as well.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">nco</span></code> (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">nco</span></code>)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncecat</span> <span class="o">*.</span><span class="n">nc</span> <span class="o">-</span><span class="n">O</span> <span class="n">merged</span><span class="o">.</span><span class="n">nc</span>
 </pre></div>
@@ -1519,12 +1542,12 @@ Alternatively convert to compressed netCDF4.</p>
 </div>
 <div class="section" id="move-data-up-the-storage-hierarchy">
 <h2>Move data up the storage hierarchy:<a class="headerlink" href="#move-data-up-the-storage-hierarchy" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">short</span>	<span class="o">&lt;</span>	<span class="n">gdata</span> 	<span class="o">&lt;</span> 	<span class="n">massdata</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scratch</span>	<span class="o">&lt;</span>	<span class="n">gdata</span> 	<span class="o">&lt;</span> 	<span class="n">massdata</span>
 </pre></div>
 </div>
-<p>In general the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.</p>
-<p>Have a data workflow that moves data from short to gdata to massdata in a planned manner.</p>
-<p>If inode quota is already tight on short, files must be aggregated when moving up the hierarchy. massdata is faster with larger file sizes due to physical limits of tape.</p>
+<p>In general, the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.</p>
+<p>Have a data workflow that moves data from scratch to gdata to massdata in a planned manner.</p>
+<p>If inode quota is already tight on scratch, files must be aggregated when moving up the hierarchy. Massdata is faster with larger file sizes due to physical limits of tape.</p>
 <div class="section" id="moving-data-between-disks">
 <h3>Moving data between disks<a class="headerlink" href="#moving-data-between-disks" title="Permalink to this headline">¶</a></h3>
 <p>Moving data up the storage hierarchy means copying data from one on-disk filesystem to another. Can use <code class="docutils literal notranslate"><span class="pre">cp</span></code></p>
@@ -1542,7 +1565,7 @@ Alternatively convert to compressed netCDF4.</p>
 </div>
 <div class="section" id="moving-data-between-disk-and-tape">
 <h3>Moving data between disk and tape<a class="headerlink" href="#moving-data-between-disk-and-tape" title="Permalink to this headline">¶</a></h3>
-<p>The “highest” position on the storage hierarchy is the tape based mass data store.</p>
+<p>The “highest” position on the storage hierarchy is the tape based massdata store.</p>
 <p>But but but …</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;Massdata is a big black hole where data goes to die&quot;
 </pre></div>
@@ -1554,7 +1577,8 @@ mdss -P project_id put -r localdir $USER/remotedir
 mdss -P project_id get -r localdir $USER/remotedir
 </pre></div>
 </div>
-<p>You can put large amounts of data with netmv / netcp. Makes tar file of a directory, can be slow and increase disk usage in short term. Data must be retrieved in large quanta. Using mdss to transfer as-is will generally time out before all data is transferred.</p>
+<p>You can put large amounts of data with netmv / netcp. These tools make a tar file of the directory you are trying to move, can be slow and increase disk usage dramatically in short term. Data must also be retrieved again in large quanta. This is usually not recommended.</p>
+<p>Using the mdss command to transfer on a login node will generally time out before all data is transferred. So, the best option is probably to use an interactive PBS job, or create a script, and use mdss put -r.</p>
 <p>If a data transfer times out before it is finished, it can be difficult to determine what has been transferred successfully, and extremely difficult to then transfer only what wasn’t successfully written.</p>
 <p>CMS has written a tool (<code class="docutils literal notranslate"><span class="pre">mdssdiff</span></code>) to help with this. It is also available in the CMS conda environment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data3</span><span class="o">/</span><span class="n">hh5</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
@@ -1578,12 +1602,7 @@ mdss -P project_id get -r localdir $USER/remotedir
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	mdssdiff -P project_id -cl -r localdir -p $USER/remotedir
 </pre></div>
 </div>
-</div>
-<div class="section" id="moving-data-between-disk-and-tape-in-the-future">
-<h3>Moving data between disk and tape: In the future<a class="headerlink" href="#moving-data-between-disk-and-tape-in-the-future" title="Permalink to this headline">¶</a></h3>
-<p>There are plans to make it easier and more attractive to transfer files to massdata by creating more supporting software tools:</p>
-<p><code class="docutils literal notranslate"><span class="pre">mdssprep</span></code> - traverse a directory structure, archiving as required, and recording a manifest describing all files</p>
-<p><code class="docutils literal notranslate"><span class="pre">mdssfind</span></code> - find files that have been transferred to massdata and optionally call mdssdiff to copy them back to a local directory</p>
+<p>More information on the NCI tape system and mdss is available from the <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au/Archiving_data">CMS wiki</a>.</p>
 </div>
 </div>
 </div>
@@ -1613,17 +1632,17 @@ mdss -P project_id get -r localdir $USER/remotedir
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../contents/tag-data.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">data</p>
+            <p class="prev-next-title">CLEX CMS Blog</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="2018-10-19-mppnccombine-fast.html" title="next page">
+    <a class='right-next' id="next-link" href="2022-03-15-reading-nonstandard-data.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fast MOM collation with payu and mppnncombine-fast</p>
+        <p class="prev-next-title">An example of reading non-standard data using pandas and xarray</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
