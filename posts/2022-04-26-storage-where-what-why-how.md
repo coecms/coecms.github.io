@@ -37,7 +37,7 @@ To query usage for an on-disk file system, NCI provides commands which report on
 nci-files-report --group project_id
 ```
 
-CMS has put in place a `Grafana` server for visualising a range of accounting statistics for CLEx. You can access [this server](https://accessdev.nci.org.au/grafana/login:) using your NCI credentials.
+CMS has put in place a `Grafana` server for visualising a range of accounting statistics for CLEX. You can access [this server](https://accessdev.nci.org.au/grafana/login:) using your NCI credentials.
 
 You can access a range of useful statistics by user and group via the [User Report dashboard](https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1)
 
@@ -83,7 +83,7 @@ nci-file-expiry -h
 ```   
 ## Why?
 
-Why do I have these in the first place? If you're running a model: check the diagnostics (output variables) being 
+Why do I produce this data? If you're running a model: check the diagnostics (output variables) being 
 produced. Do you need them all? Before starting a run, check you will have enough space to store all the data produced.
 
 Analysing data: does your workflow involve:
@@ -104,9 +104,9 @@ How can I use less disk space? Data triage: Why am I storing these files?
 ### Delete if:
 
 * you don't remember what the data is or comes from
-* not required
+* not required, as in case of failed simulations
 * duplicates of data available with similar access time (on disk, readable) or with a longer access time (mass data, off-site) if no longer require fast access
-* intermediate data for analysis (keep scripts to regenerate (version control))
+* intermediate data for analysis (keep scripts to regenerate under version control, ideally on GitHub or similar)
 
 ## How can I use less disk space for the files/fields I must keep?
 ### Netcdf files
@@ -136,23 +136,29 @@ nccompress -h
 
 You can reduce the precision of netCDF data, known as packing.
 
-The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally halves size of file. 
+The CF conventions have standard attributes that CF compliant tools support: variable attributes `scale_factor` and `add_offset` are used to reduce the precision of the variable. Generally, halves size of file. 
 
-Useful when data is produced: problems can be corrected and data regenerated. We don't recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, `nco` (`module load nco`) has a tool for packing
+Packing is more reliable when data is produced, as problems can be corrected, and data regenerated. We don't recommend packing existing data: it is lossy and there is high potential for corruption, but if you must, `nco` (`module load nco`) has a tool for packing
 ```
 ncpdq -L 5 infile.nc outfile.nc
+
 ```
+**Bit Grooming: Precision-Preserving Compression**
+
+[Bit grooming](https://gmd.copernicus.org/articles/9/3199/2016/) is a form of precision-preserving compression, similar to packing, but does not suffer from the degradation of precision within the narrow dynamic range of values chosen. It is an active area of research, and new algorithms/approaches are being developed. Generally, these approaches remove spurious precision from scientific data, usually model output, that has no informational value, and by doing so makes the data more compressible. In a real-world application the data was less than half the size of the same data only using compression.
 
 ### UM history files
-UM history files can be compressed with tools like gzip, but this can be time consuming and the file must be uncompressed before using.
+UM history files can be compressed with tools like gzip, but this can be time consuming, and the file must be uncompressed before using.
 Alternatively convert to compressed netCDF4.
 ```
-~access/bin/um2netcdf.py -i um_file -o um_file.nc -k 4 -d 5
+module use /g/data/access/projects/access/modules/
+module load pythonlib/um2netcdf4
+um2netcdf4.py -i um_file -o um_file.nc -k 4 -d 5
 ```
 ### ACCESS model output
 Chloe Mackallah (CSIRO) created a very useful tool to help sorting the ACCESS model output: the [ACCESS Archiver](https://git.nci.org.au/cm2704/ACCESS-Archiver).
 ```{admonition} From the documentation:
-The ACCESS Archiver is designed to archive model output from ACCESS simulations. It's focus is to copy ACCESS model output from its initial location to a secondary location (typically from /scratch to /g/data), while converting UM files to netCDF, compressing MOM/CICE files, and culling restart files to 10-yearly. Saves 50-80% of storage space due to conversion and compression.
+The ACCESS Archiver is designed to archive model output from ACCESS simulations. Its focus is to copy ACCESS model output from its initial location to a secondary location (typically from /scratch to /g/data), while converting UM files to netCDF, compressing MOM/CICE files, and culling restart files to 10-yearly. Saves 50-80% of storage space due to conversion and compression.
 Supported versions are CM2 (coupled, amip & chem versions), ESM1.5 (script & payu versions), OM2[-025]
 ```
 Please note that you need to use your NCI credential to get access to the repository.
@@ -174,7 +180,7 @@ There is a limit on inodes (number of files) on NCI machine. If you are close to
 
 One solution if you have a large number of netCDF files is to aggregate them. 
 
-Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata is repeated, so it is redundant, this approach saves on space as well.
+Some models produce large numbers of files, e.g. one per time step. Dimensional information and metadata are repeated, so it is redundant, this approach can save a lot of storage space as well.
 
 Use `nco` (`module load nco`)
 ```
@@ -201,7 +207,7 @@ tar -xvf tarfile.tar.gz
 ```
 scratch	<	gdata 	< 	massdata
 ```
-In general the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.
+In general, the higher up the hierarchy the greater the available storage, but files should be larger as inode quota reduces for the same storage amount.
 
 Have a data workflow that moves data from scratch to gdata to massdata in a planned manner. 
 
@@ -238,7 +244,9 @@ mdss -P project_id put -r localdir $USER/remotedir
 mdss -P project_id get -r localdir $USER/remotedir
 ```
 
-You can put large amounts of data with netmv / netcp. Makes tar file of a directory, can be slow and increase disk usage in short term. Data must be retrieved in large quanta. Using mdss to transfer as-is will generally time out before all data is transferred.
+You can put large amounts of data with netmv / netcp. These tools make a tar file of the directory you are trying to move, can be slow and increase disk usage dramatically in short term. Data must also be retrieved again in large quanta. This is usually not recommended.
+
+Using the mdss command to transfer on a login node will generally time out before all data is transferred. So, the best option is probably to use an interactive PBS job, or create a script, and use mdss put -r.
 
 If a data transfer times out before it is finished, it can be difficult to determine what has been transferred successfully, and extremely difficult to then transfer only what wasn't successfully written.
 
@@ -269,4 +277,4 @@ As above, but specify project
 	mdssdiff -P project_id -cl -r localdir -p $USER/remotedir
 ```
 
-More infomration on the NCI tape system and mdss is available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Archiving_data).
+More information on the NCI tape system and mdss is available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Archiving_data).
