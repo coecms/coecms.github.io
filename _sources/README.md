@@ -40,3 +40,5 @@ jupyter-book build .
 ```
 
 `generate_toc.py` sets up all of the tables of contents for latest posts, tags and archive based off of the filenames in `posts` and the tags listed in `posts_meta.yaml`.
+
+NB rendering errors won't stop the book to be built and deployed, so check the logs under actions to make sure everything is rendered properly

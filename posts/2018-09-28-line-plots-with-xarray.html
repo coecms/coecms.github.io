@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Review of line plots with Xarray &#8212; CLEX CMS Blog</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   CLEX CMS Blog
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CLEX CMS Blog
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Latest
  </span>
@@ -1085,107 +1100,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/posts/2018-09-28-line-plots-with-xarray.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-09-28-line-plots-with-xarray.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2018-09-28-line-plots-with-xarray.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2018-09-28-line-plots-with-xarray.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-09-28-line-plots-with-xarray.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/posts/2018-09-28-line-plots-with-xarray.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Review of line plots with Xarray
@@ -1239,12 +1356,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Review of line plots with Xarray</h1>
@@ -1314,13 +1430,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="review-of-line-plots-with-xarray">
-<h1>Review of line plots with Xarray<a class="headerlink" href="#review-of-line-plots-with-xarray" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="claire-carouge-clex-cms">
-<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="review-of-line-plots-with-xarray">
+<h1>Review of line plots with Xarray<a class="headerlink" href="#review-of-line-plots-with-xarray" title="Permalink to this headline">#</a></h1>
+<section id="claire-carouge-clex-cms">
+<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">#</a></h2>
 <p>This week I am going to look at line plots with Xarray. Xarray plotting is based on Matplotlib. But Xarray gives polished plots quicker as it automatically uses the metadata in the netcdf file for labelling the plot. Also, a lot of plotting tasks can be achieved in a line. Of course, if your netcdf file is lacking information, you’ll still need to add to the plot using Matplotlib. I’ll summarise here how to plot:</p>
 <ul class="simple">
 <li><p>timeseries</p></li>
@@ -1362,12 +1479,12 @@ Attributes:
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="line-plot-types">
-<h1>Line plot types<a class="headerlink" href="#line-plot-types" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="timeseries">
-<h2>Timeseries<a class="headerlink" href="#timeseries" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="line-plot-types">
+<h1>Line plot types<a class="headerlink" href="#line-plot-types" title="Permalink to this headline">#</a></h1>
+<section id="timeseries">
+<h2>Timeseries<a class="headerlink" href="#timeseries" title="Permalink to this headline">#</a></h2>
 <p>To plot a timeseries (or a simple one line plot) is quite easy with Xarray, you simply need a 1D variable. Since ours is 4D, let’s choose to plot the temperature timeseries at 850hPa (plev=85,000) and over Canberra (35.28S, 149.13E)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1399,9 +1516,9 @@ Attributes:
 <img alt="../_images/2018-09-28-line-plots-with-xarray_7_1.png" src="../_images/2018-09-28-line-plots-with-xarray_7_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="multiple-lines">
-<h2>Multiple lines<a class="headerlink" href="#multiple-lines" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="multiple-lines">
+<h2>Multiple lines<a class="headerlink" href="#multiple-lines" title="Permalink to this headline">#</a></h2>
 <p>Now, let’s say you want to plot the temperature timeseries at different pressure levels. Then, you need 2D data with dimensions time and pressure. Then Xarray let’s you determine which dimension should be used for different lines with the argument <code class="docutils literal notranslate"><span class="pre">hue</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1418,9 +1535,9 @@ Attributes:
 </div>
 </div>
 <p>We again get reasonable labelling by default.</p>
-</div>
-<div class="section" id="vertical-profile">
-<h2>Vertical profile<a class="headerlink" href="#vertical-profile" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vertical-profile">
+<h2>Vertical profile<a class="headerlink" href="#vertical-profile" title="Permalink to this headline">#</a></h2>
 <p>A vertical profile is the same as a timeseries: get a 1D array along the vertical dimension. However, the data needs to be plotted along the x-axis and the vertical dimension along the y-axis. Xarray allows you to set this through the <code class="docutils literal notranslate"><span class="pre">y</span></code> argument of the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1449,9 +1566,9 @@ Attributes:
 <img alt="../_images/2018-09-28-line-plots-with-xarray_14_1.png" src="../_images/2018-09-28-line-plots-with-xarray_14_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="panel-plot">
-<h2>Panel plot<a class="headerlink" href="#panel-plot" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="panel-plot">
+<h2>Panel plot<a class="headerlink" href="#panel-plot" title="Permalink to this headline">#</a></h2>
 <p>Let’s say, instead of a multi-line plot, you want a panel plot of vertical profiles over Canberra for the first 10 days of 1950. Xarray let’s you do that without defining the panel plot first! You need to use the <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code> and <code class="docutils literal notranslate"><span class="pre">col_wrap</span></code> arguments. <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code> tell Xarray what dimension to use along the rows or columns. <code class="docutils literal notranslate"><span class="pre">col_wrap</span></code> tells Xarray how many columns to use. Note that panel plots are also called faceted plots such as in the Xarray documentation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1466,10 +1583,10 @@ Attributes:
 <img alt="../_images/2018-09-28-line-plots-with-xarray_16_1.png" src="../_images/2018-09-28-line-plots-with-xarray_16_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="a-more-advance-example">
-<h1>A more advance example<a class="headerlink" href="#a-more-advance-example" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="a-more-advance-example">
+<h1>A more advance example<a class="headerlink" href="#a-more-advance-example" title="Permalink to this headline">#</a></h1>
 <p>Now that we’ve seen the basics, let’s bring it all together on a more realistic example. Let’s say you want to compare Canberra and Sydney air temperature profiles in 1950. You want to compare the profiles on 1st January, 31st December and show some yearly statistics (mean, standard deviation…).</p>
 <p>First we need to calculate all the quantities we need and store them in a single DataArray. For this, you’ll want to store the quantities and add 2 coordinates: one for the city and one for the statistic. This way, you can tell Xarray to use those coordinates for your plot</p>
 <div class="cell docutils container">
@@ -1595,8 +1712,8 @@ Coordinates:
 </div>
 </div>
 <p>Note that with the averaging, the variable lost its attributes, you may need to add the long name and unit again for better labelling.</p>
-<div class="section" id="different-range-in-x-or-y">
-<h2>Different range in x or y<a class="headerlink" href="#different-range-in-x-or-y" title="Permalink to this headline">¶</a></h2>
+<section id="different-range-in-x-or-y">
+<h2>Different range in x or y<a class="headerlink" href="#different-range-in-x-or-y" title="Permalink to this headline">#</a></h2>
 <p>The above example only works if all the plots have the same range. If you tried to plot the standard deviation in the panel above following this method, the plot would appear empty as the values of the standard deviation are much smaller than the temperature. Xarray provides the <code class="docutils literal notranslate"><span class="pre">sharex</span></code> argument that allows for different x axes. Obviously all plots will then use slighly different x axes then which may or may not be acceptable. Xarray also provides a <code class="docutils literal notranslate"><span class="pre">sharey</span></code> argument when the y axis needs to change and which is used in the same way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1625,8 +1742,8 @@ Coordinates:
 <img alt="../_images/2018-09-28-line-plots-with-xarray_30_1.png" src="../_images/2018-09-28-line-plots-with-xarray_30_1.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1650,9 +1767,11 @@ Coordinates:
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="2018-08-21-visualisation-in-shiny-app.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1668,24 +1787,28 @@ Coordinates:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By CLEX CMS<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By CLEX CMS<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

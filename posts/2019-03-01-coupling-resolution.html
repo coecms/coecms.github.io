@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Setting up a coupled model at a new resolution &#8212; CLEX CMS Blog</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   CLEX CMS Blog
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CLEX CMS Blog
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Latest
  </span>
@@ -1085,107 +1100,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/posts/2019-03-01-coupling-resolution.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2019-03-01-coupling-resolution.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2019-03-01-coupling-resolution.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2019-03-01-coupling-resolution.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2019-03-01-coupling-resolution.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/posts/2019-03-01-coupling-resolution.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scott-wales-clex-cms">
    Scott Wales, CLEX CMS
@@ -1230,12 +1347,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Setting up a coupled model at a new resolution</h1>
@@ -1296,50 +1412,51 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="setting-up-a-coupled-model-at-a-new-resolution">
-<h1>Setting up a coupled model at a new resolution<a class="headerlink" href="#setting-up-a-coupled-model-at-a-new-resolution" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="scott-wales-clex-cms">
-<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-a-coupled-model-at-a-new-resolution">
+<h1>Setting up a coupled model at a new resolution<a class="headerlink" href="#setting-up-a-coupled-model-at-a-new-resolution" title="Permalink to this headline">#</a></h1>
+<section id="scott-wales-clex-cms">
+<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">#</a></h2>
 <p>We’ve been setting up an ACCESS coupled model for a new atmosphere resolution. The process is quite involved, here’s some notes on how we’ve done it.</p>
 <p>ACCESS consists of three models - the UM atmosphere, MOM ocean and CICE sea ice models, tied together with the Oasis coupler. The coupler handles sending fields between all of the models, to do so it needs to regrid the data fields from the grid of one model to the grid of another.</p>
-</div>
-<div class="section" id="regridding-weights">
-<h2>Regridding weights<a class="headerlink" href="#regridding-weights" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="regridding-weights">
+<h2>Regridding weights<a class="headerlink" href="#regridding-weights" title="Permalink to this headline">#</a></h2>
 <p>Oasis requires regridding weights in SCRIP format to convert a field from one model to another. Oasis can generate these itself from SCRIP descriptions of the source and target grid, or they can be generated using <a class="reference external" href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03020000000000000000">ESMF_RegridWeightGen</a> and the ESMF weights converted to SCRIP format.</p>
 <p>The most important thing here is that the masks are consistent between all the models. If they are not you will see discontinuity in the surface fields around coastlines.</p>
-<div class="section" id="um-grids">
-<h3>UM Grids<a class="headerlink" href="#um-grids" title="Permalink to this headline">¶</a></h3>
+<section id="um-grids">
+<h3>UM Grids<a class="headerlink" href="#um-grids" title="Permalink to this headline">#</a></h3>
 <p>The UM mask is defined by two files - the land mask, which is 1 everywhere there is greater than 0% land in a grid cell, and the land fraction, which is the fraction of land in a grid cell. These fields are only defined on the T grid - the UM uses an <a class="reference external" href="https://en.wikipedia.org/wiki/Arakawa_grids#Arakawa_C-grid">Arakawa C grid</a>, with the scalar component termed the ‘T’ grid and the vector components termed the ‘U’ and ‘V’ grids.</p>
 <p>The coupling masks define the regions on the source and target grids which are involved in the coupling. Since we’re coupling ocean and sea ice models we want to mask out land points where the ocean fields are not defined. The mask for the UM T grid should be 1 everywhere the land fraction field is less than 1, in other words everywhere with greater than 0% ocean in a cell.</p>
 <p>For the U and V fields I used no mask, since we don’t want to conservatively interpolate vector fields and masking the offset grids is more difficult.</p>
 <p>Since the UM uses regular lat-lon grids you can create a <a class="reference external" href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03028300000000000000">GRIDSPEC grid description</a> to feed into ESMF.</p>
-</div>
-<div class="section" id="mom-cice-grids">
-<h3>MOM/CICE Grids<a class="headerlink" href="#mom-cice-grids" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="mom-cice-grids">
+<h3>MOM/CICE Grids<a class="headerlink" href="#mom-cice-grids" title="Permalink to this headline">#</a></h3>
 <p>The MOM and CICE masks should be equal to each other. The CICE mask is found in <code class="docutils literal notranslate"><span class="pre">$ICE/INPUT/kmt.nc</span></code> as variable <code class="docutils literal notranslate"><span class="pre">kmt</span></code>, the MOM mask in <code class="docutils literal notranslate"><span class="pre">$OCN/INPUT/grid_spec.nc</span></code> as variable <code class="docutils literal notranslate"><span class="pre">wet</span></code>.</p>
 <p>The coupling mask for the MOM/CICE T grid should be equal to <code class="docutils literal notranslate"><span class="pre">wet</span></code> from <code class="docutils literal notranslate"><span class="pre">grid_spec.nc</span></code>.</p>
 <p>MOM uses a tripolar grid, all of the fields needed to create a <a class="reference external" href="http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_7_1_0r/ESMF_refdoc/node3.html#SECTION03028100000000000000">SCRIP description</a> of a MOM grid may be found in <code class="docutils literal notranslate"><span class="pre">grid_spec.nc</span></code></p>
-</div>
-<div class="section" id="masks-and-conservative-regridding">
-<h3>Masks and Conservative Regridding<a class="headerlink" href="#masks-and-conservative-regridding" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="masks-and-conservative-regridding">
+<h3>Masks and Conservative Regridding<a class="headerlink" href="#masks-and-conservative-regridding" title="Permalink to this headline">#</a></h3>
 <p>Whereever possible we want to be using conservative regridding - we don’t want our model to loose energy each timestep otherwise fields like the model temperature will drift. Conservative regridding ensures that the total field value sent by the source model equals the total field value received by the destination model.</p>
 <p>For conservative regridding to work, the masks of the two models must be consistent as well - there can’t be areas where the ocean model thinks it’s land and the atmosphere model thinks it’s ocean.</p>
 <p>An example point where this can happen is the ice shelves around Antarctica. The ocean model’s grid doesn’t go all the way to the south pole, so it misses the southernmost part of the Ross ice shelf. The atmosphere grid does reach the pole however, and its default land mask assumes the ice shelf is ocean. There can be other areas where this causes conflicts as well - for instance the black sea is not included in the MOM default mask.</p>
 <p>To make sure that the masks are consistent you need to do a conservative regridding of the mask from one grid to the other. The highest resolution grid should be the source, in my case I used the ocean mask. I then conservatively regridded the <code class="docutils literal notranslate"><span class="pre">wet</span></code> field from MOM to the UM grid with ESMF_RegridWeightGen. It’s important to not use masks for this interpolation, since the mask itself is what we’re interpolating and we want to conserve the land area. Also since the MOM grid doesn’t cover the entire globe I turned on the ESMF ‘–ignore_unmapped’ flag.</p>
 <p>This operation gave me an ocean fraction field on the UM grid. The ocean fraction can then be straightforwardly converted to a land fraction and land mask field to be input to the UM, although note that the interpolation can introduce a bit of noise, so the land fraction won’t be exactly 1.0 on pure land points - I used all grid cells where the land fraction was greater than 0.99 as the land mask.</p>
 <p>With a new land mask and land fraction the UM ancillaries needed to be modified</p>
-</div>
-<div class="section" id="id1">
-<h3>Regridding Weights<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Regridding Weights<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>To calculate regridding weights I used <code class="docutils literal notranslate"><span class="pre">ESMF_RegridWeightGen</span></code>, a command-line tool included with ESMF. ESMF names the fields differently to SCRIP, so some modification of the output is required in order for OASIS to be able to read the files.</p>
 <p>Conservative regridding is used for scalar fields, for vector fields I used patch regridding to for smooth interpolation without introducing artefacts from the different grid resolutions.</p>
-</div>
-</div>
-<div class="section" id="um-ancillary-interpolation">
-<h2>UM Ancillary interpolation<a class="headerlink" href="#um-ancillary-interpolation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="um-ancillary-interpolation">
+<h2>UM Ancillary interpolation<a class="headerlink" href="#um-ancillary-interpolation" title="Permalink to this headline">#</a></h2>
 <p>Since the UM is using a new resolution and mask the various ancillary datasets also need to be changed. For the most part files from the Met Office archive at the target resolution were used. For fields like vegetation fraction which are only defined on land points (and missing data over the ocean) I ‘de-masked’ the ancillary field, by performing a nearest grid point interpolation from the masked source field to the same grid without a mask to remove the missing data areas. It’s important to use nearest grid point so that fields like the vegetation fractions correctly add up - some interpolation types also can result in negative values at some points which crashes the model.</p>
 <p>The aerosol climatology files had to be vertically interpolated since we had also reduced the number of vertical levels in the model run. For this I used the <a class="reference external" href="https://github.com/SciTools-incubator/python-stratify">stratify</a> python library. The vertical levels used by the UM are hybrid height levels - they vary depending on location, following the terrain up to a certain height, then above that level they are constant height levels.</p>
 <p>To convert from the source set of hybrid heights to the target hybrid heights I first converted both to true heights, using the formula from <a class="reference external" href="https://code.metoffice.gov.uk/doc/um/latest/papers/umdp_F03.pdf">UMDB F03</a>. I then used stratify to convert the aerosol fields on true source heights to the true target heights.</p>
@@ -1406,12 +1523,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="running-the-model">
-<h2>Running the model<a class="headerlink" href="#running-the-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="running-the-model">
+<h2>Running the model<a class="headerlink" href="#running-the-model" title="Permalink to this headline">#</a></h2>
 <p>With all of this set up the next thing to do is configure the model with all of the new files then do a short test run. A single model day should tell you if the coupling fields are being sent correctly and all of the ancillary files are at the correct resolution. With that done you can move on to longer runs to check the stability of the model.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1435,9 +1552,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../contents/tag-model.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1453,24 +1572,28 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By CLEX CMS<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By CLEX CMS<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

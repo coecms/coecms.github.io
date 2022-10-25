@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>API Calculation with Xarray + Dask &#8212; CLEX CMS Blog</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   CLEX CMS Blog
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CLEX CMS Blog
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Latest
  </span>
@@ -1085,107 +1100,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/posts/2021-11-24-api.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2021-11-24-api.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2021-11-24-api.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/posts/2021-11-24-api.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2021-11-24-api.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/posts/2021-11-24-api.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#calculation-on-a-single-point">
    Calculation on a single point
@@ -1218,12 +1335,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>API Calculation with Xarray + Dask</h1>
@@ -1272,11 +1388,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="api-calculation-with-xarray-dask">
-<h1>API Calculation with Xarray + Dask<a class="headerlink" href="#api-calculation-with-xarray-dask" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="api-calculation-with-xarray-dask">
+<h1>API Calculation with Xarray + Dask<a class="headerlink" href="#api-calculation-with-xarray-dask" title="Permalink to this headline">#</a></h1>
 <p><strong>Scott Wales, CLEX CMS</strong></p>
 <p>Let’s look at how we can calculate the <a class="reference external" href="https://glossary.ametsoc.org/wiki/Antecedent_precipitation_index">antecedent precipitation index (API)</a> on a large dataset with Xarray and Dask.</p>
 <p>API is defined from precipitation in a recursive way:</p>
@@ -2114,8 +2231,8 @@ Attributes:
         70.5,  71.5,  72.5,  73.5,  74.5,  75.5,  76.5,  77.5,  78.5,  79.5,
         80.5,  81.5,  82.5,  83.5,  84.5,  85.5,  86.5,  87.5,  88.5,  89.5])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-80bb015b-136a-4851-962a-da58c5d39d62' class='xr-section-summary-in' type='checkbox'  checked><label for='section-80bb015b-136a-4851-962a-da58c5d39d62' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>lwe_precipitation_rate</dd><dt><span>long_name :</span></dt><dd>Total precipitation, ERA5 reanalysis daily accumulated rainfall from 0h to 0h</dd><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>comment :</span></dt><dd>This daily precipitation is prepared by creating a accumulation over 24h from the source 18hr precipitation, regridded from 0.25 x 0.25 degree to 1 x 1 degree with Python library xESMF. Units have been converted from m to mm/day (data*1000).</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<div class="section" id="calculation-on-a-single-point">
-<h2>Calculation on a single point<a class="headerlink" href="#calculation-on-a-single-point" title="Permalink to this headline">¶</a></h2>
+<section id="calculation-on-a-single-point">
+<h2>Calculation on a single point<a class="headerlink" href="#calculation-on-a-single-point" title="Permalink to this headline">#</a></h2>
 <p>To start out with, let’s make sure we can do the calculation on a single grid point.</p>
 <p>Start out by saving the grid point’s precip time series in a variable</p>
 <div class="cell docutils container">
@@ -2129,7 +2246,7 @@ Attributes:
 <p class="admonition-title">Why the .load()?</p>
 <p>I’ve done a <code class="docutils literal notranslate"><span class="pre">.load()</span></code> here because we’ll be looping over time. Without the <code class="docutils literal notranslate"><span class="pre">.load()</span></code> Dask will try to read from the file at every loop iteration, with it it will only read from the file once - though this does come at the cost of more memory usage so we need to be carefull of how large the grid is that we’re loading.</p>
 </div>
-<p>Now we can do the calculation. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.zeros_like.html#numpy.zeros_like" title="(in NumPy v1.22)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.zeros_like()</span></code></a> will create an empty array that’s the same shape as the input array, which we’ll use to store the API values. Then we can just implement the algorithm with a loop</p>
+<p>Now we can do the calculation. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.zeros_like.html#numpy.zeros_like" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.zeros_like()</span></code></a> will create an empty array that’s the same shape as the input array, which we’ll use to store the API values. Then we can just implement the algorithm with a loop</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empty array to store the output</span>
@@ -2161,9 +2278,9 @@ Attributes:
 <img alt="../_images/2021-11-24-api_10_0.png" src="../_images/2021-11-24-api_10_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="calculation-over-the-whole-grid">
-<h2>Calculation over the whole grid<a class="headerlink" href="#calculation-over-the-whole-grid" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="calculation-over-the-whole-grid">
+<h2>Calculation over the whole grid<a class="headerlink" href="#calculation-over-the-whole-grid" title="Permalink to this headline">#</a></h2>
 <p>With the caluclation working on a single grid point, let’s look at expanding it to the whole grid. It’s generally much more efficient to work on the whole grid at once, rather than single grid points one at a time, because of the way data gets laid out in the file.</p>
 <p>The calculation looks much like the single grid point calculation, we’ve just added the extra dimensions when indexing the arrays</p>
 <div class="cell docutils container">
@@ -2201,9 +2318,9 @@ Attributes:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="convert-to-a-function">
-<h2>Convert to a function<a class="headerlink" href="#convert-to-a-function" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="convert-to-a-function">
+<h2>Convert to a function<a class="headerlink" href="#convert-to-a-function" title="Permalink to this headline">#</a></h2>
 <p>With a single year working we should make a function to consolidate where we’ve got to so far and to make sure we can easily change the year, without needing to do lots of copying and pasting.</p>
 <p>This won’t be the final function, for now this will only work properly for 1980, but it’s important to be methodical and make sure what we’ve already done is still working.</p>
 <div class="cell docutils container">
@@ -2658,9 +2775,9 @@ Coordinates:
         70.5,  71.5,  72.5,  73.5,  74.5,  75.5,  76.5,  77.5,  78.5,  79.5,
         80.5,  81.5,  82.5,  83.5,  84.5,  85.5,  86.5,  87.5,  88.5,  89.5])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4534fb53-8028-44ec-8a0b-6012f19ed7aa' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4534fb53-8028-44ec-8a0b-6012f19ed7aa' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
-<div class="section" id="passing-the-last-timestep">
-<h2>Passing the last timestep<a class="headerlink" href="#passing-the-last-timestep" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="passing-the-last-timestep">
+<h2>Passing the last timestep<a class="headerlink" href="#passing-the-last-timestep" title="Permalink to this headline">#</a></h2>
 <p>With a basic function written we can now think about how to fix its problems. You might have noticed that in the previous function each year is calculated independently, so</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">API</span><span class="p">[</span><span class="mi">1981</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">]</span> <span class="o">=</span> <span class="n">precip</span><span class="p">[</span><span class="mi">1981</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">]</span>
 </pre></div>
@@ -2790,9 +2907,9 @@ Coordinates:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="pure-dask-advanced">
-<h2>Pure Dask (Advanced)<a class="headerlink" href="#pure-dask-advanced" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pure-dask-advanced">
+<h2>Pure Dask (Advanced)<a class="headerlink" href="#pure-dask-advanced" title="Permalink to this headline">#</a></h2>
 <p>What we’ve done so far works well as long as a year’s worth of data fits into memory. If it doesn’t you can always split the data more finely, say by splitting the data by month instead of year.</p>
 <p>Another way to go about it is to use the Dask chunks as the mechanism to split the data. The basic idea is very similar to what we’ve already done, we just need to learn how to do the loop over dask chunks instead of years.</p>
 <p>Dask provides the <a class="reference external" href="https://docs.dask.org/en/stable/generated/dask.array.map_blocks.html#dask.array.map_blocks" title="(in Dask)"><code class="xref py py-func docutils literal notranslate"><span class="pre">dask.array.map_blocks()</span></code></a> function that allows you to run a function on every chunk of an array. We do lose all of the Xarray metadata when we use this, we can only use basic numpy array functions. Here’s the stripped down function we’ll use with <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code>:</p>
@@ -2827,7 +2944,7 @@ Coordinates:
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> runs the function on each chunk independently, which is fine if the data is chunked horizontally but if the chunking is over time then we need some way of passing in the previous time’s API value.</p>
-<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v2022.3.1.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
+<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v2022.10.1.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">})</span>
@@ -3824,18 +3941,18 @@ Coordinates:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h2>
 <p>There are a few points to keep in mind here:</p>
 <ul class="simple">
 <li><p>In the majority of cases it’s better to operate on the whole horizontal grid, rather than one grid point at a time</p></li>
 <li><p>Build up your analysis in stages - here we first computed a single year, then changed that into a function, then updated the function to deal with the successive years</p></li>
 <li><p>Check often to make sure your results are sensible, e.g. by plotting values</p></li>
 </ul>
-<p>We’ve focussed more on memory use than speed here, if improved speed is desired you could look at functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html#scipy.signal.lfilter" title="(in SciPy v1.8.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.lfilter()</span></code></a> or using <a class="reference external" href="https://numba.pydata.org/">numba</a> instead of the loop over timesteps.</p>
-</div>
-</div>
+<p>We’ve focussed more on memory use than speed here, if improved speed is desired you could look at functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html#scipy.signal.lfilter" title="(in SciPy v1.9.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.lfilter()</span></code></a> or using <a class="reference external" href="https://numba.pydata.org/">numba</a> instead of the loop over timesteps.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3859,9 +3976,11 @@ Coordinates:
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="2021-12-08-trajectories.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3877,24 +3996,28 @@ Coordinates:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By CLEX CMS<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By CLEX CMS<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

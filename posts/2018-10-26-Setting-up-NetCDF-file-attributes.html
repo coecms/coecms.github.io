@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Setting up NetCDF file attributes &#8212; CLEX CMS Blog</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   CLEX CMS Blog
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CLEX CMS Blog
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Latest
  </span>
@@ -1085,90 +1100,180 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/posts/2018-10-26-Setting-up-NetCDF-file-attributes.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-10-26-Setting-up-NetCDF-file-attributes.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-10-26-Setting-up-NetCDF-file-attributes.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/posts/2018-10-26-Setting-up-NetCDF-file-attributes.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-is-this-important">
    Why is this important?
@@ -1218,12 +1323,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Setting up NetCDF file attributes</h1>
@@ -1289,14 +1393,15 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="setting-up-netcdf-file-attributes">
-<h1>Setting up NetCDF file attributes<a class="headerlink" href="#setting-up-netcdf-file-attributes" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-netcdf-file-attributes">
+<h1>Setting up NetCDF file attributes<a class="headerlink" href="#setting-up-netcdf-file-attributes" title="Permalink to this headline">#</a></h1>
 <p>In a recent blog post we discussed how to make a NetCDF file. Now that we know how to make one, the next step is to find out what attributes should be included in the file moving forward.</p>
-<div class="section" id="why-is-this-important">
-<h2>Why is this important?<a class="headerlink" href="#why-is-this-important" title="Permalink to this headline">¶</a></h2>
+<section id="why-is-this-important">
+<h2>Why is this important?<a class="headerlink" href="#why-is-this-important" title="Permalink to this headline">#</a></h2>
 <p>There are 3 reasons why it’s necessary to set up the attributes correctly:</p>
 <ol class="simple">
 <li><p><strong>Personal reference:</strong> You need to be able to keep track of all the files you produce.</p></li>
@@ -1304,9 +1409,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><strong>File sharing:</strong> Files which are intended to be shared with others, whether with colleagues, or in publications, need to follow accepted standards.</p></li>
 </ol>
 <p>The two kinds of attributes you need to set are <strong>global</strong> and <strong>variable</strong> attributes. There are <strong>Climate and Forecast (CF) conventions</strong> for setting the attributes of NetCDF files.</p>
-</div>
-<div class="section" id="setting-the-global-attributes">
-<h2>Setting the global attributes<a class="headerlink" href="#setting-the-global-attributes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="setting-the-global-attributes">
+<h2>Setting the global attributes<a class="headerlink" href="#setting-the-global-attributes" title="Permalink to this headline">#</a></h2>
 <p>Global attributes allow you and others know what this file is for. Of these, there are three levels of importance as set by the CF conventions:</p>
 <ol class="simple">
 <li><p>Highly recommended</p></li>
@@ -1359,9 +1464,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The <code class="docutils literal notranslate"><span class="pre">source</span></code> attribute is there to provide a high-level description of how you generated your data.</p>
 <p>What should normally happen is that you would provide the highly recommended global attributes when you first create the file and add more recommended fields gradually as you refine your file or seek to publish.</p>
 <p>For a full list of <em>highly recommended</em>, <em>recommended</em> and <em>optional</em> attributes, see the <a class="reference external" href="http://wiki.esipfed.org/index.php/Attribute_Convention_for_Data_Discovery_1-3">CF Attribute Convention document</a>.</p>
-</div>
-<div class="section" id="variable-attributes">
-<h2>Variable Attributes<a class="headerlink" href="#variable-attributes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="variable-attributes">
+<h2>Variable Attributes<a class="headerlink" href="#variable-attributes" title="Permalink to this headline">#</a></h2>
 <p>Here are the variable attributes from the same file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span><span class="p">:</span>
         <span class="n">double</span> <span class="n">time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="p">;</span>
@@ -1400,24 +1505,24 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>While global attributes usually won’t require tremendous precision, the same is not the case with variable attributes. The reason for this is that software utilities will expect certain standards to be adhered to completely and will not tolerate deviations.</p>
 <p>The highly recommended attributes are the <code class="docutils literal notranslate"><span class="pre">long_name</span></code>, the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> and the <code class="docutils literal notranslate"><span class="pre">units</span></code>. The <code class="docutils literal notranslate"><span class="pre">long_name</span></code> is what you call the variable, while the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> is the official name found in the <a class="reference external" href="http://cfconventions.org/Data/cf-standard-names/59/build/cf-standard-name-table.html">CF Standard Name Table</a>. Software utilities will look for the latter in the file, and will expect to find <code class="docutils literal notranslate"><span class="pre">standard_names</span></code> for <code class="docutils literal notranslate"><span class="pre">latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>. Furthermore, if you are using a search facility to search for a files with a particular variable type, it will likely look for the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code>. The only reason not to include the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> for a variable is if it doesn’t have one.</p>
-<div class="section" id="units">
-<h3>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h3>
+<section id="units">
+<h3>Units<a class="headerlink" href="#units" title="Permalink to this headline">#</a></h3>
 <p>Units are absolutely essential to include. Without them, they may be useless to use with software utilities; and even if not, the data will be difficult to use by anyone else. Sometimes one can guess (e.g. whether a temperature is in Kelvin or degrees Celsius), but it’s not always obvious.</p>
 <p>The units provided will have to <em>essentially</em> match the CF standard’s units found in the table for the particular standard_name. I say “essentially”, because the units only need to be of the same general format. For example, the standard units for air density are <code class="docutils literal notranslate"><span class="pre">kg</span> <span class="pre">m-3</span></code>. If your file’s units for air density are <code class="docutils literal notranslate"><span class="pre">g</span> <span class="pre">cm-3</span></code> that should also work, since it is still a unit of mass / volume.</p>
 <p>If something is dimensionless, such as a percentage, ratio or mask, the unit should be recorded as <code class="docutils literal notranslate"><span class="pre">“1”</span></code>.</p>
 <p>Time variable units can be a bit tricky to define. It is always recommended to specify which calendar is being used, but if you are not using a standard calendar, this will be <strong>absolutely essential</strong>.</p>
-</div>
-<div class="section" id="a-few-points-about-recommended-variable-attributes">
-<h3>A few points about recommended variable attributes<a class="headerlink" href="#a-few-points-about-recommended-variable-attributes" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-few-points-about-recommended-variable-attributes">
+<h3>A few points about recommended variable attributes<a class="headerlink" href="#a-few-points-about-recommended-variable-attributes" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Cell_methods</span></code> tell you what transformations have been performed on the data (e.g. mean or standard deviation), which is important to make clear, given that the units will probably not reveal this. For example, are the values given for a time series the instantaneous value at a particular moment, or the average of the values for the last hour, or the average of the values between -30 minutes to +30 minutes?
 You can find more information about cell methods <a class="reference external" href="http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch07s03.html">here</a>.</p>
 <p>In some cases, you’ll need boundary attributes for a variable, such as <code class="docutils literal notranslate"><span class="pre">time_bnds</span></code>, <code class="docutils literal notranslate"><span class="pre">lat_bnds</span></code> and <code class="docutils literal notranslate"><span class="pre">lon_bnds</span></code> in the example above. You can find more information about those <a class="reference external" href="http://cfconventions.org/cf-conventions/cf-conventions.html#cell-boundaries">here</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Original_name</span></code> is important to provide if you have changed a variable name (whether for readability or other purposes). That way you can identify the original fields provided by the data source. Sometimes projects will use certain variable names. For example, CMIP6 used <code class="docutils literal notranslate"><span class="pre">tos</span></code> to refer to <code class="docutils literal notranslate"><span class="pre">sea_surface_temperature</span></code> (CF standard name).</p>
 <p>In contrast to global attributes, when it comes to variable attributes, all the above should be included from the beginning, so that you don’t lose track of what’s going on.</p>
-</div>
-</div>
-<div class="section" id="real-life-examples-of-problems-with-variables">
-<h2>Real-life examples of problems with variables<a class="headerlink" href="#real-life-examples-of-problems-with-variables" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="real-life-examples-of-problems-with-variables">
+<h2>Real-life examples of problems with variables<a class="headerlink" href="#real-life-examples-of-problems-with-variables" title="Permalink to this headline">#</a></h2>
 <p>Here are a couple of problematic cases that we’ve come across dealing with variable attributes:</p>
 <p><strong>Example 1: <code class="docutils literal notranslate"><span class="pre">z1</span></code> variable</strong></p>
 <p>The UM (Unified Model) defines the vertical axis with the <code class="docutils literal notranslate"><span class="pre">z1</span></code> variable:</p>
@@ -1432,9 +1537,9 @@ You can find more information about cell methods <a class="reference external" h
 </div>
 <p><strong>Example 2: LIS time variable</strong></p>
 <p>In LIS model outputs, time is defined as a string, e.g. <code class="docutils literal notranslate"><span class="pre">200101010000</span></code>, as opposed to the required <code class="docutils literal notranslate"><span class="pre">days</span> <span class="pre">since</span> <span class="pre">&lt;reference</span> <span class="pre">date&gt;</span></code>. To use such a file with common software tools, you would need to redefine the time axis correctly.</p>
-</div>
-<div class="section" id="filenames">
-<h2>Filenames<a class="headerlink" href="#filenames" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="filenames">
+<h2>Filenames<a class="headerlink" href="#filenames" title="Permalink to this headline">#</a></h2>
 <p>People don’t always think about it, but naming your files appropriately is probably the most important step in effectively keeping track of them. Naming directories appropriately is equally important, although it is not enough to rely on, because you may well take your file out of that directory at some point, and then you’ll lose track of all the information in the directory name.</p>
 <p>If we look at the file path of the sample file above, we can see that the information stored in the directories is replicated in the filename as well:
 <code class="docutils literal notranslate"><span class="pre">/g/data/rr3/publications/CMIP5/output1/UNSW/CSIRO-Mk3L-1-2/1pctCO2/mon/land/Lmon/r1i1p1/v20170728/mrro/mrro_Lmon_CSIRO-Mk3L-1-2_1pctCO2_r1i1p1_000101-014012.nc</span></code></p>
@@ -1451,9 +1556,9 @@ You can find more information about cell methods <a class="reference external" h
 <li><p><code class="docutils literal notranslate"><span class="pre">000101-014012</span></code> - dates of data in the form <code class="docutils literal notranslate"><span class="pre">yyyymm</span></code>, from year 1, month 1 to year 140, month 12. In this particular case, relative dates are used, but more often you will see absolute dates, e.g. <code class="docutils literal notranslate"><span class="pre">201810</span></code></p></li>
 </ul>
 <p>Be aware that you don’t have to have it fully worked out from the beginning. You can improve the name progressively as you go.</p>
-</div>
-<div class="section" id="cf-convention-checkers">
-<h2>CF Convention Checkers<a class="headerlink" href="#cf-convention-checkers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cf-convention-checkers">
+<h2>CF Convention Checkers<a class="headerlink" href="#cf-convention-checkers" title="Permalink to this headline">#</a></h2>
 <p>A CF convention checker is available on Raijin. To load it and see its command-line usage, do the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data3</span><span class="o">/</span><span class="n">hh5</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
 <span class="n">module</span> <span class="n">load</span> <span class="n">conda</span>
@@ -1461,9 +1566,9 @@ You can find more information about cell methods <a class="reference external" h
 </pre></div>
 </div>
 <p>However, be aware that CF checkers are not failsafe. Files which pass the check may not work with software utilities and vice versa. More information about how to use it can be found <a class="reference external" href="https://github.com/ioos/compliance-checker#command-line-usage">here</a>.</p>
-</div>
-<div class="section" id="to-summarise">
-<h2>To summarise:<a class="headerlink" href="#to-summarise" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="to-summarise">
+<h2>To summarise:<a class="headerlink" href="#to-summarise" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>The most essential attributes are those required by software utilities.</p></li>
 <li><p>The next most essential attributes are those which enable you and others to understand what your file is for, how it was made and what its values mean.</p></li>
@@ -1471,8 +1576,8 @@ You can find more information about cell methods <a class="reference external" h
 <li><p>CF convention checkers exist, but are not failsafe.</p></li>
 </ul>
 <p><em>One final comment:</em> Other best practices include <strong>internal compression</strong> and <strong>chunking</strong>. We plan to discuss these in another blog post.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1496,9 +1601,11 @@ You can find more information about cell methods <a class="reference external" h
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="2018-10-19-mppnccombine-fast.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1514,24 +1621,28 @@ You can find more information about cell methods <a class="reference external" h
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By CLEX CMS<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By CLEX CMS<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
