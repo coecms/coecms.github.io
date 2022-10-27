@@ -179,6 +179,6 @@ And that's it!
 
 Now run the app and check it out. You should get something that looks like this (after adjusting the "Data Range" slider as shown):
 
-![Basic Heatwave App]({{ "/images/HeatwaveApp.JPG" | absolute_url }})
+![Basic Heatwave App](../images/HeatwaveApp.JPG)
 
 If you want your app to be accessible on the internet, you'll need to find somewhere to host your application (e.g. Nectar) and use `Shiny Server` to run it. To see an example of how that's done, [read this great tutorial](https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean).
