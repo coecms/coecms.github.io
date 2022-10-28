@@ -1304,26 +1304,9 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
-   Claire Carouge, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-of-the-same-dimensionality">
    Variables of the same dimensionality
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#now-we-want-to-find-the-values-of-the-sensible-heat-flux-when-the-2m-temperature-is-maximum">
-     Now we want to find the values of the sensible heat flux when the 2m temperature is maximum.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#as-you-can-see-hfss-at-max-has-the-same-dimensions-as-the-initial-arrays-hfss-and-tas-but-with-a-lot-of-missing-values-only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values-so-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it-here-we-arbitrarily-chose-to-plot-the-mean-in-time">
-     As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-of-different-dimensionality">
@@ -1378,26 +1361,9 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
-   Claire Carouge, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-of-the-same-dimensionality">
    Variables of the same dimensionality
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#now-we-want-to-find-the-values-of-the-sensible-heat-flux-when-the-2m-temperature-is-maximum">
-     Now we want to find the values of the sensible heat flux when the 2m temperature is maximum.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#as-you-can-see-hfss-at-max-has-the-same-dimensions-as-the-initial-arrays-hfss-and-tas-but-with-a-lot-of-missing-values-only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values-so-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it-here-we-arbitrarily-chose-to-plot-the-mean-in-time">
-     As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-of-different-dimensionality">
@@ -1444,8 +1410,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum">
 <h1>Find the value of a variable at the times when another variable is maximum<a class="headerlink" href="#find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum" title="Permalink to this headline">#</a></h1>
-<section id="claire-carouge-clex-cms">
-<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">#</a></h2>
+<p><strong>Claire Carouge, CLEX CMS</strong></p>
 <p>Let’s say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.</p>
 <p>As we shall see, it is relatively easy to do with two variables of the same rank, and that is what the <code class="docutils literal notranslate"><span class="pre">where()</span></code> function is designed for. But, depending on which Python package you are using, this problem can be more complicated with variables of different ranks, or not!
 In this blog, we will look at both scenarios.</p>
@@ -1551,11 +1516,9 @@ Coordinates:
 </div>
 </div>
 </div>
-</section>
 <section id="variables-of-the-same-dimensionality">
 <h2>Variables of the same dimensionality<a class="headerlink" href="#variables-of-the-same-dimensionality" title="Permalink to this headline">#</a></h2>
-<section id="now-we-want-to-find-the-values-of-the-sensible-heat-flux-when-the-2m-temperature-is-maximum">
-<h3>Now we want to find the values of the sensible heat flux when the 2m temperature is maximum.<a class="headerlink" href="#now-we-want-to-find-the-values-of-the-sensible-heat-flux-when-the-2m-temperature-is-maximum" title="Permalink to this headline">#</a></h3>
+<p><strong>Now we want to find the values of the sensible heat flux when the 2m temperature is maximum.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the values of the sensible heat flux when temperature is maximum</span>
@@ -1573,10 +1536,7 @@ Wall time: 4.78 s
 <img alt="../_images/2018-11-27-Value-when-other-is-max_11_1.png" src="../_images/2018-11-27-Value-when-other-is-max_11_1.png" />
 </div>
 </div>
-</section>
-<section id="as-you-can-see-hfss-at-max-has-the-same-dimensions-as-the-initial-arrays-hfss-and-tas-but-with-a-lot-of-missing-values-only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values-so-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it-here-we-arbitrarily-chose-to-plot-the-mean-in-time">
-<h3>As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.<a class="headerlink" href="#as-you-can-see-hfss-at-max-has-the-same-dimensions-as-the-initial-arrays-hfss-and-tas-but-with-a-lot-of-missing-values-only-the-times-and-spatial-points-where-tas-is-maximum-will-have-values-so-you-need-to-then-sample-in-some-way-that-makes-sense-for-your-analysis-to-plot-it-here-we-arbitrarily-chose-to-plot-the-mean-in-time" title="Permalink to this headline">#</a></h3>
-</section>
+<p><strong>As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.</strong></p>
 </section>
 <section id="variables-of-different-dimensionality">
 <h2>Variables of different dimensionality<a class="headerlink" href="#variables-of-different-dimensionality" title="Permalink to this headline">#</a></h2>
@@ -1773,16 +1733,16 @@ Coordinates:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-21.10-py"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-21.10-py",
+            kernelName: "python3",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-21.10-py'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

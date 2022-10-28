@@ -1304,11 +1304,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-   Scott Wales, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#defining-the-function">
    Defining the function
   </a>
@@ -1317,21 +1312,25 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#load-test-data">
    Load test data
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-a-test-analysis">
-   Run a test analysis
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-a-test-analysis">
+     Run a test analysis
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#looking-at-results">
    Looking at results
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#handling-errors">
-   Handling errors
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-errors">
+     Handling errors
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1353,11 +1352,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-   Scott Wales, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#defining-the-function">
    Defining the function
   </a>
@@ -1366,21 +1360,25 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#load-test-data">
    Load test data
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-a-test-analysis">
-   Run a test analysis
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-a-test-analysis">
+     Run a test analysis
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#looking-at-results">
    Looking at results
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#handling-errors">
-   Handling errors
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-errors">
+     Handling errors
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1394,8 +1392,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="per-gridpoint-time-correlation-of-two-models">
 <h1>Per-gridpoint time correlation of two models<a class="headerlink" href="#per-gridpoint-time-correlation-of-two-models" title="Permalink to this headline">#</a></h1>
-<section id="scott-wales-clex-cms">
-<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">#</a></h2>
+<p><strong>Scott Wales, CLEX CMS</strong></p>
 <p>We’ve had a few questions lately about how to calculate a time correlation of two different models at every grid point. Numpy’s <code class="docutils literal notranslate"><span class="pre">apply_along_axis()</span></code> function is super useful for applying a function to the time axis at each grid point of a single array, but what if we have more than one input array we need to do a calculation on?</p>
 <p>To accomplish this we can use a trick - we can combine all the input arrays into a single big array that we can call <code class="docutils literal notranslate"><span class="pre">apply_along_axis()</span></code> on, and use a helper function to split the time axis of the big array back into its component pieces.</p>
 <p>Let’s start out by loading a couple libraries and turning on inline plotting</p>
@@ -1410,7 +1407,6 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</section>
 <hr class="docutils" />
 <section id="defining-the-function">
 <h2>Defining the function<a class="headerlink" href="#defining-the-function" title="Permalink to this headline">#</a></h2>
@@ -1507,10 +1503,9 @@ Attributes:
 </div>
 </div>
 </div>
-</section>
 <hr class="docutils" />
 <section id="run-a-test-analysis">
-<h2>Run a test analysis<a class="headerlink" href="#run-a-test-analysis" title="Permalink to this headline">#</a></h2>
+<h3>Run a test analysis<a class="headerlink" href="#run-a-test-analysis" title="Permalink to this headline">#</a></h3>
 <p>For the correlation function I’m going to use the <code class="docutils literal notranslate"><span class="pre">pearsonr()</span></code> function from Scipy. This returns two values as a tuple - the Pearson correlation coefficient and the two-tailed p-value. When I apply the function these two values will be added as a new axis, replacing the time axis.</p>
 <p>I’ll apply it along the time axis, which for this example is axis 0. I’m also going to make sure the date range is the same for both inputs - the values for the full date range start and end in different months in each model.</p>
 <div class="cell docutils container">
@@ -1528,6 +1523,7 @@ Attributes:
 </div>
 </div>
 </div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="looking-at-results">
@@ -1554,10 +1550,9 @@ Attributes:
 <img alt="../_images/2019-07-29-multi-apply-along-axis_9_1.png" src="../_images/2019-07-29-multi-apply-along-axis_9_1.png" />
 </div>
 </div>
-</section>
 <hr class="docutils" />
 <section id="handling-errors">
-<h2>Handling errors<a class="headerlink" href="#handling-errors" title="Permalink to this headline">#</a></h2>
+<h3>Handling errors<a class="headerlink" href="#handling-errors" title="Permalink to this headline">#</a></h3>
 <p>If the dimensions of the input arrays aren’t compatible (say if we try to compare different regions) Numpy will raise an exception when it attempts the concatenation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1589,6 +1584,7 @@ Attributes:
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1599,16 +1595,16 @@ Attributes:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-21.10-py"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-21.10-py",
+            kernelName: "python3",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-21.10-py'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

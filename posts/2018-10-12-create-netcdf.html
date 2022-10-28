@@ -1304,11 +1304,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-   Scott Wales, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#create-a-netcdf-file-in-fortran">
    Create a NetCDF file in Fortran
   </a>
@@ -1404,11 +1399,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-   Scott Wales, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#create-a-netcdf-file-in-fortran">
    Create a NetCDF file in Fortran
   </a>
@@ -1496,14 +1486,12 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="how-to-create-netcdf-files">
 <h1>How to create NetCDF files<a class="headerlink" href="#how-to-create-netcdf-files" title="Permalink to this headline">#</a></h1>
-<section id="scott-wales-clex-cms">
-<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">#</a></h2>
+<p><strong>Scott Wales, CLEX CMS</strong></p>
 <p>This is a very basic introduction into NetCDF files and how to create them.</p>
 <p>This document describes how to <strong>create</strong> a NetCDF file in Fortran, and later on in Python. The methods described herein will <strong>overwrite</strong> any existing file with the same name. Opening existing NetCDF files, either for reading or for modifying/appending, is different.</p>
 <p>The exact way data is stored in NetCDF Format is not necessary to know, but what you need to know is that each file consists of a header, which contains the meta-data, and the actual data.</p>
 <p>Metadata is Data about Data. It tells us the dimensions and datatypes of the data, as well as arbitrary attributes.</p>
 <p>Since the header is at the beginning of the file, and can change its length when new data is added or removed, it is very advisable to first create the header before starting to write the data.</p>
-</section>
 <section id="create-a-netcdf-file-in-fortran">
 <h2>Create a NetCDF file in Fortran<a class="headerlink" href="#create-a-netcdf-file-in-fortran" title="Permalink to this headline">#</a></h2>
 <section id="netcdf-module">

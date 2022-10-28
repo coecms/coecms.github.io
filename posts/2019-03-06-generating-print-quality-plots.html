@@ -1360,7 +1360,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>When saved in PNG format, you get this:
-![Default PNG resolution (zoomed in)]()
+<img alt="Default PNG resolution (zoomed in)" src="../_images/heatmap_bad_bitmap.PNG" />
 (You might not be able to see the low resolution so well here, but if you display the image on your browser you’ll definitely see it.)</p>
 <p>The equivalent way to save to PNG file via the code is this:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatMap.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">480</span><span class="p">)</span>
@@ -1380,7 +1380,7 @@ title="Print to PDF"
 <span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>![Changed resolution to 300dpi]()
+<p><img alt="Changed resolution to 300dpi" src="../_images/heatmap2.png" />
 Adding the <code class="docutils literal notranslate"><span class="pre">res</span></code> parameter fixes up the resolution, but it also rescales the axes and text. Therefore, you need to increase the height and the width.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatmap3.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">960</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
 <span class="nf">filled.contour</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">area</span><span class="p">,</span>
@@ -1390,7 +1390,7 @@ Adding the <code class="docutils literal notranslate"><span class="pre">res</spa
 <span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>![Doubled width and height]()</p>
+<p><img alt="Doubled width and height" src="../_images/heatmap3.png" /></p>
 <p>That’s better.</p>
 <p>What if we want an even higher resolution, say 600dpi. So we change the first line to:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">png</span><span class="p">(</span><span class="s">&#39;heatmap4.png&#39;</span><span class="p">,</span> <span class="n">pointsize</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">2800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">2000</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
@@ -1441,7 +1441,7 @@ This time you might get the following error: <code class="docutils literal notra
 </pre></div>
 </div>
 <p>Note that our colour palette has 15 shades. This needs to correspond to the number of colour levels in the plot. If you have too many shades, not all of them will be used; too few, and the colour palette will cycle (which is not very helpful).</p>
-<p>![Fixed up the palette]()</p>
+<p><img alt="Fixed up the palette" src="../_images/heatmap5.png" /></p>
 <p>For a full list of colour names in R, see <a class="reference external" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.</p>
 <p>There are other colour tools you can use in R, such as <a class="reference external" href="https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html#rcolorbrewer-package">RColorBrewer</a>.</p>
 <p>Happy plotting!</p>

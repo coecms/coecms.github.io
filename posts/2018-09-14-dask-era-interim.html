@@ -1304,11 +1304,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-   Scott Wales, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setting-up-the-time-axis">
    Setting up the time axis
   </a>
@@ -1338,11 +1333,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scott-wales-clex-cms">
-   Scott Wales, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setting-up-the-time-axis">
    Setting up the time axis
   </a>
@@ -1364,8 +1354,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="speeding-up-access-to-large-datasets-with-dask-delayed">
 <h1>Speeding up access to large datasets with Dask Delayed<a class="headerlink" href="#speeding-up-access-to-large-datasets-with-dask-delayed" title="Permalink to this headline">#</a></h1>
-<section id="scott-wales-clex-cms">
-<h2>Scott Wales, CLEX CMS<a class="headerlink" href="#scott-wales-clex-cms" title="Permalink to this headline">#</a></h2>
+<p><strong>Scott Wales, CLEX CMS</strong></p>
 <p>CLEX CMS helps to maintain a number of dataset replicas at NCI, and we keep an eye out for ways to make these datasets easier to use.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">xarray</span></code> library has been great for accessing datasets and their metadata, but one thing I have noticed is that it can be a bit slow to read in really large datasets, like the full timeseries of CMIP or ERA-Interim.</p>
 <p>I’ve an idea of why that might be, let’s take a look and see if we can make use of Dask to speed up loading a variable from the local ERA-Interim replica.</p>
@@ -1438,7 +1427,6 @@ Wall time: 27.8 s
 </div>
 <p>7 seconds or so isn’t too bad, but can still be a nuisance if you’re trying to iterate on an analysis, or if you need to load a lot of variables at once. A lot of this time is spent checking that the coordinates of each file match - can we save on time by omitting this, since the dataset is well curated?</p>
 <p>The horizontal and vertical axes of each file are going to be exactly the same, it’s only the time axis and the variable itself that are going to vary between files. If we can work out what the time axis is without actually opening the files, then the only reason we need to open the file itself is once we need the data inside it - which can be handled using <code class="docutils literal notranslate"><span class="pre">dask</span></code>. This way we can set up the full dataset without spending 7 seconds opening each and every file.</p>
-</section>
 <section id="setting-up-the-time-axis">
 <h2>Setting up the time axis<a class="headerlink" href="#setting-up-the-time-axis" title="Permalink to this headline">#</a></h2>
 <p>So how can we get the time axis of the full dataset without opening all of the files? One way is <code class="docutils literal notranslate"><span class="pre">pandas.date_range()</span></code>, which returns a series of datetimes between a start and end point, at a user definable frequency. This means for the <code class="docutils literal notranslate"><span class="pre">6hr</span></code> dataset we can get the times like:</p>
@@ -1756,16 +1744,16 @@ Wall time: 1.71 s
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-18.07-py"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-18.07-py",
+            kernelName: "python3",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-18.07-py'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

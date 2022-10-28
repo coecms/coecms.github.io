@@ -1304,11 +1304,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#paola-petrelli-clex-cms">
-   Paola Petrelli, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#opendap-url">
    OPeNDAP url
   </a>
@@ -1317,11 +1312,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#accessing-opendap-in-python-with-xarray">
    Accessing OPeNDAP in python with xarray
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aggregated-virtual-files">
-   Aggregated virtual files
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregated-virtual-files">
+     Aggregated virtual files
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1343,11 +1340,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#paola-petrelli-clex-cms">
-   Paola Petrelli, CLEX CMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#opendap-url">
    OPeNDAP url
   </a>
@@ -1356,11 +1348,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#accessing-opendap-in-python-with-xarray">
    Accessing OPeNDAP in python with xarray
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aggregated-virtual-files">
-   Aggregated virtual files
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregated-virtual-files">
+     Aggregated virtual files
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1374,12 +1368,10 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="using-opendap-to-access-data-remotely-mur-example">
 <h1>Using OPeNDAP to access data remotely: MUR example<a class="headerlink" href="#using-opendap-to-access-data-remotely-mur-example" title="Permalink to this headline">#</a></h1>
-<section id="paola-petrelli-clex-cms">
-<h2>Paola Petrelli, CLEX CMS<a class="headerlink" href="#paola-petrelli-clex-cms" title="Permalink to this headline">#</a></h2>
+<p><strong>Paola Petrelli, CLEX CMS</strong></p>
 <p>One of our researcher asked me recently to download the MUR (Multi-scale Ultra-high Resolution SST) dataset. She is interested in all the available period but only for a small region. This dataset is relatively small but has many files (several for each day across 19 years) and it is updated frequently. This means that we would also have to update and check the dataset frequently and the files would be stored across several sub-directories making the access more complicated. <br><br>
 Fortunately this data is available via OPeNDAP. OPeNDAP is a web-based software that allows users to access datasets remotely. Many softwares used for analysis recognise an OPeNDAP url as a filename. A OPeNDAP url is usually constituted by the remote address of the file followed by optional constraints.<br><br>
 This is one of the advantages of OPeNDAP you don’t need to download a file before using it, you can simply subset the portion you need and the software you are using will load only the data you need. Next time you run the same analysis, if the data has been updated, you will be automatically using the updated dataset.<br><br></p>
-</section>
 <section id="opendap-url">
 <h2>OPeNDAP url<a class="headerlink" href="#opendap-url" title="Permalink to this headline">#</a></h2>
 <p>Let’s check an example using a test server:<br><br>
@@ -1454,9 +1446,8 @@ Attributes:
 </div>
 </div>
 </div>
-</section>
 <section id="aggregated-virtual-files">
-<h2>Aggregated virtual files<a class="headerlink" href="#aggregated-virtual-files" title="Permalink to this headline">#</a></h2>
+<h3>Aggregated virtual files<a class="headerlink" href="#aggregated-virtual-files" title="Permalink to this headline">#</a></h3>
 <p>Another powerful feature of OPeNDAP is that it works also with virtually aggregated datasets. This sounds complicated but all you need to know is that a multi files dataset can be made visible as a single file, you can then access potentially thousands of files via a single url. <br><br>
 MUR dataset is available as a virtually aggregated file so we can use this version of the data to get the complete SST timeseries from one url only.</p>
 <div class="cell docutils container">
@@ -1495,6 +1486,7 @@ Attributes:
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 

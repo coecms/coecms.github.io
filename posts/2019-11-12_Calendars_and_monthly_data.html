@@ -1307,13 +1307,6 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#">
    Compare data with different calendars
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
-     Claire Carouge, CLEX CMS
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#inputs">
@@ -1370,13 +1363,6 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#">
    Compare data with different calendars
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
-     Claire Carouge, CLEX CMS
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#inputs">
@@ -1422,8 +1408,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="compare-data-with-different-calendars">
 <h1>Compare data with different calendars<a class="headerlink" href="#compare-data-with-different-calendars" title="Permalink to this headline">#</a></h1>
-<section id="claire-carouge-clex-cms">
-<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">#</a></h2>
+<p><strong>Claire Carouge, CLEX CMS</strong></p>
 <p>Recently, someone contacted us for help to compute an ensemble mean over CMIP5 outputs from different models. He was looking at future projections which means the dates are outside the range covered by datetime64[ns] format. Additionally, neither model used the real calendar, one is using a 360 days calendar, the other is using a No Leap Year calendar. In that case, Xarray will default to using <a class="reference external" href="https://unidata.github.io/cftime/">cftime</a> objects to represent the dates using the calendar provided in the file.</p>
 <p>Because of the way CMIP5 experiments are designed, in addition to using different calendars, both models also covered a slightly different time period. All this means, the data has to be manually aligned in time before we can average across the model dimension. This cannot be done automatically by Xarray.</p>
 <p>When dealing with different calendars, the way to align the dates depends on what you are interested in. In our case, we didn’t care about the exact length of the month in days, the value for February 2100 represents the same month whether this month is 28 days in the No Leap calendar or 30 days in the 360 days calendar. This means we have a relatively simple problem. We don’t need to worry about weighting of the data when changing calendar, or masking data out. Masking data or weighting data would be necessary for changing daily data from a No Leap calendar (365 values per year) to a 360 day calendar (only 360 values per year). Deciding which technique to use would be for the researcher to decide depending on what would make sense scientifically.</p>
@@ -1437,7 +1422,6 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="inputs">
 <h1>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">#</a></h1>
@@ -1999,16 +1983,16 @@ Coordinates:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-21.10-py"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-21.10-py",
+            kernelName: "python3",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-21.10-py'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
