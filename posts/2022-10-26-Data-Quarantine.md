@@ -1,26 +1,54 @@
 # Data Quarantine
 
-Your data in /scratch/ can be deleted if it haven't been accessed/modified for a certain length of time. NCI introduced this in May 2022 to try and help prevent the build-up of unused data. 
+Your data in /scratch/ can be deleted if it haven't been accessed/modified for 100 days. NCI introduced this in May 2022 to try and help prevent the build-up of unused data. The data is first moved from project directories on /scratch/ into a quarantine space where you will have 14 days to recover it if needed.
 
- 
- 
- 
-Files older than 100 days are moved from project directories on /scratch into a quarantine space. See these websites for info:
+See these websites for more info:
 
 http://climate-cms.wikis.unsw.edu.au/Scratch_file_expiry
 
 https://opus.nci.org.au/pages/viewpage.action?pageId=156434436
 
+## Viewing Data Expiry Date:
+----------------------------------------------------------------
 
-After 14 days in quarantine, the data is then permanently deleted. You can run 
+To list all of your data in a specific project (i.e. w40) and see what is at risk of being moved to quarantine or deleted: 
 
 ```bash
-“nci-file-expiry list-warnings -p <project> > expiry_warning_<project>.txt”
+nci-file-expiry list-warnings -p <project> > expiry_warning_<project>.txt
 ```
 
-to list all of your data in a specific project (k10 in your case) and see what data is at risk of being moved to quarantine or deleted. 
+This will save the output to a txt file (expiry_warning_w40.txt if you used <project>=w40) that you can open. 
 
-If you need to recover any of your data from quarantine please follow the steps here: https://nci.org.au/sites/default/files/documents/2022-04/GadiSystem-GadiScratchFileExpiryCommands-200422-1629-37.pdf
+If you would like to look specifically at data that you already know is in quearantine:
+
+```bash
+nci-file-expiry list-quarantined -p <project> > expiry_quarantine_<project>.txt
+```
+
+## Saving Data from Quarantine:
+----------------------------------------------------------------
+
+To recover specific data from quarantine you will need 2 pieces of information:
+
+1. UUID - quarantine record to recover
+2. path - where to put the data
+
+Once you have these you can submit a request to retrive this data in the command-line:
+
+```bash
+nci-file-expiry recover UUID PATH
+```
+
+Once you've requested the recovery of a file, it will go into a queue to be processed at some point in the future. You can check the status of a request
+using:
+
+```bash
+usage: nci-file-expiry status [--id UUID | --between TIMESTAMP TIMESTAMP | --days N]
+```
+For more information on these commands:  https://nci.org.au/sites/default/files/documents/2022-04/GadiSystem-GadiScratchFileExpiryCommands-200422-1629-37.pdf
+
+# More Info:
+----------------------------------------------------------------
 
 If there is data that you need to keep long term then there are a couple of things that need to be considered. You can publish your data if you have processed a lot of raw data and it doesn't already exist on the NCI system. You can move data to the tape system for long-term storage. 
 
