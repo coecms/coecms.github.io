@@ -227,3 +227,7 @@
     how can I fix it?
   title: Storage - where, what, why and how?
   tags: [data, netcdf, storage]
+
+2022-11-10-jobfs:
+  title: How and when to use PBS Jobfs on NCI HPC systems
+  tags: [data, netcdf, storage]
