@@ -19,7 +19,12 @@ To list all of your data in a specific project (i.e. w40) and see what is at ris
 nci-file-expiry list-warnings -p <project> > expiry_warning_<project>.txt
 ```
 
-This will save the output to a txt file (expiry_warning_w40.txt if you used <project>=w40) that you can open. 
+This will save the output to a txt file (expiry_warning_w40.txt if you used <project>=w40) that you can open. In this txt file you will find information for all your at risk data under the following headers:
+
+- EXPIRES AT: This will give you the date when your file will move into quarantine.
+- GROUP: The project your file belopngs to, i.e. w40.
+- SIZE: How big your file is, i.e. 10GB
+- PATH: Where your file is located.
 
 If you would like to look specifically at data that you already know is in quearantine:
 
@@ -27,25 +32,30 @@ If you would like to look specifically at data that you already know is in quear
 nci-file-expiry list-quarantined -p <project> > expiry_quarantine_<project>.txt
 ```
 
+In the outputted expiry_quarantine_<project>.txt you will find the same information as previously but also including:
+
+- EXPIRED AT: This time it will tell you when your file was moved into quarantine. You will have 14 days from this date before it is permanently deleted.
+- ID: Each file that has entered quaratine is given a unique ID, you will be this in the next step to save your file. 
+
 ## Saving Data from Quarantine:
 ----------------------------------------------------------------
 
 To recover specific data from quarantine you will need 2 pieces of information:
 
-1. UUID - quarantine record to recover
+1. ID - quarantine record to recover
 2. path - where to put the data
 
 Once you have these you can submit a request to retrive this data in the command-line:
 
 ```bash
-nci-file-expiry recover UUID PATH
+nci-file-expiry recover ID PATH
 ```
 
 Once you've requested the recovery of a file, it will go into a queue to be processed at some point in the future. You can check the status of a request
 using:
 
 ```bash
-usage: nci-file-expiry status [--id UUID | --between TIMESTAMP TIMESTAMP | --days N]
+usage: nci-file-expiry status [--id ID | --between TIMESTAMP TIMESTAMP | --days N]
 ```
 For more information on these commands:  https://nci.org.au/sites/default/files/documents/2022-04/GadiSystem-GadiScratchFileExpiryCommands-200422-1629-37.pdf
 
