@@ -8,6 +8,8 @@ http://climate-cms.wikis.unsw.edu.au/Scratch_file_expiry
 
 https://opus.nci.org.au/pages/viewpage.action?pageId=156434436
 
+Dealing with data that has been moved to quarantine is actually quite simple and if you need to recover it then there are just a few steps to follow.
+
 ## Viewing Data Expiry Date:
 ----------------------------------------------------------------
 
@@ -47,10 +49,10 @@ usage: nci-file-expiry status [--id UUID | --between TIMESTAMP TIMESTAMP | --day
 ```
 For more information on these commands:  https://nci.org.au/sites/default/files/documents/2022-04/GadiSystem-GadiScratchFileExpiryCommands-200422-1629-37.pdf
 
-# More Info:
+## More Info:
 ----------------------------------------------------------------
 
-If there is data that you need to keep long term then there are a couple of things that need to be considered. You can publish your data if you have processed a lot of raw data and it doesn't already exist on the NCI system. You can move data to the tape system for long-term storage. 
+If there is data that you need to keep long term then there are a couple of things that need to be considered. You can publish your data if you have processed a lot of raw data and it doesn't already exist on the NCI system or you can move data to the tape system for long-term storage. 
 
 Please have a look at this blog: https://climate-cms.org/posts/2022-04-26-storage-where-what-why-how.html
 
