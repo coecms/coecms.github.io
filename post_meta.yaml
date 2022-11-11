@@ -231,3 +231,8 @@
 2022-11-10-jobfs:
   title: How and when to use PBS Jobfs on NCI HPC systems
   tags: [data, netcdf, storage]
+
+2022-10-26-Date-Quarantine:
+  excerpt: How to prevent your data from going into quarantine and how to retrive it if it does.
+  title: Data quarantine and expiry.
+  tags: [data, storage]
