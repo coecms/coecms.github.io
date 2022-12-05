@@ -18,7 +18,7 @@ The Fortran standard does not specify an ABI, and as such, libraries built again
 
 > ⚠️ The use of these compiler wrappers means NCI cannot guarantee this level of compatibility with user-installed libraries. 
 
-> ⚠️ The Nvidia HPC Toolkit is not supported to the same extent as the Intel and GNU Fortran compilers, at this stage only OpenMPI has been built with an Nvidia HPC Toolkit compatible Fortran interface.
+> ⚠️ The Nvidia HPC Toolkit is not supported to the same extent as the Intel and GNU Fortran compilers, at this stage only OpenMPI and the latest versions of HDF5 and netCDF have been built with an Nvidia HPC Toolkit compatible Fortran interface.
 
 This approach can confuse some build systems that only check for the presence of a library or Fortran module file on a file system (e.g. early `Find<Package>.cmake` files used by CMake to automatically detect the presence of certain libraries), rather than attempting to link against it. Information on how to remedy this is in the [Debugging Build Failures](#debugging-build-failures) section below.
 
