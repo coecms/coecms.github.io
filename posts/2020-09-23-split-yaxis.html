@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1423,11 +1438,11 @@ title="Print to PDF"
 <p>Making plots where the top and bottom halves have different y axis ranges</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
+import numpy
+import pandas
+import matplotlib
+import matplotlib.pyplot as plt
 </pre></div>
 </div>
 </div>
@@ -1436,11 +1451,11 @@ title="Print to PDF"
 <h2>Sample data<a class="headerlink" href="#sample-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span>
-                     <span class="n">coords</span><span class="o">=</span><span class="p">[</span>
-                         <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20010101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)),</span>
-                         <span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">)),</span>
-                     <span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da = xarray.DataArray(numpy.random.random((10,10)),
+                     coords=[
+                         (&#39;time&#39;, pandas.date_range(&#39;20010101&#39;, periods=10, freq=&#39;D&#39;)),
+                         (&#39;depth&#39;, numpy.logspace(0,4,num=10)),
+                     ])
 </pre></div>
 </div>
 </div>
@@ -1451,7 +1466,7 @@ title="Print to PDF"
 <p>First work out what options we need to plot with - here we want depth to descend along the y axis, so we need <code class="docutils literal notranslate"><span class="pre">yincrease=False</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da.sel(depth=slice(0,500)).plot.pcolormesh(&#39;time&#39;,&#39;depth&#39;,yincrease=False,add_colorbar=False)
 </pre></div>
 </div>
 </div>
@@ -1469,18 +1484,18 @@ title="Print to PDF"
 <p>I’m demonstrating with <code class="docutils literal notranslate"><span class="pre">GridSpec</span></code> as it’s more flexible than <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> and allows for easier margin adustments, but this would work with either</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gs = matplotlib.gridspec.GridSpec(2, 1)
 
-<span class="c1"># Top subplot</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">da</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                           <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+# Top subplot
+ax = plt.subplot(gs[0,0])
+da.sel(depth=slice(0,500)).plot.pcolormesh(&#39;time&#39;,&#39;depth&#39;,yincrease=False,
+                                           add_colorbar=False, ax=ax, add_labels=False)
+ax.tick_params(axis=&#39;x&#39;, bottom=False, labelbottom=False)
 
-<span class="c1"># Bottom subplot</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">da</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                              <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+# Bottom subplot
+ax = plt.subplot(gs[1,0])
+da.sel(depth=slice(500,None)).plot.pcolormesh(&#39;time&#39;,&#39;depth&#39;,yincrease=False,
+                                              add_colorbar=False, ax=ax, add_labels=False)
 </pre></div>
 </div>
 </div>
@@ -1497,21 +1512,21 @@ title="Print to PDF"
 <p>To make this simpler to use I’ve made it into a function, that takes the data, the top and bottom axes and the depth to split at. You could extend this function to also add a title, colour bar etc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_depth_plot</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">ax_top</span><span class="p">,</span> <span class="n">ax_bottom</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
-    <span class="c1"># Make sure the colour range is the same for the top and bottom plots</span>
-    <span class="n">vmin</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="n">vmax</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def split_depth_plot(da, ax_top, ax_bottom, depth):
+    # Make sure the colour range is the same for the top and bottom plots
+    vmin = da.min()
+    vmax = da.max()
     
-    <span class="c1"># Plot the top half</span>
-    <span class="n">da</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">depth</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
-                                                 <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_top</span><span class="p">,</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    # Plot the top half
+    da.sel(depth=slice(0,depth)).plot.pcolormesh(&#39;time&#39;,&#39;depth&#39;,yincrease=False,vmin=vmin, vmax=vmax,
+                                                 add_colorbar=False, ax=ax_top, add_labels=False)
     
-    <span class="c1"># Remove x axis labels from the top</span>
-    <span class="n">ax_top</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    # Remove x axis labels from the top
+    ax_top.tick_params(axis=&#39;x&#39;, bottom=False, labelbottom=False)
     
-    <span class="c1"># Plot the bottom half</span>
-    <span class="n">da</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span><span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
-                                                    <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_bottom</span><span class="p">,</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    # Plot the bottom half
+    da.sel(depth=slice(depth,None)).plot.pcolormesh(&#39;time&#39;,&#39;depth&#39;,yincrease=False, vmin=vmin, vmax=vmax,
+                                                    add_colorbar=False, ax=ax_bottom, add_labels=False)
 </pre></div>
 </div>
 </div>
@@ -1522,12 +1537,12 @@ title="Print to PDF"
 <p>Using the function it’s simple to plot multiple times, say for different datasets</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 rows, 2 columns</span>
-<span class="n">gs</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 2 rows, 2 columns
+gs = matplotlib.gridspec.GridSpec(2, 2)
 
-<span class="n">split_depth_plot</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">depth</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+split_depth_plot(da, plt.subplot(gs[0,0]), plt.subplot(gs[1,0]), depth=500)
 
-<span class="n">split_depth_plot</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">depth</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+split_depth_plot(da, plt.subplot(gs[0,1]), plt.subplot(gs[1,1]), depth=100)
 </pre></div>
 </div>
 </div>
@@ -1541,12 +1556,12 @@ title="Print to PDF"
 <p>GridSpec makes it easy to remove the margin between the top and bottom halves, making a complete plot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 rows, 2 columns with no margin</span>
-<span class="n">gs</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 2 rows, 2 columns with no margin
+gs = matplotlib.gridspec.GridSpec(2, 2, hspace=0)
 
-<span class="n">split_depth_plot</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">depth</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+split_depth_plot(da, plt.subplot(gs[0,0]), plt.subplot(gs[1,0]), depth=500)
 
-<span class="n">split_depth_plot</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">depth</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+split_depth_plot(da, plt.subplot(gs[0,1]), plt.subplot(gs[1,1]), depth=100)
 </pre></div>
 </div>
 </div>

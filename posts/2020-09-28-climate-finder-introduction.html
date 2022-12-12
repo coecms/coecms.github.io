@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1461,17 +1476,17 @@ Let’s start!</p>
 <h2>Command syntax<a class="headerlink" href="#command-syntax" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run this if you haven&#39;t done so already in the terminal</span>
-<span class="c1">#!module use /g/data3/hh5/public/modules</span>
-<span class="c1">#!module load conda/analysis3-unstable</span>
-<span class="c1"># using unstable guarantees that the latest features ar eall available, but clef is also available in stable</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run this if you haven&#39;t done so already in the terminal
+#!module use /g/data3/hh5/public/modules
+#!module load conda/analysis3-unstable
+# using unstable guarantees that the latest features ar eall available, but clef is also available in stable
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef
 </pre></div>
 </div>
 </div>
@@ -1507,7 +1522,7 @@ Let’s start from quering some CMIP5 data, to see what we can pass to the <stro
 <h2>CMIP5<a class="headerlink" href="#cmip5" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --help
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 --help
 </pre></div>
 </div>
 </div>
@@ -1573,7 +1588,7 @@ The same option can have more than one name, for example <code class="docutils l
 You can pass how many constraints you want and pass the same constraint more than once. Let’s see what happens though if we do not pass any constraint.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5
 </pre></div>
 </div>
 </div>
@@ -1585,7 +1600,7 @@ You can pass how many constraints you want and pass the same constraint more tha
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable tasmin --experiment historical --table day --ensemble r2i1p1s
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 --variable tasmin --experiment historical --table day --ensemble r2i1p1s
 </pre></div>
 </div>
 </div>
@@ -1598,7 +1613,7 @@ You can pass how many constraints you want and pass the same constraint more tha
 <p>Oops that wasn’t reasonable! I mispelled the ensemble “r2i1p1s” does not exists and the tool is telling me it cannot find any matches.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable tasmin --experiment historical --table days --ensemble r2i1p1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 --variable tasmin --experiment historical --table days --ensemble r2i1p1
 </pre></div>
 </div>
 </div>
@@ -1614,7 +1629,7 @@ Error: Invalid value for &#39;--table&#39; / &#39;--mip&#39; / &#39;-t&#39;: inv
 <p>Made another spelling mistake, in this case the tool knows that I passed a wrong value and lists for me all the available options for the CMOR table. Eventually we are aiming to validate all the arguments we can, although for some it is no possible to pass all the possible values (ensemble for example).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable tasmin --experiment historical --table day --ensemble r2i1p1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 --variable tasmin --experiment historical --table day --ensemble r2i1p1
 </pre></div>
 </div>
 </div>
@@ -1651,7 +1666,7 @@ For all the files it can’t find locally, the tool check an NCI table listing t
 <p>The query by default returns the latest available version. What if we want to have a look at all the available versions?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip5 --variable clivi --experiment historical --table Amon -m ACCESS1.0 --all-versions
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 --variable clivi --experiment historical --table Amon -m ACCESS1.0 --all-versions
 </pre></div>
 </div>
 </div>
@@ -1673,7 +1688,7 @@ Since all the ACCESS1.0 data is available on NCI (which is the authoritative sou
 <h2>CMIP6<a class="headerlink" href="#cmip6" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cmip6 --help
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip6 --help
 </pre></div>
 </div>
 </div>
@@ -1747,7 +1762,7 @@ Examples of these are the <code class="docutils literal notranslate"><span class
 <h3>CORDEX<a class="headerlink" href="#cordex" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cordex --help
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cordex --help
 </pre></div>
 </div>
 </div>
@@ -1821,7 +1836,7 @@ These are the cordex <code class="docutils literal notranslate"><span class="pre
 CORDEX also doesn’t use tables so you always have to use f<code class="docutils literal notranslate"><span class="pre">--frequency</span></code> to select different timesteps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef cordex -v tas -e historical -dmod CSIRO-BOM-ACCESS1-3 -en r1i1p1 -f mon
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cordex -v tas -e historical -dmod CSIRO-BOM-ACCESS1-3 -en r1i1p1 -f mon
 </pre></div>
 </div>
 </div>
@@ -1843,7 +1858,7 @@ Everything available on ESGF is also available locally
 <h3>Controlling the ouput: clef options<a class="headerlink" href="#controlling-the-ouput-clef-options" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --local cmip6 -e 1pctCO2 -t Amon -v tasmax -v tasmin -g gr
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip6 -e 1pctCO2 -t Amon -v tasmax -v tasmin -g gr
 </pre></div>
 </div>
 </div>
@@ -1899,7 +1914,7 @@ Note also that:</p>
 In the example above the final result is exactly the same, whichever way we perform the query. This way of searching can give you more results if a node is offline or if a version have been unpublished from the ESGF but is still available locally.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --missing cmip6 -e 1pctCO2 -v clw -v clwvi -t Amon -g gr
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --missing cmip6 -e 1pctCO2 -v clw -v clwvi -t Amon -g gr
 </pre></div>
 </div>
 </div>
@@ -1952,7 +1967,7 @@ CMIP6.CMIP.THU.CIESM.1pctCO2.r1i1p1f1.Amon.clwvi.gr.v20200417
 <p>This time we used the <em>–missing</em> option and the tool returned only the results matching the constraints that are available on the ESGF but not locally (we changed variables to make sure to get some missing data back).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef --remote cmip6 -e 1pctCO2 -v tasmin -t Amon -g gr
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --remote cmip6 -e 1pctCO2 -v tasmin -t Amon -g gr
 </pre></div>
 </div>
 </div>
@@ -1992,7 +2007,7 @@ Even without consulting the list you can use <strong>clef</strong>, as we demons
 Let’s see how it works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 clef --request cmip6 -e 1pctCO2 -v clw -v clwvi -t Amon -g gr
 no
 </pre></div>
@@ -2061,7 +2076,7 @@ It will accept any of the following as a positive answer:</p>
 It still saved the request in a file we can use later.<br></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head -n <span class="m">4</span> CMIP6_*.txt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!head -n 4 CMIP6_*.txt
 </pre></div>
 </div>
 </div>

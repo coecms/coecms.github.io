@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Example to improve code design" href="2021-09-30-code-design.html" />
-    <link rel="prev" title="2021" href="../contents/year-2021.html" />
+    <link rel="prev" title="Trajectories in regions" href="2021-12-08-trajectories.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1421,17 +1436,17 @@ title="Print to PDF"
 <p>To demonstrate, we create two DataArrays that have a slightly different coordinate array. Note how the difference is so small that Jupyter’s default presentation obscures it by rounding.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+import numpy as np
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">dims</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:[</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">2.1</span><span class="p">,</span><span class="mf">3.1</span><span class="p">]})</span>
-<span class="n">arr2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">dims</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:[</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">2.099999999</span><span class="p">,</span><span class="mf">3.1</span><span class="p">]})</span>
-<span class="n">display</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr1 = xr.DataArray([1,2,3],dims=&quot;x&quot;,coords={&quot;x&quot;:[1.1,2.1,3.1]})
+arr2 = xr.DataArray([1,2,3],dims=&quot;x&quot;,coords={&quot;x&quot;:[1.1,2.099999999,3.1]})
+display(arr1, arr2)
 </pre></div>
 </div>
 </div>
@@ -2149,8 +2164,8 @@ Coordinates:
 <p>You can specify a precision for numpy to suppress the rounding. We are using <code class="docutils literal notranslate"><span class="pre">np.printoptions()</span></code> here to easily swap between the default rounding and a specific precision. You can use <code class="docutils literal notranslate"><span class="pre">np.set_printoptions()</span></code> to set a specific precision for your whole notebook. Note that Xarray may override the precision set, make sure you print the <code class="docutils literal notranslate"><span class="pre">.data</span></code> array if you need to double-check the precision in the print:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">arr2</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with np.printoptions(precision=9):
+    print(arr2.x.data)
 </pre></div>
 </div>
 </div>
@@ -2164,7 +2179,7 @@ Coordinates:
 <p>But instead we only get a length 2 array, containing only the points where the coordinates were truly identical.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span><span class="o">-</span><span class="n">arr2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr1-arr2
 </pre></div>
 </div>
 </div>
@@ -2535,9 +2550,9 @@ Coordinates:
 In that case, the easiest, straight-forward method is simply assign the coordinate array from one to the other:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span><span class="o">=</span><span class="n">arr2</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="n">arr1</span><span class="o">.</span><span class="n">x</span><span class="p">})</span>
-<span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">arr2</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr2=arr2.assign_coords({&quot;x&quot;:arr1.x})
+with np.printoptions(precision=9):
+    print(arr2.x.data)
 </pre></div>
 </div>
 </div>
@@ -2549,7 +2564,7 @@ In that case, the easiest, straight-forward method is simply assign the coordina
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span><span class="o">-</span><span class="n">arr2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr1-arr2
 </pre></div>
 </div>
 </div>
@@ -2917,9 +2932,9 @@ Coordinates:
 <p>Let’s first re-assign the coordinates from the beginning.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span><span class="o">=</span><span class="n">arr2</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:[</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">2.099999999</span><span class="p">,</span><span class="mf">3.1</span><span class="p">]})</span>
-<span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">arr2</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr2=arr2.assign_coords({&quot;x&quot;:[1.1,2.099999999,3.1]})
+with np.printoptions(precision=9):
+    print(arr2.x.data)
 </pre></div>
 </div>
 </div>
@@ -2932,8 +2947,8 @@ Coordinates:
 <p>Now we interpolate using the x-coordinate from <code class="docutils literal notranslate"><span class="pre">arr1</span></code> as the target for the interpolation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span> <span class="o">=</span> <span class="n">arr2</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">arr1</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr2 = arr2.interp(x=arr1.x)
+display(arr2)
 </pre></div>
 </div>
 </div>
@@ -3297,7 +3312,7 @@ Coordinates:
 <p>The two arrays now have the same coordinate array, but the values have ever so slightly changed. In this case, the rounding obscures this fact again, but the difference is no longer all-zeros:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">-</span> <span class="n">arr2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>arr1 - arr2
 </pre></div>
 </div>
 </div>
@@ -3698,11 +3713,11 @@ Coordinates:
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../contents/year-2021.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="2021-12-08-trajectories.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">2021</p>
+            <p class="prev-next-title">Trajectories in regions</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="2021-09-30-code-design.html" title="next page">

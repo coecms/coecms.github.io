@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1409,10 +1424,10 @@ jupyter notebook
 <p>This will start up a Jupyter Notebook on VDI, which is the same tool that this post is written in. Jupyter lets us work interactively with python and easily share code and plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a python command</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># This is a python command
+print(&quot;Hello world!&quot;)
 
-<span class="c1"># the output appears below</span>
+# the output appears below
 </pre></div>
 </div>
 </div>
@@ -1428,10 +1443,10 @@ jupyter notebook
 <p>I like to use a library called Xarray to work with netCDF datasets. Let’s grab the monthly surface temperature from the ACCESS1-0 AMIP run and load it in</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
 
-<span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">datapath</span><span class="p">)</span>
+datapath = &quot;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&quot;
+data = xarray.open_dataset(datapath)
 </pre></div>
 </div>
 </div>
@@ -1440,7 +1455,7 @@ jupyter notebook
 <p>To see what’s in the file we can just print it. This shows the dimensions, variables and metadata in the file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(data)
 </pre></div>
 </div>
 </div>
@@ -1498,8 +1513,8 @@ Attributes:
 <p>Variables are accessed using dot syntax. Just like the full dataset we can print individual variables to see their metadata:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surface_temp</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tas</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">surface_temp</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>surface_temp = data.tas
+print(surface_temp)
 </pre></div>
 </div>
 </div>
@@ -1529,8 +1544,8 @@ Attributes:
 <p>Before we can make a plot we first need to reduce the 3D data to 2D. One of the nice things about Xarray is that you can select data by a coordinate value, rather than manualy working out an index:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surface_temp_slice</span> <span class="o">=</span> <span class="n">surface_temp</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="s1">&#39;1984-03&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>surface_temp_slice = surface_temp.sel(time = &#39;1984-03&#39;)
+print(surface_temp_slice.time)
 </pre></div>
 </div>
 </div>
@@ -1557,11 +1572,11 @@ Attributes:
 <p>To make a quick plot we can just call <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> on a 2d variable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import matplotlib.pyplot as plt
 
-<span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+surface_temp_slice.plot()
+plt.show()
 </pre></div>
 </div>
 </div>

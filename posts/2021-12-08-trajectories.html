@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="bash" href="../contents/tag-bash.html" />
-    <link rel="prev" title="An example of reading non-standard data using pandas and xarray" href="2022-03-15-reading-nonstandard-data.html" />
+    <link rel="next" title="Effect of rounding on coordinates with Xarray" href="2021-10-01-different_coordinates.html" />
+    <link rel="prev" title="2021" href="../contents/year-2021.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,7 +118,12 @@ const thebe_selector_output = ".output, .cell_output"
   Latest
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1404,9 +1419,9 @@ title="Print to PDF"
 <p>With such a large number of trajectories we want to try and find a solution that doesn’t need to loop over each trajectory. It’s going to be much more efficient if we can find a solution that works on the whole dataset at once.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
+import pandas
+import matplotlib.pyplot as plt
 </pre></div>
 </div>
 </div>
@@ -1417,24 +1432,24 @@ title="Print to PDF"
 <p>I’ll start out with each trajectory at time 0 being in a random region. At each timestep I’ll choose to step a distance randomly chosen from <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">0,</span> <span class="pre">1]</span></code>, with a step size of <code class="docutils literal notranslate"><span class="pre">0</span></code> more heavily favoured so the result isn’t pure noise</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traj_id</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">times</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span> <span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;MS&#39;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">times</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">traj_id</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>traj_id = numpy.arange(100)
+times = pandas.date_range(&#39;2010&#39;, &#39;2020&#39;, freq=&#39;MS&#39;, closed=&#39;left&#39;)
+values = numpy.zeros((times.size, traj_id.size))
 
-<span class="n">states</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+states = numpy.arange(10)
 
-<span class="c1"># Set the region at t=0</span>
-<span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">traj_id</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+# Set the region at t=0
+values[0,:] = numpy.random.randint(0,states.size,traj_id.size)
 
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">times</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
-    <span class="c1"># At time t, have each trajectory either stay at the same region or move +/- 1 region</span>
-    <span class="c1"># The randint call gives a random integer in the range [-10, 11). Dividing this by</span>
-    <span class="c1"># 10 and getting the integer part weights the distribution - it&#39;s much more likely</span>
-    <span class="c1"># to stay in the same region than to move regions</span>
-    <span class="n">values</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="n">traj_id</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+for t in range(1,times.size):
+    # At time t, have each trajectory either stay at the same region or move +/- 1 region
+    # The randint call gives a random integer in the range [-10, 11). Dividing this by
+    # 10 and getting the integer part weights the distribution - it&#39;s much more likely
+    # to stay in the same region than to move regions
+    values[t] = values[t-1] + (numpy.random.randint(-10,11,traj_id.size)/10).astype(&#39;i&#39;)
 
-<span class="c1"># Wrap the region numbers, getting the values mod 10</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">%</span> <span class="n">states</span><span class="o">.</span><span class="n">size</span>
+# Wrap the region numbers, getting the values mod 10
+values = values % states.size
 </pre></div>
 </div>
 </div>
@@ -1442,9 +1457,9 @@ title="Print to PDF"
 <p>If we look at a single walk we can see how it transitions between the regions over time. I’m just considering a 1d distribution of regions so the trajectory can only switch between two neighbours, e.g. having each region be a different longitude band. In a real dataset the regions may be arranged in a more complex manner.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(values[:,0])
+plt.xlabel(&#39;time&#39;)
+plt.ylabel(&#39;region&#39;);
 </pre></div>
 </div>
 </div>
@@ -1458,9 +1473,9 @@ title="Print to PDF"
 <p>We can see how long a single trajectory spends in each region by creating a histogram with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total time spent in each state</span>
-<span class="n">bins</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Total time spent in each state
+bins = numpy.arange(states.size+1)
+numpy.histogram(values[:,0], bins)[0]
 </pre></div>
 </div>
 </div>
@@ -1473,9 +1488,9 @@ title="Print to PDF"
 <p>Another thing we can check is at what times the trajectory moves between regions - this will be when the region at time <code class="docutils literal notranslate"><span class="pre">t</span></code> is different to the region at <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">-</span> <span class="pre">1</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State transitions</span>
-<span class="n">diff</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span> <span class="o">-</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
-<span class="n">diff</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># State transitions
+diff = values[1:,:] - values[:-1,:]
+diff
 </pre></div>
 </div>
 </div>
@@ -1494,9 +1509,9 @@ title="Print to PDF"
 <p>If we use this as a mask with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.where()</span></code></a> we can find out which region was entered</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transitions into each state</span>
-<span class="n">entries</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diff</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:],</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="n">entries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Transitions into each state
+entries = numpy.where(diff != 0, values[1:,:], numpy.nan)
+entries
 </pre></div>
 </div>
 </div>
@@ -1515,8 +1530,8 @@ title="Print to PDF"
 <p>Another histogram then tells us how many times a trajectory entered each region</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total entries into each state</span>
-<span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">entries</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Total entries into each state
+numpy.histogram(entries[:,0], bins)[0]
 </pre></div>
 </div>
 </div>
@@ -1532,9 +1547,9 @@ title="Print to PDF"
 <p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a> only works with 1d data, to use it on all trajectories at once we can combine it with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.apply_along_axis.html#numpy.apply_along_axis" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.apply_along_axis()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Applying to the total dataset</span>
-<span class="n">entries_hist</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">entries</span><span class="p">)</span>
-<span class="n">entries_hist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Applying to the total dataset
+entries_hist = numpy.apply_along_axis(lambda x: numpy.histogram(x, bins)[0], 0, entries)
+entries_hist[:,0]
 </pre></div>
 </div>
 </div>
@@ -1548,10 +1563,10 @@ title="Print to PDF"
 <p>Quantifying this is left to the reader.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">entries_hist</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trajectory id&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total region transitions&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(15,5))
+plt.plot(entries_hist.sum(axis=0))
+plt.xlabel(&#39;trajectory id&#39;)
+plt.ylabel(&#39;total region transitions&#39;);
 </pre></div>
 </div>
 </div>
@@ -1561,10 +1576,10 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">entries_hist</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trajectory id&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;maximum transitions into a single region&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(15,5))
+plt.plot(entries_hist.max(axis=0))
+plt.xlabel(&#39;trajectory id&#39;)
+plt.ylabel(&#39;maximum transitions into a single region&#39;);
 </pre></div>
 </div>
 </div>
@@ -1574,12 +1589,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_entered</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">entries_hist</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>states_entered = numpy.ma.masked_equal(entries_hist, 0).count(axis=0)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">entries_hist</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">states_entered</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trajectory id&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;maximum transitions into a single region</span><span class="se">\n</span><span class="s1">/ regions entered&#39;</span><span class="p">);</span>
+plt.figure(figsize=(15,5))
+plt.plot(entries_hist.max(axis=0) / states_entered)
+plt.xlabel(&#39;trajectory id&#39;)
+plt.ylabel(&#39;maximum transitions into a single region\n/ regions entered&#39;);
 </pre></div>
 </div>
 </div>
@@ -1593,17 +1608,17 @@ title="Print to PDF"
 <p>For this toy problem I’ll use the metric of the total number of times a trajectory moves between regions divided by the number of regions the trajectory spends any time in. When this metric is below 0.5 I’ll say the trajectory is linear, when over 1.5 I’ll say it’s cycling. These limits may be very different for a real-world dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metric</span> <span class="o">=</span> <span class="n">entries_hist</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">states_entered</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>metric = entries_hist.max(axis=0) / states_entered
 
-<span class="n">linear</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">metric</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">cycling</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">metric</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+linear = numpy.where(metric &lt; 0.5)[0]
+cycling = numpy.where(metric &gt; 1.5)[0]
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="n">linear</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[:,</span><span class="n">cycling</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;cycling&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">);</span>
+plt.figure(figsize=(15,5))
+plt.plot(values[:,linear[0]], label = &#39;linear&#39;)
+plt.plot(values[:,cycling[0]], label = &#39;cycling&#39;)
+plt.legend()
+plt.xlabel(&#39;time&#39;)
+plt.ylabel(&#39;region&#39;);
 </pre></div>
 </div>
 </div>
@@ -1641,17 +1656,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="2022-03-15-reading-nonstandard-data.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../contents/year-2021.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">An example of reading non-standard data using pandas and xarray</p>
+            <p class="prev-next-title">2021</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../contents/tag-bash.html" title="next page">
+    <a class='right-next' id="next-link" href="2021-10-01-different_coordinates.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">bash</p>
+        <p class="prev-next-title">Effect of rounding on coordinates with Xarray</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

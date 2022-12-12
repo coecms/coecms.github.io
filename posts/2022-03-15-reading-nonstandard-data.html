@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Trajectories in regions" href="2021-12-08-trajectories.html" />
+    <link rel="next" title="bash" href="../contents/tag-bash.html" />
     <link rel="prev" title="Storage - where, what, why and how?" href="2022-04-26-storage-where-what-why-how.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1412,12 +1427,12 @@ title="Print to PDF"
 <p>As the data files are tab-separated columnar text files the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> library is a good choice for reading in the data and manipulating it. <code class="docutils literal notranslate"><span class="pre">pandas</span></code> is specifically designed for manipulating tabular data, and much of the machinery of <code class="docutils literal notranslate"><span class="pre">xarray</span></code> is based on <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, but extended to n-dimensions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">urllib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from datetime import datetime
+import urllib
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+import numpy as np
+import pandas as pd
+import xarray as xr
 </pre></div>
 </div>
 </div>
@@ -1426,12 +1441,12 @@ title="Print to PDF"
 <p>Note that the delimiter is specifed to be be tab (<code class="docutils literal notranslate"><span class="pre">\t</span></code>), no header line is specified and the columns are assigned useful names.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.ncei.noaa.gov/pub/data/paleo/treering/reconstructions/australia/palmer2015pdsi/anzda-pdsi-xy.txt&quot;</span>
-<span class="n">xy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">),</span> 
-                 <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> 
-                 <span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">names</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">),</span>
-                 <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>url = &quot;https://www.ncei.noaa.gov/pub/data/paleo/treering/reconstructions/australia/palmer2015pdsi/anzda-pdsi-xy.txt&quot;
+xy = pd.read_csv(urllib.request.urlopen(url), 
+                 delimiter=&#39;\t&#39;, 
+                 header = None,
+                 names = (&#39;lon&#39;, &#39;lat&#39;),
+                 usecols = [0, 1])
 </pre></div>
 </div>
 </div>
@@ -1439,7 +1454,7 @@ title="Print to PDF"
 <p>The <code class="docutils literal notranslate"><span class="pre">head</span></code> method is a useful way to get a small sample of the data to check it</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xy.head()
 </pre></div>
 </div>
 </div>
@@ -1499,7 +1514,7 @@ title="Print to PDF"
 <p>Plotting is also a great way to quickly check the data. Like <code class="docutils literal notranslate"><span class="pre">xarray</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> has a built in <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">plot method</a> that calls out to another library to do the plotting. In this case the default is <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xy.plot(x=&#39;lon&#39;, y=&#39;lat&#39;, kind=&#39;scatter&#39;);
 </pre></div>
 </div>
 </div>
@@ -1511,9 +1526,9 @@ title="Print to PDF"
 <p>As before use the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">pandas.read_csv</a> function to read the data in, specifying that the delimiter is a tab and that the first column should be treated as the row index. In this case the first line contains useful header information, so that is retained.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.ncei.noaa.gov/pub/data/paleo/treering/reconstructions/australia/palmer2015pdsi/anzda-recon.txt&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>url = &quot;https://www.ncei.noaa.gov/pub/data/paleo/treering/reconstructions/australia/palmer2015pdsi/anzda-recon.txt&quot;
+data = pd.read_csv(urllib.request.urlopen(url), delimiter=&#39;\t&#39;, index_col=0)
+data
 </pre></div>
 </div>
 </div>
@@ -1857,8 +1872,8 @@ title="Print to PDF"
 <p>Specifying <code class="docutils literal notranslate"><span class="pre">ignore_index=False</span></code> means it isn’t included in the value column, but is retained as an index. This method will create two new columns with the cell index in one, and the values from the table in other. The function has default names <code class="docutils literal notranslate"><span class="pre">variable</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code>, but better to give them useful names: <code class="docutils literal notranslate"><span class="pre">cellref</span></code> and <code class="docutils literal notranslate"><span class="pre">pdsi</span></code> respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_long</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">var_name</span> <span class="o">=</span> <span class="s1">&#39;cellref&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;pdsi&#39;</span><span class="p">)</span>
-<span class="n">data_long</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_long = data.melt(ignore_index=False, var_name = &#39;cellref&#39;, value_name=&#39;pdsi&#39;)
+data_long
 </pre></div>
 </div>
 </div>
@@ -1954,8 +1969,8 @@ title="Print to PDF"
 <p>Next is to add the <code class="docutils literal notranslate"><span class="pre">lat</span></code> and <code class="docutils literal notranslate"><span class="pre">lon</span></code> values for each cell index to the data table above. One way to achieve this is to add a <code class="docutils literal notranslate"><span class="pre">cellref</span></code> column to the <code class="docutils literal notranslate"><span class="pre">xy</span></code> table so it can be merged with <code class="docutils literal notranslate"><span class="pre">data_long</span></code> using the <code class="docutils literal notranslate"><span class="pre">cellref</span></code> variable as a key</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span><span class="p">[</span><span class="s1">&#39;cellref&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">xy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xy[&#39;cellref&#39;] = range(1, len(xy)+1, 1)
+xy
 </pre></div>
 </div>
 </div>
@@ -2058,7 +2073,7 @@ title="Print to PDF"
 <p>Now try <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html">merge</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_long</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;cellref&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_long.merge(xy, on=&#39;cellref&#39;)
 </pre></div>
 </div>
 </div>
@@ -2151,7 +2166,7 @@ title="Print to PDF"
 <p>Inspecting the types (<code class="docutils literal notranslate"><span class="pre">dtypes</span></code>) of the two tables shows the issue, the <code class="docutils literal notranslate"><span class="pre">cellref</span></code> column in <code class="docutils literal notranslate"><span class="pre">data_long</span></code> has a type <code class="docutils literal notranslate"><span class="pre">object</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xy.dtypes
 </pre></div>
 </div>
 </div>
@@ -2166,7 +2181,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_long</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_long.dtypes
 </pre></div>
 </div>
 </div>
@@ -2181,8 +2196,8 @@ dtype: object
 <p>The solution is to replace the <code class="docutils literal notranslate"><span class="pre">cellref</span></code> column with the same data converted to a number, and try merging again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_long</span><span class="p">[</span><span class="s1">&#39;cellref&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">data_long</span><span class="p">[</span><span class="s1">&#39;cellref&#39;</span><span class="p">])</span>
-<span class="n">data_long</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_long[&#39;cellref&#39;] = pd.to_numeric(data_long[&#39;cellref&#39;])
+data_long
 </pre></div>
 </div>
 </div>
@@ -2278,8 +2293,8 @@ dtype: object
 <p>Note that <code class="docutils literal notranslate"><span class="pre">reset_index</span></code> converts the <code class="docutils literal notranslate"><span class="pre">Year</span></code> index into a normal column, this is necessary to retain the <code class="docutils literal notranslate"><span class="pre">Year</span></code> as indices are discarded when a column is used as the value to merge with as is done here, i.e. <code class="docutils literal notranslate"><span class="pre">on='cellref'</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_long</span> <span class="o">=</span> <span class="n">data_long</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;cellref&#39;</span><span class="p">)</span>
-<span class="n">data_long</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_long = data_long.reset_index().merge(xy, on=&#39;cellref&#39;)
+data_long
 </pre></div>
 </div>
 </div>
@@ -2417,14 +2432,14 @@ dtype: object
 <p>All the index variables created with <code class="docutils literal notranslate"><span class="pre">set_index</span></code> will automatically be converted to coordinates in the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object. The order of variables in <code class="docutils literal notranslate"><span class="pre">set_index</span></code> is important: longitude is set to be the fastest varying axis/index, which will result in plots being correctly oriented by default, with longitude on the horizontal axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">data_long</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;cellref&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;year&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = data_long.drop(&#39;cellref&#39;, axis=1).rename(columns={&#39;Year&#39;: &#39;year&#39;}).set_index([&#39;year&#39;, &#39;lat&#39;, &#39;lon&#39;]).to_xarray()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds
 </pre></div>
 </div>
 </div>
@@ -2846,7 +2861,7 @@ Data variables:
 <p>There appears to be a problem: data extended into the Tasman sea from both land masses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">pdsi</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">8</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.pdsi.isel(year=50).plot(size = 8);
 </pre></div>
 </div>
 </div>
@@ -2857,7 +2872,7 @@ Data variables:
 <p>Looking at the difference between each longitude point and it’s neighbour shows the problem: there is difference of -14. at one point, so there is a gap in the coordinates in the Tasman Sea. This is because there are no data points with those longitudes in the original data set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">({</span><span class="s1">&#39;lon&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.coords[&#39;lon&#39;] - ds.coords[&#39;lon&#39;].shift({&#39;lon&#39;:-1})
 </pre></div>
 </div>
 </div>
@@ -3239,7 +3254,7 @@ Coordinates:
 <p>Fix this by creating a new longitude coordinate that spans the whole range with the same 0.5 degree spacing, and then replace the existing longitude coordinate using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.reindex.html">reindex</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">lon</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ds</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = ds.reindex(lon = xr.DataArray(np.arange(ds.lon.min(), ds.lon.max()+0.5, 0.5), dims=[&#39;lon&#39;]))
 </pre></div>
 </div>
 </div>
@@ -3247,7 +3262,7 @@ Coordinates:
 <p>Now the same plot shows the correct behaviour, with no strange artefacts in the Tasman Sea</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">pdsi</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.pdsi.isel(year=50).plot(x=&#39;lon&#39;,y=&#39;lat&#39;, size = 8);
 </pre></div>
 </div>
 </div>
@@ -3268,23 +3283,23 @@ Coordinates:
 <p>Set the global (dataset level) attributes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Eastern Australia and New Zealand Drought Atlas (ANZDA)&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;creator_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Palmer, J.G.; Cook, E.R.; Turney, C.S.M.; Allen, K.J.; Fenwick, P.; Cook, B.I.; O&#39;Donnell, A.J.; Lough, J.M.; Grierson, P.F.; Baker, P.J.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="s2">&quot;National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;references&quot;</span><span class="p">:</span> <span class="s2">&quot;Jonathan G. Palmer, Edward R. Cook, Chris S.M. Turney, Kathy Allen, Pavla Fenwick, Benjamin I. Cook, Alison O&#39;Donnell, Janice Lough, Pauline Grierson, Patrick Baker. 2015. Drought variability in the eastern Australia and New Zealand summer drought atlas (ANZDA, CE 1500-2012) modulated by the Interdecadal Pacific Oscillation. Environmental Research Letters, 10(12), 124002. doi:10.1088/1748-9326/10/12/124002&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;keywords&quot;</span><span class="p">:</span> <span class="s2">&quot;Palmer Drought Index Reconstruction, drought, paleoclimate&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;date_created&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-06-06&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.ncei.noaa.gov/access/paleo-search/study/20245&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;source_license&quot;</span><span class="p">:</span> <span class="s2">&quot;Please cite original publication, online resource, dataset and publication DOIs (where available), and date accessed when using downloaded data. If there is no publication information, please cite investigator, title, online resource, and date accessed. The appearance of external links associated with a dataset does not constitute endorsement by the Department of Commerce/National Oceanic and Atmospheric Administration of external Web sites or the information, products or services contained therein. For other than authorized activities, the Department of Commerce/NOAA does not exercise any editorial control over the information you may find at these locations. These links are provided consistent with the stated purpose of this Department of Commerce/NOAA Web site.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;date_downloaded&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s2">&quot;geospatial_lat_min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">47.0</span><span class="p">,</span>
-    <span class="s2">&quot;geospatial_lat_max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">11.0</span><span class="p">,</span>
-    <span class="s2">&quot;geospatial_lon_min&quot;</span><span class="p">:</span> <span class="mf">136.0</span><span class="p">,</span>
-    <span class="s2">&quot;geospatial_lon_max&quot;</span><span class="p">:</span> <span class="mf">178.5</span><span class="p">,</span>
-    <span class="s2">&quot;time_coverage_start&quot;</span><span class="p">:</span> <span class="s2">&quot;450 cal yr BP (1500 CE)&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;time_coverage_end&quot;</span><span class="p">:</span> <span class="s2">&quot;-62 cal yr BP (2012 CE)&quot;</span><span class="p">,</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.attrs = {
+    &quot;title&quot;: &quot;Eastern Australia and New Zealand Drought Atlas (ANZDA)&quot;,
+    &quot;creator_name&quot;: &quot;Palmer, J.G.; Cook, E.R.; Turney, C.S.M.; Allen, K.J.; Fenwick, P.; Cook, B.I.; O&#39;Donnell, A.J.; Lough, J.M.; Grierson, P.F.; Baker, P.J.&quot;,
+    &quot;publisher&quot;: &quot;National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce&quot;,
+    &quot;references&quot;: &quot;Jonathan G. Palmer, Edward R. Cook, Chris S.M. Turney, Kathy Allen, Pavla Fenwick, Benjamin I. Cook, Alison O&#39;Donnell, Janice Lough, Pauline Grierson, Patrick Baker. 2015. Drought variability in the eastern Australia and New Zealand summer drought atlas (ANZDA, CE 1500-2012) modulated by the Interdecadal Pacific Oscillation. Environmental Research Letters, 10(12), 124002. doi:10.1088/1748-9326/10/12/124002&quot;,
+    &quot;keywords&quot;: &quot;Palmer Drought Index Reconstruction, drought, paleoclimate&quot;,
+    &quot;date_created&quot;: &quot;2016-06-06&quot;,
+    &quot;source&quot;: &quot;https://www.ncei.noaa.gov/access/paleo-search/study/20245&quot;,
+    &quot;source_license&quot;: &quot;Please cite original publication, online resource, dataset and publication DOIs (where available), and date accessed when using downloaded data. If there is no publication information, please cite investigator, title, online resource, and date accessed. The appearance of external links associated with a dataset does not constitute endorsement by the Department of Commerce/National Oceanic and Atmospheric Administration of external Web sites or the information, products or services contained therein. For other than authorized activities, the Department of Commerce/NOAA does not exercise any editorial control over the information you may find at these locations. These links are provided consistent with the stated purpose of this Department of Commerce/NOAA Web site.&quot;,
+    &quot;date_downloaded&quot;: datetime.today().strftime(&#39;%Y-%m-%d&#39;),
+    &quot;geospatial_lat_min&quot;: -47.0,
+    &quot;geospatial_lat_max&quot;: -11.0,
+    &quot;geospatial_lon_min&quot;: 136.0,
+    &quot;geospatial_lon_max&quot;: 178.5,
+    &quot;time_coverage_start&quot;: &quot;450 cal yr BP (1500 CE)&quot;,
+    &quot;time_coverage_end&quot;: &quot;-62 cal yr BP (2012 CE)&quot;,
+}
 </pre></div>
 </div>
 </div>
@@ -3292,11 +3307,11 @@ Coordinates:
 <p>Next set variable level attributes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">pdsi</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Palmer drought severity index&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;long_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Reconstructions of DJF Palmer drought severity index reconstruction series for 1375 Gridpoints&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.pdsi.attrs = {
+    &quot;name&quot;: &quot;Palmer drought severity index&quot;,
+    &quot;long_name&quot;: &quot;Reconstructions of DJF Palmer drought severity index reconstruction series for 1375 Gridpoints&quot;,
+    &quot;units&quot;: &quot;&quot;,
+}
 </pre></div>
 </div>
 </div>
@@ -3304,14 +3319,14 @@ Coordinates:
 <p>And coordinate attributes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees_east&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees_north&#39;</span><span class="p">,</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.lon.attrs = {
+    &#39;name&#39;: &#39;longitude&#39;,
+    &#39;units&#39;: &#39;degrees_east&#39;,
+}
+ds.lat.attrs = {
+    &#39;name&#39;: &#39;latitude&#39;,
+    &#39;units&#39;: &#39;degrees_north&#39;,
+}
 </pre></div>
 </div>
 </div>
@@ -3319,7 +3334,7 @@ Coordinates:
 <p>Check the attributes have been specified correctly</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds
 </pre></div>
 </div>
 </div>
@@ -3757,7 +3772,7 @@ Attributes: (12/15)
 <p>Save to a netcdf file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s2">&quot;anzda_recon.nc&quot;</span><span class="p">,</span> <span class="nb">format</span> <span class="o">=</span> <span class="s2">&quot;NETCDF4&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.to_netcdf(&quot;anzda_recon.nc&quot;, format = &quot;NETCDF4&quot;)
 </pre></div>
 </div>
 </div>
@@ -3765,7 +3780,7 @@ Attributes: (12/15)
 <p>Dump the file header to check it looks ok</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ncdump -h ~/anzda_recon.nc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!ncdump -h ~/anzda_recon.nc
 </pre></div>
 </div>
 </div>
@@ -3850,10 +3865,10 @@ variables:
             <p class="prev-next-title">Storage - where, what, why and how?</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="2021-12-08-trajectories.html" title="next page">
+    <a class='right-next' id="next-link" href="../contents/tag-bash.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Trajectories in regions</p>
+        <p class="prev-next-title">bash</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

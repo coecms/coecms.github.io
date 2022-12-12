@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1403,10 +1418,10 @@ title="Print to PDF"
 <p>How to fix blank gaps in plots at the meridian and poles</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
+import xarray
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
 </pre></div>
 </div>
 </div>
@@ -1416,11 +1431,11 @@ title="Print to PDF"
 <p>We have some sample data, where the values are defined at grid centres. The lat coordinates start and end half a grid spacing from the poles</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span>
-                     <span class="n">coords</span><span class="o">=</span><span class="p">[</span>
-                         <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">+</span><span class="mi">18</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
-                         <span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">360</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
-                     <span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da = xarray.DataArray(numpy.random.random((10,10)),
+                     coords=[
+                         (&#39;lat&#39;, numpy.linspace(-90,90,num=10, endpoint=False)+18/2),
+                         (&#39;lon&#39;, numpy.linspace(0,360,num=10, endpoint=False)),
+                     ])
 </pre></div>
 </div>
 </div>
@@ -1432,10 +1447,10 @@ title="Print to PDF"
 <p>pcolormesh wants to use the coordinates as the grid corners when plotting, while in our dataset we’ve actually got the grid centres</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">da</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">da</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=0))
+ax.pcolormesh(da.lon, da.lat, da, transform=ccrs.PlateCarree())
+ax.coastlines()
+ax.set_extent([-180,180,-90,90])
 </pre></div>
 </div>
 </div>
@@ -1449,10 +1464,10 @@ title="Print to PDF"
 <p>Xarray’s plotting automatically knows our coordinates are grid centres, and works out the corner coordinates for us to plot the data accurately</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">da</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=0))
+da.plot(ax=ax, transform=ccrs.PlateCarree(), add_colorbar=False)
+ax.coastlines()
+ax.set_extent([-180,180,-90,90])
 </pre></div>
 </div>
 </div>
@@ -1466,9 +1481,9 @@ title="Print to PDF"
 <p>We can also manually find the corners - <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code> finds the difference between consecutive values in a numpy array, assuming our data is on a regular grid (and so the spacing is the same between all grid cells) we can use this to find the corner coordinates and pass those corners to <code class="docutils literal notranslate"><span class="pre">pcolormesh</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dlat</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">lat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">corner_lat</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">lat</span> <span class="o">-</span> <span class="n">dlat</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">da</span><span class="o">.</span><span class="n">lat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">dlat</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">corner_lat</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dlat = numpy.diff(da.lat)[0]
+corner_lat = numpy.concatenate([da.lat - dlat/2, da.lat[-1:] + dlat/2])
+corner_lat
 </pre></div>
 </div>
 </div>
@@ -1480,13 +1495,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dlon</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">lon</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">corner_lon</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">da</span><span class="o">.</span><span class="n">lon</span> <span class="o">-</span> <span class="n">dlon</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">da</span><span class="o">.</span><span class="n">lon</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">dlon</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dlon = numpy.diff(da.lon)[0]
+corner_lon = numpy.concatenate([da.lon - dlon/2, da.lon[-1:] + dlon/2])
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">corner_lon</span><span class="p">,</span> <span class="n">corner_lat</span><span class="p">,</span> <span class="n">da</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">])</span>
+ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=0))
+ax.pcolormesh(corner_lon, corner_lat, da, transform=ccrs.PlateCarree())
+ax.coastlines()
+ax.set_extent([-180,180,-90,90])
 </pre></div>
 </div>
 </div>

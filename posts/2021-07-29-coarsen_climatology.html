@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1408,8 +1423,8 @@ title="Print to PDF"
 <p>Let’s look at how ‘coarsen’ can be used to calculate a monthly climatology with less computational complexity than ‘groupby’ (note that this will only work with Conda analysis3 environment 21.07 or later)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">glob</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
+import glob
 </pre></div>
 </div>
 </div>
@@ -1418,27 +1433,27 @@ title="Print to PDF"
 <p>As always it’s a good idea to look at the chunking in the file before we try to process it, here’s a handy function for that</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">file_chunks</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return the internal file chunking of a NetCDF file</span>
-<span class="sd">    </span>
-<span class="sd">    If you pass in a glob pattern a single file matching that pattern will be checked</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        path: filename or glob pattern to check</span>
-<span class="sd">        var: variable name to check (if more than one variable is in the file)</span>
-<span class="sd">        </span>
-<span class="sd">    Returns:</span>
-<span class="sd">        dict mapping dimension name to chunk size</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def file_chunks(path: str, var: str = None):
+    &quot;&quot;&quot;
+    Return the internal file chunking of a NetCDF file
     
-    <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">da</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">da</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="n">var</span><span class="p">]</span>
+    If you pass in a glob pattern a single file matching that pattern will be checked
+    
+    Args:
+        path: filename or glob pattern to check
+        var: variable name to check (if more than one variable is in the file)
         
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">da</span><span class="o">.</span><span class="n">encoding</span><span class="p">[</span><span class="s1">&#39;chunksizes&#39;</span><span class="p">]))</span>
+    Returns:
+        dict mapping dimension name to chunk size
+    &quot;&quot;&quot;
+    path = glob.glob(path)[0]
+    
+    if var is None:
+        da = xarray.open_dataarray(path)
+    else:
+        da = xarray.open_dataset(path)[var]
+        
+    return dict(zip(da.dims, da.encoding[&#39;chunksizes&#39;]))
 </pre></div>
 </div>
 </div>
@@ -1446,7 +1461,7 @@ title="Print to PDF"
 <p>The chunking in the file is the entire horizontal and vertical domain, with one timestep per chunk.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_chunks</span><span class="p">(</span><span class="s1">&#39;/g/data/fs38/publications/CMIP6/CMIP/CSIRO/ACCESS-ESM1-5/historical/r1i1p1f1/Amon/ta/gn/latest/*.nc&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">&#39;ta&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>file_chunks(&#39;/g/data/fs38/publications/CMIP6/CMIP/CSIRO/ACCESS-ESM1-5/historical/r1i1p1f1/Amon/ta/gn/latest/*.nc&#39;, var=&#39;ta&#39;)
 </pre></div>
 </div>
 </div>
@@ -1459,8 +1474,8 @@ title="Print to PDF"
 <p>Using the file chunking results in pretty small dask chunks, so we’ll load 5 years (60 months) of data in a single dask chunk to get the size up around 100 mb</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/fs38/publications/CMIP6/CMIP/CSIRO/ACCESS-ESM1-5/historical/r1i1p1f1/Amon/ta/gn/latest/*.nc&#39;</span><span class="p">,</span>
-                           <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;plev&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mi">144</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="mi">192</span><span class="p">})</span><span class="o">.</span><span class="n">ta</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta = xarray.open_mfdataset(&#39;/g/data/fs38/publications/CMIP6/CMIP/CSIRO/ACCESS-ESM1-5/historical/r1i1p1f1/Amon/ta/gn/latest/*.nc&#39;,
+                           chunks={&#39;time&#39;: 60, &#39;plev&#39;: 19, &#39;lat&#39;: 144, &#39;lon&#39;: 192}).ta
 </pre></div>
 </div>
 </div>
@@ -1470,7 +1485,7 @@ title="Print to PDF"
 <p>The simple way to make a climatology in Xarray is to use ‘groupby’. This is a really generic function that doesn’t assume that the time axis is regularly spaced - the data could start out daily and later on turn to monthly. Because of this it has a complex Task graph - when we opened the dataset there were 68 tasks, after a groupby climatology this has jumped up to 1028.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta.groupby(&#39;time.month&#39;).mean().data
 </pre></div>
 </div>
 </div>
@@ -1570,7 +1585,7 @@ title="Print to PDF"
 <p>Having a smaller task graph is good because it means there is less complexity in what the computer needs to do. It needs to read less often from disk, can re-use data better and is faster to start running when you compute the data with Dask.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta</span><span class="o">.</span><span class="n">coarsen</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta.coarsen(time=12).construct(time=(&#39;year&#39;, &#39;month&#39;)).mean(&#39;year&#39;).data
 </pre></div>
 </div>
 </div>
@@ -1658,11 +1673,11 @@ title="Print to PDF"
 <p>There’s an even larger difference between the two method’s task sizes when the climatology is subtracted from the original data to calculate an anomaly. Groupby is now at 3,824 tasks, while the coarsen method is only 181.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using &#39;groupby&#39;</span>
-<span class="n">climatology</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">anomaly</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.month&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">climatology</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Using &#39;groupby&#39;
+climatology = ta.groupby(&#39;time.month&#39;).mean()
+anomaly = ta.groupby(&#39;time.month&#39;) - climatology
 
-<span class="n">anomaly</span>
+anomaly
 </pre></div>
 </div>
 </div>
@@ -2183,11 +2198,11 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using &#39;coarsen&#39;</span>
-<span class="n">climatology</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">coarsen</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
-<span class="n">anomaly</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">coarsen</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="n">climatology</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Using &#39;coarsen&#39;
+climatology = ta.coarsen(time=12).construct(time=(&#39;year&#39;, &#39;month&#39;)).mean(&#39;year&#39;)
+anomaly = ta.coarsen(time=12).construct(time=(&#39;year&#39;, &#39;month&#39;)) - climatology
 
-<span class="n">anomaly</span>
+anomaly
 </pre></div>
 </div>
 </div>
@@ -2730,10 +2745,10 @@ Dimensions without coordinates: year, month</pre><div class='xr-wrap' hidden><di
 <p>Note however that the ‘coarsen’ method has left us with separate year and month axes in the resulting dataset. Combining them back together into a normal time axis is unfortunately not as simple as running ‘coarsen’ - you have to combine them back into one dimension with ‘stack’, discard the values from that new dimension, rename the dimension to ‘time’ so it picks up the original values and then put all the dimensions back in their original order.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anomaly</span> <span class="o">=</span> <span class="n">anomaly</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">*</span><span class="n">ta</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-<span class="n">anomaly</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;long_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Air Temperature Anomaly&#39;</span>
-<span class="n">anomaly</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
-<span class="n">anomaly</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>anomaly = anomaly.stack(t=(&#39;year&#39;, &#39;month&#39;)).drop(&#39;t&#39;).rename(t=&#39;time&#39;).transpose(*ta.dims)
+anomaly.attrs[&#39;long_name&#39;] = &#39;Air Temperature Anomaly&#39;
+anomaly.attrs[&#39;units&#39;] = &#39;K&#39;
+anomaly
 </pre></div>
 </div>
 </div>
@@ -3256,7 +3271,7 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anomaly</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>anomaly[0,10,:,:].plot()
 </pre></div>
 </div>
 </div>

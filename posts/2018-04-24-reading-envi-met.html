@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1408,15 +1423,15 @@ title="Print to PDF"
 <p>Note we need to define the file encoding, since it’s using special characters (degrees symbol)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xml.etree.ElementTree as ET
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">)</span>
-<span class="n">meta</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;UrbanLayout_noIVS_AT_23.00.01 23.07.2013.EDX&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">)</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parser = ET.XMLParser(encoding=&#39;ISO-8859-1&#39;)
+meta = ET.parse(&#39;UrbanLayout_noIVS_AT_23.00.01 23.07.2013.EDX&#39;, parser=parser).getroot()
 </pre></div>
 </div>
 </div>
@@ -1425,8 +1440,8 @@ title="Print to PDF"
 <p>A bit of simple text processing gets a list of variable names</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable_names</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;variables/name_variables&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-<span class="n">variable_names</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>variable_names = meta.find(&#39;variables/name_variables&#39;).text.strip().split(&#39;,&#39;)
+variable_names
 </pre></div>
 </div>
 </div>
@@ -1475,10 +1490,10 @@ title="Print to PDF"
 <p>Get the array dimensions - we need to manually convert these to numbers with <code class="docutils literal notranslate"><span class="pre">int()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nr_xdata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;datadescription/nr_xdata&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">nr_ydata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;datadescription/nr_ydata&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">nr_zdata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;datadescription/nr_zdata&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">nr_ndata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;variables/Data_per_variable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>nr_xdata = int(meta.find(&#39;datadescription/nr_xdata&#39;).text)
+nr_ydata = int(meta.find(&#39;datadescription/nr_ydata&#39;).text)
+nr_zdata = int(meta.find(&#39;datadescription/nr_zdata&#39;).text)
+nr_ndata = int(meta.find(&#39;variables/Data_per_variable&#39;).text)
 </pre></div>
 </div>
 </div>
@@ -1489,8 +1504,8 @@ title="Print to PDF"
 <p>Now we have the metadata, let’s read the actual data. This is stored as a binary file of little-endian floating point numbers, which can be read with numpy</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s1">&#39;UrbanLayout_noIVS_AT_23.00.01 23.07.2013.EDT&#39;</span><span class="p">,</span><span class="s1">&#39;&lt;f4&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
+data = numpy.fromfile(&#39;UrbanLayout_noIVS_AT_23.00.01 23.07.2013.EDT&#39;,&#39;&lt;f4&#39;)
 </pre></div>
 </div>
 </div>
@@ -1498,7 +1513,7 @@ title="Print to PDF"
 <p>Sanity check - did we read the expected number of values?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)</span><span class="o">*</span><span class="n">nr_xdata</span><span class="o">*</span><span class="n">nr_ydata</span><span class="o">*</span><span class="n">nr_zdata</span><span class="o">*</span><span class="n">nr_ndata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>len(data) == len(variable_names)*nr_xdata*nr_ydata*nr_zdata*nr_ndata
 </pre></div>
 </div>
 </div>
@@ -1511,8 +1526,8 @@ title="Print to PDF"
 <p>Currently the data is just a 1d array. <code class="docutils literal notranslate"><span class="pre">.reshape()</span></code> it to the proper shape, as defined in the format documentation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cube</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">variable_names</span><span class="p">),</span> <span class="n">nr_zdata</span><span class="p">,</span> <span class="n">nr_ydata</span><span class="p">,</span> <span class="n">nr_xdata</span><span class="p">,</span> <span class="n">nr_ndata</span><span class="p">))</span>
-<span class="n">cube</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cube = data.reshape((len(variable_names), nr_zdata, nr_ydata, nr_xdata, nr_ndata))
+cube.shape
 </pre></div>
 </div>
 </div>
@@ -1525,12 +1540,12 @@ title="Print to PDF"
 <p>Another sanity check - field 8 is supposed to be temperature, are the values reasonable? Make sure the axes aren’t flipped</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">cube</span><span class="p">[</span><span class="mi">8</span><span class="p">,:,:,:,:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t = cube[8,:,:,:,:]
 
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">t</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+%matplotlib inline
+import matplotlib.pyplot as plt
+plt.imshow(t[0,:,:,0])
+print(t.min(), t.mean(), t.max())
 </pre></div>
 </div>
 </div>
@@ -1544,10 +1559,10 @@ title="Print to PDF"
 <p>The <code class="docutils literal notranslate"><span class="pre">xarray</span></code> library is similar to Pandas, but for multiple dimensions. Create a dataset, so that we can access variables by their names rather than the index:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
 
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">Dataset</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">],</span> <span class="n">cube</span><span class="p">[</span><span class="n">idx</span><span class="p">,:,:,:,:])</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)})</span>
-<span class="n">ds</span>
+ds = xarray.Dataset({name: ([&#39;x&#39;,&#39;y&#39;,&#39;z&#39;,&#39;n&#39;], cube[idx,:,:,:,:]) for idx, name in enumerate(variable_names)})
+ds
 </pre></div>
 </div>
 </div>
@@ -1603,45 +1618,45 @@ Data variables:
 <p>Here’s a function that ties all of this together. It also adds a time value from the metadata. Similarly, if the x and y co-ordinates are known they can be added to the <code class="docutils literal notranslate"><span class="pre">coords</span></code> argument of <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+import pandas
+import numpy
+import xarray
+import xml.etree.ElementTree as ET
 
-<span class="k">def</span> <span class="nf">open_edx</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Open a EDX/EDT dataset</span>
-<span class="sd">    </span>
-<span class="sd">    Returns an xarray dataset</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Parse the metadata file</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">)</span>
-    <span class="n">meta</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">)</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+def open_edx(filename):
+    &quot;&quot;&quot;
+    Open a EDX/EDT dataset
     
-    <span class="n">variable_names</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;variables/name_variables&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    Returns an xarray dataset
+    &quot;&quot;&quot;
+    # Parse the metadata file
+    parser = ET.XMLParser(encoding=&#39;ISO-8859-1&#39;)
+    meta = ET.parse(filename, parser=parser).getroot()
     
-    <span class="n">nr_xdata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;datadescription/nr_xdata&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">nr_ydata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;datadescription/nr_ydata&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">nr_zdata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;datadescription/nr_zdata&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">nr_ndata</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;variables/Data_per_variable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    variable_names = meta.find(&#39;variables/name_variables&#39;).text.strip().split(&#39;,&#39;)
     
-    <span class="n">date</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;modeldescription/simulation_date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;modeldescription/simulation_time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    nr_xdata = int(meta.find(&#39;datadescription/nr_xdata&#39;).text)
+    nr_ydata = int(meta.find(&#39;datadescription/nr_ydata&#39;).text)
+    nr_zdata = int(meta.find(&#39;datadescription/nr_zdata&#39;).text)
+    nr_ndata = int(meta.find(&#39;variables/Data_per_variable&#39;).text)
     
-    <span class="c1"># Get the time</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">time</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">.%m.%Y %H:%M:%S&#39;</span><span class="p">)</span>
+    date = meta.find(&#39;modeldescription/simulation_date&#39;).text.strip()
+    time = meta.find(&#39;modeldescription/simulation_time&#39;).text.strip()
     
-    <span class="c1"># Read the data file</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.EDT&#39;</span><span class="p">,</span><span class="s1">&#39;&lt;f4&#39;</span><span class="p">)</span>
-    <span class="n">cube</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">variable_names</span><span class="p">),</span> <span class="n">nr_zdata</span><span class="p">,</span> <span class="n">nr_ydata</span><span class="p">,</span> <span class="n">nr_xdata</span><span class="p">,</span> <span class="n">nr_ndata</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    # Get the time
+    t = pandas.to_datetime(date+&#39; &#39;+time, format=&#39;%d.%m.%Y %H:%M:%S&#39;)
     
-    <span class="c1"># Create a dataset</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">Dataset</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="p">([</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">cube</span><span class="p">[</span><span class="n">idx</span><span class="p">,:,:,:,:])</span>
-                              <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)},</span>
-                            <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">t</span><span class="p">]},</span>
-                            <span class="p">)</span>
-    <span class="k">return</span> <span class="n">dataset</span>
+    # Read the data file
+    data = numpy.fromfile(os.path.splitext(filename)[0]+&#39;.EDT&#39;,&#39;&lt;f4&#39;)
+    cube = data.reshape((len(variable_names), nr_zdata, nr_ydata, nr_xdata, nr_ndata, 1))
+    
+    # Create a dataset
+    dataset = xarray.Dataset({name: ([&#39;z&#39;,&#39;y&#39;,&#39;x&#39;,&#39;n&#39;,&#39;time&#39;], cube[idx,:,:,:,:])
+                              for idx, name in enumerate(variable_names)},
+                            coords={&#39;time&#39;: [t]},
+                            )
+    return dataset
 </pre></div>
 </div>
 </div>
@@ -1652,10 +1667,10 @@ Data variables:
 <p>Individual files can be joined along the time dimension using <code class="docutils literal notranslate"><span class="pre">xarray.concat()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1</span> <span class="o">=</span> <span class="n">open_edx</span><span class="p">(</span><span class="s1">&#39;UrbanLayout_noIVS_AT_22.00.01 23.07.2013.EDX&#39;</span><span class="p">)</span>
-<span class="n">ds2</span> <span class="o">=</span> <span class="n">open_edx</span><span class="p">(</span><span class="s1">&#39;UrbanLayout_noIVS_AT_23.00.01 23.07.2013.EDX&#39;</span><span class="p">)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ds1</span><span class="p">,</span><span class="n">ds2</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds1 = open_edx(&#39;UrbanLayout_noIVS_AT_22.00.01 23.07.2013.EDX&#39;)
+ds2 = open_edx(&#39;UrbanLayout_noIVS_AT_23.00.01 23.07.2013.EDX&#39;)
+ds = xarray.concat([ds1,ds2], dim=&#39;time&#39;)
+ds.time
 </pre></div>
 </div>
 </div>
@@ -1671,7 +1686,7 @@ Coordinates:
 <p>To get a Pandas dataframe, narrow down to one dimension using <code class="docutils literal notranslate"><span class="pre">.isel()</span></code> then call <code class="docutils literal notranslate"><span class="pre">.to_dataframe()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.isel(x=50,y=7,z=0,n=0).to_dataframe()
 </pre></div>
 </div>
 </div>
@@ -1798,7 +1813,7 @@ Coordinates:
 <p>Or stay in xarray and use its plotting tools</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;Air Temperature (°C)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds[&#39;Air Temperature (°C)&#39;].isel(z=0,n=0,time=0).plot()
 </pre></div>
 </div>
 </div>

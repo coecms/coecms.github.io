@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1343,8 +1358,8 @@ Accordingly, we want the merged dataset to follow these rules:</p>
 <p>The strategy using xarray is to open each dataset in a DataArray, concatenate both arrays on a new dimension and then average along this dimension.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+import numpy as np
 </pre></div>
 </div>
 </div>
@@ -1352,15 +1367,15 @@ Accordingly, we want the merged dataset to follow these rules:</p>
 <p>First define 2 arrays of same dimensions with missing data at different places</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]],</span><span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
-<span class="n">bb</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]],</span><span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>aa = xr.DataArray([[0,1,2],[3,4,np.nan]],dims=(&#39;x&#39;,&#39;y&#39;))
+bb = xr.DataArray([[5,np.nan,6],[np.nan,7,np.nan]],dims=(&#39;x&#39;,&#39;y&#39;))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>aa
 </pre></div>
 </div>
 </div>
@@ -1375,7 +1390,7 @@ Dimensions without coordinates: x, y
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bb
 </pre></div>
 </div>
 </div>
@@ -1391,7 +1406,7 @@ Dimensions without coordinates: x, y
 <p>Now, if we simply sum the arrays together, we do not get what we want. The missing value take precedence. That is, if any of the array has a missing value, the sum is missing. So summing and dividing by the number of arrays won’t work</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span><span class="o">+</span><span class="n">bb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>aa+bb
 </pre></div>
 </div>
 </div>
@@ -1408,14 +1423,14 @@ Dimensions without coordinates: x, y
 <p>Concatenate the arrays along a new dimension we’ll call z</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">),</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cc = xr.concat((aa,bb),&#39;z&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cc
 </pre></div>
 </div>
 </div>
@@ -1434,7 +1449,7 @@ Dimensions without coordinates: z, x, y
 <p>As you see above the concatenation allows us to have the 2 arrays aligned together in a new array. Now we take advantage of the fact xarray handles missing data correctly. That is, a mean will not count missing data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cc.mean(dim=&#39;z&#39;)
 </pre></div>
 </div>
 </div>
@@ -1450,7 +1465,7 @@ Dimensions without coordinates: x, y
 <p>Usually you would find these last 2 operations combined as you don’t need to store the results of the <code class="docutils literal notranslate"><span class="pre">concat</span></code> operation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">),</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xr.concat((aa,bb),&#39;z&#39;).mean(dim=&#39;z&#39;)
 </pre></div>
 </div>
 </div>

@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1373,12 +1388,12 @@ title="Print to PDF"
 <p>Let’s load the data we used in the last page, surface temperature for the ACCESS1.0 AMIP run March 1984:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">xarray</span>
-<span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">datapath</span><span class="p">)</span>
-<span class="n">surface_temp_slice</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tas</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="s1">&#39;1984-03&#39;</span><span class="p">)</span>
-<span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import xarray
+datapath = &quot;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&quot;
+data = xarray.open_dataset(datapath)
+surface_temp_slice = data.tas.sel(time = &#39;1984-03&#39;)
+surface_temp_slice.plot()
 </pre></div>
 </div>
 </div>
@@ -1395,12 +1410,12 @@ title="Print to PDF"
 <p>Note that we don’t need to tell the plot command about our co-ordinates, Xarray does that automatically for us</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+ax = plt.axes(projection=ccrs.PlateCarree())
 
-<span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+surface_temp_slice.plot(ax=ax)
 </pre></div>
 </div>
 </div>
@@ -1415,9 +1430,9 @@ title="Print to PDF"
 <p>If the data is in a different projection to the axis it’s important to give a <code class="docutils literal notranslate"><span class="pre">transform</span></code> to <code class="docutils literal notranslate"><span class="pre">plot()</span></code>. Our data is on a lat-lon grid, so we need to tell Cartopy to transform it from a <code class="docutils literal notranslate"><span class="pre">PlateCarree</span></code> projection to <code class="docutils literal notranslate"><span class="pre">LambertConfromal</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.LambertConformal())
 
-<span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+surface_temp_slice.plot(ax=ax, transform=ccrs.PlateCarree())
 </pre></div>
 </div>
 </div>
@@ -1431,11 +1446,11 @@ title="Print to PDF"
 <p>Cartopy also has some helper functions for showing coastlines etc., which can make it easier to interpret a plot. These work regardless of what projection you are using</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.Orthographic())
 
-<span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+surface_temp_slice.plot(ax=ax, transform=ccrs.PlateCarree())
 
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+ax.coastlines()
 </pre></div>
 </div>
 </div>
@@ -1449,15 +1464,15 @@ title="Print to PDF"
 <p>To restrict the plot’s domain you can use <code class="docutils literal notranslate"><span class="pre">ax.set_extent()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">NearsidePerspective</span><span class="p">(</span><span class="n">central_latitude</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">central_longitude</span><span class="o">=</span><span class="mi">120</span><span class="p">))</span>
+ax = plt.axes(projection=ccrs.NearsidePerspective(central_latitude=-20, central_longitude=120))
 
-<span class="n">surface_temp_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+surface_temp_slice.plot(ax=ax, transform=ccrs.PlateCarree())
 
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+ax.coastlines()
+ax.set_extent([100,160,-45,0])
 </pre></div>
 </div>
 </div>

@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2022-12-05-building-on-gadi
     /posts/2022-11-10-jobfs
     /posts/2022-10-26-Data-Quarantine
     /posts/2022-04-26-storage-where-what-why-how
     /posts/2022-03-15-reading-nonstandard-data
-    /posts/2021-12-08-trajectories
     
 
 .. toctree::

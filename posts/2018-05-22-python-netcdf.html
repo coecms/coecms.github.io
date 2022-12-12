@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1413,7 +1428,7 @@ title="Print to PDF"
 <p>For the examples I’ll be using the following dataset from NCI’s CMIP5 archive:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampledata</span> <span class="o">=</span> <span class="s1">&#39;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sampledata = &#39;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&#39;
 </pre></div>
 </div>
 </div>
@@ -1425,31 +1440,31 @@ title="Print to PDF"
 <p>Xarray works with file formats other than NetCDF as well, so some features like compression settings can be inconvenient to set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
 
-<span class="c1"># Open a file</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">sampledata</span><span class="p">)</span>
+# Open a file
+data = xarray.open_dataset(sampledata)
 
-<span class="c1"># Variables can be accessed either as properties or as a dict</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tas</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;tas&#39;</span><span class="p">]</span>
+# Variables can be accessed either as properties or as a dict
+surface_temperature = data.tas
+surface_temperature = data[&#39;tas&#39;]
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">surface_temperature</span><span class="p">)</span>
+print(&quot;Variable:\n&quot;, surface_temperature)
 
-<span class="c1"># Same for attributes</span>
-<span class="n">units</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">units</span>
-<span class="n">units</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
+# Same for attributes
+units = surface_temperature.units
+units = surface_temperature.attrs[&#39;units&#39;]
 
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attribute:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+print()
+print(&quot;Attribute:\n&quot;, units)
 
-<span class="c1"># Variables can be indexed numpy-style or pandas-style</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;19790116T1200&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+# Variables can be indexed numpy-style or pandas-style
+d = surface_temperature[0, 0:10, 0:10]
+d = surface_temperature.isel(time=0, lat=slice(0,10), lon=slice(0,10))
+d = surface_temperature.sel(time=&#39;19790116T1200&#39;, lat=slice(-90,-80), lon=slice(0,20))
 
-<span class="c1"># Data can be saved to a new file easily</span>
-<span class="n">data</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;data.nc&#39;</span><span class="p">)</span>
+# Data can be saved to a new file easily
+data.to_netcdf(&#39;data.nc&#39;)
 </pre></div>
 </div>
 </div>
@@ -1485,25 +1500,25 @@ Attribute:
 <p>The netCDF4 library is a bare-bones library for working with NetCDF data. It doesn’t have the bells and whistles of Xarray, but unlike Xarray it’s a dedicated library, so features like compression and scale-and-offest are simpler to access.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import netCDF4
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">sampledata</span><span class="p">)</span>
+data = netCDF4.Dataset(sampledata)
 
-<span class="c1"># Variables can be accessed like a dict</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;tas&#39;</span><span class="p">]</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;tas&#39;</span><span class="p">]</span>
+# Variables can be accessed like a dict
+surface_temperature = data[&#39;tas&#39;]
+surface_temperature = data.variables[&#39;tas&#39;]
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">surface_temperature</span><span class="p">)</span>
+print(&quot;Variable:\n&quot;, surface_temperature)
 
-<span class="c1"># Attributes are accessed as properties of a variable</span>
-<span class="n">units</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">units</span>
+# Attributes are accessed as properties of a variable
+units = surface_temperature.units
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attribute:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+print(&quot;Attribute:\n&quot;, units)
 
-<span class="c1"># Variables can be indexed numpy-style</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+# Variables can be indexed numpy-style
+data = surface_temperature[0, 0:10, 0:10]
 
-<span class="c1"># Data can&#39;t be copied to a new file easily</span>
+# Data can&#39;t be copied to a new file easily
 </pre></div>
 </div>
 </div>
@@ -1538,33 +1553,33 @@ Attribute:
 <p>Iris also keeps the file-level attributes with each of the variables - you can see below that it lists things like the title and metadata conventions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iris</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import iris
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sampledata</span><span class="p">)</span>
+data = iris.load(sampledata)
 
-<span class="c1"># Variables can be accessed like a list</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+# Variables can be accessed like a list
+surface_temperature = data[0]
 
-<span class="c1"># Iris prefers to use the standard_name to identify variables</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">extract_strict</span><span class="p">(</span><span class="s1">&#39;air_temperature&#39;</span><span class="p">)</span>
+# Iris prefers to use the standard_name to identify variables
+surface_temperature = data.extract_strict(&#39;air_temperature&#39;)
 
-<span class="c1"># Getting variables by their own name can be done, but is complicated</span>
-<span class="n">surface_temperature</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">extract_strict</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">cube_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tas&#39;</span><span class="p">))</span>
+# Getting variables by their own name can be done, but is complicated
+surface_temperature = data.extract_strict(iris.Constraint(cube_func = lambda c: c.var_name == &#39;tas&#39;))
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variable:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">surface_temperature</span><span class="p">)</span>
+print(&quot;Variable:\n&quot;, surface_temperature)
 
-<span class="c1"># Attributes can be accessed as properties</span>
-<span class="n">units</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">units</span>
+# Attributes can be accessed as properties
+units = surface_temperature.units
 
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attribute:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+print()
+print(&quot;Attribute:\n&quot;, units)
 
-<span class="c1"># Variables can be indexed numpy-style or by special constraint objects</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">surface_temperature</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">))</span>
+# Variables can be indexed numpy-style or by special constraint objects
+data = surface_temperature[0, 0:10, 0:10]
+data = surface_temperature.extract(iris.Constraint(latitude=lambda x: 0 &lt; x &lt; 20))
 
-<span class="c1"># Data can be saved to a new file</span>
-<span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;data.nc&#39;</span><span class="p">)</span>
+# Data can be saved to a new file
+iris.save(data, &#39;data.nc&#39;)
 </pre></div>
 </div>
 </div>

@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1413,11 +1428,11 @@ title="Print to PDF"
 <p>Pyproj is a helpful tool to use when you want to change your data’s coordinate system</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">pyproj</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
+import pyproj
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import numpy
 </pre></div>
 </div>
 </div>
@@ -1427,7 +1442,7 @@ title="Print to PDF"
 <p>The sample dataset here is <a class="reference external" href="https://nsidc.org/data/NSIDC-0756/versions/2">MEaSUREs BedMachine Antarctica, Version 2</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;/g/data/v45/pas561/bedmachineant/BedMachineAntarctica_2020-07-15_v02.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data = xarray.open_dataset(&#39;/g/data/v45/pas561/bedmachineant/BedMachineAntarctica_2020-07-15_v02.nc&#39;, chunks={&#39;x&#39;: 5000, &#39;y&#39;: 5000})
 </pre></div>
 </div>
 </div>
@@ -1435,8 +1450,8 @@ title="Print to PDF"
 <p>The dataset is quite large, 13333 by 13333 points. To make it easier to work with I’ll subset the data to every 100th row and column</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>subset = data.isel(x=slice(None, None, 100), y=slice(None, None, 100))
+subset.surface.plot()
 </pre></div>
 </div>
 </div>
@@ -1450,7 +1465,7 @@ title="Print to PDF"
 <p>As you can see the dataset is in a polar projection. Rather than having latitude and longitude coordinates it has ‘x’ and ‘y’ values, both in units of metres.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset</span><span class="o">.</span><span class="n">x</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>subset.x[:5]
 </pre></div>
 </div>
 </div>
@@ -1819,7 +1834,7 @@ Attributes:
 <p>Also note the ‘proj4’ attribute - proj4 is a standard tool for working with cartographic projections. This is saying that the proj4 id of the projection is <a class="reference external" href="https://epsg.io/3031">‘epsg:3031’</a> (EPSG codes are standard names for different projections).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset</span><span class="o">.</span><span class="n">attrs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>subset.attrs
 </pre></div>
 </div>
 </div>
@@ -1852,10 +1867,10 @@ Attributes:
 <p>To convert between coordinate systems you create a ‘Transformer’, then ‘transform’ the coordinate values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source_crs</span> <span class="o">=</span> <span class="s1">&#39;epsg:3031&#39;</span> <span class="c1"># Coordinate system of the file</span>
-<span class="n">target_crs</span> <span class="o">=</span> <span class="s1">&#39;epsg:4326&#39;</span> <span class="c1"># Global lat-lon coordinate system</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>source_crs = &#39;epsg:3031&#39; # Coordinate system of the file
+target_crs = &#39;epsg:4326&#39; # Global lat-lon coordinate system
 
-<span class="n">polar_to_latlon</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">source_crs</span><span class="p">,</span> <span class="n">target_crs</span><span class="p">)</span>
+polar_to_latlon = pyproj.Transformer.from_crs(source_crs, target_crs)
 </pre></div>
 </div>
 </div>
@@ -1863,8 +1878,8 @@ Attributes:
 <p>If you just give the 1d coordinates from the file you see a somewhat weird pattern</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">polar_to_latlon</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">subset</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lat, lon = polar_to_latlon.transform(subset.x, subset.y)
+plt.plot(lon, lat)
 </pre></div>
 </div>
 </div>
@@ -1878,9 +1893,9 @@ Attributes:
 <p>What’s happening is clearer on a polar projection - you can see it’s drawn a diagonal line. This is because pyproj pairs up the x and y values, rather than creating a grid</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">SouthPolarStereo</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.SouthPolarStereo())
+ax.plot(lon, lat, transform=ccrs.PlateCarree())
+ax.coastlines()
 </pre></div>
 </div>
 </div>
@@ -1894,10 +1909,10 @@ Attributes:
 <p>Since the latitude and longitude values are going to be 2d coordinates you need to use ‘numpy.meshgrid’ to fill out the axes before doing the conversion</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">subset</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">polar_to_latlon</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X, Y = numpy.meshgrid(subset.x, subset.y)
+lat, lon = polar_to_latlon.transform(X, Y)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>
+plt.pcolormesh(lon)
 </pre></div>
 </div>
 </div>
@@ -1911,10 +1926,10 @@ Attributes:
 <p>You can add the coordinates to the dataarray by adding to the <code class="docutils literal notranslate"><span class="pre">.coords</span></code> dictionary. This takes a tuple of (dimensions, data).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>subset.coords[&#39;lat&#39;] = (subset.surface.dims, lat)
+subset.coords[&#39;lon&#39;] = (subset.surface.dims, lon)
 
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span>
+subset.surface
 </pre></div>
 </div>
 </div>
@@ -2413,8 +2428,8 @@ Attributes:
 <p>Plotting the data shows it’s the right coordinates, but the image is very messy</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(15,3))
+subset.surface.plot.pcolormesh(&#39;lon&#39;, &#39;lat&#39;, add_colorbar=False)
 </pre></div>
 </div>
 </div>
@@ -2428,10 +2443,10 @@ Attributes:
 <p>This is because the data wraps around, using a cartopy lat-lon projection on the plot cleans the image up.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(15,3))
+ax = plt.axes(projection=ccrs.PlateCarree())
+subset.surface.plot.pcolormesh(&#39;lon&#39;, &#39;lat&#39;, ax=ax, transform=ccrs.PlateCarree(), add_colorbar=False)
+ax.coastlines()
 </pre></div>
 </div>
 </div>
@@ -2449,9 +2464,9 @@ Attributes:
 <p>Note the blank areas in the corner though - there’s a gap where the longitudes wrap around. The gap is still there when plotting the lat-lon data in a polar projection, it’s a side effect of working in lat-lon coordinates at the poles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">SouthPolarStereo</span><span class="p">())</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.SouthPolarStereo())
+subset.surface.plot.pcolormesh(&#39;lon&#39;, &#39;lat&#39;, ax=ax, transform=ccrs.PlateCarree(), add_colorbar=False)
+ax.coastlines()
 </pre></div>
 </div>
 </div>
@@ -2468,33 +2483,33 @@ Attributes:
 <p>To avoid these singularities, sometimes it’s better to convert the other way around, from lat-lon to the data cooridinates. Say we want to draw a lat-lon box on the polar view, created using this function</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lon_lat_box</span><span class="p">(</span><span class="n">lon_bounds</span><span class="p">,</span> <span class="n">lat_bounds</span><span class="p">,</span> <span class="n">refinement</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Coordinates along the boundary of a rectangle in lat-lon coordinates</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        lon_bounds: (min, max) lon values</span>
-<span class="sd">        lat_bounds: (min, max) lat values</span>
-<span class="sd">        refinement: number of points to draw along each edge</span>
-<span class="sd">        </span>
-<span class="sd">    Returns: (lons, lats)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">lons</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">lats</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def lon_lat_box(lon_bounds, lat_bounds, refinement=2):
+    &quot;&quot;&quot;
+    Coordinates along the boundary of a rectangle in lat-lon coordinates
     
-    <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lon_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lon_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
-    <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lat_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lat_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
+    Args:
+        lon_bounds: (min, max) lon values
+        lat_bounds: (min, max) lat values
+        refinement: number of points to draw along each edge
+        
+    Returns: (lons, lats)
+    &quot;&quot;&quot;
+    lons = []
+    lats = []
+    
+    lons.append(numpy.linspace(lon_bounds[0], lon_bounds[-1], num=refinement))
+    lats.append(numpy.linspace(lat_bounds[0], lat_bounds[0], num=refinement))
                 
-    <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lon_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lon_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
-    <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lat_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lat_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
+    lons.append(numpy.linspace(lon_bounds[-1], lon_bounds[-1], num=refinement))
+    lats.append(numpy.linspace(lat_bounds[0], lat_bounds[-1], num=refinement))
                 
-    <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lon_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lon_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
-    <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lat_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lat_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
+    lons.append(numpy.linspace(lon_bounds[-1], lon_bounds[0], num=refinement))
+    lats.append(numpy.linspace(lat_bounds[-1], lat_bounds[-1], num=refinement))
     
-    <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lon_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lon_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
-    <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lat_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lat_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">refinement</span><span class="p">))</span>
+    lons.append(numpy.linspace(lon_bounds[0], lon_bounds[0], num=refinement))
+    lats.append(numpy.linspace(lat_bounds[-1], lat_bounds[0], num=refinement))
     
-    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">lons</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">lats</span><span class="p">)</span>
+    return numpy.concatenate(lons), numpy.concatenate(lats)
 </pre></div>
 </div>
 </div>
@@ -2502,13 +2517,13 @@ Attributes:
 <p>First let’s look at the box in the lat, lon coordinates</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boxlon</span><span class="p">,</span> <span class="n">boxlat</span> <span class="o">=</span> <span class="n">lon_lat_box</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span><span class="mi">140</span><span class="p">],[</span><span class="o">-</span><span class="mi">75</span><span class="p">,</span><span class="o">-</span><span class="mi">60</span><span class="p">],</span> <span class="n">refinement</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>boxlon, boxlat = lon_lat_box([100,140],[-75,-60], refinement=100)
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">boxlon</span><span class="p">,</span> <span class="n">boxlat</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="o">-</span><span class="mi">85</span><span class="p">,</span><span class="o">-</span><span class="mi">50</span><span class="p">])</span>
+ax = plt.axes(projection=ccrs.PlateCarree())
+subset.surface.plot.pcolormesh(&#39;lon&#39;, &#39;lat&#39;, ax=ax, transform=ccrs.PlateCarree(), add_colorbar=False)
+ax.plot(boxlon, boxlat, transform=ccrs.PlateCarree())
+ax.coastlines()
+ax.set_extent([90,150,-85,-50])
 </pre></div>
 </div>
 </div>
@@ -2519,12 +2534,12 @@ Attributes:
 <p>Now the same box in data coodinates, converting the other way around to what we did before.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">latlon_to_polar</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">target_crs</span><span class="p">,</span> <span class="n">source_crs</span><span class="p">)</span>
-<span class="n">boxx</span><span class="p">,</span> <span class="n">boxy</span> <span class="o">=</span> <span class="n">latlon_to_polar</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">boxlat</span><span class="p">,</span> <span class="n">boxlon</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>latlon_to_polar = pyproj.Transformer.from_crs(target_crs, source_crs)
+boxx, boxy = latlon_to_polar.transform(boxlat, boxlon)
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-<span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">boxx</span><span class="p">,</span> <span class="n">boxy</span><span class="p">)</span>
+ax = plt.axes()
+subset.surface.plot(ax=ax)
+ax.plot(boxx, boxy)
 </pre></div>
 </div>
 </div>
@@ -2538,11 +2553,11 @@ Attributes:
 <p>You can use this method to do things like select a specific region using the box’s data coordinate bounds (also see the <a class="reference external" href="https://regionmask.readthedocs.io">regionmask</a> library) and otherwise work with datasets too large to convert from the file coordinates to lat-lon (converting the entire dataset here with pyproj takes a long time, we’re only plotting every 100th point)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">boxx</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">boxx</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">y</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">boxy</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">boxy</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>region = subset.sel(x=slice(boxx.min(), boxx.max()), y=slice(boxy.max(), boxy.min()))
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-<span class="n">region</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">boxx</span><span class="p">,</span> <span class="n">boxy</span><span class="p">)</span>
+ax = plt.axes()
+region.surface.plot(ax=ax)
+ax.plot(boxx, boxy)
 </pre></div>
 </div>
 </div>
@@ -2559,30 +2574,30 @@ Attributes:
 <p>A way to get around singularities and wrapping issues is to work with the data in 3d coordinates. This needs a raw proj4 name of <code class="docutils literal notranslate"><span class="pre">'+proj=geocent'</span></code>, and also a Z input value (which can just be zero if everything’s on the same level)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polar_to_cart</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">source_crs</span><span class="p">,</span> <span class="s1">&#39;+proj=geocent&#39;</span><span class="p">)</span>
-<span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">,</span> <span class="n">cZ</span> <span class="o">=</span> <span class="n">polar_to_cart</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>polar_to_cart = pyproj.Transformer.from_crs(source_crs, &#39;+proj=geocent&#39;)
+cX, cY, cZ = polar_to_cart.transform(X, Y, 0*X)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+plt.figure(figsize=(15,10))
 
-<span class="c1"># Make a 3d plot</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+# Make a 3d plot
+ax = plt.axes(projection=&#39;3d&#39;)
 
-<span class="c1"># Use the values to colour the surface</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">cmap</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">surface</span><span class="p">)</span>
+# Use the values to colour the surface
+cmap = plt.cm.ScalarMappable(cmap=&#39;viridis&#39;)
+colors = cmap.to_rgba(subset.surface)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">,</span> <span class="n">cZ</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+ax.plot_surface(cX, cY, cZ, facecolors=colors)
 
-<span class="c1"># Camera position</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">elev</span> <span class="o">=</span> <span class="o">-</span><span class="mi">60</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">azim</span> <span class="o">=</span> <span class="mi">135</span>
+# Camera position
+ax.elev = -60
+ax.azim = 135
 </pre></div>
 </div>
 </div>

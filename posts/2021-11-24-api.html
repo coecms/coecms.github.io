@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1430,20 +1445,20 @@ title="Print to PDF"
 <p>To start out with, let’s import some libraries and set up a Dask cluster - I’m running this notebook on <a class="reference external" href="https://ood.nci.org.au">https://ood.nci.org.au</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">dask.array</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
+import numpy
+import dask.array
+import matplotlib.pyplot as plt
 
-<span class="n">xarray</span><span class="o">.</span><span class="n">set_options</span><span class="p">(</span><span class="n">display_expand_data</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+xarray.set_options(display_expand_data=False);
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">climtas.nci</span>
-<span class="n">climtas</span><span class="o">.</span><span class="n">nci</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import climtas.nci
+climtas.nci.Client()
 </pre></div>
 </div>
 </div>
@@ -1750,9 +1765,9 @@ title="Print to PDF"
 <p>For our sample dataset, I’ll use FROGs, which provides precip from a number of datasets regridded to a common one degree grid. The data is chunked by default with one chunk per year in the time axis, since that’s how the files themselves are split up.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;</span><span class="p">)</span>
-<span class="n">precip</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">rain</span>
-<span class="n">precip</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = xarray.open_mfdataset(&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;)
+precip = ds.rain
+precip
 </pre></div>
 </div>
 </div>
@@ -2262,7 +2277,7 @@ Attributes:
 <p>Start out by saving the grid point’s precip time series in a variable</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precip_mel</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">37.81</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">144.96</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>precip_mel = precip.sel(lat=-37.81, lon=144.96, method=&#39;nearest&#39;).load()
 </pre></div>
 </div>
 </div>
@@ -2274,17 +2289,17 @@ Attributes:
 <p>Now we can do the calculation. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.zeros_like.html#numpy.zeros_like" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.zeros_like()</span></code></a> will create an empty array that’s the same shape as the input array, which we’ll use to store the API values. Then we can just implement the algorithm with a loop</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empty array to store the output</span>
-<span class="n">api_mel</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_mel</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Empty array to store the output
+api_mel = numpy.zeros_like(precip_mel)
 
-<span class="n">k</span> <span class="o">=</span> <span class="mf">0.95</span>
+k = 0.95
 
-<span class="c1"># Initial value is precip(t0)</span>
-<span class="n">api_mel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">precip_mel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+# Initial value is precip(t0)
+api_mel[0] = precip_mel[0]
 
-<span class="c1"># Following values are k * api(t - 1) + precip(t)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">precip_mel</span><span class="p">)):</span>
-    <span class="n">api_mel</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_mel</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">precip_mel</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+# Following values are k * api(t - 1) + precip(t)
+for i in range(1, len(precip_mel)):
+    api_mel[i] = k * api_mel[i - 1] + precip_mel[i]
 </pre></div>
 </div>
 </div>
@@ -2292,10 +2307,10 @@ Attributes:
 <p>Plotting the values they look ok, API is higher than the original precip values because of the accumulation but has the same sort of peak structure showing the decay is working as well.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">precip_mel</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">api_mel</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;API&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">precip_mel</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">precip_mel</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;precip&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,10))
+plt.plot(precip_mel.time, api_mel, label=&#39;API&#39;)
+plt.plot(precip_mel.time, precip_mel, label=&#39;precip&#39;)
+plt.legend();
 </pre></div>
 </div>
 </div>
@@ -2310,14 +2325,14 @@ Attributes:
 <p>The calculation looks much like the single grid point calculation, we’ve just added the extra dimensions when indexing the arrays</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precip_year</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1980&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>precip_year = precip.sel(time=&#39;1980&#39;).load()
 
-<span class="n">api_year</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_year</span><span class="p">)</span>
+api_year = numpy.zeros_like(precip_year)
 
-<span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+api_year[0,:,:] = precip_year[0,:,:]
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">precip_year</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
-    <span class="n">api_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_year</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+for i in range(1, precip_year.sizes[&#39;time&#39;]):
+    api_year[i,:,:] = k * api_year[i - 1,:,:] + precip_year[i,:,:]
 </pre></div>
 </div>
 </div>
@@ -2325,8 +2340,8 @@ Attributes:
 <p>A quick plot of the final time looks reasonable</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">api_year</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(20,10))
+plt.pcolormesh(api_year[-1, :, :], cmap=&#39;Blues&#39;);
 </pre></div>
 </div>
 </div>
@@ -2337,8 +2352,8 @@ Attributes:
 <p>We’ve calculated a year of data, so let’s save it to a netcdf file. First convert the numpy array to an xarray object - we can grab the coordinates from the original precip data, then save to file with <code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.DataArray.to_netcdf()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_year</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_year</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip_year</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
-<span class="n">api_year</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1980.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>api_year = xarray.DataArray(api_year, name=&#39;api&#39;, coords=precip_year.coords)
+api_year.to_netcdf(&#39;/local/w35/saw562/tmp/frogs_era5_api_1980.nc&#39;)
 </pre></div>
 </div>
 </div>
@@ -2350,30 +2365,30 @@ Attributes:
 <p>This won’t be the final function, for now this will only work properly for 1980, but it’s important to be methodical and make sure what we’ve already done is still working.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the API measure for a given year</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">precip_year</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def api_at_year(precip, year):
+    &quot;&quot;&quot;
+    Returns the API measure for a given year
+    &quot;&quot;&quot;
+    precip_year = precip.sel(time=year).load()
 
-    <span class="n">api_year</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_year</span><span class="p">)</span>
+    api_year = numpy.zeros_like(precip_year)
 
-    <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+    api_year[0,:,:] = precip_year[0,:,:]
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">precip_year</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
-        <span class="n">api_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_year</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+    for i in range(1, precip_year.sizes[&#39;time&#39;]):
+        api_year[i,:,:] = k * api_year[i - 1,:,:] + precip_year[i,:,:]
         
-    <span class="n">api_year</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_year</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip_year</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+    api_year = xarray.DataArray(api_year, name=&#39;api&#39;, coords=precip_year.coords)
     
-    <span class="k">return</span> <span class="n">api_year</span>
+    return api_year
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1980&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
+api_at_year(precip, &#39;1980&#39;)
 </pre></div>
 </div>
 </div>
@@ -2829,27 +2844,27 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the API measure for a given year</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">precip_year</span> <span class="o">=</span> <span class="n">precip</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def api_at_year(precip, year, previous_api = None):
+    &quot;&quot;&quot;
+    Returns the API measure for a given year
+    &quot;&quot;&quot;
+    precip_year = precip.sel(time=year).load()
 
-    <span class="n">api_year</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">precip_year</span><span class="p">)</span>
+    api_year = numpy.zeros_like(precip_year)
 
-    <span class="k">if</span> <span class="n">previous_api</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># First year</span>
-        <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Following years</span>
-        <span class="n">api_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">previous_api</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
+    if previous_api is None:
+        # First year
+        api_year[0,:,:] = precip_year[0,:,:]
+    else:
+        # Following years
+        api_year[0,:,:] = k * previous_api[-1,:,:] + precip_year[0,:,:]
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">precip_year</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
-        <span class="n">api_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api_year</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">precip_year</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+    for i in range(1, precip_year.sizes[&#39;time&#39;]):
+        api_year[i,:,:] = k * api_year[i - 1,:,:] + precip_year[i,:,:]
         
-    <span class="n">api_year</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_year</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip_year</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+    api_year = xarray.DataArray(api_year, name=&#39;api&#39;, coords=precip_year.coords)
     
-    <span class="k">return</span> <span class="n">api_year</span>
+    return api_year
 </pre></div>
 </div>
 </div>
@@ -2862,14 +2877,14 @@ Coordinates:
 <p>but these variables will then stick around and fill up memory. It’s better to save the values to file as we go, re-using the variable name:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1980&#39;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1980.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>api = api_at_year(precip, &#39;1980&#39;)
+api.to_netcdf(&#39;/local/w35/saw562/tmp/frogs_era5_api_1980.nc&#39;)
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1981&#39;</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1981.nc&#39;</span><span class="p">)</span>
+api = api_at_year(precip, &#39;1981&#39;, previous_api = api)
+api.to_netcdf(&#39;/local/w35/saw562/tmp/frogs_era5_api_1981.nc&#39;)
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="s1">&#39;1982&#39;</span><span class="p">,</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_1982.nc&#39;</span><span class="p">)</span>
+api = api_at_year(precip, &#39;1982&#39;, previous_api = api)
+api.to_netcdf(&#39;/local/w35/saw562/tmp/frogs_era5_api_1982.nc&#39;)
 </pre></div>
 </div>
 </div>
@@ -2885,12 +2900,12 @@ Coordinates:
 <p>There’s obvious repetition here, so we may as well convert it to a loop rather than writing the same two lines multiple times. I’ve set <code class="docutils literal notranslate"><span class="pre">api</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> explicitly so that 1980 looks the same as the rest of the years, it will still take the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">previous_api</span> <span class="pre">is</span> <span class="pre">None</span></code> branch of the if statement</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>api = None
 
-<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">1990</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-    <span class="n">api</span> <span class="o">=</span> <span class="n">api_at_year</span><span class="p">(</span><span class="n">precip</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">previous_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">)</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+for year in range(1980, 1990):
+    print(year)
+    api = api_at_year(precip, str(year), previous_api = api)
+    api.to_netcdf(f&#39;/local/w35/saw562/tmp/frogs_era5_api_{year}.nc&#39;)
 </pre></div>
 </div>
 </div>
@@ -2912,7 +2927,7 @@ Coordinates:
 <p>Check that the files were properly created as expected - you may also want to try plotting some of the values in these files</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> ls /local/w35/saw562/tmp/frogs_era5_api_*.nc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! ls /local/w35/saw562/tmp/frogs_era5_api_*.nc
 </pre></div>
 </div>
 </div>
@@ -2940,41 +2955,41 @@ Coordinates:
 <p>Dask provides the <a class="reference external" href="https://docs.dask.org/en/stable/generated/dask.array.map_blocks.html#dask.array.map_blocks" title="(in Dask)"><code class="xref py py-func docutils literal notranslate"><span class="pre">dask.array.map_blocks()</span></code></a> function that allows you to run a function on every chunk of an array. We do lose all of the Xarray metadata when we use this, we can only use basic numpy array functions. Here’s the stripped down function we’ll use with <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">api_block</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">prev</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the API measure for a dask chunk</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        block: a 3d numpy array with precip values, </span>
-<span class="sd">            time should be the first dimension</span>
-<span class="sd">            </span>
-<span class="sd">        prev: a 2d numpy array with the api value </span>
-<span class="sd">            immediately preceding the first time in</span>
-<span class="sd">            block, or None if this is the first time</span>
-<span class="sd">            step</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">api</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">prev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">api</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">api</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">prev</span> <span class="o">+</span> <span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">block</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">api</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">api</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,:,:]</span> <span class="o">+</span> <span class="n">block</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def api_block(block, prev):
+    &quot;&quot;&quot;
+    Returns the API measure for a dask chunk
     
-    <span class="k">return</span> <span class="n">api</span>
+    Args:
+        block: a 3d numpy array with precip values, 
+            time should be the first dimension
+            
+        prev: a 2d numpy array with the api value 
+            immediately preceding the first time in
+            block, or None if this is the first time
+            step
+    &quot;&quot;&quot;
+    api = numpy.zeros_like(block)
+
+    if prev is None:
+        api[0,:,:] = block[0,:,:]
+    else:
+        api[0,:,:] = k * prev + block[0,:,:]
+
+    for i in range(1, block.shape[0]):
+        api[i,:,:] = k * api[i - 1,:,:] + block[i,:,:]
+    
+    return api
 </pre></div>
 </div>
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> runs the function on each chunk independently, which is fine if the data is chunked horizontally but if the chunking is over time then we need some way of passing in the previous time’s API value.</p>
-<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v2022.11.1.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
+<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v2022.12.1.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">})</span>
-<span class="n">precip</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">rain</span>
-<span class="n">precip</span><span class="o">.</span><span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = xarray.open_mfdataset(&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;, chunks={&#39;lat&#39;: 90, &#39;lon&#39;: 90})
+precip = ds.rain
+precip.data
 </pre></div>
 </div>
 </div>
@@ -3108,7 +3123,7 @@ Coordinates:
 <p>Once we have a Dask array, <a class="reference external" href="https://docs.dask.org/en/stable/generated/dask.array.Array.blocks.html#dask.array.Array.blocks" title="(in Dask)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dask.array.Array.blocks</span></code></a> lets us access the individual chunks. We can index <code class="docutils literal notranslate"><span class="pre">.blocks</span></code> as if it were a numpy array</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precip</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>precip.data.blocks[4,1,3]
 </pre></div>
 </div>
 </div>
@@ -3198,9 +3213,9 @@ Coordinates:
 <p>We can also iterate over <code class="docutils literal notranslate"><span class="pre">.blocks</span></code>, which will iterate over the first dimension, giving all the lat and lon chunks for that time chunk</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">precip</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
-    <span class="k">break</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for block in precip.data.blocks:
+    display(block)
+    break
 </pre></div>
 </div>
 </div>
@@ -3298,17 +3313,17 @@ Coordinates:
 <p>This loop now works like the loop over years that we had before. For each group of lat and lon chunks at a time chunk, use <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> to compute the API for those chunks. Save the final timestep from those chunks to pass in as the previous values for the next group. Once all of the groups have been processed concatenate them back together into a single array.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_blocks</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>api_blocks = []
+prev = None
 
-<span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">precip</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
-    <span class="n">api</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">map_blocks</span><span class="p">(</span><span class="n">api_block</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">block</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
-    <span class="n">prev</span> <span class="o">=</span> <span class="n">api</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span>
+for block in precip.data.blocks:
+    api = dask.array.map_blocks(api_block, block, prev, meta=numpy.array((), dtype=block.dtype))
+    prev = api[-1,:,:]
     
-    <span class="n">api_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api</span><span class="p">)</span>
+    api_blocks.append(api)
     
-<span class="n">api_dask</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">api_blocks</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">api_dask</span>
+api_dask = dask.array.concatenate(api_blocks, axis=0)
+api_dask
 </pre></div>
 </div>
 </div>
@@ -3442,10 +3457,10 @@ Coordinates:
 <p>Finally convert the Dask array to Xarray and save to a file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">api_dask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">precip</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_full.nc&#39;</span><span class="p">)</span>
-<span class="n">api</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
+api = xarray.DataArray(api_dask, name=&#39;api&#39;, coords=precip.coords)
+api.to_netcdf(&#39;/local/w35/saw562/tmp/frogs_era5_api_full.nc&#39;)
+api
 </pre></div>
 </div>
 </div>
@@ -3959,9 +3974,9 @@ Coordinates:
 <p>As a check, make sure the values from the chunked calculation match the very first 1D calculation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;/local/w35/saw562/tmp/frogs_era5_api_full.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>api = xarray.open_dataset(&#39;/local/w35/saw562/tmp/frogs_era5_api_full.nc&#39;)
 
-<span class="n">numpy</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">37.81</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">144.96</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">api_mel</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+numpy.testing.assert_almost_equal(api.api.sel(lat=-37.81, lon=144.96, method=&#39;nearest&#39;).values, api_mel, decimal=4)
 </pre></div>
 </div>
 </div>

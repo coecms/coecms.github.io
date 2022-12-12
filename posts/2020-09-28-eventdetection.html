@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1423,9 +1438,9 @@ title="Print to PDF"
 <p>We have a set of timeseries from multiple models, and we’d like to compute some basic statistics on where the values exceed some threshold</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">xarray</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
+import xarray
+import pandas
 </pre></div>
 </div>
 </div>
@@ -1435,10 +1450,10 @@ title="Print to PDF"
 <p>Some random data as a sample, we have dimensions of ‘model’ and ‘time’</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">da</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20010101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">da</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span>
-<span class="n">da</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
-<span class="n">da</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da = xarray.DataArray(numpy.random.random((5,10))-0.5, dims=[&#39;model&#39;,&#39;time&#39;])
+da[&#39;time&#39;] = pandas.date_range(&#39;20010101&#39;, periods=da.sizes[&#39;time&#39;], freq=&#39;MS&#39;)
+da[&#39;model&#39;] = [&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;]
+da
 </pre></div>
 </div>
 </div>
@@ -1828,7 +1843,7 @@ Coordinates:
 <p>First select only the values below our threshold, then get the count of unmasked values along the time dimension</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da.where(da &lt; 0).count(&#39;time&#39;)
 </pre></div>
 </div>
 </div>
@@ -2194,7 +2209,7 @@ Coordinates:
 <p>The same idea, this time using ‘min’ instead of ‘count’</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da.where(da &lt; 0).min(&#39;time&#39;)
 </pre></div>
 </div>
 </div>
@@ -2560,8 +2575,8 @@ Coordinates:
 <p>Start off by finding the index of the minimum value - argmin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_index</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">min_index</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>min_index = da.where(da &lt; 0).argmin(&#39;time&#39;)
+min_index
 </pre></div>
 </div>
 </div>
@@ -2924,7 +2939,7 @@ Coordinates:
 <p>These indices can be converted to time values all at once by using <code class="docutils literal notranslate"><span class="pre">min_index</span></code> as an array index</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da.time[min_index]
 </pre></div>
 </div>
 </div>
@@ -3294,7 +3309,7 @@ Coordinates:
 <p>There’s a “ghost” time axis in the result which might cause problems, let’s get rid of it. Our returned values aren’t time dependent</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>da.time[min_index].drop(&#39;time&#39;)
 </pre></div>
 </div>
 </div>
@@ -3664,13 +3679,13 @@ Coordinates:
 <p>It could be helpful to put all of the results into a single dataset</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">event_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">Dataset</span><span class="p">({</span>
-    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;min_date&#39;</span><span class="p">:</span> <span class="n">da</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">),</span>
-<span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>event_stats = xarray.Dataset({
+    &#39;count&#39;: da.where(da &lt; 0).count(&#39;time&#39;),
+    &#39;min&#39;: da.where(da &lt; 0).min(&#39;time&#39;),
+    &#39;min_date&#39;: da.time[min_index].drop(&#39;time&#39;),
+})
 
-<span class="n">event_stats</span>
+event_stats
 </pre></div>
 </div>
 </div>
@@ -4039,7 +4054,7 @@ Data variables:
 <p>That way you can e.g. get all the values for a specific model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">event_stats</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>event_stats.sel(model=&#39;A&#39;)
 </pre></div>
 </div>
 </div>
@@ -4409,10 +4424,10 @@ Data variables:
 <p>The climtas library has some functions for event detection - it will find runs where a condition is true for multiple times, then let you run a function to calculate statistics for each event</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">climtas</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import climtas
 
-<span class="n">events</span> <span class="o">=</span> <span class="n">climtas</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">find_events</span><span class="p">(</span><span class="n">da</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_duration</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">events</span>
+events = climtas.event.find_events(da &lt; 0, min_duration=2)
+events
 </pre></div>
 </div>
 </div>
@@ -4500,15 +4515,15 @@ Data variables:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="n">climtas</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">event_coords</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>coords = climtas.event.event_coords(da, events)
 
-<span class="k">def</span> <span class="nf">stat_func</span><span class="p">(</span><span class="n">event_data</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">event_data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-            <span class="s1">&#39;min_date&#39;</span><span class="p">:</span> <span class="n">event_data</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">event_data</span><span class="o">.</span><span class="n">argmin</span><span class="p">()]</span><span class="o">.</span><span class="n">values</span><span class="p">}</span>
+def stat_func(event_data):
+    return {&#39;min&#39;: event_data.min().values,
+            &#39;min_date&#39;: event_data.time[event_data.argmin()].values}
     
-<span class="n">minimum</span> <span class="o">=</span> <span class="n">climtas</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">map_events</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">stat_func</span><span class="p">)</span>
+minimum = climtas.event.map_events(da, events, stat_func)
 
-<span class="n">coords</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">minimum</span><span class="p">)</span>
+coords.join(minimum)
 </pre></div>
 </div>
 </div>

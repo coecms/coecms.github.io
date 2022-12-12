@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1344,9 +1359,9 @@ jupyter notebook
 <p>To start out with I’ll load the libraries I need - today just pyplot and cartopy</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
 </pre></div>
 </div>
 </div>
@@ -1355,9 +1370,9 @@ jupyter notebook
 <p>I want to read off lat and lon coordinates, so I’ll use the Plate Carree projection - a regular lat-lon grid</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.PlateCarree())
+ax.set_global()
+ax.coastlines()
 </pre></div>
 </div>
 </div>
@@ -1372,10 +1387,10 @@ jupyter notebook
 <p>Let’s also add some grid lines so that I can read co-ordinates. Remember <code class="docutils literal notranslate"><span class="pre">range()</span></code> produces a half-open interval, so I’ve increased the upper limit by a degree to get the top grid line</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">150</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">ylocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=150))
+ax.set_global()
+ax.coastlines()
+ax.gridlines(xlocs=range(-180,181,40), ylocs=range(-80,81,20),draw_labels=True)
 </pre></div>
 </div>
 </div>
@@ -1390,15 +1405,15 @@ jupyter notebook
 <p>Let’s also add the tropics just as an exercise in making different line styles</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">150</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">ylocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">140</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">ylocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=150))
+ax.set_global()
+ax.coastlines()
+ax.gridlines(xlocs=range(-180,181,40), ylocs=range(-80,81,20),draw_labels=False)
+ax.gridlines(xlocs=range(-140,181,40), ylocs=range(-80,81,20),draw_labels=True)
 
-<span class="n">tropics</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">ylocs</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">66.5</span><span class="p">,</span><span class="o">-</span><span class="mf">23.43691</span><span class="p">,</span><span class="mf">23.43691</span><span class="p">,</span><span class="mf">66.5</span><span class="p">],</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                       <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">)</span>
-<span class="n">tropics</span><span class="o">.</span><span class="n">xlines</span><span class="o">=</span><span class="kc">False</span>
+tropics = ax.gridlines(ylocs=[-66.5,-23.43691,23.43691,66.5],draw_labels=False,
+                       linewidth=2, linestyle=&#39;--&#39;, edgecolor=&#39;dimgrey&#39;)
+tropics.xlines=False
 </pre></div>
 </div>
 </div>
@@ -1410,18 +1425,18 @@ jupyter notebook
 <p>Funnily enough Cartopy doesn’t let us add labels to the axes, but we can use Pyplot’s <code class="docutils literal notranslate"><span class="pre">text()</span></code> function manually</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">150</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">ylocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">160</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">ylocs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">tropics</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">ylocs</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">66.5</span><span class="p">,</span><span class="o">-</span><span class="mf">23.43691</span><span class="p">,</span><span class="mf">23.43691</span><span class="p">,</span><span class="mf">66.5</span><span class="p">],</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;dimgrey&#39;</span><span class="p">)</span>
-<span class="n">tropics</span><span class="o">.</span><span class="n">xlines</span><span class="o">=</span><span class="kc">False</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure(figsize=(15,10))
+ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=150))
+ax.set_global()
+ax.coastlines(resolution=&#39;50m&#39;)
+ax.gridlines(xlocs=range(-180,181,20), ylocs=range(-80,81,20),draw_labels=False)
+ax.gridlines(xlocs=range(-160,181,20), ylocs=range(-80,81,20),draw_labels=True)
+tropics = ax.gridlines(ylocs=[-66.5,-23.43691,23.43691,66.5],draw_labels=False,linewidth=2,linestyle=&#39;--&#39;, edgecolor=&#39;dimgrey&#39;)
+tropics.xlines=False
 
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.07</span><span class="p">,</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;world.pdf&#39;</span><span class="p">)</span>
+ax.text(0,-0.07,&#39;Longitude&#39;, transform=ax.transAxes, ha=&#39;left&#39;)
+ax.text(-0.05,0,&#39;Latitude&#39;, transform=ax.transAxes, rotation=&#39;vertical&#39;, va=&#39;bottom&#39;)
+plt.savefig(&#39;world.pdf&#39;)
 </pre></div>
 </div>
 </div>
@@ -1432,9 +1447,9 @@ jupyter notebook
 <p>Now when I need to set a plot location I can just glance at the picture on my wall, no need to guess!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">InterruptedGoodeHomolosine</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">90</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.axes(projection=ccrs.InterruptedGoodeHomolosine())
+ax.coastlines()
+ax.set_extent([-170,-50,0,90])
 </pre></div>
 </div>
 </div>

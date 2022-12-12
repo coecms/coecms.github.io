@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1429,7 +1444,7 @@ We will see now how using xarray and python can help you skip this step.<br></p>
 <p>I am using xarray to open one file from the MUR dataset, load the data and select the time and lat/lon ranges. <br></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xa</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray as xa
 </pre></div>
 </div>
 </div>
@@ -1438,8 +1453,8 @@ We will see now how using xarray and python can help you skip this step.<br></p>
 Since we are using xarray we don’t have to worry about that, since xarray initially will load only the information on the data and not the values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dap_url</span><span class="o">=</span><span class="s2">&quot;https://podaac-opendap.jpl.nasa.gov/opendap/allData/ghrsst/data/GDS2/L4/GLOB/JPL/MUR/v4.1/2002/152/20020601090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">xa</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dap_url</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dap_url=&quot;https://podaac-opendap.jpl.nasa.gov/opendap/allData/ghrsst/data/GDS2/L4/GLOB/JPL/MUR/v4.1/2002/152/20020601090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc&quot;
+data = xa.open_dataset(dap_url)
 </pre></div>
 </div>
 </div>
@@ -1447,8 +1462,8 @@ Since we are using xarray we don’t have to worry about that, since xarray init
 <p>I can select the sst variable and a specific region using latitude and longitude values simply as I would after loading data from a netcdf file. In fact xarray showed me the variable names and dimensions after I “connected” to the remote file. <br> In this way I’m loading directly only the values I’m interested into.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;analysed_sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">53.99</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span><span class="mi">170</span><span class="p">))</span>
-<span class="n">sst</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sst=data[&#39;analysed_sst&#39;].sel(lat=slice(-53.99,-14), lon=slice(140,170))
+sst
 </pre></div>
 </div>
 </div>
@@ -1477,8 +1492,8 @@ Attributes:
 MUR dataset is available as a virtually aggregated file so we can use this version of the data to get the complete SST timeseries from one url only.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aggr_url</span> <span class="o">=</span> <span class="s2">&quot;https://thredds.jpl.nasa.gov/thredds/dodsC/OceanTemperature/MUR-JPL-L4-GLOB-v4.1.nc&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">xa</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">aggr_url</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>aggr_url = &quot;https://thredds.jpl.nasa.gov/thredds/dodsC/OceanTemperature/MUR-JPL-L4-GLOB-v4.1.nc&quot;
+data = xa.open_dataset(aggr_url)
 </pre></div>
 </div>
 </div>
@@ -1486,8 +1501,8 @@ MUR dataset is available as a virtually aggregated file so we can use this versi
 <p>I loaded the data in the same way and I’m going to select sst and the region IO’m interested into in exactly the same way</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;analysed_sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">53.99</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span><span class="mi">170</span><span class="p">))</span>
-<span class="n">sst</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sst=data[&#39;analysed_sst&#39;].sel(lat=slice(-53.99,-14), lon=slice(140,170))
+sst
 </pre></div>
 </div>
 </div>

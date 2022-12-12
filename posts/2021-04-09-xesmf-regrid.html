@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+   Using Gadi’s software environment to build your applications
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-11-10-jobfs.html">
    How and when to use PBS Jobfs on NCI HPC systems
   </a>
@@ -137,11 +142,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
    An example of reading non-standard data using pandas and xarray
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2021-12-08-trajectories.html">
-   Trajectories in regions
   </a>
  </li>
 </ul>
@@ -338,6 +338,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-12-create-netcdf.html">
      How to create NetCDF files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
     </a>
    </li>
   </ul>
@@ -651,6 +656,11 @@ const thebe_selector_output = ".output, .cell_output"
      Using xesmf to efficiently regrid data to another resolution
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -840,6 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2022-12-05-building-on-gadi.html">
+     Using Gadi’s software environment to build your applications
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2022-11-10-jobfs.html">
      How and when to use PBS Jobfs on NCI HPC systems
@@ -1338,9 +1353,9 @@ title="Print to PDF"
 <p>First load the relevant packages</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">xesmf</span> <span class="k">as</span> <span class="nn">xe</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+import xesmf as xe
+import numpy as np
 </pre></div>
 </div>
 </div>
@@ -1348,15 +1363,15 @@ title="Print to PDF"
 <p>Open the data. In this example, we will open a monthly surface temperature dataset from the ACCESS-1.3 CMIP5 model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-3_historical_r1i1p1_185001-200512.nc&#39;</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>url = &#39;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-3_historical_r1i1p1_185001-200512.nc&#39;
+ds = xr.open_dataset(url)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds
 </pre></div>
 </div>
 </div>
@@ -1805,7 +1820,7 @@ CMIP5 compliant file produced from raw ACCESS model output using the ACCESS Post
 <p>For CMIP data the resolution may already be declared in the attributes of the file. If not, you can calculate this too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(ds[&#39;lat&#39;].max() - ds[&#39;lat&#39;].min())/(ds[&#39;lat&#39;].count()-1.)
 </pre></div>
 </div>
 </div>
@@ -2168,7 +2183,7 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(ds[&#39;lon&#39;].max() - ds[&#39;lon&#39;].min())/(ds[&#39;lon&#39;].count()-1.)
 </pre></div>
 </div>
 </div>
@@ -2533,14 +2548,14 @@ Coordinates:
 <p>Say we want to regrid this to a 2.5 degree rectilinear grid, we can use the utils functions to define the new grid. Alternatively, if you want to regrid to the resolution of another dataset you can use a field directly from that dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_out</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">grid_2d</span><span class="p">(</span><span class="o">-</span><span class="mf">180.0</span><span class="p">,</span> <span class="mf">180.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds_out = xe.util.grid_2d(-180.0, 180.0, 2.5, -90.0, 90.0, 2.5)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_out</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds_out
 </pre></div>
 </div>
 </div>
@@ -2934,14 +2949,14 @@ Data variables:
 <p>Then we build the regridder. In this first instance, the weights are not saved to netcdf. Note that there are a few options for the regridding method. As we are working with a global dataset, we use <code class="docutils literal notranslate"><span class="pre">periodic=True</span></code> so that we do not get gaps along the central longitude</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regridder</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">Regridder</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds_out</span><span class="p">,</span> <span class="s1">&#39;bilinear&#39;</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regridder = xe.Regridder(ds, ds_out, &#39;bilinear&#39;, periodic=True)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regridder</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regridder
 </pre></div>
 </div>
 </div>
@@ -2960,7 +2975,7 @@ Periodic in longitude?      True
 <p>As this file contains near-surface air temperature we’ll define this separately.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;tas&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds[&#39;tas&#39;]
 </pre></div>
 </div>
 </div>
@@ -3377,7 +3392,7 @@ Attributes:
 <p>Apply the regridder to the data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tas_25deg</span> <span class="o">=</span> <span class="n">regridder</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;tas&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tas_25deg = regridder(ds[&#39;tas&#39;])
 </pre></div>
 </div>
 </div>
@@ -3390,7 +3405,7 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tas_25deg</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tas_25deg
 </pre></div>
 </div>
 </div>
@@ -3876,7 +3891,7 @@ Attributes:
 </table>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;tas&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds[&#39;tas&#39;].isel(time=0).plot()
 </pre></div>
 </div>
 </div>
@@ -3889,7 +3904,7 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tas_25deg</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tas_25deg.isel(time=0).plot()
 </pre></div>
 </div>
 </div>
@@ -3903,14 +3918,14 @@ Attributes:
 <p>To save the weights for later use, you’ll need to specify the filename to give to the weights file when you build the regridder for the first time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regridder_save_weights</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">Regridder</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">ds_out</span><span class="p">,</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span><span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;bilinear_145x192_180x360_peri.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regridder_save_weights = xe.Regridder(ds,ds_out,&#39;bilinear&#39;,periodic=True,filename=&#39;bilinear_145x192_180x360_peri.nc&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regridder_save_weights</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regridder_save_weights
 </pre></div>
 </div>
 </div>
@@ -3930,14 +3945,14 @@ Periodic in longitude?      True
 <p>To build the regridder using existing weights:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regridder_reuse_weights</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">Regridder</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">ds_out</span><span class="p">,</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span><span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">reuse_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;bilinear_145x192_180x360_peri.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regridder_reuse_weights = xe.Regridder(ds,ds_out,&#39;bilinear&#39;,periodic=True,reuse_weights=True,filename=&#39;bilinear_145x192_180x360_peri.nc&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regridder_reuse_weights</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regridder_reuse_weights
 </pre></div>
 </div>
 </div>
