@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1351,7 +1380,7 @@ title="Print to PDF"
 <p>Let’s make a more advanced plot, made up of several sub-plots and multiple colour bars:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>temperature_plot()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temperature_plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1363,15 +1392,15 @@ title="Print to PDF"
 <p>I’m working on my desktop, so here the analysis is only over a single year. The <code class="docutils literal notranslate"><span class="pre">chunks</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">open_dataset()</span></code> reduces the amount of data that gets read at once. The data doesn’t actually get read until needed, I’m manually calling <code class="docutils literal notranslate"><span class="pre">.load()</span></code> once I’ve filtered the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
-import xarray
-datapath = &quot;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&quot;
-data = xarray.open_dataset(datapath, chunks={&#39;time&#39;:12})
-tas = data.tas.sel(time=slice(&#39;1980&#39;,&#39;1981&#39;))
+<span class="kn">import</span> <span class="nn">xarray</span>
+<span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;http://dapds00.nci.org.au/thredds/dodsC/rr3/CMIP5/output1/CSIRO-BOM/ACCESS1-0/amip/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_amip_r1i1p1_197901-200812.nc&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">datapath</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span>
+<span class="n">tas</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tas</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1981&#39;</span><span class="p">))</span>
 
-tas_annual = tas.mean(&#39;time&#39;).load()
-tas_seasonal = tas.groupby(&#39;time.season&#39;).mean(&#39;time&#39;).load()
+<span class="n">tas_annual</span> <span class="o">=</span> <span class="n">tas</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">tas_seasonal</span> <span class="o">=</span> <span class="n">tas</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.season&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1379,8 +1408,8 @@ tas_seasonal = tas.groupby(&#39;time.season&#39;).mean(&#39;time&#39;).load()
 <p>Grouping by season has given a new <code class="docutils literal notranslate"><span class="pre">season</span></code> axis on the <code class="docutils literal notranslate"><span class="pre">tas_seasonal</span></code> data array</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tas_seasonal.sel(season=&#39;DJF&#39;).plot()
-tas_seasonal.season
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tas_seasonal</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">season</span><span class="o">=</span><span class="s1">&#39;DJF&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">tas_seasonal</span><span class="o">.</span><span class="n">season</span>
 </pre></div>
 </div>
 </div>
@@ -1400,23 +1429,23 @@ Coordinates:
 <p>Just showing the axes for the moment lets me concentrate on the layout</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
 
-fig = plt.figure(figsize=(10,4))
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
-# Setup axes
-gs = gridspec.GridSpec(2,4)
-axs = {}
-axs[&#39;annual&#39;] = fig.add_subplot(gs[0:2,0:2])
-axs[&#39;DJF&#39;] = fig.add_subplot(gs[0,2])
-axs[&#39;JJA&#39;] = fig.add_subplot(gs[1,2])
-axs[&#39;MAM&#39;] = fig.add_subplot(gs[0,3])
-axs[&#39;SON&#39;] = fig.add_subplot(gs[1,3])
+<span class="c1"># Setup axes</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;annual&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;DJF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;JJA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;MAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;SON&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 
-# Disable axis ticks
-for ax in axs.values():
-    ax.tick_params(bottom=False, labelbottom=False, left=False, labelleft=False)
+<span class="c1"># Disable axis ticks</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1428,33 +1457,33 @@ for ax in axs.values():
 <p>Remember your data structures! I’m using a dict to hold all of the arrays, named by season. This means I can iterate over the seasons in <code class="docutils literal notranslate"><span class="pre">tas_seasonal</span></code> and grab the axes by name, rather than having to write out each plot one by one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-fig = plt.figure(figsize=(10,4))
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
-# Setup axes
-gs = gridspec.GridSpec(2,4)
-axs = {}
-axs[&#39;Annual&#39;] = fig.add_subplot(gs[:,:2])
-axs[&#39;DJF&#39;] = fig.add_subplot(gs[0,2])
-axs[&#39;JJA&#39;] = fig.add_subplot(gs[1,2])
-axs[&#39;MAM&#39;] = fig.add_subplot(gs[0,3])
-axs[&#39;SON&#39;] = fig.add_subplot(gs[1,3])
+<span class="c1"># Setup axes</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;Annual&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;DJF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;JJA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;MAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="s1">&#39;SON&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 
-# Disable axis ticks
-for ax in axs.values():
-    ax.tick_params(bottom=False, labelbottom=False, left=False, labelleft=False)
+<span class="c1"># Disable axis ticks</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     
-# Add titles
-for name, ax in axs.items():
-    ax.set_title(name)
+<span class="c1"># Add titles</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     
-# Annual value
-tas_annual.plot(ax=axs[&#39;Annual&#39;], add_labels=False, add_colorbar=False)
+<span class="c1"># Annual value</span>
+<span class="n">tas_annual</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="s1">&#39;Annual&#39;</span><span class="p">],</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-# Anomalys
-for s in tas_seasonal.season:
-    (tas_annual - tas_seasonal.sel(season=s)).plot(ax=axs[np.asscalar(s)], add_labels=False, add_colorbar=False)
+<span class="c1"># Anomalys</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tas_seasonal</span><span class="o">.</span><span class="n">season</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">tas_annual</span> <span class="o">-</span> <span class="n">tas_seasonal</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">season</span><span class="o">=</span><span class="n">s</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">s</span><span class="p">)],</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1467,46 +1496,46 @@ for s in tas_seasonal.season:
 <p>This is in a function so that I can make the plot at the top of the page</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def temperature_plot():
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">temperature_plot</span><span class="p">():</span>
 
-    fig = plt.figure(figsize=(12,4))
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
-    # Setup axes
-    gs = gridspec.GridSpec(2,5,width_ratios=[1,1,1,1,0.4])
-    axs = {}
-    axs[&#39;Annual&#39;] = fig.add_subplot(gs[:,:2])
-    axs[&#39;DJF&#39;] = fig.add_subplot(gs[0,2])
-    axs[&#39;JJA&#39;] = fig.add_subplot(gs[1,2])
-    axs[&#39;MAM&#39;] = fig.add_subplot(gs[0,3])
-    axs[&#39;SON&#39;] = fig.add_subplot(gs[1,3])
+    <span class="c1"># Setup axes</span>
+    <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.4</span><span class="p">])</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">axs</span><span class="p">[</span><span class="s1">&#39;Annual&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="s1">&#39;DJF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="s1">&#39;JJA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="s1">&#39;MAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="s1">&#39;SON&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 
-    # Disable axis ticks
-    for ax in axs.values():
-        ax.tick_params(bottom=False, labelbottom=False, left=False, labelleft=False)
+    <span class="c1"># Disable axis ticks</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     
-    # Add titles
-    for name, ax in axs.items():
-        ax.set_title(name)
+    <span class="c1"># Add titles</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     
-    # Annual value
-    plots = {}
-    plots[&#39;Annual&#39;] = tas_annual.plot(ax=axs[&#39;Annual&#39;], add_labels=False, add_colorbar=False)
+    <span class="c1"># Annual value</span>
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">plots</span><span class="p">[</span><span class="s1">&#39;Annual&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tas_annual</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="s1">&#39;Annual&#39;</span><span class="p">],</span> <span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    # Anomalys
-    for s in tas_seasonal.season:
-        s_name = np.asscalar(s)
-        plots[s_name] = (tas_annual - tas_seasonal.sel(season=s)).plot(
-            ax=axs[s_name],add_labels=False, add_colorbar=False, vmin=-20, vmax=20, cmap=&#39;RdBu_r&#39;
-        )
+    <span class="c1"># Anomalys</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tas_seasonal</span><span class="o">.</span><span class="n">season</span><span class="p">:</span>
+        <span class="n">s_name</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asscalar</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">plots</span><span class="p">[</span><span class="n">s_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tas_annual</span> <span class="o">-</span> <span class="n">tas_seasonal</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">season</span><span class="o">=</span><span class="n">s</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">s_name</span><span class="p">],</span><span class="n">add_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span>
+        <span class="p">)</span>
 
-    # Colour bars
-    cbar_gs = gridspec.GridSpecFromSubplotSpec(1,2, subplot_spec=gs[:,4], wspace=2.5)
-    cax_annual = fig.add_subplot(cbar_gs[0,0])
-    cax_seasonal = fig.add_subplot(cbar_gs[0,1])
-    plt.colorbar(plots[&#39;Annual&#39;], cax_annual)
-    plt.colorbar(plots[&#39;DJF&#39;], cax_seasonal)
+    <span class="c1"># Colour bars</span>
+    <span class="n">cbar_gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpecFromSubplotSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">subplot_spec</span><span class="o">=</span><span class="n">gs</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">cax_annual</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">cbar_gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">cax_seasonal</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">cbar_gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plots</span><span class="p">[</span><span class="s1">&#39;Annual&#39;</span><span class="p">],</span> <span class="n">cax_annual</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plots</span><span class="p">[</span><span class="s1">&#39;DJF&#39;</span><span class="p">],</span> <span class="n">cax_seasonal</span><span class="p">)</span>
     
-temperature_plot()
+<span class="n">temperature_plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

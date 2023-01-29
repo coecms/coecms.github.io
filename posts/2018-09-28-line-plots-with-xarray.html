@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1474,13 +1503,13 @@ title="Print to PDF"
 <p>First, let’s get ourselves some 4D data: time, height, latitude and longitude. CMIP5 is a good source of those, let’s pick some atmospheric temperature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import xarray
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">xarray</span>
 
-datapath = &#39;/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/day/atmos/day/r1i1p1/latest/ta/&#39;
-ds = xarray.open_dataset(datapath + &#39;ta_day_ACCESS1-3_historical_r1i1p1_19500101-19541231.nc&#39;)
-ta = ds[&#39;ta&#39;]
-ta
+<span class="n">datapath</span> <span class="o">=</span> <span class="s1">&#39;/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-3/historical/day/atmos/day/r1i1p1/latest/ta/&#39;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">datapath</span> <span class="o">+</span> <span class="s1">&#39;ta_day_ACCESS1-3_historical_r1i1p1_19500101-19541231.nc&#39;</span><span class="p">)</span>
+<span class="n">ta</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
+<span class="n">ta</span>
 </pre></div>
 </div>
 </div>
@@ -1512,8 +1541,8 @@ Attributes:
 <p>To plot a timeseries (or a simple one line plot) is quite easy with Xarray, you simply need a 1D variable. Since ours is 4D, let’s choose to plot the temperature timeseries at 850hPa (plev=85,000) and over Canberra (35.28S, 149.13E)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR = ta.sel(lat=-35.28, lon=149.13, method=&#39;nearest&#39;)
-ta_CBR.sel(plev=85000).plot()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">35.28</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">149.13</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">plev</span><span class="o">=</span><span class="mi">85000</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1527,9 +1556,9 @@ ta_CBR.sel(plev=85000).plot()
 <p>You can see the plot has already quite a lot of useful labels. Axes are labelled (with unit for the quantity plotted) and the spatial position of the point is at the top. You may want to customise the plot. The <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method in Xarray is calling the appropriate plot method of Matplotlib. This means you can customise your plots in the same way in Xarray as you would in Matplotlib. In particular, the line plots accept a range of properties that allow you to customise the line appearance. Here is a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D">list of all possible properties</a> for a line plot. It might also be easier to simply search the internet for an example of what you want to do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># An example of customisation
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An example of customisation</span>
 
-ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;), plev=85000).plot(linestyle=&#39;dashed&#39;,color=&#39;g&#39;, linewidth=2, marker=&#39;o&#39;,markersize=10)
+<span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;1950-01-31&#39;</span><span class="p">),</span> <span class="n">plev</span><span class="o">=</span><span class="mi">85000</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1546,7 +1575,7 @@ ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;), plev=85000).pl
 <p>Now, let’s say you want to plot the temperature timeseries at different pressure levels. Then, you need 2D data with dimensions time and pressure. Then Xarray let’s you determine which dimension should be used for different lines with the argument <code class="docutils literal notranslate"><span class="pre">hue</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;),plev=[85000,5000]).plot(hue=&#39;plev&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;1950-01-31&#39;</span><span class="p">),</span><span class="n">plev</span><span class="o">=</span><span class="p">[</span><span class="mi">85000</span><span class="p">,</span><span class="mi">5000</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1565,7 +1594,7 @@ ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;), plev=85000).pl
 <p>A vertical profile is the same as a timeseries: get a 1D array along the vertical dimension. However, the data needs to be plotted along the x-axis and the vertical dimension along the y-axis. Xarray allows you to set this through the <code class="docutils literal notranslate"><span class="pre">y</span></code> argument of the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR.sel(time=&#39;1950-01-01&#39;).plot(y=&#39;plev&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1579,7 +1608,7 @@ ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;), plev=85000).pl
 <p>Although as you see here, there is another issue to tackle. By default, Xarray will plot the dimension with increasing values. Obviously if you have a pressure dimension or a depth dimension, that is not what you want. To fix this, use the <code class="docutils literal notranslate"><span class="pre">yincrease</span></code> argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR.sel(time=&#39;1950-01-01&#39;).plot(y=&#39;plev&#39;, yincrease=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span> <span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1596,7 +1625,7 @@ ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;), plev=85000).pl
 <p>Let’s say, instead of a multi-line plot, you want a panel plot of vertical profiles over Canberra for the first 10 days of 1950. Xarray let’s you do that without defining the panel plot first! You need to use the <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code> and <code class="docutils literal notranslate"><span class="pre">col_wrap</span></code> arguments. <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code> tell Xarray what dimension to use along the rows or columns. <code class="docutils literal notranslate"><span class="pre">col_wrap</span></code> tells Xarray how many columns to use. Note that panel plots are also called faceted plots such as in the Xarray documentation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-10&#39;)).plot(y=&#39;plev&#39;, yincrease=False, col=&#39;time&#39;, col_wrap=5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;1950-01-10&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span> <span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1615,16 +1644,16 @@ ta_CBR.sel(time=slice(&#39;1950-01-01&#39;,&#39;1950-01-31&#39;), plev=85000).pl
 <p>First we need to calculate all the quantities we need and store them in a single DataArray. For this, you’ll want to store the quantities and add 2 coordinates: one for the city and one for the statistic. This way, you can tell Xarray to use those coordinates for your plot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR_1950 = ta_CBR.sel(time=&#39;1950&#39;)
-ta_CBR_1950.coords[&#39;city&#39;] = &#39;Canberra&#39;
-# We want the 1st January and 31st December. But we don&#39;t want to keep the time dimension and coordinate as the mean
-# does not have those. We need to keep track of the date in a new coordinate we&#39;ll call &#39;stats&#39;
-ta_CBR_195001 = ta_CBR_1950.sel(time=&#39;1950-01-01&#39;).squeeze(&#39;time&#39;).drop(&#39;time&#39;)
-ta_CBR_195001.coords[&#39;stats&#39;] = &#39;1st January&#39; 
-ta_CBR_195012 = ta_CBR_1950.sel(time=&#39;1950-12-31&#39;).squeeze(&#39;time&#39;).drop(&#39;time&#39;)
-ta_CBR_195012.coords[&#39;stats&#39;] = &#39;31st December&#39;
-ta_CBR_1950_mean = ta_CBR_1950.mean(dim=&#39;time&#39;)
-ta_CBR_1950_mean.coords[&#39;stats&#39;] = &#39;mean&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR_1950</span> <span class="o">=</span> <span class="n">ta_CBR</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Canberra&#39;</span>
+<span class="c1"># We want the 1st January and 31st December. But we don&#39;t want to keep the time dimension and coordinate as the mean</span>
+<span class="c1"># does not have those. We need to keep track of the date in a new coordinate we&#39;ll call &#39;stats&#39;</span>
+<span class="n">ta_CBR_195001</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_195001</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1st January&#39;</span> 
+<span class="n">ta_CBR_195012</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-12-31&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_195012</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;31st December&#39;</span>
+<span class="n">ta_CBR_1950_mean</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950_mean</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1632,8 +1661,8 @@ ta_CBR_1950_mean.coords[&#39;stats&#39;] = &#39;mean&#39;
 <p>Now we use the <code class="docutils literal notranslate"><span class="pre">concat()</span></code> function from xarray to concatenate all the statistics in a single DataArray. This array will simply contain 3 vertical profiles. It is also possible to create the DataArray first and to fill it with the statistics. Choose whichever approach makes sense depending on your problem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_CBR_1950_stats = xarray.concat([ta_CBR_195001, ta_CBR_195012, ta_CBR_1950_mean],&#39;stats&#39;)
-ta_CBR_1950_stats
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_CBR_1950_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_CBR_195001</span><span class="p">,</span> <span class="n">ta_CBR_195012</span><span class="p">,</span> <span class="n">ta_CBR_1950_mean</span><span class="p">],</span><span class="s1">&#39;stats&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950_stats</span>
 </pre></div>
 </div>
 </div>
@@ -1657,16 +1686,16 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_SYD = ta.sel(lat=-33.87, lon=151.21, method=&#39;nearest&#39;).sel(time=&#39;1950&#39;)
-ta_SYD.coords[&#39;city&#39;]=&#39;Sydney&#39;
-ta_SYD_195001 = ta_SYD.sel(time=&#39;1950-01-01&#39;).squeeze(&#39;time&#39;).drop(&#39;time&#39;)
-ta_SYD_195001.coords[&#39;stats&#39;] = &#39;1st January&#39; 
-ta_SYD_195012 = ta_SYD.sel(time=&#39;1950-12-31&#39;).squeeze(&#39;time&#39;).drop(&#39;time&#39;)
-ta_SYD_195012.coords[&#39;stats&#39;] = &#39;31st December&#39;
-ta_SYD_1950_mean = ta_SYD.mean(dim=&#39;time&#39;)
-ta_SYD_1950_mean.coords[&#39;stats&#39;] = &#39;mean&#39;
-ta_SYD_1950_stats = xarray.concat([ta_SYD_195001, ta_SYD_195012, ta_SYD_1950_mean],&#39;stats&#39;)
-ta_SYD_1950_stats
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_SYD</span> <span class="o">=</span> <span class="n">ta</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">33.87</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">151.21</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;Sydney&#39;</span>
+<span class="n">ta_SYD_195001</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-01-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_195001</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1st January&#39;</span> 
+<span class="n">ta_SYD_195012</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;1950-12-31&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_195012</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;31st December&#39;</span>
+<span class="n">ta_SYD_1950_mean</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_1950_mean</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+<span class="n">ta_SYD_1950_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_SYD_195001</span><span class="p">,</span> <span class="n">ta_SYD_195012</span><span class="p">,</span> <span class="n">ta_SYD_1950_mean</span><span class="p">],</span><span class="s1">&#39;stats&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_1950_stats</span>
 </pre></div>
 </div>
 </div>
@@ -1691,8 +1720,8 @@ Coordinates:
 <p>Now we still have to concatenate Sydney and Canberra together so we have our 6 profiles in the same array.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_1950_stats = xarray.concat([ta_CBR_1950_stats, ta_SYD_1950_stats],&#39;city&#39;)
-ta_1950_stats
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_1950_stats</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_CBR_1950_stats</span><span class="p">,</span> <span class="n">ta_SYD_1950_stats</span><span class="p">],</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+<span class="n">ta_1950_stats</span>
 </pre></div>
 </div>
 </div>
@@ -1724,7 +1753,7 @@ Coordinates:
 <p>Now, we just need one line to plot everything!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ta_1950_stats.plot(hue=&#39;city&#39;,col=&#39;stats&#39;,y=&#39;plev&#39;,yincrease=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta_1950_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;stats&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1741,21 +1770,21 @@ Coordinates:
 <p>The above example only works if all the plots have the same range. If you tried to plot the standard deviation in the panel above following this method, the plot would appear empty as the values of the standard deviation are much smaller than the temperature. Xarray provides the <code class="docutils literal notranslate"><span class="pre">sharex</span></code> argument that allows for different x axes. Obviously all plots will then use slighly different x axes then which may or may not be acceptable. Xarray also provides a <code class="docutils literal notranslate"><span class="pre">sharey</span></code> argument when the y axis needs to change and which is used in the same way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get the standard deviations for Sydney and Canberra and add to the stats.
-ta_SYD_1950_std = ta_SYD.std(dim=&#39;time&#39;)
-ta_SYD_1950_std.coords[&#39;stats&#39;] = &#39;std&#39;
-ta_CBR_1950_std = ta_CBR_1950.std(dim=&#39;time&#39;)
-ta_CBR_1950_std.coords[&#39;stats&#39;] = &#39;std&#39;
-ta_1950_std = xarray.concat([ta_SYD_1950_std, ta_CBR_1950_std],&#39;city&#39;)
-ta_1950_add_stats= xarray.concat([ta_1950_stats, ta_1950_std], &#39;stats&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the standard deviations for Sydney and Canberra and add to the stats.</span>
+<span class="n">ta_SYD_1950_std</span> <span class="o">=</span> <span class="n">ta_SYD</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_SYD_1950_std</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;std&#39;</span>
+<span class="n">ta_CBR_1950_std</span> <span class="o">=</span> <span class="n">ta_CBR_1950</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ta_CBR_1950_std</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;stats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;std&#39;</span>
+<span class="n">ta_1950_std</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_SYD_1950_std</span><span class="p">,</span> <span class="n">ta_CBR_1950_std</span><span class="p">],</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+<span class="n">ta_1950_add_stats</span><span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ta_1950_stats</span><span class="p">,</span> <span class="n">ta_1950_std</span><span class="p">],</span> <span class="s1">&#39;stats&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot in panel but with a different x axis range for all plots.
-ta_1950_add_stats.plot(hue=&#39;city&#39;,col=&#39;stats&#39;,col_wrap=4,y=&#39;plev&#39;,yincrease=False,sharex=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot in panel but with a different x axis range for all plots.</span>
+<span class="n">ta_1950_add_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;stats&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;plev&#39;</span><span class="p">,</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

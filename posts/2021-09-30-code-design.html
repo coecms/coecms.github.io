@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1517,11 +1546,11 @@ title="Print to PDF"
 <p>Note: the analysis chosen here does not need to use dictionaries and functions to be done. We only do so here to illustrate the generic process. The direct way to perform the analysis is noted at the end of this notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray as xr
-import numpy as np
-from pathlib import Path
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
 </pre></div>
 </div>
 </div>
@@ -1531,50 +1560,50 @@ import cartopy.crs as ccrs
 <p>The following code is correct as it gives the correct answer but it is prone to errors because the code is repeated. This increases the risk of typos. For more complex analyses, it can also make it harder to test as it is not modular. And it can be time-consuming to add extra data to the analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Read in the data we need
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in the data we need</span>
 
-## Paths to 2 CMIP6 model experiments
-IPSL_path = Path(&quot;/g/data/oi10/replicas/CMIP6/CMIP/IPSL/IPSL-CM5A2-INCA/&quot;)
-historical_path = IPSL_path/&quot;historical/r1i1p1f1/Lmon/tsl/gr/v20200729/&quot;
-picontrol_path  = IPSL_path/&quot;piControl/r1i1p1f1/Lmon/tsl/gr/v20210216/&quot;
-## Find all netcdf files in those directories. 
-historical_path = sorted(historical_path.glob(&quot;*.nc&quot;))
-picontrol_path  = sorted(picontrol_path.glob(&quot;*.nc&quot;))
+<span class="c1">## Paths to 2 CMIP6 model experiments</span>
+<span class="n">IPSL_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/g/data/oi10/replicas/CMIP6/CMIP/IPSL/IPSL-CM5A2-INCA/&quot;</span><span class="p">)</span>
+<span class="n">historical_path</span> <span class="o">=</span> <span class="n">IPSL_path</span><span class="o">/</span><span class="s2">&quot;historical/r1i1p1f1/Lmon/tsl/gr/v20200729/&quot;</span>
+<span class="n">picontrol_path</span>  <span class="o">=</span> <span class="n">IPSL_path</span><span class="o">/</span><span class="s2">&quot;piControl/r1i1p1f1/Lmon/tsl/gr/v20210216/&quot;</span>
+<span class="c1">## Find all netcdf files in those directories. </span>
+<span class="n">historical_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">historical_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
+<span class="n">picontrol_path</span>  <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">picontrol_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
 
-historical_ds = xr.open_mfdataset(historical_path)
-picontrol_ds  = xr.open_mfdataset(picontrol_path)
+<span class="n">historical_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">historical_path</span><span class="p">)</span>
+<span class="n">picontrol_ds</span>  <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">picontrol_path</span><span class="p">)</span>
 
-# Select the data to cover the same space and period for both datasets
-## Select the surface only
-historical_tsl = historical_ds[&quot;tsl&quot;].isel(solth=0)
-picontrol_tsl  = picontrol_ds[&quot;tsl&quot;].isel(solth=0)
+<span class="c1"># Select the data to cover the same space and period for both datasets</span>
+<span class="c1">## Select the surface only</span>
+<span class="n">historical_tsl</span> <span class="o">=</span> <span class="n">historical_ds</span><span class="p">[</span><span class="s2">&quot;tsl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">solth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">picontrol_tsl</span>  <span class="o">=</span> <span class="n">picontrol_ds</span><span class="p">[</span><span class="s2">&quot;tsl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">solth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-## Restrict the data to the longest common time window.
-picontrol_tsl = picontrol_tsl.sel(time=historical_tsl.time)
+<span class="c1">## Restrict the data to the longest common time window.</span>
+<span class="n">picontrol_tsl</span> <span class="o">=</span> <span class="n">picontrol_tsl</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">historical_tsl</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
 
-# Check our data
-## Use display() to get a nice display of the DataArray instead of print()
-display(historical_tsl)
-display(picontrol_tsl)
+<span class="c1"># Check our data</span>
+<span class="c1">## Use display() to get a nice display of the DataArray instead of print()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">historical_tsl</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">picontrol_tsl</span><span class="p">)</span>
 
-# Do our analysis: calculate a percentile for each season
-time = historical_tsl.time
-hist_pct_djf = historical_tsl.where(time.dt.season == &#39;DJF&#39;).quantile(0.9, dim=[&quot;time&quot;])
-hist_pct_mam = historical_tsl.where(time.dt.season == &#39;MAM&#39;).quantile(0.9, dim=[&quot;time&quot;])
-hist_pct_jja = historical_tsl.where(time.dt.season == &#39;JJA&#39;).quantile(0.9, dim=[&quot;time&quot;])
-hist_pct_son = historical_tsl.where(time.dt.season == &#39;SON&#39;).quantile(0.9, dim=[&quot;time&quot;])
-pic_pct_djf  = picontrol_tsl.where(time.dt.season == &#39;DJF&#39;).quantile(0.9, dim=[&quot;time&quot;])
-pic_pct_mam  = picontrol_tsl.where(time.dt.season == &#39;MAM&#39;).quantile(0.9, dim=[&quot;time&quot;])
-pic_pct_jja  = picontrol_tsl.where(time.dt.season == &#39;JJA&#39;).quantile(0.9, dim=[&quot;time&quot;])
-pic_pct_son  = picontrol_tsl.where(time.dt.season == &#39;SON&#39;).quantile(0.9, dim=[&quot;time&quot;])
+<span class="c1"># Do our analysis: calculate a percentile for each season</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">historical_tsl</span><span class="o">.</span><span class="n">time</span>
+<span class="n">hist_pct_djf</span> <span class="o">=</span> <span class="n">historical_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;DJF&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">hist_pct_mam</span> <span class="o">=</span> <span class="n">historical_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;MAM&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">hist_pct_jja</span> <span class="o">=</span> <span class="n">historical_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;JJA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">hist_pct_son</span> <span class="o">=</span> <span class="n">historical_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;SON&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">pic_pct_djf</span>  <span class="o">=</span> <span class="n">picontrol_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;DJF&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">pic_pct_mam</span>  <span class="o">=</span> <span class="n">picontrol_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;MAM&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">pic_pct_jja</span>  <span class="o">=</span> <span class="n">picontrol_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;JJA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="n">pic_pct_son</span>  <span class="o">=</span> <span class="n">picontrol_tsl</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">season</span> <span class="o">==</span> <span class="s1">&#39;SON&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
 
-# Check out results with a plot. We remove the first longitude because it&#39;s not in sorted order otherwise.
-fg=hist_pct_djf.isel(lon=slice(1,None)).plot(transform=ccrs.PlateCarree(),
-    subplot_kws={
-        &quot;projection&quot;: ccrs.PlateCarree(central_longitude=180.)
-    }
-)
-fg.axes.coastlines()
+<span class="c1"># Check out results with a plot. We remove the first longitude because it&#39;s not in sorted order otherwise.</span>
+<span class="n">fg</span><span class="o">=</span><span class="n">hist_pct_djf</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mf">180.</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">fg</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2582,44 +2611,44 @@ Attributes:
 <h3>Reading and select the data<a class="headerlink" href="#reading-and-select-the-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to read in the data
-def get_var(path, varname):
-    &quot;&quot;&quot;Reads in all the netcdf files in the input path and return the data for the selected variable
-    path: pathlib.Path, path to the netcdf files
-    varname: string, name of the variable to select in the netcdf files&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to read in the data</span>
+<span class="k">def</span> <span class="nf">get_var</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">varname</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads in all the netcdf files in the input path and return the data for the selected variable</span>
+<span class="sd">    path: pathlib.Path, path to the netcdf files</span>
+<span class="sd">    varname: string, name of the variable to select in the netcdf files&quot;&quot;&quot;</span>
     
-    netcdf_files = sorted(path.glob(&quot;*.nc&quot;))
-    ds = xr.open_mfdataset(netcdf_files)
+    <span class="n">netcdf_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">netcdf_files</span><span class="p">)</span>
     
-    return ds[varname]
+    <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Paths to 2 CMIP6 model experiments
-IPSL_path = Path(&quot;/g/data/oi10/replicas/CMIP6/CMIP/IPSL/IPSL-CM5A2-INCA/&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paths to 2 CMIP6 model experiments</span>
+<span class="n">IPSL_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/g/data/oi10/replicas/CMIP6/CMIP/IPSL/IPSL-CM5A2-INCA/&quot;</span><span class="p">)</span>
 
-variable = &#39;tsl&#39;
+<span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;tsl&#39;</span>
 
-experiments = {
-    &quot;historical&quot;: IPSL_path / &quot;historical/r1i1p1f1/Lmon&quot; / variable / &quot;gr/v20200729/&quot;,
-    &quot;picontrol&quot;: IPSL_path / &quot;piControl/r1i1p1f1/Lmon&quot; / variable / &quot;gr/v20210216/&quot;,
-}
+<span class="n">experiments</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;historical&quot;</span><span class="p">:</span> <span class="n">IPSL_path</span> <span class="o">/</span> <span class="s2">&quot;historical/r1i1p1f1/Lmon&quot;</span> <span class="o">/</span> <span class="n">variable</span> <span class="o">/</span> <span class="s2">&quot;gr/v20200729/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;picontrol&quot;</span><span class="p">:</span> <span class="n">IPSL_path</span> <span class="o">/</span> <span class="s2">&quot;piControl/r1i1p1f1/Lmon&quot;</span> <span class="o">/</span> <span class="n">variable</span> <span class="o">/</span> <span class="s2">&quot;gr/v20210216/&quot;</span><span class="p">,</span>
+<span class="p">}</span>
 
-# Dictionary to store the experiments with the experiment name as their key and data
-# as the value
-data = {}
-for expt, path in experiments.items():
-    # Find all netcdf files in those directories and restrict the data to the surface layer.
-    data[expt] = get_var(path, variable).isel(solth=0)
+<span class="c1"># Dictionary to store the experiments with the experiment name as their key and data</span>
+<span class="c1"># as the value</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">expt</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">experiments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># Find all netcdf files in those directories and restrict the data to the surface layer.</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">expt</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_var</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">variable</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">solth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-# Restrict the data to the longest common time window.
-data[&quot;picontrol&quot;] = data[&quot;picontrol&quot;].sel(time=data[&quot;historical&quot;].time)
+<span class="c1"># Restrict the data to the longest common time window.</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;picontrol&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;picontrol&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;historical&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
 
-for expt in data.keys():
-    display(data[expt])
+<span class="k">for</span> <span class="n">expt</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">expt</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3602,24 +3631,24 @@ We also define two dictionaries:</p>
 <p>In this way, we also remove any hard-written reference to the name of the experiments and it will work for any number of experiments. The final dictionary <code class="docutils literal notranslate"><span class="pre">pct_dict</span></code> contains a dictionary associated with each key, i.e. a dictionary of dictionaries. The keys of <code class="docutils literal notranslate"><span class="pre">pct_dict</span></code> are the names of the experiments originally defined in <code class="docutils literal notranslate"><span class="pre">experiments</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Do our analysis: calculate a percentile for each season
-def season_quantile(data, quantile):
-    &quot;&quot;&quot;Calculate a quantile for each season in the input data
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do our analysis: calculate a percentile for each season</span>
+<span class="k">def</span> <span class="nf">season_quantile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">quantile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate a quantile for each season in the input data</span>
+<span class="sd">    </span>
+<span class="sd">    data: DataArray, data with a dimension named &#39;time&#39;</span>
+<span class="sd">    quantile: scalar, quantile to calculate for the data&quot;&quot;&quot;</span>
     
-    data: DataArray, data with a dimension named &#39;time&#39;
-    quantile: scalar, quantile to calculate for the data&quot;&quot;&quot;
-    
-    seas_pct = {}
-    for season, seas_data in data.groupby(&#39;time.season&#39;):
-        seas_pct[season] = seas_data.quantile(0.9, dim=&quot;time&quot;)
+    <span class="n">seas_pct</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">season</span><span class="p">,</span> <span class="n">seas_data</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.season&#39;</span><span class="p">):</span>
+        <span class="n">seas_pct</span><span class="p">[</span><span class="n">season</span><span class="p">]</span> <span class="o">=</span> <span class="n">seas_data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
 
-    return seas_pct
+    <span class="k">return</span> <span class="n">seas_pct</span>
 
-pct_dict_dict={}
-for expt in data.keys():
-    pct_dict_dict[expt] = season_quantile(data[expt], 0.9)
+<span class="n">pct_dict_dict</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">expt</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">pct_dict_dict</span><span class="p">[</span><span class="n">expt</span><span class="p">]</span> <span class="o">=</span> <span class="n">season_quantile</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">expt</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">)</span>
 
-print(pct_dict_dict[&quot;historical&quot;])
+<span class="nb">print</span><span class="p">(</span><span class="n">pct_dict_dict</span><span class="p">[</span><span class="s2">&quot;historical&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3660,24 +3689,24 @@ Coordinates:
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def dictionary_to_dataarray(input_dic, new_dim_name):
-    &quot;&quot;&quot;Concatenate the data from a dictionary to a DataArray along a new dimension.
-    The keys of the dictionary are used to create a coordinate for this new dimension&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dictionary_to_dataarray</span><span class="p">(</span><span class="n">input_dic</span><span class="p">,</span> <span class="n">new_dim_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Concatenate the data from a dictionary to a DataArray along a new dimension.</span>
+<span class="sd">    The keys of the dictionary are used to create a coordinate for this new dimension&quot;&quot;&quot;</span>
     
-    # Concatenate all the data in one DataArray along a new dimension
-    da = xr.concat([data for data in input_dic.values()], dim=new_dim_name)
+    <span class="c1"># Concatenate all the data in one DataArray along a new dimension</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">input_dic</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="n">dim</span><span class="o">=</span><span class="n">new_dim_name</span><span class="p">)</span>
 
-    # Add the dictionary keys to create a coordinate for the new dimension. 
-    # Not necessary but nice to have.
-    da = da.assign_coords({new_dim_name:list(input_dic.keys())})
+    <span class="c1"># Add the dictionary keys to create a coordinate for the new dimension. </span>
+    <span class="c1"># Not necessary but nice to have.</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="n">new_dim_name</span><span class="p">:</span><span class="nb">list</span><span class="p">(</span><span class="n">input_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">())})</span>
     
-    return da
+    <span class="k">return</span> <span class="n">da</span>
     
-pct_dict = {}
-for expt in data.keys():
-    pct_dict[expt] = dictionary_to_dataarray(pct_dict_dict[expt], &quot;season&quot;)
+<span class="n">pct_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">expt</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">pct_dict</span><span class="p">[</span><span class="n">expt</span><span class="p">]</span> <span class="o">=</span> <span class="n">dictionary_to_dataarray</span><span class="p">(</span><span class="n">pct_dict_dict</span><span class="p">[</span><span class="n">expt</span><span class="p">],</span> <span class="s2">&quot;season&quot;</span><span class="p">)</span>
 
-print(pct_dict[&quot;historical&quot;])
+<span class="nb">print</span><span class="p">(</span><span class="n">pct_dict</span><span class="p">[</span><span class="s2">&quot;historical&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3695,31 +3724,31 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Modify season_quantile to output a DataArray
-def season_quantile_DA(data, quantile):
-    &quot;&quot;&quot;Calculate a quantile for each season in the input data
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify season_quantile to output a DataArray</span>
+<span class="k">def</span> <span class="nf">season_quantile_DA</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">quantile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate a quantile for each season in the input data</span>
+<span class="sd">    </span>
+<span class="sd">    data: DataArray, data with a dimension named &#39;time&#39;</span>
+<span class="sd">    quantile: scalar, quantile to calculate for the data&quot;&quot;&quot;</span>
     
-    data: DataArray, data with a dimension named &#39;time&#39;
-    quantile: scalar, quantile to calculate for the data&quot;&quot;&quot;
-    
-    seas_pct = []
-    seas_coords = []
-    for season, seas_data in data.groupby(&#39;time.season&#39;):
-        seas_coords.append(season)
-        seas_pct.append(seas_data.quantile(0.9, dim=&quot;time&quot;))
+    <span class="n">seas_pct</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seas_coords</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">season</span><span class="p">,</span> <span class="n">seas_data</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.season&#39;</span><span class="p">):</span>
+        <span class="n">seas_coords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">season</span><span class="p">)</span>
+        <span class="n">seas_pct</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seas_data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">))</span>
 
-    # Concatenate list to DataArray along a `season` dimension and 
-    # add coordinate for this new dimension
-    da = xr.concat(seas_pct,dim=&quot;season&quot;)
-    da = da.assign_coords({&quot;season&quot;:seas_coords})
+    <span class="c1"># Concatenate list to DataArray along a `season` dimension and </span>
+    <span class="c1"># add coordinate for this new dimension</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">seas_pct</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;season&quot;</span><span class="p">)</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;season&quot;</span><span class="p">:</span><span class="n">seas_coords</span><span class="p">})</span>
 
-    return da
+    <span class="k">return</span> <span class="n">da</span>
 
-pct_dict={}
-for expt in data.keys():
-    pct_dict[expt] = season_quantile_DA(data[expt], 0.9)
+<span class="n">pct_dict</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">expt</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">pct_dict</span><span class="p">[</span><span class="n">expt</span><span class="p">]</span> <span class="o">=</span> <span class="n">season_quantile_DA</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">expt</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">)</span>
 
-print(pct_dict[&quot;historical&quot;])
+<span class="nb">print</span><span class="p">(</span><span class="n">pct_dict</span><span class="p">[</span><span class="s2">&quot;historical&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3741,25 +3770,25 @@ Coordinates:
 <h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def season_plot(da):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">season_plot</span><span class="p">(</span><span class="n">da</span><span class="p">):</span>
     
-    # Plot using the season dimension to create the panel plot
-    fg=da.isel(lon=slice(1,None)).plot(col=&quot;season&quot;, col_wrap=2,
-        transform=ccrs.PlateCarree(),
-        subplot_kws={
-            &quot;projection&quot;: ccrs.PlateCarree(central_longitude=180.)
-        },
-        figsize=(10,4),
-    )
-    print(type(fg))
-    fg.map(lambda: plt.gca().coastlines())
+    <span class="c1"># Plot using the season dimension to create the panel plot</span>
+    <span class="n">fg</span><span class="o">=</span><span class="n">da</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+        <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mf">180.</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fg</span><span class="p">))</span>
+    <span class="n">fg</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">coastlines</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>season_plot(pct_dict[&quot;historical&quot;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">season_plot</span><span class="p">(</span><span class="n">pct_dict</span><span class="p">[</span><span class="s2">&quot;historical&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3776,7 +3805,7 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>season_plot(pct_dict[&quot;picontrol&quot;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">season_plot</span><span class="p">(</span><span class="n">pct_dict</span><span class="p">[</span><span class="s2">&quot;picontrol&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>

@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1427,7 +1456,7 @@ As well as demostrating some simple usage of <strong>logging</strong>, I will to
 Also jupyter can send your logging output to the terminal rather then the cell and generally interacts with logging in its own way. While you might be able to fix this after reading the blog, using python would make reproducing this easier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import logging
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 </pre></div>
 </div>
 </div>
@@ -1437,8 +1466,8 @@ Also jupyter can send your logging output to the terminal rather then the cell a
 <h2><strong>Printing out messages and logging levels</strong><a class="headerlink" href="#printing-out-messages-and-logging-levels" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>logging.warning(&#39;This is a warning message this should be printed on your console&#39;)
-logging.info(&#39;This is an info message the code will not print this unless you change its operating level&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message the code will not print this unless you change its operating level&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1460,10 +1489,10 @@ The <strong><a class="reference external" href="http://logging.info">logging.inf
 Let’s change the level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>logging.basicConfig(level=logging.INFO)  # Note the logging levels are defined in the logging attributes, not by a string!
-logging.warning(&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;)
-logging.info(&#39;This is an info message it should be printed now!&#39;)
-logging.debug(&#39;This is a debug message which will not be shown, its level is below the set level&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>  <span class="c1"># Note the logging levels are defined in the logging attributes, not by a string!</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a debug message which will not be shown, its level is below the set level&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1479,13 +1508,13 @@ We can use two approaches:</p>
 <p>Let’s start with disabling the root logger handlers first and then we’ll see how to set our own logger.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Remove all handlers associated with the root logger object.
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
-logging.basicConfig(level=logging.INFO) 
-logging.warning(&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;)
-logging.info(&#39;This is an info message it should be printed now!&#39;)
-logging.debug(&#39;This is a debug message which will not be shown, its level is below the set level&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove all handlers associated with the root logger object.</span>
+<span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span> 
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a debug message which will not be shown, its level is below the set level&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1501,18 +1530,18 @@ INFO:root:This is an info message it should be printed now!
 <h2><strong>Setting up a logger</strong><a class="headerlink" href="#setting-up-a-logger" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Note: this works because we configured the root logger before.
-# if you are starting from scratch uncomment the lines below
-#import logging
-#for handler in logging.root.handlers[:]:
-#    logging.root.removeHandler(handler)
-#logging.basicConfig(level=logging.INFO)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: this works because we configured the root logger before.</span>
+<span class="c1"># if you are starting from scratch uncomment the lines below</span>
+<span class="c1">#import logging</span>
+<span class="c1">#for handler in logging.root.handlers[:]:</span>
+<span class="c1">#    logging.root.removeHandler(handler)</span>
+<span class="c1">#logging.basicConfig(level=logging.INFO)</span>
 
-mylog = logging.getLogger(&#39;mylogger&#39;)
-mylog.setLevel(logging.INFO)
-mylog.warning(&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;)
-mylog.info(&#39;This is an info message it should be printed now!&#39;)
-mylog.debug(&#39;This is a debug message which will not be shown, its level is below the set level&#39;)
+<span class="n">mylog</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;mylogger&#39;</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning message this should be printed on your console, its level is above the set level&#39;</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an info message it should be printed now!&#39;</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a debug message which will not be shown, its level is below the set level&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1528,10 +1557,10 @@ Then we use <strong>setLevel()</strong> to change the level to INFO and the mess
 If we want to run the code in debug mode we can now change only the logging level instead of commenting/uncommenting print statements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.warning(&#39;I now have two loggers working!&#39;)
-logging.warning(&#39;I can still use the root logger&#39;)
-root_logger = logging.getLogger()
-root_logger.warning(&#39;This is still the root logger, I have just saved it to a different variable&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I now have two loggers working!&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I can still use the root logger&#39;</span><span class="p">)</span>
+<span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">root_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is still the root logger, I have just saved it to a different variable&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1549,13 +1578,13 @@ This is a good start but let’s see how we can actually print out something a b
 Personally when I’m trying to debug something there are 3 things which I usually print: the variable value, its type and the methods and attributes. Remember, in python any variable is an object and can have more or less complex methods (functions) and attributes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.warning(&#39;This script is totally useless&#39;)
-var1 = 1
-var2 = 0
-mylog.debug(&#39;Input values are %d %d&#39;, var1, var2)
-mylog.info(&#39;Starting complex calculation&#39;)
-result = var1 + var2
-mylog.info(&#39;Calculation completed, result is %d&#39;, result)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1575,13 +1604,13 @@ Please note that I am using <em>%d</em> as a number placeholder.<br />
 Let’s now generate an error.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.warning(&#39;This script is totally useless&#39;)
-var1 = 1
-var2 = &#39;0&#39;
-mylog.debug(&#39;Input values are %d %d&#39;, var1, var2)
-mylog.info(&#39;Starting complex calculation&#39;)
-result = var1 + var2
-mylog.info(&#39;Calculation completed, result is %d&#39;, result)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1606,14 +1635,14 @@ INFO:mylogger:Starting complex calculation
 <p>Instead of 0 we passed the equivalent string so we get an error. Let’s switch to <em>debug</em> level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.setLevel(logging.DEBUG)
-mylog.warning(&#39;This script is totally useless&#39;)
-var1 = 1
-var2 = &#39;0&#39;
-mylog.debug(&#39;Input values are %d %d&#39;, var1, var2)
-mylog.info(&#39;Starting complex calculation&#39;)
-result = var1 + var2
-mylog.info(&#39;Calculation completed, result is %d&#39;, result)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1696,13 +1725,13 @@ INFO:mylogger:Starting complex calculation
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.warning(&#39;This script is totally useless&#39;)
-var1 = 1
-var2 = &#39;0&#39;
-mylog.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
-mylog.info(&#39;Starting complex calculation&#39;)
-result = var1 + var2
-mylog.info(&#39;Calculation completed, result is %s&#39;, result)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">, their respective types are </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1730,19 +1759,19 @@ INFO:mylogger:Starting complex calculation
 <p>Let’s get back to a lower level of logging and run the script again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.setLevel(logging.INFO)
-mylog.warning(&#39;This script is totally useless&#39;)
-var1 = 1
-var2 = &#39;0&#39;
-mylog.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
-mylog.info(&#39;Starting complex calculation&#39;)
-try:
-    result = var1 + var2
-except: 
-    mylog.error(&#39;There is an issue adding %s and %s&#39;, var1, var2)
-mylog.warning(&#39;I am still going on!&#39;)
-# Last statement still print fine because we haven&#39;t deleted result
-mylog.info(&#39;Calculation completed, result is %s&#39;, result)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">, their respective types are </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="k">except</span><span class="p">:</span> 
+    <span class="n">mylog</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;There is an issue adding </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I am still going on!&#39;</span><span class="p">)</span>
+<span class="c1"># Last statement still print fine because we haven&#39;t deleted result</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1762,18 +1791,18 @@ The other common case is to simply use <strong>try/except</strong> as we did to 
 Note that because we are using <strong>try/except</strong> we cannot see the standard error message anymore, since this could be useful let’s see how we can get both.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylog.warning(&#39;This script is totally useless&#39;)
-var1 = 1
-var2 = &#39;0&#39;
-mylog.debug(&#39;Input values are %s %s, their respective types are %s and %s&#39;, var1, var2, type(var1), type(var2))
-mylog.info(&#39;Starting complex calculation&#39;)
-try:
-    result = var1 + var2
-except: 
-    mylog.error(&#39;There some issue with adding %s and %s&#39;, var1, var2, exc_info=True)
-    mylog.exception(&#39;There is some issue adding %s and %s&#39;, var1, var2)
-mylog.warning(&#39;I am still going on!&#39;)
-mylog.info(&#39;Calculation completed, result is %d&#39;, result)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This script is totally useless&#39;</span><span class="p">)</span>
+<span class="n">var1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Input values are </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">, their respective types are </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">var1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting complex calculation&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span>
+<span class="k">except</span><span class="p">:</span> 
+    <span class="n">mylog</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;There some issue with adding </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mylog</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;There is some issue adding </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;I am still going on!&#39;</span><span class="p">)</span>
+<span class="n">mylog</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculation completed, result is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1801,15 +1830,15 @@ INFO:mylogger:Calculation completed, result is 1
 Let’s look at a simple example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a = {&#39;key1&#39;: 1, &#39;key2&#39;: 2}
-print( dir(a)[-10:-5])
-print(&#39;pop is %s&#39;, type(a.pop))
-print(&#39;keys is %s&#39;, type(a.keys))  
-# There&#39;s a new way to print formatted string introduced in python3.6, which accept any expression in {} embedded in the string
-# then evaluates the expression before printing.
-# It doesn&#39;t work yet in notebooks, but it will if you run directly with python.
-# print(f&quot;pop is {type(a.pop)}&quot;)
-# print(f&quot;the sum of {var1} and {var2} is {var1 + var2}&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span> <span class="nb">dir</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pop is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;keys is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">))</span>  
+<span class="c1"># There&#39;s a new way to print formatted string introduced in python3.6, which accept any expression in {} embedded in the string</span>
+<span class="c1"># then evaluates the expression before printing.</span>
+<span class="c1"># It doesn&#39;t work yet in notebooks, but it will if you run directly with python.</span>
+<span class="c1"># print(f&quot;pop is {type(a.pop)}&quot;)</span>
+<span class="c1"># print(f&quot;the sum of {var1} and {var2} is {var1 + var2}&quot;)</span>
 </pre></div>
 </div>
 </div>
@@ -1838,7 +1867,7 @@ Let’s call the function using INFO as input level. Remember this is setting th
 You can use the basicConfig command only once in a session, if you try to run it twice it won’t do anything.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%script python3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
 # I am using this to run this as a separate script so we start with a clean enviroment!
 import logging
 # remember to uncomment these lines if you have want to set your own root logger
@@ -1891,7 +1920,7 @@ INFO:clever_logger:Code ends here!
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!cat mycode_debug.log
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>mycode_debug.log
 </pre></div>
 </div>
 </div>
@@ -1907,9 +1936,9 @@ Let’s try to run it again but passing DEBUG as level.<br>
 I’m running the same script directly from the command line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># the console output
-!python demo_log.py &gt; out.txt
-!cat out.txt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the console output</span>
+<span class="o">!</span>python<span class="w"> </span>demo_log.py<span class="w"> </span>&gt;<span class="w"> </span>out.txt
+<span class="o">!</span>cat<span class="w"> </span>out.txt
 </pre></div>
 </div>
 </div>
@@ -1923,8 +1952,8 @@ INFO:clever_logger:Code ends here!
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># the file output
-!cat mycode_debug.log
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the file output</span>
+<span class="o">!</span>cat<span class="w"> </span>mycode_debug.log
 </pre></div>
 </div>
 </div>
@@ -1941,7 +1970,7 @@ We couldn’t before because the logger level was setting the lowest possible le
 Luckily this can be easily fixed by setting the logger level to DEBUG, so now our file handler works as expected! The problem is that the debug messages are also showing on the console, if we want to set different levels we need to define <strong>stream handler</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%script python3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
 # I am using this to run this as a separate script so we start with a clean enviroment!
 
 import logging
@@ -1998,7 +2027,7 @@ Code ends here!
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!cat mycode_debug.log
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>mycode_debug.log
 </pre></div>
 </div>
 </div>

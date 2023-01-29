@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1401,7 +1430,7 @@ title="Print to PDF"
 <p>The local ERA-Interim replica is on NCI under the <code class="docutils literal notranslate"><span class="pre">ub4</span></code> project. Access to this project requires <a class="reference external" href="http://climate-cms.unsw.wikispaces.net/ERA+INTERIM">registration</a>. Most of the dataset is in GRIB format, but a large number of variables are also available in NetCDF format, which is what we’ll look at today.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! ls /g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/*.nc | head
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>ls<span class="w"> </span>/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/*.nc<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 </pre></div>
 </div>
 </div>
@@ -1423,7 +1452,7 @@ title="Print to PDF"
 <p>There are a lot of files, opening the dataset can be slow, both when we use <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>, as well as just opening the individual files:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
 </pre></div>
 </div>
 </div>
@@ -1438,8 +1467,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
-ds_mf = xarray.open_mfdataset(&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;, chunks={&#39;time&#39;: 1})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">ds_mf</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1452,9 +1481,9 @@ Wall time: 35 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
-from glob import glob
-ds_concat = [xarray.open_dataset(f) for f in sorted(glob(&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;))]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="n">ds_concat</span> <span class="o">=</span> <span class="p">[</span><span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="p">))]</span>
 </pre></div>
 </div>
 </div>
@@ -1472,8 +1501,8 @@ Wall time: 27.8 s
 <p>So how can we get the time axis of the full dataset without opening all of the files? One way is <code class="docutils literal notranslate"><span class="pre">pandas.date_range()</span></code>, which returns a series of datetimes between a start and end point, at a user definable frequency. This means for the <code class="docutils literal notranslate"><span class="pre">6hr</span></code> dataset we can get the times like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas
-pandas.date_range(&#39;1981-08-01&#39;, &#39;1981-08-03&#39;, freq = &#39;6H&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1981-08-01&#39;</span><span class="p">,</span> <span class="s1">&#39;1981-08-03&#39;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;6H&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1491,12 +1520,12 @@ pandas.date_range(&#39;1981-08-01&#39;, &#39;1981-08-03&#39;, freq = &#39;6H&#39
 <p>The ERA-Interim dataset is continuously updated, so we can’t just have a static start and end date for the dataset. We can get the start and end time of the dataset easily enough by opening the first and last files. We could also extract the dates from the filenames themselves, however that is slightly more complicated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fs = sorted(glob(&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;))
-d0 = xarray.open_dataset(fs[0])
-dn = xarray.open_dataset(fs[-1])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="p">))</span>
+<span class="n">d0</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dn</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-time = pandas.date_range(d0.time.values[0], dn.time.values[-1], freq = &#39;6H&#39;)
-print(time)
+<span class="n">time</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;6H&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1524,30 +1553,30 @@ print(time)
 <p>To do this, we need to create a function using the decorator <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code>. This tells Dask that we want to run the function lazily, so it only runs when we need the output. The delayed result then needs to be changed into an array, using the function <code class="docutils literal notranslate"><span class="pre">dask.array.from_delayed()</span></code>. In addition to the delayed result, we also need to say what the size of the array will be, and what type its values are. Since the delayed function hasn’t been run yet Dask has no way of telling this itself.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import dask
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
 
-# This function only gets run when dask needs to look at the result
-@dask.delayed
-def open_datefile_delayed(t0):
-    # I&#39;ve added a print() here to show when the delayed function gets run
-    print(&#39;open_datefile_delayed(%s)&#39;%t0)
+<span class="c1"># This function only gets run when dask needs to look at the result</span>
+<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+<span class="k">def</span> <span class="nf">open_datefile_delayed</span><span class="p">(</span><span class="n">t0</span><span class="p">):</span>
+    <span class="c1"># I&#39;ve added a print() here to show when the delayed function gets run</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;open_datefile_delayed(</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="o">%</span><span class="k">t0</span>)
     
-    # Otherwise it just opens and returns the file as a xarray.Dataset
-    return xarray.open_dataset(glob(&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_%04d%02d*.nc&#39;%(t0.year, t0.month))[0],
-                               chunks={&#39;time&#39;:1})
+    <span class="c1"># Otherwise it just opens and returns the file as a xarray.Dataset</span>
+    <span class="k">return</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_</span><span class="si">%04d%02d</span><span class="s1">*.nc&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">t0</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">t0</span><span class="o">.</span><span class="n">month</span><span class="p">))[</span><span class="mi">0</span><span class="p">],</span>
+                               <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
 
-def open_datefile(t0):
-    # Prepare to open the file
-    var_data = open_datefile_delayed(t0)[&#39;clt&#39;].data
+<span class="k">def</span> <span class="nf">open_datefile</span><span class="p">(</span><span class="n">t0</span><span class="p">):</span>
+    <span class="c1"># Prepare to open the file</span>
+    <span class="n">var_data</span> <span class="o">=</span> <span class="n">open_datefile_delayed</span><span class="p">(</span><span class="n">t0</span><span class="p">)[</span><span class="s1">&#39;clt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
     
-    # Get the size of the time axis - the number of 6 hour intervals between the beginning and end of the month
-    time = pandas.date_range(start = t0 - pandas.tseries.offsets.MonthBegin(),
-                             end = t0 + pandas.tseries.offsets.MonthBegin(),
-                             freq=&#39;6H&#39;,
-                             closed=&#39;left&#39;)
+    <span class="c1"># Get the size of the time axis - the number of 6 hour intervals between the beginning and end of the month</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">-</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
+                             <span class="n">end</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
+                             <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">,</span>
+                             <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
     
-    # Tell Dask the delayed function returns an array, and the size and type of that array
-    return dask.array.from_delayed(var_data, (time.size, d0.lev.size, d0.lat.size, d0.lon.size), d0[&#39;clt&#39;].dtype)
+    <span class="c1"># Tell Dask the delayed function returns an array, and the size and type of that array</span>
+    <span class="k">return</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">from_delayed</span><span class="p">(</span><span class="n">var_data</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d0</span><span class="o">.</span><span class="n">lev</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d0</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d0</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">d0</span><span class="p">[</span><span class="s1">&#39;clt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1555,11 +1584,11 @@ def open_datefile(t0):
 <p>We can then run this function on each month between the start and end date, and concatenate the results into a single Dask array</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>months = pandas.date_range(d0.time.values[0], dn.time.values[-1], freq = &#39;1M&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">months</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;1M&#39;</span><span class="p">)</span>
 
-# Run open_datefile on each month of the dataset - note that open_datefile_delayed() hasn&#39;t yet been run
-delayed_clt = dask.array.concatenate([open_datefile(t) for t in months], axis=0)
-delayed_clt
+<span class="c1"># Run open_datefile on each month of the dataset - note that open_datefile_delayed() hasn&#39;t yet been run</span>
+<span class="n">delayed_clt</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">open_datefile</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">months</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">delayed_clt</span>
 </pre></div>
 </div>
 </div>
@@ -1572,17 +1601,17 @@ delayed_clt
 <p>And then convert that dask array to an Xarray dataset by adding in all the coordinates - <code class="docutils literal notranslate"><span class="pre">time</span></code> is calculated using Pandas, the rest come from the first file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>clt = xarray.DataArray(delayed_clt,
-                 dims = [&#39;time&#39;,&#39;lev&#39;,&#39;lat&#39;,&#39;lon&#39;],
-                 coords = {
-                     &#39;time&#39;: pandas.date_range(d0.time.values[0], dn.time.values[-1], freq=&#39;6H&#39;),
-                     &#39;lat&#39;: d0.lat,
-                     &#39;lon&#39;: d0.lon,
-                     &#39;lev&#39;: d0.lev,
-                 },
-                name = d0.clt.name,
-                attrs = d0.clt.attrs)
-clt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clt</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">delayed_clt</span><span class="p">,</span>
+                 <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span>
+                 <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span>
+                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">),</span>
+                     <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="n">d0</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+                     <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="n">d0</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+                     <span class="s1">&#39;lev&#39;</span><span class="p">:</span> <span class="n">d0</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span>
+                 <span class="p">},</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">d0</span><span class="o">.</span><span class="n">clt</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">attrs</span> <span class="o">=</span> <span class="n">d0</span><span class="o">.</span><span class="n">clt</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+<span class="n">clt</span>
 </pre></div>
 </div>
 </div>
@@ -1608,17 +1637,17 @@ Attributes:
 <p>Finally we should make sure that the data from the delayed function is the same as opening the dataset using <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-clt.isel(lev=0, lat=0, lon=0).groupby(&#39;time.year&#39;).first(skipna=False).plot()
+<span class="n">clt</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1675,9 +1704,9 @@ Wall time: 7.71 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-ds_mf.clt.isel(lev=0, lat=0, lon=0).groupby(&#39;time.year&#39;).first(skipna=False).plot()
+<span class="n">ds_mf</span><span class="o">.</span><span class="n">clt</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1695,72 +1724,72 @@ Wall time: 7.41 s
 <p>Now we can put everything into a function. From here we’ll be able to create a general function for quickly accessing large datasets - this should appear in our <a class="reference external" href="https://github.com/coecms/coecms-util">coecms-util</a> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@dask.delayed
-def open_datefile_delayed(time, variable):
-    return xarray.open_dataset(glob(&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/%(var)s/%(var)s_6hrs_ERAI_historical_an-pl_%(Y)04d%(M)02d*.nc&#39;%
-                                    {&#39;var&#39;: variable, &#39;Y&#39;: time.year, &#39;M&#39;: time.month})[0],
-                               chunks={&#39;time&#39;:1})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+<span class="k">def</span> <span class="nf">open_datefile_delayed</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/</span><span class="si">%(var)s</span><span class="s1">/</span><span class="si">%(var)s</span><span class="s1">_6hrs_ERAI_historical_an-pl_</span><span class="si">%(Y)04d%(M)02d</span><span class="s1">*.nc&#39;</span><span class="o">%</span>
+                                    <span class="p">{</span><span class="s1">&#39;var&#39;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">month</span><span class="p">})[</span><span class="mi">0</span><span class="p">],</span>
+                               <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
 
-def open_datefile(time, variable, var0):
-    # Prepare to open the file
-    var_data = open_datefile_delayed(time, variable)[variable].data
+<span class="k">def</span> <span class="nf">open_datefile</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">var0</span><span class="p">):</span>
+    <span class="c1"># Prepare to open the file</span>
+    <span class="n">var_data</span> <span class="o">=</span> <span class="n">open_datefile_delayed</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">variable</span><span class="p">)[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
     
-    # Get the size of the time axis - the number of 6 hour intervals between the beginning and end of the month
-    time_axis = pandas.date_range(start = time - pandas.tseries.offsets.MonthBegin(),
-                             end = time + pandas.tseries.offsets.MonthBegin(),
-                             freq=&#39;6H&#39;,
-                             closed=&#39;left&#39;)
+    <span class="c1"># Get the size of the time axis - the number of 6 hour intervals between the beginning and end of the month</span>
+    <span class="n">time_axis</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span> <span class="o">-</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
+                             <span class="n">end</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
+                             <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">,</span>
+                             <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
     
-    # Tell Dask the delayed function returns an array, and the size and type of that array
-    return dask.array.from_delayed(var_data, (time_axis.size, var0.lev.size, var0.lat.size, var0.lon.size), var0.dtype)
+    <span class="c1"># Tell Dask the delayed function returns an array, and the size and type of that array</span>
+    <span class="k">return</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">from_delayed</span><span class="p">(</span><span class="n">var_data</span><span class="p">,</span> <span class="p">(</span><span class="n">time_axis</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">var0</span><span class="o">.</span><span class="n">lev</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">var0</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">var0</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">var0</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-def open_erai(variable):
-    files = sorted(glob(&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/%(var)s/%(var)s_6hrs_ERAI_historical_an-pl_*.nc&#39;%
-                 {&#39;var&#39;: variable}))
+<span class="k">def</span> <span class="nf">open_erai</span><span class="p">(</span><span class="n">variable</span><span class="p">):</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/</span><span class="si">%(var)s</span><span class="s1">/</span><span class="si">%(var)s</span><span class="s1">_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="o">%</span>
+                 <span class="p">{</span><span class="s1">&#39;var&#39;</span><span class="p">:</span> <span class="n">variable</span><span class="p">}))</span>
     
-    # First and last dataset
-    ds0 = xarray.open_dataset(files[0])
-    dsn = xarray.open_dataset(files[-1])
+    <span class="c1"># First and last dataset</span>
+    <span class="n">ds0</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">dsn</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     
-    # Full time axis
-    time = pandas.date_range(ds0.time.values[0], dsn.time.values[-1], freq=&#39;6H&#39;)
+    <span class="c1"># Full time axis</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">ds0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dsn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">)</span>
     
-    # First file&#39;s variable (for horizontal/vertical coordinates)
-    var0 = ds0[variable]
+    <span class="c1"># First file&#39;s variable (for horizontal/vertical coordinates)</span>
+    <span class="n">var0</span> <span class="o">=</span> <span class="n">ds0</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
     
-    # Time of each file in the series (one per month)
-    months = pandas.date_range(ds0.time.values[0], dsn.time.values[-1], freq=&#39;1M&#39;)
+    <span class="c1"># Time of each file in the series (one per month)</span>
+    <span class="n">months</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">ds0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dsn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1M&#39;</span><span class="p">)</span>
     
-    # Delayed opening of all the files using Dask
-    dask_var = dask.array.concatenate([open_datefile(t, variable, var0) for t in months], axis=0)
+    <span class="c1"># Delayed opening of all the files using Dask</span>
+    <span class="n">dask_var</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">open_datefile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">var0</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">months</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     
-    # Convert to xarray
-    var = xarray.DataArray(dask_var,
-                          name = var0.name,
-                          attrs = var0.attrs,
-                          dims = [&#39;time&#39;, &#39;lev&#39;, &#39;lat&#39;, &#39;lon&#39;],
-                          coords = {
-                              &#39;time&#39;: time,
-                              &#39;lev&#39;: var0.lev,
-                              &#39;lat&#39;: var0.lat,
-                              &#39;lon&#39;: var0.lon,
-                          })
+    <span class="c1"># Convert to xarray</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dask_var</span><span class="p">,</span>
+                          <span class="n">name</span> <span class="o">=</span> <span class="n">var0</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                          <span class="n">attrs</span> <span class="o">=</span> <span class="n">var0</span><span class="o">.</span><span class="n">attrs</span><span class="p">,</span>
+                          <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">],</span>
+                          <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span>
+                              <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+                              <span class="s1">&#39;lev&#39;</span><span class="p">:</span> <span class="n">var0</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span>
+                              <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="n">var0</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+                              <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="n">var0</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+                          <span class="p">})</span>
     
-    # Cleanup
-    ds0.close()
-    dsn.close()
+    <span class="c1"># Cleanup</span>
+    <span class="n">ds0</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">dsn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     
-    return var
+    <span class="k">return</span> <span class="n">var</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-z = open_erai(&#39;z&#39;)
-z.sel(time=&#39;20170615T1800&#39;).isel(lev=0).plot()
+<span class="n">z</span> <span class="o">=</span> <span class="n">open_erai</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">z</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;20170615T1800&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

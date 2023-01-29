@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1400,19 +1429,19 @@ title="Print to PDF"
 <p>First, we’re loading some python modules</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Numpy and xarray are always necessary
-import numpy as np
-import xarray as xr
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numpy and xarray are always necessary</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 
-# pyplot needed to plot the dataset, but animation only needed much further down.
-from matplotlib import pyplot as plt, animation
-%matplotlib inline
+<span class="c1"># pyplot needed to plot the dataset, but animation only needed much further down.</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span><span class="p">,</span> <span class="n">animation</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 
-# This is needed to display graphics calculated outside of jupyter notebook
-from IPython.display import HTML, display
+<span class="c1"># This is needed to display graphics calculated outside of jupyter notebook</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
 
-# Also, in case we haven&#39;t created it yet, make sure that we have a directory for images and videos
-! test -d ../images/Python_Animation &amp;&amp; rm -rf ../images/Python_Animation/* || mkdir -p ../images/Python_Animation
+<span class="c1"># Also, in case we haven&#39;t created it yet, make sure that we have a directory for images and videos</span>
+<span class="o">!</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span>-d<span class="w"> </span>../images/Python_Animation<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>../images/Python_Animation/*<span class="w"> </span><span class="o">||</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>../images/Python_Animation
 </pre></div>
 </div>
 </div>
@@ -1420,8 +1449,8 @@ from IPython.display import HTML, display
 <p>In this case, we’ll be using the North-American Air Temperature data provided by xarray in the github directory <a class="reference external" href="https://github.com/pydata/xarray-data">https://github.com/pydata/xarray-data</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = xr.tutorial.open_dataset(&#39;air_temperature&#39;)
-ds
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">tutorial</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;air_temperature&#39;</span><span class="p">)</span>
+<span class="n">ds</span>
 </pre></div>
 </div>
 </div>
@@ -1447,10 +1476,10 @@ Attributes:
 <p>We open the dataset and select the temperature field, change it to Celsius, and give it a shorter “long name”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tas=ds.air
-tas = tas - 273.15
-tas.attrs[&#39;units&#39;] = &#39;degC&#39;
-tas.attrs[&#39;long_name&#39;] = &quot;Air Temperature&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tas</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">air</span>
+<span class="n">tas</span> <span class="o">=</span> <span class="n">tas</span> <span class="o">-</span> <span class="mf">273.15</span>
+<span class="n">tas</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;degC&#39;</span>
+<span class="n">tas</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;long_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Air Temperature&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1459,10 +1488,10 @@ tas.attrs[&#39;long_name&#39;] = &quot;Air Temperature&quot;
 <p>But for a start, we’re first looking at the initial images to see what we get:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for i in range(5):
-    tas[i,:,:].plot(figsize=(6,4))
-    plt.show()
-    plt.close()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">tas</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1477,11 +1506,11 @@ tas.attrs[&#39;long_name&#39;] = &quot;Air Temperature&quot;
 <p>The first thing we notice is the title. At each frame for midnight, it shows only the date, but any other time, it also adds the hours, minutes, and seconds. This makes the title quite jittery, and will not look good in the animation. We need to set the title manually.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for i in range(5):
-    tas[i,:,:].plot(figsize=(6,4))
-    plt.title(&quot;Time = &quot; + str(tas.coords[&#39;time&#39;].values[i])[:13])
-    plt.show()
-    plt.close()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">tas</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[:</span><span class="mi">13</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1499,13 +1528,13 @@ tas.attrs[&#39;long_name&#39;] = &quot;Air Temperature&quot;
 <p>If we want to create an animated Gif, we’ll start by creating the frames and save them to PNG files independently.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for i in range(40):
-    tas[i,:,:].plot(
-        figsize = (12,6)      # We&#39;ll make it a bit bigger
-    )
-    plt.title(&quot;Time = &quot; + str(tas.coords[&#39;time&#39;].values[i])[:13])
-    plt.savefig(f&quot;../images/Python_Animation/Python_Animation_01_frame_{i:04}.png&quot;)
-    plt.close()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">tas</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>      <span class="c1"># We&#39;ll make it a bit bigger</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[:</span><span class="mi">13</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../images/Python_Animation/Python_Animation_01_frame_</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">04</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1515,7 +1544,7 @@ tas.attrs[&#39;long_name&#39;] = &quot;Air Temperature&quot;
 <p>We can see the files with the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!ls ../images/Python_Animation/
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>../images/Python_Animation/
 </pre></div>
 </div>
 </div>
@@ -1547,8 +1576,8 @@ Python_Animation_01_frame_0019.png Python_Animation_01_frame_0039.png
 <p>The easiest way to convert this to an animated gif is to use the command line tool <code class="docutils literal notranslate"><span class="pre">convert</span></code>, which is part of “ImageMagick”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!convert ../images/Python_Animation/Python_Animation_01_frame*png ../images/Python_Animation/Python_Animation_01.gif
-display(HTML(&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_01.gif&#39; /&gt;&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>convert<span class="w"> </span>../images/Python_Animation/Python_Animation_01_frame*png<span class="w"> </span>../images/Python_Animation/Python_Animation_01.gif
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_01.gif&#39; /&gt;&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1561,22 +1590,22 @@ display(HTML(&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_
 <p>In the above animation, we see that the colorbar at the side is flickering widely. The ticks are always going from -40 to 40, but they are not stationary at all. So let’s fix them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for i in range(40):
-    tas[i,:,:].plot(
-        figsize = (12,6),
-        vmin=-40, vmax=40  # Minimum and Maximum values
-    )
-    plt.title(&quot;Time = &quot; + str(tas.coords[&#39;time&#39;].values[i])[:13])
-    plt.savefig(f&quot;../images/Python_Animation/Python_Animation_02_frame_{i:04}.png&quot;)
-    plt.close()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">tas</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
+        <span class="n">vmin</span><span class="o">=-</span><span class="mi">40</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">40</span>  <span class="c1"># Minimum and Maximum values</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[:</span><span class="mi">13</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../images/Python_Animation/Python_Animation_02_frame_</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">04</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!convert ../images/Python_Animation/Python_Animation_02_frame*.png ../images/Python_Animation/Python_Animation_02.gif
-display(HTML(&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_02.gif&#39; /&gt;&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>convert<span class="w"> </span>../images/Python_Animation/Python_Animation_02_frame*.png<span class="w"> </span>../images/Python_Animation/Python_Animation_02.gif
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_02.gif&#39; /&gt;&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1587,27 +1616,27 @@ display(HTML(&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_
 <p>Now we could change the minimum value, but for this example, I’ll be using the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> to disable these arrows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for i in range(40):
-    tas[i,:,:].plot(
-        figsize = (12,6),
-        vmin=-40, vmax=40,
-        cmap=&#39;coolwarm&#39;,    # Change the colormap back to &#39;bwr&#39;
-        cbar_kwargs={
-            &#39;extend&#39;:&#39;neither&#39; # Don&#39;t extend the colorbar in either direction. Other possibilities
-                               # would be &#39;both&#39;, &#39;min&#39;, or &#39;max&#39;
-        }
-    )
-    plt.title(&quot;Time = &quot; + str(tas.coords[&#39;time&#39;].values[i])[:13])
-    plt.savefig(f&quot;../images/Python_Animation/Python_Animation_03_frame_{i:04}.png&quot;)
-    plt.close()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">tas</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
+        <span class="n">vmin</span><span class="o">=-</span><span class="mi">40</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span>    <span class="c1"># Change the colormap back to &#39;bwr&#39;</span>
+        <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;extend&#39;</span><span class="p">:</span><span class="s1">&#39;neither&#39;</span> <span class="c1"># Don&#39;t extend the colorbar in either direction. Other possibilities</span>
+                               <span class="c1"># would be &#39;both&#39;, &#39;min&#39;, or &#39;max&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[:</span><span class="mi">13</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../images/Python_Animation/Python_Animation_03_frame_</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">04</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!convert ../images/Python_Animation/Python_Animation_03_frame*.png ../images/Python_Animation/Python_Animation_03.gif
-display(HTML(&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_03.gif&#39; /&gt;&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>convert<span class="w"> </span>../images/Python_Animation/Python_Animation_03_frame*.png<span class="w"> </span>../images/Python_Animation/Python_Animation_03.gif
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_03.gif&#39; /&gt;&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1623,31 +1652,31 @@ display(HTML(&quot;&lt;img src=&#39;../images/Python_Animation/Python_Animation_
 <p>This is still a bit confusing even to me, but it seems as if this part doesn’t work if we don’t execute all the code in a single cell.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get a handle on the figure and the axes
-fig, ax = plt.subplots(figsize=(12,6))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a handle on the figure and the axes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 
-# Plot the initial frame. 
-cax = tas[0,:,:].plot(
-    add_colorbar=True,
-    cmap=&#39;coolwarm&#39;,
-    vmin=-40, vmax=40,
-    cbar_kwargs={
-        &#39;extend&#39;:&#39;neither&#39;
-    }
-)
+<span class="c1"># Plot the initial frame. </span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">tas</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">40</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+    <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;extend&#39;</span><span class="p">:</span><span class="s1">&#39;neither&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 
-# Next we need to create a function that updates the values for the colormesh, as well as the title.
-def animate(frame):
-    cax.set_array(tas[frame,:,:].values.flatten())
-    ax.set_title(&quot;Time = &quot; + str(tas.coords[&#39;time&#39;].values[frame])[:13])
+<span class="c1"># Next we need to create a function that updates the values for the colormesh, as well as the title.</span>
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+    <span class="n">cax</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">tas</span><span class="p">[</span><span class="n">frame</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Time = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">frame</span><span class="p">])[:</span><span class="mi">13</span><span class="p">])</span>
 
-# Finally, we use the animation module to create the animation.
-ani = animation.FuncAnimation(
-    fig,             # figure
-    animate,         # name of the function above
-    frames=40,       # Could also be iterable or list
-    interval=200     # ms between frames
-)
+<span class="c1"># Finally, we use the animation module to create the animation.</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span>             <span class="c1"># figure</span>
+    <span class="n">animate</span><span class="p">,</span>         <span class="c1"># name of the function above</span>
+    <span class="n">frames</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>       <span class="c1"># Could also be iterable or list</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">200</span>     <span class="c1"># ms between frames</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1658,7 +1687,7 @@ ani = animation.FuncAnimation(
 <p>Now that we have the animation object, we can either display it as a JavaScript App:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>HTML(ani.to_jshtml())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -19502,8 +19531,8 @@ gDD5X+5EoSpAxufrAAAAAElFTkSuQmCC\
 <p>Or we can save it as, for example, an mp4:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ani.save(&#39;../images/Python_Animation/Python_Animation_04.mp4&#39;)
-display(HTML(&quot;&lt;video controls&gt;&lt;source src=&#39;../images/Python_Animation/Python_Animation_04.mp4&#39; type=&#39;video/mp4&#39;&gt;&lt;/video&gt;&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;../images/Python_Animation/Python_Animation_04.mp4&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;video controls&gt;&lt;source src=&#39;../images/Python_Animation/Python_Animation_04.mp4&#39; type=&#39;video/mp4&#39;&gt;&lt;/video&gt;&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2023-01-27-using-symlinks-home
     /posts/2022-12-05-building-on-gadi
     /posts/2022-11-10-jobfs
     /posts/2022-10-26-Data-Quarantine
     /posts/2022-04-26-storage-where-what-why-how
-    /posts/2022-03-15-reading-nonstandard-data
     
 
 .. toctree::
@@ -43,6 +43,7 @@
     :maxdepth: 2
     :hidden:
 
+    /contents/year-2023
     /contents/year-2022
     /contents/year-2021
     /contents/year-2020

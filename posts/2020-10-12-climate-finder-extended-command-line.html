@@ -120,6 +120,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+   How to stop temporary files filling up your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     /home
+    </span>
+   </code>
+   directory on Gadi
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="2022-12-05-building-on-gadi.html">
    Using Gadi’s software environment to build your applications
   </a>
@@ -137,11 +148,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">
    Storage - where, what, why and how?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">
-   An example of reading non-standard data using pandas and xarray
   </a>
  </li>
 </ul>
@@ -841,11 +847,34 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../contents/year-2022.html">
-   2022
+  <a class="reference internal" href="../contents/year-2023.html">
+   2023
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
   <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2023-01-27-using-symlinks-home.html">
+     How to stop temporary files filling up your
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       /home
+      </span>
+     </code>
+     directory on Gadi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contents/year-2022.html">
+   2022
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -881,8 +910,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2021.html">
    2021
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
-  <label for="toctree-checkbox-23">
+  <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+  <label for="toctree-checkbox-24">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -933,8 +962,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2020.html">
    2020
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
-  <label for="toctree-checkbox-24">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+  <label for="toctree-checkbox-25">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -970,8 +999,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2019.html">
    2019
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
-  <label for="toctree-checkbox-25">
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1017,8 +1046,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../contents/year-2018.html">
    2018
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
-  <label for="toctree-checkbox-26">
+  <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+  <label for="toctree-checkbox-27">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1478,9 +1507,9 @@ module load conda/analysis3</p>
 You need to be a member of hh5 to use the modules and of one of the CMIP projects: oi10,rr3, fs38, al33 to access the data and the clef database. 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run this if you haven&#39;t done so already in the terminal
-#!module use /g/data3/hh5/public/modules
-#!module load conda/analysis3-unstable
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run this if you haven&#39;t done so already in the terminal</span>
+<span class="c1">#!module use /g/data3/hh5/public/modules</span>
+<span class="c1">#!module load conda/analysis3-unstable</span>
 </pre></div>
 </div>
 </div>
@@ -1491,7 +1520,7 @@ You need to be a member of hh5 to use the modules and of one of the CMIP project
 This currently works only with the <code class="docutils literal notranslate"><span class="pre">--local</span></code> and <code class="docutils literal notranslate"><span class="pre">--remote</span></code> option, it doesn’t yet work for the standard search, which is basically a combination of the two.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip5 -v pr -v tas -e piControl  -en r1i1p1 -t Amon --csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--local<span class="w"> </span>cmip5<span class="w"> </span>-v<span class="w"> </span>pr<span class="w"> </span>-v<span class="w"> </span>tas<span class="w"> </span>-e<span class="w"> </span>piControl<span class="w">  </span>-en<span class="w"> </span>r1i1p1<span class="w"> </span>-t<span class="w"> </span>Amon<span class="w"> </span>--csv
 </pre></div>
 </div>
 </div>
@@ -1623,7 +1652,7 @@ This currently works only with the <code class="docutils literal notranslate"><s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!head -n 4 CMIP5_query.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>CMIP5_query.csv
 </pre></div>
 </div>
 </div>
@@ -1641,7 +1670,7 @@ I am hiding the cell output but the tool still prints the results on the display
 The following example demonstrate how <code class="docutils literal notranslate"><span class="pre">--csv</span></code> works also for remote CMIP6 queries and with the flag <code class="docutils literal notranslate"><span class="pre">--and</span></code>. The <code class="docutils literal notranslate"><span class="pre">--and</span></code> flag allows for more complex filtering of the data and later we will see how it works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --remote cmip6 -v pr -v mrso -e piControl  -mi r1i1p1f1 --frequency mon --and variable_id --csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--remote<span class="w"> </span>cmip6<span class="w"> </span>-v<span class="w"> </span>pr<span class="w"> </span>-v<span class="w"> </span>mrso<span class="w"> </span>-e<span class="w"> </span>piControl<span class="w">  </span>-mi<span class="w"> </span>r1i1p1f1<span class="w"> </span>--frequency<span class="w"> </span>mon<span class="w"> </span>--and<span class="w"> </span>variable_id<span class="w"> </span>--csv
 </pre></div>
 </div>
 </div>
@@ -1689,7 +1718,7 @@ TaiESM1 / r1i1p1f1 versions: v20200211, v20200302
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!head -n 4 CMIP6_query.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>CMIP6_query.csv
 </pre></div>
 </div>
 </div>
@@ -1715,7 +1744,7 @@ Currently it prints the following:</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip5 -v pr -e rcp85 -t Amon --stats
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--local<span class="w"> </span>cmip5<span class="w"> </span>-v<span class="w"> </span>pr<span class="w"> </span>-e<span class="w"> </span>rcp85<span class="w"> </span>-t<span class="w"> </span>Amon<span class="w"> </span>--stats
 </pre></div>
 </div>
 </div>
@@ -1795,7 +1824,7 @@ A total of 100 unique model-member combinations are available.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip5 -v cli -e rcp85 -e rcp45 -e rcp26 -t Amon --and experiment --stats
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--local<span class="w"> </span>cmip5<span class="w"> </span>-v<span class="w"> </span>cli<span class="w"> </span>-e<span class="w"> </span>rcp85<span class="w"> </span>-e<span class="w"> </span>rcp45<span class="w"> </span>-e<span class="w"> </span>rcp26<span class="w"> </span>-t<span class="w"> </span>Amon<span class="w"> </span>--and<span class="w"> </span>experiment<span class="w"> </span>--stats
 </pre></div>
 </div>
 </div>
@@ -1885,7 +1914,7 @@ Let’s say that you want to find all the CMIP6 models that have both daily prec
 With the <code class="docutils literal notranslate"><span class="pre">--and</span></code> option you can query for both variables at the same time and specify you want only the models, ensemble pairs that have both of them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip6 -v pr -v mrso -e piControl  -mi r1i1p1f1 --frequency mon --and variable_id
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--local<span class="w"> </span>cmip6<span class="w"> </span>-v<span class="w"> </span>pr<span class="w"> </span>-v<span class="w"> </span>mrso<span class="w"> </span>-e<span class="w"> </span>piControl<span class="w">  </span>-mi<span class="w"> </span>r1i1p1f1<span class="w"> </span>--frequency<span class="w"> </span>mon<span class="w"> </span>--and<span class="w"> </span>variable_id
 </pre></div>
 </div>
 </div>
@@ -1941,7 +1970,7 @@ The same will work for <code class="docutils literal notranslate"><span class="p
 NB the attributes names can be different for different datasets, in this case <code class="docutils literal notranslate"><span class="pre">variable</span></code> for CMIP5 and <code class="docutils literal notranslate"><span class="pre">variable_id</span></code> for CMIP6.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --remote cmip5 -v tasmin -v tasmax -e rcp26 -t day --and variable
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--remote<span class="w"> </span>cmip5<span class="w"> </span>-v<span class="w"> </span>tasmin<span class="w"> </span>-v<span class="w"> </span>tasmax<span class="w"> </span>-e<span class="w"> </span>rcp26<span class="w"> </span>-t<span class="w"> </span>day<span class="w"> </span>--and<span class="w"> </span>variable
 </pre></div>
 </div>
 </div>
@@ -1999,7 +2028,7 @@ NorESM1-M / r1i1p1 versions: v20110901
 Let’s add another experiment as a constraint to the previous CMIP6 query and see what happens.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip6 -v pr -v mrso -e piControl -e ssp585 -mi r1i1p1f1 --frequency mon --and variable_id --and experiment_id
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--local<span class="w"> </span>cmip6<span class="w"> </span>-v<span class="w"> </span>pr<span class="w"> </span>-v<span class="w"> </span>mrso<span class="w"> </span>-e<span class="w"> </span>piControl<span class="w"> </span>-e<span class="w"> </span>ssp585<span class="w"> </span>-mi<span class="w"> </span>r1i1p1f1<span class="w"> </span>--frequency<span class="w"> </span>mon<span class="w"> </span>--and<span class="w"> </span>variable_id<span class="w"> </span>--and<span class="w"> </span>experiment_id
 </pre></div>
 </div>
 </div>
@@ -2045,7 +2074,7 @@ These differences reflect the fact that the local query uses the file attributes
 Let’s look at an example, if I want to get all the rcps experiments and historical I might be tempted to pass them as constraints in the same query:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 -m CMCC-CM -e historical --experiment_family RCP -t Omon -v tos -en r1i1p1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>cmip5<span class="w"> </span>-m<span class="w"> </span>CMCC-CM<span class="w"> </span>-e<span class="w"> </span>historical<span class="w"> </span>--experiment_family<span class="w"> </span>RCP<span class="w"> </span>-t<span class="w"> </span>Omon<span class="w"> </span>-v<span class="w"> </span>tos<span class="w"> </span>-en<span class="w"> </span>r1i1p1
 </pre></div>
 </div>
 </div>
@@ -2058,7 +2087,7 @@ Let’s look at an example, if I want to get all the rcps experiments and histor
 <p>The ESGF query uses an <em>AND</em> operator for all the constraints we pass. We couldn’t find any matches because both the experiment and experiment_family constraints have to be satisfied. Historical is not part of the RCP family and so no results are returned. Similarly if we pass rcp45 as experiment as well as the family RCP we will only get the rcp45 results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef cmip5 -m CMCC-CM -e rcp45 --experiment_family RCP -t Omon -v tos -en r1i1p1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>cmip5<span class="w"> </span>-m<span class="w"> </span>CMCC-CM<span class="w"> </span>-e<span class="w"> </span>rcp45<span class="w"> </span>--experiment_family<span class="w"> </span>RCP<span class="w"> </span>-t<span class="w"> </span>Omon<span class="w"> </span>-v<span class="w"> </span>tos<span class="w"> </span>-en<span class="w"> </span>r1i1p1
 </pre></div>
 </div>
 </div>
@@ -2074,7 +2103,7 @@ Everything available on ESGF is also available locally
 <p>Finally, it is possible to use <code class="docutils literal notranslate"><span class="pre">--experiment_family</span></code> also in the local search:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --local cmip5 -m CMCC-CM --experiment_family RCP -t Omon -v tos -en r1i1p1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--local<span class="w"> </span>cmip5<span class="w"> </span>-m<span class="w"> </span>CMCC-CM<span class="w"> </span>--experiment_family<span class="w"> </span>RCP<span class="w"> </span>-t<span class="w"> </span>Omon<span class="w"> </span>-v<span class="w"> </span>tos<span class="w"> </span>-en<span class="w"> </span>r1i1p1
 </pre></div>
 </div>
 </div>
@@ -2095,7 +2124,7 @@ The <code class="docutils literal notranslate"><span class="pre">--cite</span></
 As for the other flags illustrated above, this option works when you select either <code class="docutils literal notranslate"><span class="pre">--local</span></code> or <code class="docutils literal notranslate"><span class="pre">--remote</span></code> queries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!clef --remote cmip6 -v clt  -e historical -t day  -mi r1i1p1f1 --cite
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>clef<span class="w"> </span>--remote<span class="w"> </span>cmip6<span class="w"> </span>-v<span class="w"> </span>clt<span class="w">  </span>-e<span class="w"> </span>historical<span class="w"> </span>-t<span class="w"> </span>day<span class="w">  </span>-mi<span class="w"> </span>r1i1p1f1<span class="w"> </span>--cite
 </pre></div>
 </div>
 </div>
@@ -2142,7 +2171,7 @@ CMIP6.CMIP.SNU.SAM0-UNICON.historical.r1i1p1f1.day.clt.gn.v20190323
 <p>The citations are listed in a cmip_citations.txt file in the current directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! head -n 4 cmip_citations.txt 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>cmip_citations.txt<span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -2159,8 +2188,8 @@ Zhang, Jie; Wu, Tongwen; Shi, Xueli; Zhang, Fang; Li, Jianglong; Chu, Min; Liu, 
 See below for an example of this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! clef --local cmip6 --model TaiESM1 --experiment ssp585 --variable pr --table Amon --cite
-!head -n 4 cmip_citations.txt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>clef<span class="w"> </span>--local<span class="w"> </span>cmip6<span class="w"> </span>--model<span class="w"> </span>TaiESM1<span class="w"> </span>--experiment<span class="w"> </span>ssp585<span class="w"> </span>--variable<span class="w"> </span>pr<span class="w"> </span>--table<span class="w"> </span>Amon<span class="w"> </span>--cite
+<span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>cmip_citations.txt
 </pre></div>
 </div>
 </div>
