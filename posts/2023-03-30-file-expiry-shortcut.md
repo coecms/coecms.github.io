@@ -22,7 +22,7 @@ $ nci-file-expiry recover 856bf663-8a4c-44bd-a1cf-8aeed3bbf639 /scratch/v45/dr42
 ```
 and `nci-file-expiry batch-recover` expects a file.
 
-Fortunately, with a bit of `bash` trickery, it is possible to feed the output of one command to another _as if it were a file_. In this case, we can feed `nci-file-expiry list-quarantine` output back in to `nci-file-expiry batch-recover`. Lets imagine we're looking for files that match the pattern `*.ice_daily.nc`. Here is the command that does this:
+Fortunately, with a bit of `bash` trickery, it is possible to feed the output of one command to another _as if it were a file_. In this case, we can feed `nci-file-expiry list-quarantine` output back in to `nci-file-expiry batch-recover`. Let's imagine we're looking for files that match the pattern `*.ice_daily.nc`. Here is the command that does this:
 ```
 $ nci-file-expiry batch-recover <( nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done )
 ```
