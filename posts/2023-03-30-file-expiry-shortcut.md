@@ -68,4 +68,11 @@ And when you log into Gadi again you'll be able to run:
 ```
 $ recover_pattern .ice_daily.nc
 ```
-for the same effect.
+for the same effect. As the function argument is passed straight to `grep`, regular expressions can be used to search for files, e.g. recover all `.ice_daily.nc` files starting with 2020, 2021 and 2022
+```
+$ recover_pattern "202[012].\+ice_daily.nc"
+```
+note the pattern must be wrapped in quotes in this case. It can also be used to recover files on a specific path. For instance, to recover files in your current directory:
+```
+$ recover_pattern "${PWD}"
+```
