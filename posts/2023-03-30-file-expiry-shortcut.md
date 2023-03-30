@@ -52,7 +52,7 @@ Process substitution enables a few neat tricks. For instance, if you need to `di
 ```
 $ diff <( command_1 ) <( command_2 )
 ```
-You can also add an additional `<` operator to redirect this output to `stdin`. The original version of this command posted on slack and the ACCESS-Hive used a this to get the output of `list-quarantine` into the loop.
+You can also add an additional `<` operator to redirect this output to `stdin`. The original version of this command posted on slack and the ACCESS-Hive used this to get the output of `list-quarantine` into the loop.
 ```
 while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry list-quarantined | grep .ice_daily.nc )
 ```
