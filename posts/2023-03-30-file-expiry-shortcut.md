@@ -24,19 +24,19 @@ and `nci-file-expiry batch-recover` expects a file.
 
 Fortunately, with a bit of `bash` trickery, it is possible to feed the output of one command to another _as if it were a file_. In this case, we can feed `nci-file-expiry list-quarantine` output back in to `nci-file-expiry batch-recover`. Lets imagine we're looking for files that match the pattern `*.ice_daily.nc`. Here is the command that does this:
 ```
-$ nci-file-expiry batch-recover <( while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry list-quarantined | grep .ice_daily.nc ) )
+$ nci-file-expiry batch-recover <( nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done )
 ```
-Its fairly complicated, so lets break it down back-to-front. At the back, we have
+Its fairly complicated, so lets break it down, starting with the commands in brackets:
 ```
-< <( nci-file-expiry list-quarantined | grep .ice_daily.nc )
+nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done
 ```
-The piping output to `grep` part is pretty standard, but by wrapping the command in `< <( ... )` the shell is being told to redirect the output of the command as input to the thing on the left. The "thing on the left" is this loop:
+The piping output to `grep` part is pretty standard, but whats less common is piping the results into a loop afterwards. `bash` considers the entire loop construct as a single command, so you can pipe command output or redirect files into one as you would any other command. The loop itself:
 ```
 while read uuid a b c d path; do echo $uuid $path; done
 ```
-`list-quarantined` output has 6 columns, but `batch-recover` is expecting a file with 2 columns, which correspond to the first and last columns of the `list-quarantined` output. This loop reads in the `grep`'d `list-quarantined` output line-by-line, saves each column into a different variable, and `echo`'s the ones we need. The rest are discarded. So running those two commands in conjunction with each other gives us this:
+`list-quarantined` output has 6 columns, but `batch-recover` is expecting a file with 2 columns, which correspond to the first and last columns of the `list-quarantined` output. This loop reads in the `grep`'d `list-quarantined` output line-by-line, saves each column into a different variable, and `echo`'s the ones we need. The rest are discarded. So running those commands connected with pipes gives us this:
 ```
-$ while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry list-quarantined | grep .ice_daily.nc )
+$ nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done
 813ff7b2-381b-430b-a423-f32b449bf710 /scratch/v45/dr4292/20200222.ice_daily.nc
 9aa317e3-7763-4af5-a19b-d07a7d6c2d90 /scratch/v45/dr4292/20200223.ice_daily.nc
 28b0d00c-e9fc-4e5e-adae-39a817d0fb51 /scratch/v45/dr4292/20200224.ice_daily.nc
@@ -46,18 +46,22 @@ $ while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry l
 ```{note}
 There are many ways to orgainse columnated data in `bash`. The `while read echo` variant above is my preference. If you prefer piping to `awk` or `cut`, substitute that instead. As long as the output looks like the output above, the next bit will work.
 ```
-To turn this into a "file" that `batch-recover` is happy to deal with, we can take advantage of [process substitution](https://en.wikipedia.org/wiki/Process_substitution). This tricks `batch-recover` into treating the output of the above command it as if it were a file, even though nothing is ever written to disk. So by wrapping the above command in `<( ... )`, its output becomes, for all intents and purposes, the contents of a file. You'll note we've also used this in the first step as well, but with an additional `<` to turn it into a redirect operation.
+To turn this into a "file" that `batch-recover` is happy to deal with, we can take advantage of [process substitution](https://en.wikipedia.org/wiki/Process_substitution). This tricks `batch-recover` into treating the output of the above command it as if it were a file, even though nothing is ever written to disk. So by wrapping the above command in `<( ... )`, its output becomes, for all intents and purposes, the contents of a file.
 
 Process substitution enables a few neat tricks. For instance, if you need to `diff` the output of two commands, you do not need to write the output to temporary files first, you can simply run:
 ```
 $ diff <( command_1 ) <( command_2 )
 ```
-There are restrictions, however. The `seek` instruction cannot be used on these "files", meaning that they can't be used in place of structured data (e.g. netCDF files). For simple things like this though, that isn't relevant.
+You can also add an additional `<` operator to redirect this output to `stdin`. The original version of this command posted on slack and the ACCESS-Hive used a this to get the output of `list-quarantine` into the loop.
+```
+while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry list-quarantined | grep .ice_daily.nc )
+```
+There are restrictions on using process substitution, however. The `seek` instruction cannot be used on these "files", meaning that they can't be used in place of structured data (e.g. netCDF). For simple things like this though, that isn't relevant.
 
 This is a lot to remember, so we recommend placing the following in your `~/.bashrc` file:
 ```
 function recover_pattern () {
-    nci-file-expiry batch-recover <( while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry list-quarantined | grep "${1}" ) )
+    nci-file-expiry batch-recover <( nci-file-expiry list-quarantined | grep "${1}" | while read uuid a b c d path; do echo $uuid $path; done )
 }
 ```
 And when you log into Gadi again you'll be able to run:
