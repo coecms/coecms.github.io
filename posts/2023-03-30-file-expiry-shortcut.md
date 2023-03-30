@@ -56,7 +56,7 @@ You can also add an additional `<` operator to redirect this output to `stdin`. 
 ```
 while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry list-quarantined | grep .ice_daily.nc )
 ```
-There are restrictions on using process substitution, however. The `seek` instruction cannot be used on these "files", meaning that they can't be used in place of structured data (e.g. netCDF). For simple things like this though, that isn't relevant.
+However, there are restrictions on using process substitution. The `seek` instruction cannot be used on these "files", meaning that they can't be used in place of structured data (e.g. netCDF). For simple things like this though, that isn't relevant.
 
 This is a lot to remember, so we recommend placing the following in your `~/.bashrc` file:
 ```
