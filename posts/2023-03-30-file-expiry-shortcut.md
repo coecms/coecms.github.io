@@ -26,7 +26,7 @@ Fortunately, with a bit of `bash` trickery, it is possible to feed the output of
 ```
 $ nci-file-expiry batch-recover <( nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done )
 ```
-Its fairly complicated, so lets break it down, starting with the commands in brackets:
+It's fairly complicated, so let's break it down, starting with the commands in brackets:
 ```
 nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done
 ```
