@@ -7,7 +7,7 @@ categories: storage, disk
 
 # Quick tip - Feed `nci-file-expiry` output back into itself
 
-Quite often, you may need to recover many files from quarantine on Gadi that match a particular pattern. Unfortunately, the commands provided by NCI seem to make this particularly difficult, as the output of `nci-file-expiry list-quarantine` looks like this:
+Quite often, you may need to recover many files from quarantine on Gadi that match a particular pattern. Unfortunately, this is not simple as the output of `nci-file-expiry list-quarantine` looks like this:
 ```
 8a17868a-25ec-40bf-a41d-264eb3505da8  2023-03-17 00:22:38  v45     528.0K  /scratch/v45/dr4292/tmp/tmpsuh6nuuu
 994065d8-1e09-488f-aa1a-90ca1457609a  2023-03-17 00:22:38  v45       4.0K  /scratch/v45/dr4292/tmp/tmpfg8_ecs4
