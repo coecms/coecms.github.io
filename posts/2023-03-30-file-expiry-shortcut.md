@@ -46,7 +46,7 @@ $ while read uuid a b c d path; do echo $uuid $path; done < <( nci-file-expiry l
 ```{note}
 There are a thousand ways to orgainse columnated data in `bash`. The `while read echo` variant above happens to be my favorite. If you prefer piping to `awk` or `cut`, substitute that instead. As long as the output looks like the output above, the next bit will work.
 ```
-To turn this into a "file" that `batch-recover` is happy to deal with, we can take advantage of [process subtitution](https://en.wikipedia.org/wiki/Process_substitution). This tricks `batch-recover` into treating the output of the above command it as if it were a file, even though nothing is ever written to disk. So by wrapping the above command in `<( ... )`, it output becomes, for all intents and purposes, the contents of a file.
+To turn this into a "file" that `batch-recover` is happy to deal with, we can take advantage of [process substitution](https://en.wikipedia.org/wiki/Process_substitution). This tricks `batch-recover` into treating the output of the above command it as if it were a file, even though nothing is ever written to disk. So by wrapping the above command in `<( ... )`, it output becomes, for all intents and purposes, the contents of a file.
 
 Process substitution enables a few neat tricks. For instance, if you need to `diff` the output of two commands, you do not need to write the output to temporary files first, you can simply run:
 ```
