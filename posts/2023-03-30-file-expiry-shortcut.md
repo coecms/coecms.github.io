@@ -30,7 +30,7 @@ Its fairly complicated, so lets break it down, starting with the commands in bra
 ```
 nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done
 ```
-The piping output to `grep` part is pretty standard, but whats less common is piping the results into a loop afterwards. `bash` considers the entire loop construct as a single command, so you can pipe command output or redirect files into one as you would any other command. The loop itself:
+The piping output to `grep` part is pretty standard, but what is less common is piping the results into a loop afterwards. `bash` considers the entire loop construct as a single command, so you can pipe command output or redirect files into one as you would any other command. The loop itself:
 ```
 while read uuid a b c d path; do echo $uuid $path; done
 ```
