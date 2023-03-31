@@ -28,4 +28,5 @@ python
     /posts/2020-09-28-eventdetection
     /posts/2021-04-09-xesmf-regrid
     /posts/2022-12-05-building-on-gadi
+    /posts/2023-02-27-introducing-new-conda
     

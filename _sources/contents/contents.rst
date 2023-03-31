@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2023-03-30-file-expiry-shortcut
     /posts/2023-02-27-introducing-new-conda
     /posts/2023-01-27-using-symlinks-home
     /posts/2022-12-05-building-on-gadi
     /posts/2022-11-10-jobfs
-    /posts/2022-10-26-Data-Quarantine
     
 
 .. toctree::
@@ -21,6 +21,7 @@
     /contents/tag-dask
     /contents/tag-data
     /contents/tag-debug
+    /contents/tag-disk
     /contents/tag-events
     /contents/tag-fortran
     /contents/tag-model

@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Quick tip - Feed nci-file-expiry output back into itself &#8212; CLEX CMS Blog</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2023-03-30-file-expiry-shortcut';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introducing the new hh5 conda environment" href="2023-02-27-introducing-new-conda.html" />
+    <link rel="prev" title="CLEX CMS Blog" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/CE-logo-COL-clex-vert-web.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CLEX CMS Blog
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2023-01-27-using-symlinks-home.html">How to stop temporary files filling up your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory on Gadi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tags</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-bash.html">bash</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">Filter Lists of Files in bash Using sed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-climatology.html">climatology</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2021-07-29-coarsen_climatology.html">Climatologies with ‘Coarsen’</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-cmip.html">cmip</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">Using ARCCSSive to search CMIP5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-28-climate-finder-introduction.html">Using CleF - Climate Finder to discover ESGF data at NCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">Using CleF 2: advanced command line functionalities</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-dask.html">dask</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-data.html">data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">Using ARCCSSive to search CMIP5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-19-mppnccombine-fast.html">Fast MOM collation with payu and mppnncombine-fast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-28-climate-finder-introduction.html">Using CleF - Climate Finder to discover ESGF data at NCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">Using CleF 2: advanced command line functionalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-debug.html">debug</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">Fortran Debugging Video Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/tag-disk.html">disk</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-events.html">events</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-28-eventdetection.html">Basic event statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-fortran.html">fortran</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">Fortran Debugging Video Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-12-create-netcdf.html">How to create NetCDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-model.html">model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2019-03-01-coupling-resolution.html">Setting up a coupled model at a new resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-netcdf.html">netcdf</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2018-10-12-create-netcdf.html">How to create NetCDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-paleoclimate.html">paleoclimate</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-pandas.html">pandas</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-payu.html">payu</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-19-mppnccombine-fast.html">Fast MOM collation with payu and mppnncombine-fast</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-plotting.html">plotting</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-19-cartopy-maps.html">Improving maps with Cartopy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-19-plotting-basics.html">Python Plotting Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-subplots.html">Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-xarray-plot-types.html">Xarray plot types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-05-01-latlon-reference.html">Making a lat-lon reference plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">Visualisation in a Shiny App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">Generating print-quality plots in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-09-03-python-animation.html">How to animate 2D fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">Wrapping gridded data around the globe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-23-split-yaxis.html">Split Y Axis plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-pyproj.html">pyproj</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2021-10-01-pyproj.html">Converting between coordinate systems with Pyproj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-python.html">python</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-19-cartopy-maps.html">Improving maps with Cartopy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-19-plotting-basics.html">Python Plotting Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-24-reading-envi-met.html">Reading ENVI_MET files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-subplots.html">Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-xarray-plot-types.html">Xarray plot types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-05-01-latlon-reference.html">Making a lat-lon reference plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">Merge arrays with missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">Using ARCCSSive to search CMIP5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">Basic usage of python logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-12-create-netcdf.html">How to create NetCDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">Per-gridpoint time correlation of two models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-09-03-python-animation.html">How to animate 2D fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">Wrapping gridded data around the globe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-23-split-yaxis.html">Split Y Axis plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-28-eventdetection.html">Basic event statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-04-09-xesmf-regrid.html">Using xesmf to efficiently regrid data to another resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-r.html">r</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">Visualisation in a Shiny App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">Generating print-quality plots in R</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-regridding.html">regridding</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2019-03-01-coupling-resolution.html">Setting up a coupled model at a new resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-04-09-xesmf-regrid.html">Using xesmf to efficiently regrid data to another resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/tag-storage.html">storage</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-video.html">video</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">Fortran Debugging Video Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-xarray.html">xarray</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-24-reading-envi-met.html">Reading ENVI_MET files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-xarray-plot-types.html">Xarray plot types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">Merge arrays with missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">Per-gridpoint time correlation of two models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-07-29-coarsen_climatology.html">Climatologies with ‘Coarsen’</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2021-10-01-pyproj.html">Converting between coordinate systems with Pyproj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-01-27-using-symlinks-home.html">How to stop temporary files filling up your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory on Gadi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2022.html">2022</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-10-26-Data-Quarantine.html">Data Quarantine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2021.html">2021</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2021-12-08-trajectories.html">Trajectories in regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-10-01-pyproj.html">Converting between coordinate systems with Pyproj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-10-01-different_coordinates.html">Effect of rounding on coordinates with Xarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-09-30-code-design.html">Example to improve code design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-07-29-coarsen_climatology.html">Climatologies with ‘Coarsen’</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2021-04-09-xesmf-regrid.html">Using xesmf to efficiently regrid data to another resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2020.html">2020</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">Using CleF 2: advanced command line functionalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-28-eventdetection.html">Basic event statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-28-climate-finder-introduction.html">Using CleF - Climate Finder to discover ESGF data at NCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-23-split-yaxis.html">Split Y Axis plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">Wrapping gridded data around the globe</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2019.html">2019</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">Compare data with different calendars</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="2019-09-03-python-animation.html">How to animate 2D fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">Per-gridpoint time correlation of two models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-04-02-filter-file-lists-with-sed.html">Filter Lists of Files in bash Using sed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">Generating print-quality plots in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-03-01-coupling-resolution.html">Setting up a coupled model at a new resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-19-mppnccombine-fast.html">Fast MOM collation with payu and mppnncombine-fast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-12-create-netcdf.html">How to create NetCDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">Basic usage of python logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">Visualisation in a Shiny App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">Using ARCCSSive to search CMIP5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">Fortran Debugging Video Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">Merge arrays with missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2018-05-01-latlon-reference.html">Making a lat-lon reference plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-xarray-plot-types.html">Xarray plot types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-27-subplots.html">Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-24-reading-envi-met.html">Reading ENVI_MET files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-19-plotting-basics.html">Python Plotting Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-04-19-cartopy-maps.html">Improving maps with Cartopy</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://climateextremes.org.au">CLEX</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">CMS Wiki</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://nci.org.au">NCI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2023-03-30-file-expiry-shortcut.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/posts/2023-03-30-file-expiry-shortcut.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Quick tip - Feed nci-file-expiry output back into itself</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quick-tip-feed-nci-file-expiry-output-back-into-itself">
+<h1>Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself<a class="headerlink" href="#quick-tip-feed-nci-file-expiry-output-back-into-itself" title="Permalink to this heading">#</a></h1>
+<p>Quite often, you may need to recover many files from quarantine on Gadi that match a particular pattern. Unfortunately, this is not simple as the output of <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span> <span class="pre">list-quarantine</span></code> looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">a17868a</span><span class="o">-</span><span class="mi">25</span><span class="n">ec</span><span class="o">-</span><span class="mi">40</span><span class="n">bf</span><span class="o">-</span><span class="n">a41d</span><span class="o">-</span><span class="mi">264</span><span class="n">eb3505da8</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">17</span> <span class="mi">00</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">38</span>  <span class="n">v45</span>     <span class="mf">528.0</span><span class="n">K</span>  <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">v45</span><span class="o">/</span><span class="n">dr4292</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tmpsuh6nuuu</span>
+<span class="mi">994065</span><span class="n">d8</span><span class="o">-</span><span class="mf">1e09</span><span class="o">-</span><span class="mi">488</span><span class="n">f</span><span class="o">-</span><span class="n">aa1a</span><span class="o">-</span><span class="mi">90</span><span class="n">ca1457609a</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">17</span> <span class="mi">00</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">38</span>  <span class="n">v45</span>       <span class="mf">4.0</span><span class="n">K</span>  <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">v45</span><span class="o">/</span><span class="n">dr4292</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tmpfg8_ecs4</span>
+<span class="mi">2</span><span class="n">fb7c18c</span><span class="o">-</span><span class="n">d415</span><span class="o">-</span><span class="mi">47</span><span class="n">d5</span><span class="o">-</span><span class="n">a127</span><span class="o">-</span><span class="mi">690</span><span class="n">a6a02d929</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">17</span> <span class="mi">00</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">38</span>  <span class="n">v45</span>       <span class="mf">4.0</span><span class="n">K</span>  <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">v45</span><span class="o">/</span><span class="n">dr4292</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tmpgqno3ul4</span>
+<span class="n">ca649efd</span><span class="o">-</span><span class="n">ecbb</span><span class="o">-</span><span class="mi">4225</span><span class="o">-</span><span class="n">b5cd</span><span class="o">-</span><span class="mi">0432</span><span class="n">d916f280</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">17</span> <span class="mi">00</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">38</span>  <span class="n">v45</span>       <span class="mf">4.0</span><span class="n">K</span>  <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">v45</span><span class="o">/</span><span class="n">dr4292</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tmp2qa21xk1</span>
+<span class="mi">856</span><span class="n">bf663</span><span class="o">-</span><span class="mi">8</span><span class="n">a4c</span><span class="o">-</span><span class="mi">44</span><span class="n">bd</span><span class="o">-</span><span class="n">a1cf</span><span class="o">-</span><span class="mi">8</span><span class="n">aeed3bbf639</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">17</span> <span class="mi">00</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">38</span>  <span class="n">v45</span>     <span class="mf">512.0</span><span class="n">K</span>  <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">v45</span><span class="o">/</span><span class="n">dr4292</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">tmp7mt1e23p</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span> <span class="pre">recover</span></code> expects this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nci-file-expiry recover 856bf663-8a4c-44bd-a1cf-8aeed3bbf639 /scratch/v45/dr4292/tmp/tmp7mt1e23p
+</pre></div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span> <span class="pre">batch-recover</span></code> expects a file.</p>
+<p>Fortunately, with a bit of <code class="docutils literal notranslate"><span class="pre">bash</span></code> trickery, it is possible to feed the output of one command to another <em>as if it were a file</em>. In this case, we can feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span> <span class="pre">list-quarantine</span></code> output back in to <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span> <span class="pre">batch-recover</span></code>. Let’s imagine we’re looking for files that match the pattern <code class="docutils literal notranslate"><span class="pre">*.ice_daily.nc</span></code>. Here is the command that does this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nci-file-expiry batch-recover &lt;( nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done )
+</pre></div>
+</div>
+<p>It’s fairly complicated, so let’s break it down, starting with the commands in brackets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done
+</pre></div>
+</div>
+<p>The piping output to <code class="docutils literal notranslate"><span class="pre">grep</span></code> part is pretty standard, but what is less common is piping the results into a loop afterwards. <code class="docutils literal notranslate"><span class="pre">bash</span></code> considers the entire loop construct as a single command, so you can pipe command output or redirect files into one as you would any other command. The loop itself:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>while read uuid a b c d path; do echo $uuid $path; done
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">list-quarantined</span></code> output has 6 columns, but <code class="docutils literal notranslate"><span class="pre">batch-recover</span></code> is expecting a file with 2 columns, which correspond to the first and last columns of the <code class="docutils literal notranslate"><span class="pre">list-quarantined</span></code> output. This loop reads in the <code class="docutils literal notranslate"><span class="pre">grep</span></code>’d <code class="docutils literal notranslate"><span class="pre">list-quarantined</span></code> output line-by-line, saves each column into a different variable, and <code class="docutils literal notranslate"><span class="pre">echo</span></code>’s the ones we need. The rest are discarded. So running those commands connected with pipes gives us this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nci-file-expiry list-quarantined | grep .ice_daily.nc | while read uuid a b c d path; do echo $uuid $path; done
+813ff7b2-381b-430b-a423-f32b449bf710 /scratch/v45/dr4292/20200222.ice_daily.nc
+9aa317e3-7763-4af5-a19b-d07a7d6c2d90 /scratch/v45/dr4292/20200223.ice_daily.nc
+28b0d00c-e9fc-4e5e-adae-39a817d0fb51 /scratch/v45/dr4292/20200224.ice_daily.nc
+8a17868a-25ec-40bf-a41d-264eb3505da8 /scratch/v45/dr4292/20200225.ice_daily.nc
+...
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are many ways to organise columnated data in <code class="docutils literal notranslate"><span class="pre">bash</span></code>. The <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">read</span> <span class="pre">echo</span></code> variant above is my preference. If you prefer piping to <code class="docutils literal notranslate"><span class="pre">awk</span></code> or <code class="docutils literal notranslate"><span class="pre">cut</span></code>, substitute that instead. As long as the output looks like the output above, the next bit will work.</p>
+</div>
+<p>To turn this into a “file” that <code class="docutils literal notranslate"><span class="pre">batch-recover</span></code> is happy to deal with, we can take advantage of <a class="reference external" href="https://en.wikipedia.org/wiki/Process_substitution">process substitution</a>. This tricks <code class="docutils literal notranslate"><span class="pre">batch-recover</span></code> into treating the output of the above command as if it were a file, even though nothing is ever written to disk. So by wrapping the above command in <code class="docutils literal notranslate"><span class="pre">&lt;(</span> <span class="pre">...</span> <span class="pre">)</span></code>, its output becomes, for all intents and purposes, the contents of a file.</p>
+<p>Process substitution enables a few neat tricks. For instance, if you need to <code class="docutils literal notranslate"><span class="pre">diff</span></code> the output of two commands, you do not need to write the output to temporary files first, you can simply run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ diff &lt;( command_1 ) &lt;( command_2 )
+</pre></div>
+</div>
+<p>You can also add an additional <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> operator to redirect this output to <code class="docutils literal notranslate"><span class="pre">stdin</span></code>. The original version of this command posted on slack and the ACCESS-Hive used this to get the output of <code class="docutils literal notranslate"><span class="pre">list-quarantine</span></code> into the loop.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>while read uuid a b c d path; do echo $uuid $path; done &lt; &lt;( nci-file-expiry list-quarantined | grep .ice_daily.nc )
+</pre></div>
+</div>
+<p>However, there are restrictions on using process substitution. The <code class="docutils literal notranslate"><span class="pre">seek</span></code> instruction cannot be used on these “files”, meaning that they can’t be used in place of structured data (e.g. netCDF). For simple things like this though, that isn’t relevant.</p>
+<p>This is a lot to remember, so we recommend placing the following in your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function recover_pattern () {
+    nci-file-expiry batch-recover &lt;( nci-file-expiry list-quarantined | grep &quot;${1}&quot; | while read uuid a b c d path; do echo $uuid $path; done )
+}
+</pre></div>
+</div>
+<p>And when you log into Gadi again you’ll be able to run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ recover_pattern .ice_daily.nc
+</pre></div>
+</div>
+<p>for the same effect. As the function argument is passed straight to <code class="docutils literal notranslate"><span class="pre">grep</span></code>, regular expressions can be used to search for files, e.g. recover all <code class="docutils literal notranslate"><span class="pre">.ice_daily.nc</span></code> files starting with 2020, 2021 and 2022</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ recover_pattern &quot;202[012].\+ice_daily.nc&quot;
+</pre></div>
+</div>
+<p>note the pattern must be wrapped in quotes in this case. It can also be used to recover files on a specific path. For instance, to recover files in your current directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ recover_pattern &quot;${PWD}&quot;
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./posts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CLEX CMS Blog</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2023-02-27-introducing-new-conda.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introducing the new hh5 conda environment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CLEX CMS
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
