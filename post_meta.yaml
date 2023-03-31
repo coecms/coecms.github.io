@@ -240,3 +240,15 @@
 2022-12-05-building-on-gadi:
   title: Using Gadi's software environment to build your applications
   tags: [fortran, python]
+
+2023-01-27-using-symlink-home:
+  title: How to stop temporary files filling up your `/home` directory on Gadi
+  tags: [storage, disk]
+
+2023-02-27-introducing-new-conda:
+  title: Introducing the new hh5 conda environment
+  tags: [ python ]
+
+2023-03-30-file-expiry-shortcut:
+  title: Quick tip - Feed `nci-file-expiry` output back into itself
+  tags: [ storage, disk ]
