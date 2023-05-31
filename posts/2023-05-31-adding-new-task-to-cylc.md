@@ -1,7 +1,11 @@
 # Adding a new task to a rose suite
 
 ## Issue
-In this example, we want to add an additional task to an ACCESS-CM2 run, to be executed before every instance of the coupler to update the sea surface temperature ancillary file.
+In this example, we need to update the SST ancillary file in an otherwise normal ACCESS-CM2 run regularly. 
+In a separate directory, we have the specific annual SST files, and before each model year, we need to copy over the correct file to the location.
+
+This requires an additional task in the ACCESS-CM2 suite, to be run just before the model itself.
+This how-to guides us through the process.
 
 ## Step 0: Make a copy of the ACCESS-CM2 suite
 Run this command on accessdev to make a copy of the **ACCESS-CM2** suite:
@@ -14,7 +18,7 @@ This command will create a copy of the original ACCESS-CM2 suite with a new suit
 "Suite Directory" from now on will mean the directory `${HOME}/roses/<suite-id>`.
 
 ## Step 1: Make a shell script to update the SST files:
-Create a file called `update_sst.sh` and located in the directory `apps/update_sst/bin` under your rose suite directory:
+Create a file called `update_sst.sh` in the directory `apps/update_sst/bin` under your rose suite directory:
 
 ```bash
 #!/bin/bash
@@ -28,7 +32,7 @@ test -z ${YEAR} && exit 3
 # Obtain current model year f
 export YEAR_FILE=${FILE_TEMPLATE/YEAR/${YEAR}}
 echo ===============================================
-echo Running script to update Sea Surface Temparatures
+echo Running script to update Sea Surface Temperatures
 echo Input file: ${YEAR_FILE}
 echo Output file: ${SST_FILE}
 echo ===============================================
