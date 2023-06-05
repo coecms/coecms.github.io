@@ -1,13 +1,10 @@
 
-2023
+um
 --------------------------------------------------------------------------------
 
 .. toctree::
-    :caption: 2023
+    :caption: um
     :maxdepth: 1
 
     /posts/2023-05-31-adding-new-task-to-cylc
-    /posts/2023-03-30-file-expiry-shortcut
-    /posts/2023-02-27-introducing-new-conda
-    /posts/2023-01-27-using-symlinks-home
     
