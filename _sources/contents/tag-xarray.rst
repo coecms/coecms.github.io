@@ -20,4 +20,5 @@ xarray
     /posts/2021-11-02-pyproj-regrid
     /posts/2021-11-24-api
     /posts/2022-03-15-reading-nonstandard-data
+    /posts/2023-06-22-mfdataset-preprocess
     

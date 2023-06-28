@@ -14,4 +14,5 @@ data
     /posts/2020-10-12-climate-finder-extended-command-line
     /posts/2022-04-26-storage-where-what-why-how
     /posts/2022-11-10-jobfs
+    /posts/2023-06-22-mfdataset-preprocess
     

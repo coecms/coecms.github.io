@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2023-06-22-mfdataset-preprocess
     /posts/2023-05-31-adding-new-task-to-cylc
     /posts/2023-03-30-file-expiry-shortcut
     /posts/2023-02-27-introducing-new-conda
     /posts/2023-01-27-using-symlinks-home
-    /posts/2022-12-05-building-on-gadi
     
 
 .. toctree::

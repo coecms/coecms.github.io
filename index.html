@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Adding a new task to a rose suite" href="posts/2023-05-31-adding-new-task-to-cylc.html" />
+    <link rel="next" title="More efficent use of xarray.open_mfdataset()" href="posts/2023-06-22-mfdataset-preprocess.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,11 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-05-31-adding-new-task-to-cylc.html">Adding a new task to a rose suite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-03-30-file-expiry-shortcut.html">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-01-27-using-symlinks-home.html">How to stop temporary files filling up your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory on Gadi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="posts/2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tags</span></p>
 <ul class="nav bd-sidenav">
@@ -187,6 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="contents/tag-dask.html">dask</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="posts/2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="contents/tag-data.html">data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,6 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="posts/2020-10-12-climate-finder-extended-command-line.html">Using CleF 2: advanced command line functionalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="contents/tag-debug.html">debug</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -229,6 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="posts/2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="contents/tag-paleoclimate.html">paleoclimate</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -291,6 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="posts/2021-04-09-xesmf-regrid.html">Using xesmf to efficiently regrid data to another resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="contents/tag-r.html">r</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -337,12 +341,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="posts/2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="contents/year-2023.html">2023</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2023-05-31-adding-new-task-to-cylc.html">Adding a new task to a rose suite</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2023-03-30-file-expiry-shortcut.html">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
 <li class="toctree-l2"><a class="reference internal" href="posts/2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
@@ -620,11 +626,11 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="posts/2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-05-31-adding-new-task-to-cylc.html">Adding a new task to a rose suite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-03-30-file-expiry-shortcut.html">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="posts/2023-01-27-using-symlinks-home.html">How to stop temporary files filling up your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory on Gadi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="posts/2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -670,11 +676,11 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="right-next"
-       href="posts/2023-05-31-adding-new-task-to-cylc.html"
+       href="posts/2023-06-22-mfdataset-preprocess.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Adding a new task to a rose suite</p>
+        <p class="prev-next-title">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
