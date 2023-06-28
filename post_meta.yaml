@@ -257,3 +257,7 @@
   title: Adding a new task to a rose/cylc suite
   excerpt: Describes the steps required to add an additional task to the ACCESS-CM2 model, using annualy changing Sea Surface Temperatures as an example.
   tags: [ um, access ]
+
+2023-06-22-mfdataset-preprocess:
+  title: More efficent use of xarray.open_mfdataset()
+  tags: [ python, xarray, dask, netcdf, data ]
