@@ -252,3 +252,7 @@
 2023-03-30-file-expiry-shortcut:
   title: Quick tip - Feed `nci-file-expiry` output back into itself
   tags: [ storage, disk ]
+
+2023-05-31-vscode-are:
+  title: Working with ARE notebooks in VS Code
+  tags: [ vscode, python, jupyter ]
