@@ -29,5 +29,6 @@ python
     /posts/2021-04-09-xesmf-regrid
     /posts/2022-12-05-building-on-gadi
     /posts/2023-02-27-introducing-new-conda
+    /posts/2023-05-31-vscode-are
     /posts/2023-06-22-mfdataset-preprocess
     

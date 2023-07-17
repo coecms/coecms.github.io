@@ -4,10 +4,10 @@
     :maxdepth: 1
 
     /posts/2023-06-22-mfdataset-preprocess
+    /posts/2023-05-31-vscode-are
     /posts/2023-05-31-adding-new-task-to-cylc
     /posts/2023-03-30-file-expiry-shortcut
     /posts/2023-02-27-introducing-new-conda
-    /posts/2023-01-27-using-symlinks-home
     
 
 .. toctree::
@@ -25,6 +25,7 @@
     /contents/tag-disk
     /contents/tag-events
     /contents/tag-fortran
+    /contents/tag-jupyter
     /contents/tag-model
     /contents/tag-netcdf
     /contents/tag-paleoclimate
@@ -38,6 +39,7 @@
     /contents/tag-storage
     /contents/tag-um
     /contents/tag-video
+    /contents/tag-vscode
     /contents/tag-xarray
     
 
