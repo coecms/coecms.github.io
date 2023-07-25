@@ -265,3 +265,7 @@
 2023-06-22-mfdataset-preprocess:
   title: More efficent use of xarray.open_mfdataset()
   tags: [ python, xarray, dask, netcdf, data ]
+
+2023-07-05-select-region-shapefile:
+  title: Using a shapefile to select a region and calculate statistics
+  tags: [ python, xarray, dask, raster, shapefile ]
