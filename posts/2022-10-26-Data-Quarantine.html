@@ -158,11 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-05-31-adding-new-task-to-cylc.html">Adding a new task to a rose suite</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-03-30-file-expiry-shortcut.html">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tags</span></p>
 <ul class="nav bd-sidenav">
@@ -189,6 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-data.html">data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -301,6 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-02-27-introducing-new-conda.html">Introducing the new hh5 conda environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-r.html">r</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -308,31 +310,39 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2019-03-06-generating-print-quality-plots.html">Generating print-quality plots in R</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-regridding.html">regridding</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-raster.html">raster</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-regridding.html">regridding</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2019-03-01-coupling-resolution.html">Setting up a coupled model at a new resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-04-09-xesmf-regrid.html">Using xesmf to efficiently regrid data to another resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-storage.html">storage</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-shapefile.html">shapefile</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-storage.html">storage</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2022-04-26-storage-where-what-why-how.html">Storage - where, what, why and how?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-03-30-file-expiry-shortcut.html">Quick tip - Feed <code class="docutils literal notranslate"><span class="pre">nci-file-expiry</span></code> output back into itself</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-um.html">um</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-um.html">um</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-adding-new-task-to-cylc.html">Adding a new task to a rose suite</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-video.html">video</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-video.html">video</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">Fortran Debugging Video Series</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-vscode.html">vscode</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-vscode.html">vscode</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-xarray.html">xarray</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-xarray.html">xarray</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2018-04-24-reading-envi-met.html">Reading ENVI_MET files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-04-27-xarray-plot-types.html">Xarray plot types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
@@ -352,12 +362,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-adding-new-task-to-cylc.html">Adding a new task to a rose suite</a></li>
@@ -366,7 +378,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-01-27-using-symlinks-home.html">How to stop temporary files filling up your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory on Gadi</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2022.html">2022</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2022.html">2022</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2022-11-10-jobfs.html">How and when to use PBS Jobfs on NCI HPC systems</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Quarantine</a></li>
@@ -374,7 +386,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2021.html">2021</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2021.html">2021</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2021-12-08-trajectories.html">Trajectories in regions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-11-02-pyproj-regrid.html">Regridding from one coordinate system to another with pyproj</a></li>
@@ -386,7 +398,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2021-04-09-xesmf-regrid.html">Using xesmf to efficiently regrid data to another resolution</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2020.html">2020</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2020.html">2020</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2020-10-12-climate-finder-extended-command-line.html">Using CleF 2: advanced command line functionalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2020-09-28-eventdetection.html">Basic event statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2020-09-28-climate-finder-introduction.html">Using CleF - Climate Finder to discover ESGF data at NCI</a></li>
@@ -394,7 +406,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2020-09-22-wrapping-pcolormesh.html">Wrapping gridded data around the globe</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2019.html">2019</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2019.html">2019</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">Compare data with different calendars</a></li>
 
 
@@ -406,7 +418,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-19-mppnccombine-fast.html">Fast MOM collation with payu and mppnncombine-fast</a></li>

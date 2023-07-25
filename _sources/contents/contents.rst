@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2023-07-05-select-region-shapefile
     /posts/2023-06-22-mfdataset-preprocess
     /posts/2023-05-31-vscode-are
     /posts/2023-05-31-adding-new-task-to-cylc
     /posts/2023-03-30-file-expiry-shortcut
-    /posts/2023-02-27-introducing-new-conda
     
 
 .. toctree::
@@ -35,7 +35,9 @@
     /contents/tag-pyproj
     /contents/tag-python
     /contents/tag-r
+    /contents/tag-raster
     /contents/tag-regridding
+    /contents/tag-shapefile
     /contents/tag-storage
     /contents/tag-um
     /contents/tag-video

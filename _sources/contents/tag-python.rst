@@ -31,4 +31,5 @@ python
     /posts/2023-02-27-introducing-new-conda
     /posts/2023-05-31-vscode-are
     /posts/2023-06-22-mfdataset-preprocess
+    /posts/2023-07-05-select-region-shapefile
     
