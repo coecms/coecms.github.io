@@ -9,18 +9,17 @@ categories: xarray, dask, python, jupyter
 # Introducing the `dask-optimiser` module
 
 ## What is `dask-optimiser` for?
-`dask-optimiser` modifies some configuration settings for Dask clusters to provide a more appropriate default configuration when using Dask on Gadi. The settings it modifies are as follows:
- 
- * Sets the default thread count per worker to 1
- * Removes worker memory limit
- * Process binding for dask workers
- * Applies new default PBS flags and module settings to `PBSCluster()`.
- * Sets communication protocol to UCX (`conda_concept` modules only)
 
-These will be explained in more detail below. Not every problem will benefit from these settings, which is why we've decided to package this in a separate module rather than apply it directly to the hh5 `analysis3` environments. Furthermore, the module is somewhat experimental. We have only tested this for `LocalCluster` and `PBSCluster` types, and cannot guarantee that the way it applies its settings will translate to other cluster types, or other Dask installations. All of the settings in the module are optional, and will not override any arguments passed directly to `Client()`, `LocalCluster()` or `PBSCluster()`. The module only has any effect within a PBS job, if your workflows are at the stage where they require this level of optimisation, you should already be running in the PBS queue!
+`dask-optimiser` modifies some configuration settings for Dask clusters to provide a more appropriate default configuration when using Dask on Gadi. Dask doesn't really provide a way to setup a global configuration for the `LocalCluster()` cluster type (The standard Dask client setup code (below) launches a `LocalCluster()`).
+```
+>>> from dask.distributed import Client
+>>> client = Client()
+```
+We feel that this is detrimental when using Dask in an HPC environment. Software designed specifically for HPC settings generally provides a way to set sensible global defaults, but still allow users to customise settings when necessary (e.g. this 'Rationale' box from the [OpenMPI documentation](https://docs.open-mpi.org/en/v5.0.x/mca.html#setting-mca-parameter-values)).
 
-We recommend loading the `dask-optimiser` module after loading your analysis3 module. This way it can detect the specific analysis environment you've loaded and use that simplify setup of a `PBSCluster`. If you're not using `PBSCluster()`, then the order doesn't matter.
+Unfortunately, by lacking the ability to configure global settings, Dask forces all users to either accept a less-than-optimal default setup, or spend time reading documentation and configuring their Dask cluster. There is nothing inherently wrong with this as a method of encouraging Dask users to become more familiar with the software and its configuration options. However, in a research HPC setting resource usage, both computational and human, is critical. From a computational standpoint, `hh5` has over 600 active users, if we can provide some default settings for Dask that can reduce the time a workflow takes by as little as a few percent, when multiplied by the number of users, that represents a significant resource saving across several projects. From a human standpoint, it means that new users can jump straight into using Dask efficiently, and that each `hh5` user doesn't have to spend hours away from their research going over Dask documentation on how to get an efficient cluster set up. Any settings provided directly as arguments to `Client()` or `LocalCluster()` will override the settings provided by this module, so advanced Dask users who are already configuring their clusters do not need to worry about unexpected behaviour.
 
+Most Dask and xarray workflows will benefit from the settings provided by this module, though the larger and more computationally intensive the workflow the better the benefit will be. This module may not work as expected for all Dask cluster types either, we've only tested with the `LocalCluster` and `PBSCluster` types. We also can't test every xarray or Dask workflow run by `hh5`, so we can't guarantee that every problem will benefit from these settings. This is why we've decided to package these settings in a separate module rather than apply them directly to the hh5 `analysis3` environments.  In the most common cases, it should just work, so there is no harm in trying it out. Advanced users should also see some benefit, as this module provides [process binding](#worker-process-binding), which cannot be configured directly by Dask at all.
 
 ## How do I use it?
 Just load the module. In an interactive PBS job or a PBS job script:
@@ -45,13 +44,16 @@ And then launch a dask cluster:
 
 Note the extra messages while `client=Client()` is running. This is because the settings from the module are applied at the end of the cluster launch, and the workers are essentially rebooted with their new configuration if necessary. The `INFO` messages will always appear, as the configuration is applied using a [scheduler preload plugin](https://docs.dask.org/en/stable/how-to/customize-initialization.html). If the plugin detects that the worker configuration should be modified, the `Modifying workers` message will appear. Note that this doesn't appear when a `PBSCluster` is used, as the message is not relayed to the client from the PBS jobs spawned by the cluster.
 
-## Why a preload plugin?
-Unfortunately, Dask doesn't really provide a way to setup a global configuration when using the bare `Client()` (and therefore `LocalCluster()`) initialisation. The developers' rationale for this is that Dask users should learn to understand how Dask works, and should become adept at configuring clusters themselves for their needs. This is in contrast to the advice provided to users by many HPC application developers, in that an experienced system administrator should set sensible defaults and users should only need to customise anything in rare cases (e.g. this 'Rationale' box from the [OpenMPI documentation](https://docs.open-mpi.org/en/v5.0.x/mca.html#setting-mca-parameter-values)).
-
-There is nothing inherently wrong with the logic behind the decision made by the Dask developers, its perfectly fine to encourage users to become more proficient with highly customisable software. In a research HPC setting, however, resource usage, both computational and human, is critical. From a computational standpoint, `hh5` has over 600 active users, if we can provide some default settings for Dask that can reduce the time a workflow takes by as little as a few percent, when multiplied by he number of users, that represents a significant resource saving across several projects. From a human standpoint, it means that new users can jump straight into using Dask efficiently, and that each `hh5` user doesn't have to spend hours away from their research going over Dask documentation on how to get an efficient cluster set up.
-
 ## Settings Details
-This section goes deeper into the settings applied to Dask by the module, and the reasons we've chosen them.
+ The settings modified by the `dask-optimiser` module are as follows:
+
+ * Sets the default thread count per worker to 1
+ * Removes worker memory limit
+ * Process binding for dask workers
+ * Applies new default PBS flags and module settings to `PBSCluster()`.
+ * Sets communication protocol to UCX (`conda_concept` modules only)
+
+These will be explained in more detail below.
 
 ### One thread per worker
 By default, Dask will detect the number of CPU cores ($n_{cpu}$) it has access to and launch a set number of worker processes each with the same number of threads. The number of processes will be the smallest integer factor of $n_{cpu}$, $n_{w} : n_w \ge \sqrt{n_{cpu}}$, and the number of threads will be $\dfrac{n_{cpu}}{n_w}$. In most cases, this will result in more than one thread per worker. This is less than ideal due to the [Python global interpreter lock](https://realpython.com/python-gil/).
