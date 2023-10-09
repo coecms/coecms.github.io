@@ -22,4 +22,5 @@ xarray
     /posts/2022-03-15-reading-nonstandard-data
     /posts/2023-06-22-mfdataset-preprocess
     /posts/2023-07-05-select-region-shapefile
+    /posts/2023-09-20-dask-optimiser
     

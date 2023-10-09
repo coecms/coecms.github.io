@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Speeding up access to large datasets with Dask Delayed &#8212; CLEX CMS Blog</title>
+    <title>Introducing the dask-optimiser module &#8212; CLEX CMS Blog</title>
   
   
   
@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2018-09-14-dask-era-interim';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2023-09-20-dask-optimiser';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="API Calculation with Xarray + Dask" href="2021-11-24-api.html" />
-    <link rel="prev" title="dask" href="../contents/tag-dask.html" />
+    <link rel="next" title="Using a shapefile to select a region and calculate statistics" href="2023-07-05-select-region-shapefile.html" />
+    <link rel="prev" title="CLEX CMS Blog" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,8 +159,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
@@ -186,11 +188,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/tag-dask.html">dask</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-11-24-api.html">API Calculation with Xarray + Dask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-data.html">data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -223,9 +225,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2022-12-05-building-on-gadi.html">Using Gadi’s software environment to build your applications</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-jupyter.html">jupyter</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/tag-jupyter.html">jupyter</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-model.html">model</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -286,7 +288,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l2"><a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">Merge arrays with missing data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">Using ARCCSSive to search CMIP5</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
 
 
@@ -305,7 +307,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-r.html">r</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -351,7 +353,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">Merge arrays with missing data</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
 
 
@@ -366,14 +368,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2022-03-15-reading-nonstandard-data.html">An example of reading non-standard data using pandas and xarray</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
@@ -423,7 +425,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-19-mppnccombine-fast.html">Fast MOM collation with payu and mppnncombine-fast</a></li>
@@ -432,7 +434,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Speeding up access to large datasets with Dask Delayed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-09-14-dask-era-interim.html">Speeding up access to large datasets with Dask Delayed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-08-21-visualisation-in-shiny-app.html">Visualisation in a Shiny App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">Using ARCCSSive to search CMIP5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">Fortran Debugging Video Series</a></li>
@@ -524,7 +526,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-09-14-dask-era-interim.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2023-09-20-dask-optimiser.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -554,7 +556,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/posts/2018-09-14-dask-era-interim.ipynb" target="_blank"
+      <li><a href="../_sources/posts/2023-09-20-dask-optimiser.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -564,7 +566,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -636,7 +638,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Speeding up access to large datasets with Dask Delayed</h1>
+    <h1>Introducing the dask-optimiser module</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -646,8 +648,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-time-axis">Setting up the time axis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lazily-loading-files">Lazily loading files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-dask-optimiser-for">What is <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> for?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-use-it">How do I use it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#settings-details">Settings Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-thread-per-worker">One thread per worker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removed-memory-worker-limit">Removed memory worker limit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worker-process-binding">Worker process binding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pbscluster-default-settings">PBSCluster default settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ucx-communication-protocol">UCX communication protocol</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
             </nav>
         </div>
@@ -659,386 +670,95 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="speeding-up-access-to-large-datasets-with-dask-delayed">
-<h1>Speeding up access to large datasets with Dask Delayed<a class="headerlink" href="#speeding-up-access-to-large-datasets-with-dask-delayed" title="Permalink to this heading">#</a></h1>
-<p><strong>Scott Wales, CLEX CMS</strong></p>
-<p>CLEX CMS helps to maintain a number of dataset replicas at NCI, and we keep an eye out for ways to make these datasets easier to use.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">xarray</span></code> library has been great for accessing datasets and their metadata, but one thing I have noticed is that it can be a bit slow to read in really large datasets, like the full timeseries of CMIP or ERA-Interim.</p>
-<p>I’ve an idea of why that might be, let’s take a look and see if we can make use of Dask to speed up loading a variable from the local ERA-Interim replica.</p>
-<p>The local ERA-Interim replica is on NCI under the <code class="docutils literal notranslate"><span class="pre">ub4</span></code> project. Access to this project requires <a class="reference external" href="http://climate-cms.unsw.wikispaces.net/ERA+INTERIM">registration</a>. Most of the dataset is in GRIB format, but a large number of variables are also available in NetCDF format, which is what we’ll look at today.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>ls<span class="w"> </span>/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/*.nc<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+  <script src="https://cdn.jsdelivr.net/gh/atteggiani/animated-terminal/animated-terminal.min.js" defer></script>
+<section class="tex2jax_ignore mathjax_ignore" id="introducing-the-dask-optimiser-module">
+<h1>Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module<a class="headerlink" href="#introducing-the-dask-optimiser-module" title="Permalink to this heading">#</a></h1>
+<section id="what-is-dask-optimiser-for">
+<h2>What is <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> for?<a class="headerlink" href="#what-is-dask-optimiser-for" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> modifies some configuration settings for Dask clusters to provide a more appropriate default configuration when using Dask on Gadi. Dask doesn’t really provide a way to setup a global configuration for the <code class="docutils literal notranslate"><span class="pre">LocalCluster()</span></code> cluster type (The standard Dask client setup code (below) launches a <code class="docutils literal notranslate"><span class="pre">LocalCluster()</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790101_19790131.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790201_19790228.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790301_19790331.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790401_19790430.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790501_19790531.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790601_19790630.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790701_19790731.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790801_19790831.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19790901_19790930.nc
-/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_19791001_19791031.nc
-</pre></div>
-</div>
-</div>
-</div>
-<p>There are a lot of files, opening the dataset can be slow, both when we use <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code>, as well as just opening the individual files:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/g/data3/hh5/public/apps/miniconda3/envs/analysis3-18.07/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
-  return f(*args, **kwds)
-/g/data3/hh5/public/apps/miniconda3/envs/analysis3-18.07/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
-  return f(*args, **kwds)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">ds_mf</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.46 s, sys: 2.14 s, total: 11.6 s
-Wall time: 35 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-<span class="n">ds_concat</span> <span class="o">=</span> <span class="p">[</span><span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.19 s, sys: 2.16 s, total: 8.36 s
-Wall time: 27.8 s
-</pre></div>
-</div>
-</div>
-</div>
-<p>7 seconds or so isn’t too bad, but can still be a nuisance if you’re trying to iterate on an analysis, or if you need to load a lot of variables at once. A lot of this time is spent checking that the coordinates of each file match - can we save on time by omitting this, since the dataset is well curated?</p>
-<p>The horizontal and vertical axes of each file are going to be exactly the same, it’s only the time axis and the variable itself that are going to vary between files. If we can work out what the time axis is without actually opening the files, then the only reason we need to open the file itself is once we need the data inside it - which can be handled using <code class="docutils literal notranslate"><span class="pre">dask</span></code>. This way we can set up the full dataset without spending 7 seconds opening each and every file.</p>
-<section id="setting-up-the-time-axis">
-<h2>Setting up the time axis<a class="headerlink" href="#setting-up-the-time-axis" title="Permalink to this heading">#</a></h2>
-<p>So how can we get the time axis of the full dataset without opening all of the files? One way is <code class="docutils literal notranslate"><span class="pre">pandas.date_range()</span></code>, which returns a series of datetimes between a start and end point, at a user definable frequency. This means for the <code class="docutils literal notranslate"><span class="pre">6hr</span></code> dataset we can get the times like:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1981-08-01&#39;</span><span class="p">,</span> <span class="s1">&#39;1981-08-03&#39;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;6H&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;1981-08-01 00:00:00&#39;, &#39;1981-08-01 06:00:00&#39;,
-               &#39;1981-08-01 12:00:00&#39;, &#39;1981-08-01 18:00:00&#39;,
-               &#39;1981-08-02 00:00:00&#39;, &#39;1981-08-02 06:00:00&#39;,
-               &#39;1981-08-02 12:00:00&#39;, &#39;1981-08-02 18:00:00&#39;,
-               &#39;1981-08-03 00:00:00&#39;],
-              dtype=&#39;datetime64[ns]&#39;, freq=&#39;6H&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The ERA-Interim dataset is continuously updated, so we can’t just have a static start and end date for the dataset. We can get the start and end time of the dataset easily enough by opening the first and last files. We could also extract the dates from the filenames themselves, however that is slightly more complicated.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="p">))</span>
-<span class="n">d0</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">dn</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="n">time</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;6H&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;1979-01-01 00:00:00&#39;, &#39;1979-01-01 06:00:00&#39;,
-               &#39;1979-01-01 12:00:00&#39;, &#39;1979-01-01 18:00:00&#39;,
-               &#39;1979-01-02 00:00:00&#39;, &#39;1979-01-02 06:00:00&#39;,
-               &#39;1979-01-02 12:00:00&#39;, &#39;1979-01-02 18:00:00&#39;,
-               &#39;1979-01-03 00:00:00&#39;, &#39;1979-01-03 06:00:00&#39;,
-               ...
-               &#39;2018-05-29 12:00:00&#39;, &#39;2018-05-29 18:00:00&#39;,
-               &#39;2018-05-30 00:00:00&#39;, &#39;2018-05-30 06:00:00&#39;,
-               &#39;2018-05-30 12:00:00&#39;, &#39;2018-05-30 18:00:00&#39;,
-               &#39;2018-05-31 00:00:00&#39;, &#39;2018-05-31 06:00:00&#39;,
-               &#39;2018-05-31 12:00:00&#39;, &#39;2018-05-31 18:00:00&#39;],
-              dtype=&#39;datetime64[ns]&#39;, length=57584, freq=&#39;6H&#39;)
-</pre></div>
-</div>
-</div>
-</div>
+<p>We feel that this is detrimental when using Dask in an HPC environment. Software designed specifically for use on HPC systems generally provides a way to set sensible global defaults, but still allows users to customise settings when necessary (e.g. this ‘Rationale’ box from the <a class="reference external" href="https://docs.open-mpi.org/en/v5.0.x/mca.html#setting-mca-parameter-values">OpenMPI documentation</a>).</p>
+<p>Unfortunately, by lacking the ability to configure global settings, Dask forces all users to either accept a less-than-optimal default setup, or spend time reading documentation and configuring their Dask cluster. There is nothing inherently wrong with this as a method of encouraging Dask users to become more familiar with the software and its configuration options. However, in a research HPC setting resource usage, both computational and human, is critical. From a computational standpoint, <code class="docutils literal notranslate"><span class="pre">hh5</span></code> has over 600 active users, if we can provide some default settings for Dask that can reduce the time a workflow takes by as little as a few percent, when multiplied by the number of users, that represents a significant resource saving across several projects. From a human standpoint, it means that new users can jump straight into using Dask efficiently, and that each <code class="docutils literal notranslate"><span class="pre">hh5</span></code> user doesn’t have to spend hours away from their research going over Dask documentation on how to get an efficient cluster set up. Any settings provided directly as arguments to <code class="docutils literal notranslate"><span class="pre">Client()</span></code> or <code class="docutils literal notranslate"><span class="pre">LocalCluster()</span></code> will override the settings provided by this module, so advanced Dask users who are already configuring their clusters do not need to worry about unexpected behaviour.</p>
+<p>Most Dask and xarray workflows will benefit from the settings provided by this module, though the larger and more computationally intensive the workflow the better the benefit will be. This module may not work as expected for all Dask cluster types either, we’ve only tested with the <code class="docutils literal notranslate"><span class="pre">LocalCluster</span></code> and <code class="docutils literal notranslate"><span class="pre">PBSCluster</span></code> types. We also can’t test every xarray or Dask workflow run by <code class="docutils literal notranslate"><span class="pre">hh5</span></code>, so we can’t guarantee that every problem will benefit from these settings. This is why we’ve decided to package these settings in a separate module rather than apply them directly to the hh5 <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> environments.  In the most common cases, it should just work, so there is no harm in trying it out. Advanced users should also see some benefit, as this module provides <span class="xref myst">process binding</span>, which cannot be configured directly by Dask at all.</p>
 </section>
-<section id="lazily-loading-files">
-<h2>Lazily loading files<a class="headerlink" href="#lazily-loading-files" title="Permalink to this heading">#</a></h2>
-<p>Now we only want to load the files if we’re actually going to look at them. This is the same thing that dask does for chunks within a file, but we want the lazy loading to work on the whole file, so that <code class="docutils literal notranslate"><span class="pre">xarray.open_dataset()</span></code> itself only gets run when we need that file’s data.</p>
-<p>To do this, we need to create a function using the decorator <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code>. This tells Dask that we want to run the function lazily, so it only runs when we need the output. The delayed result then needs to be changed into an array, using the function <code class="docutils literal notranslate"><span class="pre">dask.array.from_delayed()</span></code>. In addition to the delayed result, we also need to say what the size of the array will be, and what type its values are. Since the delayed function hasn’t been run yet Dask has no way of telling this itself.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
-
-<span class="c1"># This function only gets run when dask needs to look at the result</span>
-<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
-<span class="k">def</span> <span class="nf">open_datefile_delayed</span><span class="p">(</span><span class="n">t0</span><span class="p">):</span>
-    <span class="c1"># I&#39;ve added a print() here to show when the delayed function gets run</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;open_datefile_delayed(</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="o">%</span><span class="k">t0</span>)
-    
-    <span class="c1"># Otherwise it just opens and returns the file as a xarray.Dataset</span>
-    <span class="k">return</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/clt/clt_6hrs_ERAI_historical_an-pl_</span><span class="si">%04d%02d</span><span class="s1">*.nc&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">t0</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">t0</span><span class="o">.</span><span class="n">month</span><span class="p">))[</span><span class="mi">0</span><span class="p">],</span>
-                               <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
-
-<span class="k">def</span> <span class="nf">open_datefile</span><span class="p">(</span><span class="n">t0</span><span class="p">):</span>
-    <span class="c1"># Prepare to open the file</span>
-    <span class="n">var_data</span> <span class="o">=</span> <span class="n">open_datefile_delayed</span><span class="p">(</span><span class="n">t0</span><span class="p">)[</span><span class="s1">&#39;clt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
-    
-    <span class="c1"># Get the size of the time axis - the number of 6 hour intervals between the beginning and end of the month</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">-</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
-                             <span class="n">end</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
-                             <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">,</span>
-                             <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># Tell Dask the delayed function returns an array, and the size and type of that array</span>
-    <span class="k">return</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">from_delayed</span><span class="p">(</span><span class="n">var_data</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d0</span><span class="o">.</span><span class="n">lev</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d0</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d0</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">d0</span><span class="p">[</span><span class="s1">&#39;clt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can then run this function on each month between the start and end date, and concatenate the results into a single Dask array</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">months</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;1M&#39;</span><span class="p">)</span>
-
-<span class="c1"># Run open_datefile on each month of the dataset - note that open_datefile_delayed() hasn&#39;t yet been run</span>
-<span class="n">delayed_clt</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">open_datefile</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">months</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">delayed_clt</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dask.array&lt;concatenate, shape=(57584, 37, 241, 480), dtype=float32, chunksize=(124, 37, 241, 480)&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<p>And then convert that dask array to an Xarray dataset by adding in all the coordinates - <code class="docutils literal notranslate"><span class="pre">time</span></code> is calculated using Pandas, the rest come from the first file</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clt</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">delayed_clt</span><span class="p">,</span>
-                 <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span>
-                 <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">),</span>
-                     <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="n">d0</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
-                     <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="n">d0</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
-                     <span class="s1">&#39;lev&#39;</span><span class="p">:</span> <span class="n">d0</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span>
-                 <span class="p">},</span>
-                <span class="n">name</span> <span class="o">=</span> <span class="n">d0</span><span class="o">.</span><span class="n">clt</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                <span class="n">attrs</span> <span class="o">=</span> <span class="n">d0</span><span class="o">.</span><span class="n">clt</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
-<span class="n">clt</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;clt&#39; (time: 57584, lev: 37, lat: 241, lon: 480)&gt;
-dask.array&lt;shape=(57584, 37, 241, 480), dtype=float32, chunksize=(124, 37, 241, 480)&gt;
-Coordinates:
-  * time     (time) datetime64[ns] 1979-01-01 1979-01-01T06:00:00 ...
-  * lat      (lat) float64 90.0 89.25 88.5 87.75 87.0 86.25 85.5 84.75 84.0 ...
-  * lon      (lon) float64 -180.0 -179.2 -178.5 -177.8 -177.0 -176.2 -175.5 ...
-  * lev      (lev) float64 1e+05 9.75e+04 9.5e+04 9.25e+04 9e+04 8.75e+04 ...
-Attributes:
-    standard_name:  cloud_area_fraction
-    long_name:      Cloud cover 
-    units:          1
-    code:           248
-    table:          128
-    MD5:            0845c2411253ce851831553506e289d9
-</pre></div>
-</div>
-</div>
-</div>
-<p>Finally we should make sure that the data from the delayed function is the same as opening the dataset using <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-
-<span class="n">clt</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open_datefile_delayed(1979-01-31 00:00:00)
-open_datefile_delayed(1980-01-31 00:00:00)
-open_datefile_delayed(1981-01-31 00:00:00)
-open_datefile_delayed(1982-01-31 00:00:00)
-open_datefile_delayed(1983-01-31 00:00:00)
-open_datefile_delayed(1984-01-31 00:00:00)
-open_datefile_delayed(1985-01-31 00:00:00)
-open_datefile_delayed(1986-01-31 00:00:00)
-open_datefile_delayed(1987-01-31 00:00:00)
-open_datefile_delayed(1988-01-31 00:00:00)
-open_datefile_delayed(1989-01-31 00:00:00)
-open_datefile_delayed(1990-01-31 00:00:00)
-open_datefile_delayed(1991-01-31 00:00:00)
-open_datefile_delayed(1992-01-31 00:00:00)open_datefile_delayed(1993-01-31 00:00:00)
-
-open_datefile_delayed(1994-01-31 00:00:00)
-open_datefile_delayed(1995-01-31 00:00:00)
-open_datefile_delayed(1996-01-31 00:00:00)
-open_datefile_delayed(1997-01-31 00:00:00)
-open_datefile_delayed(1998-01-31 00:00:00)
-open_datefile_delayed(1999-01-31 00:00:00)
-open_datefile_delayed(2000-01-31 00:00:00)
-open_datefile_delayed(2001-01-31 00:00:00)
-open_datefile_delayed(2002-01-31 00:00:00)
-open_datefile_delayed(2003-01-31 00:00:00)
-open_datefile_delayed(2004-01-31 00:00:00)
-open_datefile_delayed(2005-01-31 00:00:00)
-open_datefile_delayed(2006-01-31 00:00:00)
-open_datefile_delayed(2007-01-31 00:00:00)
-open_datefile_delayed(2008-01-31 00:00:00)
-open_datefile_delayed(2009-01-31 00:00:00)
-open_datefile_delayed(2010-01-31 00:00:00)
-open_datefile_delayed(2011-01-31 00:00:00)
-open_datefile_delayed(2012-01-31 00:00:00)
-open_datefile_delayed(2013-01-31 00:00:00)
-open_datefile_delayed(2014-01-31 00:00:00)
-open_datefile_delayed(2015-01-31 00:00:00)
-open_datefile_delayed(2016-01-31 00:00:00)
-open_datefile_delayed(2017-01-31 00:00:00)
-open_datefile_delayed(2018-01-31 00:00:00)
-CPU times: user 7.27 s, sys: 1.14 s, total: 8.41 s
-Wall time: 7.71 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbe524c5eb8&gt;]
-</pre></div>
-</div>
-<img alt="../_images/0f7bf060c42fb911ef89ea63718525f10670a80ec9e352952d308cd769b16e6d.png" src="../_images/0f7bf060c42fb911ef89ea63718525f10670a80ec9e352952d308cd769b16e6d.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-
-<span class="n">ds_mf</span><span class="o">.</span><span class="n">clt</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.19 s, sys: 328 ms, total: 7.52 s
-Wall time: 7.41 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbe4c2fa940&gt;]
-</pre></div>
-</div>
-<img alt="../_images/36627cfffa5eb45ba7481ee12b51f48ce8277305468da5c18c426be4b9af68cd.png" src="../_images/36627cfffa5eb45ba7481ee12b51f48ce8277305468da5c18c426be4b9af68cd.png" />
-</div>
-</div>
-<p>Now we can put everything into a function. From here we’ll be able to create a general function for quickly accessing large datasets - this should appear in our <a class="reference external" href="https://github.com/coecms/coecms-util">coecms-util</a> library.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
-<span class="k">def</span> <span class="nf">open_datefile_delayed</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/</span><span class="si">%(var)s</span><span class="s1">/</span><span class="si">%(var)s</span><span class="s1">_6hrs_ERAI_historical_an-pl_</span><span class="si">%(Y)04d%(M)02d</span><span class="s1">*.nc&#39;</span><span class="o">%</span>
-                                    <span class="p">{</span><span class="s1">&#39;var&#39;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">month</span><span class="p">})[</span><span class="mi">0</span><span class="p">],</span>
-                               <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
-
-<span class="k">def</span> <span class="nf">open_datefile</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">var0</span><span class="p">):</span>
-    <span class="c1"># Prepare to open the file</span>
-    <span class="n">var_data</span> <span class="o">=</span> <span class="n">open_datefile_delayed</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">variable</span><span class="p">)[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
-    
-    <span class="c1"># Get the size of the time axis - the number of 6 hour intervals between the beginning and end of the month</span>
-    <span class="n">time_axis</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span> <span class="o">-</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
-                             <span class="n">end</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="n">pandas</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(),</span>
-                             <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">,</span>
-                             <span class="n">closed</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># Tell Dask the delayed function returns an array, and the size and type of that array</span>
-    <span class="k">return</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">from_delayed</span><span class="p">(</span><span class="n">var_data</span><span class="p">,</span> <span class="p">(</span><span class="n">time_axis</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">var0</span><span class="o">.</span><span class="n">lev</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">var0</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">var0</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">var0</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">open_erai</span><span class="p">(</span><span class="n">variable</span><span class="p">):</span>
-    <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/g/data1/ub4/erai/netcdf/6hr/atmos/oper_an_pl/v01/</span><span class="si">%(var)s</span><span class="s1">/</span><span class="si">%(var)s</span><span class="s1">_6hrs_ERAI_historical_an-pl_*.nc&#39;</span><span class="o">%</span>
-                 <span class="p">{</span><span class="s1">&#39;var&#39;</span><span class="p">:</span> <span class="n">variable</span><span class="p">}))</span>
-    
-    <span class="c1"># First and last dataset</span>
-    <span class="n">ds0</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">dsn</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    
-    <span class="c1"># Full time axis</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">ds0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dsn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;6H&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># First file&#39;s variable (for horizontal/vertical coordinates)</span>
-    <span class="n">var0</span> <span class="o">=</span> <span class="n">ds0</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
-    
-    <span class="c1"># Time of each file in the series (one per month)</span>
-    <span class="n">months</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">ds0</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dsn</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1M&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># Delayed opening of all the files using Dask</span>
-    <span class="n">dask_var</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">open_datefile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">var0</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">months</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    
-    <span class="c1"># Convert to xarray</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dask_var</span><span class="p">,</span>
-                          <span class="n">name</span> <span class="o">=</span> <span class="n">var0</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                          <span class="n">attrs</span> <span class="o">=</span> <span class="n">var0</span><span class="o">.</span><span class="n">attrs</span><span class="p">,</span>
-                          <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">],</span>
-                          <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span>
-                              <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
-                              <span class="s1">&#39;lev&#39;</span><span class="p">:</span> <span class="n">var0</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span>
-                              <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="n">var0</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
-                              <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="n">var0</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
-                          <span class="p">})</span>
-    
-    <span class="c1"># Cleanup</span>
-    <span class="n">ds0</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">dsn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    
-    <span class="k">return</span> <span class="n">var</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-
-<span class="n">z</span> <span class="o">=</span> <span class="n">open_erai</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
-<span class="n">z</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;20170615T1800&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.59 s, sys: 100 ms, total: 1.69 s
-Wall time: 1.71 s
-</pre></div>
-</div>
-<img alt="../_images/566688a29a29bee17a822e9a707b98d1c083abac8d6f0d25806c68aa196bd80b.png" src="../_images/566688a29a29bee17a822e9a707b98d1c083abac8d6f0d25806c68aa196bd80b.png" />
-</div>
-</div>
+<section id="how-do-i-use-it">
+<h2>How do I use it?<a class="headerlink" href="#how-do-i-use-it" title="Permalink to this heading">#</a></h2>
+<p>Just load the module. In an interactive PBS job or a PBS job script:</p>
+<terminal-window typingDelay=30 lineDelay=200>
+    <terminal-line data="input">module use /g/data/hh5/public/modules</terminal-line>
+    <terminal-line data="input">module load conda/analysis3</terminal-line>
+    <terminal-line data="input">module load dask-optimiser</terminal-line>
+    <terminal-line data="input">python3</terminal-line>
+    <terminal-line>Python 3.9.17 | packaged by conda-forge | (main, Aug 10 2023, 07:02:31)</terminal-line>
+    <terminal-line>[GCC 12.3.0] on linux</terminal-line>
+    <terminal-line>Type "help", "copyright", "credits" or "license" for more information.</terminal-line>
+    <terminal-line>>>></terminal-line>
+</terminal-window>
+<p>In ARE Jupyterlab:
+Add <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> after your analysis3 module in the <code class="docutils literal notranslate"><span class="pre">Modules</span></code> field
+<img alt="ARE options" src="../_images/dask_optimiser_ARE.png" /></p>
+<p>And then launch a dask cluster:
+<img alt="ARE client launch" src="../_images/dask_optimiser_client_launch.png" /></p>
+<p>Note the extra messages while <code class="docutils literal notranslate"><span class="pre">client=Client()</span></code> is running. This is because the settings from the module are applied at the end of the cluster launch, and the workers are essentially rebooted with their new configuration if necessary. The <code class="docutils literal notranslate"><span class="pre">INFO</span></code> messages will always appear, as the configuration is applied using a <a class="reference external" href="https://docs.dask.org/en/stable/how-to/customize-initialization.html">scheduler preload plugin</a>. If the plugin detects that the worker configuration should be modified, the <code class="docutils literal notranslate"><span class="pre">Modifying</span> <span class="pre">workers</span></code> message will appear. Note that this doesn’t appear when a <code class="docutils literal notranslate"><span class="pre">PBSCluster</span></code> is used, as the message is not relayed to the client from the PBS jobs spawned by the cluster.</p>
+</section>
+<section id="settings-details">
+<h2>Settings Details<a class="headerlink" href="#settings-details" title="Permalink to this heading">#</a></h2>
+<p>The settings modified by the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module are as follows:</p>
+<ul class="simple">
+<li><p>Sets the default thread count per worker to 1</p></li>
+<li><p>Removes worker memory limit</p></li>
+<li><p>Process binding for dask workers</p></li>
+<li><p>Applies new default PBS flags and module settings to <code class="docutils literal notranslate"><span class="pre">PBSCluster()</span></code>.</p></li>
+<li><p>Sets communication protocol to UCX (<code class="docutils literal notranslate"><span class="pre">conda_concept</span></code> modules only)</p></li>
+</ul>
+<p>These will be explained in more detail below.</p>
+<section id="one-thread-per-worker">
+<h3>One thread per worker<a class="headerlink" href="#one-thread-per-worker" title="Permalink to this heading">#</a></h3>
+<p>By default, Dask will detect the number of CPU cores (<span class="math notranslate nohighlight">\(n_{cpu}\)</span>) it has access to and launch a set number of worker processes each with the same number of threads. The number of processes will be the smallest integer factor of <span class="math notranslate nohighlight">\(n_{cpu}\)</span>, <span class="math notranslate nohighlight">\(n_{w} : n_w \ge \sqrt{n_{cpu}}\)</span>, and the number of threads will be <span class="math notranslate nohighlight">\(\dfrac{n_{cpu}}{n_w}\)</span>. In most cases, this will result in more than one thread per worker. This is less than ideal due to the <a class="reference external" href="https://realpython.com/python-gil/">Python global interpreter lock</a>.</p>
+<p>Each thread within a worker process shares memory space, and the global interpreter lock prevents race conditions when multiple threads attempt to make changes to the same object in memory at the same time. For pure Dask, this does not pose much of a problem, as most Dask operations are direct invocations of C maths library operations, and thus do not create, modify or destroy any Python objects while they run. Xarray is quite different, most of the work it does happens within the Python interpreter, meaning many objects are created, modified and destroyed as an Xarray operation runs. The effect of this is that Xarray operations are effectively run in serial in multithreaded environments. This means that when the default Dask <code class="docutils literal notranslate"><span class="pre">LocalCluster()</span></code> settings are used, only <span class="math notranslate nohighlight">\(n_w\)</span> Xarray operations can run in parallel.</p>
+<p>By forcing Dask to use one thread per worker, each thread has its own memory space, and cannot be affected by the global interpreter lock being taken by any other thread. Therefore the full <span class="math notranslate nohighlight">\(n_{cpu}\)</span> Xarray operations can run in parallel.
+<img alt="Speedup" src="../_images/dask_optimiser_speedup.png" /></p>
+</section>
+<section id="removed-memory-worker-limit">
+<h3>Removed memory worker limit<a class="headerlink" href="#removed-memory-worker-limit" title="Permalink to this heading">#</a></h3>
+<p>By default, Dask will detect the amount of memory available on a system, and set a memory limit such that each worker gets an equal share of the system memory, and the sum of the limits is equal to the total memory available. Once again, this is less than ideal for Xarray operations, as quite frequently Xarray workflows may contain a single step that can only use one worker but requires a large amount of memory. When this happens, its quite common for workers to be killed and restarted, and then attempt to run the step again. This can lead to infinite loops where workers end up being killed over and over again wasting a lot of time and resources. By removing the memory limit, PBS will kill the entire job, meaning that a workflow that can never complete due to not having enough memory on the node will not waste your compute grant.</p>
+</section>
+<section id="worker-process-binding">
+<h3>Worker process binding<a class="headerlink" href="#worker-process-binding" title="Permalink to this heading">#</a></h3>
+<p>This is a more advanced setting, and something that can only be set by a plugin. Dask itself offers no ability to modify process binding. Process binding is where the Linux kernel will restrict the CPU cores that a process has access to as it runs. For some background, the Linux kernel has an in-built scheduler for all processes currently running on a given system, and it will place those processes on CPU cores based on some set of internal heuristics. Processes will typically end up being moved from one CPU core to another a few times a second. In a desktop setting, this is fine as the assumption is that most work done by a process on a  desktop computer is over in a few seconds, so migrating a process to the core on which the kernel thinks it will finish fastest is the best choice.</p>
+<p>HPC workloads are different, they tend to run for minutes, hours, or more. When a process is moved, its state needs to be copied across to whichever CPU core the kernel wants to move it to. This movement has some overhead, as the CPU registers and cache for that particular process are effectively reset. By restricting a process to a single CPU core, this migration can never happen, and therefore this overhead is eliminated. Taking advantage of process binding is quite common in other HPC libraries, MPI distributions in particular are configured to automatically apply process binding when run.</p>
+<p>Every Dask worker must be bound to a different CPU core, as otherwise some workers will end up sharing CPU cores, and then have to contend for resources. The <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module contains some logic that runs on each worker when it launches, or when a client with this module loaded is first connected to a cluster. This logic first checks the CPU binding of every existing Dask worker on the node, and finds the next available CPU core (or cores for multi-threaded workers) on which to bind the current worker. It will only perform this binding within a PBS job, and only if the total number of Dask worker threads is less than or equal to the <code class="docutils literal notranslate"><span class="pre">-lncpus</span></code> request of the PBS job. Process binding cannot be disabled when using <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code>, so if it is causing problems for your workflow, the best course of action would be to unload the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module.</p>
+</section>
+<section id="pbscluster-default-settings">
+<h3>PBSCluster default settings<a class="headerlink" href="#pbscluster-default-settings" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> sets applies some default settings to <code class="docutils literal notranslate"><span class="pre">PBSCluster</span></code> initialisation in order to make it more compatible with NCI’s custom PBSPro installation. They are as follows:</p>
+<ul class="simple">
+<li><p>Skip the <code class="docutils literal notranslate"><span class="pre">select</span></code> PBS resource</p></li>
+<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">-lstorage</span></code> flag from the current job or create one if the cluster has been created on a login node</p></li>
+<li><p>Load the current analysis3 module when the worker jobs start</p></li>
+<li><p>Set the Dask cluster to use the Inifinband network</p></li>
+</ul>
+<p>This simplifies the process required to launch a <code class="docutils literal notranslate"><span class="pre">PBSCluster</span></code> on Gadi:</p>
+<terminal-window typingDelay=30 lineDelay=150>
+<terminal-line data="prompt">from dask_jobqueue import PBSCluster</terminal-line>
+<terminal-line data="prompt">cluster = PBSCluster(cores=48,walltime="1:00:00",memory=0,processes=48,queue='normal',resource_spec="ncpus=48,mem=100GB,jobfs=100GB",python="python3")</terminal-line>
+<terminal-line data="prompt">cluster</terminal-line>
+<terminal-line>PBSCluster(e4bf1e72, 'ucx://10.6.152.1:40908', workers=0, threads=0, memory=0 B)</terminal-line>
+<terminal-line>>>></terminal-line>
+</terminal-window>
+<p>It is necessary to double-specify <code class="docutils literal notranslate"><span class="pre">cores</span></code>, <code class="docutils literal notranslate"><span class="pre">processes</span></code> and <code class="docutils literal notranslate"><span class="pre">walltime</span></code>, as <code class="docutils literal notranslate"><span class="pre">PBSCluster()</span></code> will not launch without those options even if <code class="docutils literal notranslate"><span class="pre">resource_spec</span></code> completely overrides their values. It is also necessary to specify <code class="docutils literal notranslate"><span class="pre">memory</span></code> in both the arguments to <code class="docutils literal notranslate"><span class="pre">PBSCluster()</span></code> and in <code class="docutils literal notranslate"><span class="pre">resource_spec</span></code>. The memory request in <code class="docutils literal notranslate"><span class="pre">resource_spec</span></code> is given to PBS, and the memory request in the <code class="docutils literal notranslate"><span class="pre">PBSCluster()</span></code> arguments is given to the Dask workers.</p>
+</section>
+<section id="ucx-communication-protocol">
+<h3>UCX communication protocol<a class="headerlink" href="#ucx-communication-protocol" title="Permalink to this heading">#</a></h3>
+<p>This is another more advanced operation, and is only available with the <code class="docutils literal notranslate"><span class="pre">conda_concept</span></code> modules, and only with the <code class="docutils literal notranslate"><span class="pre">PBSCluster</span></code> Dask cluster type. This setting tells Dask to use the <a class="reference external" href="https://openucx.org/documentation/">Unified Communication X</a> network communication framework. The UCX framework is designed and optimised for the high-bandwidth, low-latency Infiniband networks used by HPC clusters. The <code class="docutils literal notranslate"><span class="pre">conda_concept</span></code> analysis3 environments use the NCI-built <code class="docutils literal notranslate"><span class="pre">ucx</span></code> libraries from <code class="docutils literal notranslate"><span class="pre">/apps</span></code>, which are configured specifically for Gadi’s hardware.</p>
+</section>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading">#</a></h2>
+<p>Thanks to Davide Marchegiani for <a class="reference external" href="https://github.com/atteggiani/animated-terminal.js">animated-terminal.js</a>.</p>
 </section>
 </section>
 
@@ -1071,20 +791,20 @@ Wall time: 1.71 s
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../contents/tag-dask.html"
+       href="../index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">dask</p>
+        <p class="prev-next-title">CLEX CMS Blog</p>
       </div>
     </a>
     <a class="right-next"
-       href="2021-11-24-api.html"
+       href="2023-07-05-select-region-shapefile.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">API Calculation with Xarray + Dask</p>
+        <p class="prev-next-title">Using a shapefile to select a region and calculate statistics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1103,8 +823,17 @@ Wall time: 1.71 s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-time-axis">Setting up the time axis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lazily-loading-files">Lazily loading files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-dask-optimiser-for">What is <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> for?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-use-it">How do I use it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#settings-details">Settings Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-thread-per-worker">One thread per worker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removed-memory-worker-limit">Removed memory worker limit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worker-process-binding">Worker process binding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pbscluster-default-settings">PBSCluster default settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ucx-communication-protocol">UCX communication protocol</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
   </nav></div>
 
