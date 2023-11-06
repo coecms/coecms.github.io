@@ -273,3 +273,7 @@
 2023-09-20-dask-optimiser:
   title: Introducing `dask-optimiser`
   tags: [ xarray, dask, python, jupyter ]
+
+2023-11-02-gnu-parallel:
+  title: Using GNU Parallel in bash scripts to optimize python processes
+  tags: [ python, bash ]
