@@ -278,6 +278,6 @@
   title: Using GNU Parallel in bash scripts to optimize python processes
   tags: [ python, bash ]
 
-2023-11-04-seasonal-means
+2023-11-04-seasonal-means:
   title: Getting seasonal means out of a dataset
   tags: [python, xarray]
