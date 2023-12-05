@@ -158,11 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tags</span></p>
 <ul class="current nav bd-sidenav">
@@ -308,6 +308,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-r.html">r</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -369,12 +370,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-06-22-mfdataset-preprocess.html">More efficent use of <code class="docutils literal notranslate"><span class="pre">xarray.open_mfdataset()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
@@ -2218,7 +2221,7 @@ Coordinates:
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> runs the function on each chunk independently, which is fine if the data is chunked horizontally but if the chunking is over time then we need some way of passing in the previous time’s API value.</p>
-<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v2023.10.2.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
+<p>Let’s re-open the original dataset, adding some horizontal chunking this time, and see how we can deal with the previous timesteps. <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.data.html#xarray.DataArray.data" title="(in xarray v2023.11.1.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a> will give you the Dask array from an Xarray object</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="s1">&#39;/g/data/ua8/Precipitation/FROGs/1DD_V1/ERA5/*.nc&#39;</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">})</span>
@@ -3224,7 +3227,7 @@ Coordinates:
 <li><p>Build up your analysis in stages - here we first computed a single year, then changed that into a function, then updated the function to deal with the successive years</p></li>
 <li><p>Check often to make sure your results are sensible, e.g. by plotting values</p></li>
 </ul>
-<p>We’ve focussed more on memory use than speed here, if improved speed is desired you could look at functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html#scipy.signal.lfilter" title="(in SciPy v1.11.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.lfilter()</span></code></a> or using <a class="reference external" href="https://numba.pydata.org/">numba</a> instead of the loop over timesteps.</p>
+<p>We’ve focussed more on memory use than speed here, if improved speed is desired you could look at functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html#scipy.signal.lfilter" title="(in SciPy v1.11.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.signal.lfilter()</span></code></a> or using <a class="reference external" href="https://numba.pydata.org/">numba</a> instead of the loop over timesteps.</p>
 </section>
 </section>
 

@@ -23,4 +23,5 @@ xarray
     /posts/2023-06-22-mfdataset-preprocess
     /posts/2023-07-05-select-region-shapefile
     /posts/2023-09-20-dask-optimiser
+    /posts/2023-11-04-seasonal-means
     
