@@ -280,8 +280,13 @@
 
 2023-11-04-seasonal-means:
   title: Getting seasonal means out of a dataset
-  tags: [python, xarray]
+  tags: 
+    - python
+    - xarray
 
 2023-12-12-apply-ufunc:
   title: Applying Universal Functions
-  tags: [python, xarray, dask]
+  tags: 
+    - python
+    - xarray
+    - dask
