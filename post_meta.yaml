@@ -252,11 +252,36 @@
 2023-03-30-file-expiry-shortcut:
   title: Quick tip - Feed `nci-file-expiry` output back into itself
   tags: [ storage, disk ]
+  
+2023-05-31-vscode-are:
+  title: Working with ARE notebooks in VS Code
+  tags: [ vscode, python, jupyter ]
 
 2023-05-31-adding-new-task-to-cylc:
   title: Adding a new task to a rose/cylc suite
   excerpt: Describes the steps required to add an additional task to the ACCESS-CM2 model, using annualy changing Sea Surface Temperatures as an example.
   tags: [ um, access ]
+
+2023-06-22-mfdataset-preprocess:
+  title: More efficent use of xarray.open_mfdataset()
+  tags: [ python, xarray, dask, netcdf, data ]
+
+2023-07-05-select-region-shapefile:
+  title: Using a shapefile to select a region and calculate statistics
+  tags: [ python, xarray, dask, raster, shapefile ]
+
+2023-09-20-dask-optimiser:
+  title: Introducing `dask-optimiser`
+  tags: [ xarray, dask, python, jupyter ]
+
+2023-11-02-gnu-parallel:
+  title: Using GNU Parallel in bash scripts to optimize python processes
+  tags: [ python, bash ]
+
+2023-11-04-seasonal-means:
+  title: Getting seasonal means out of a dataset
+  tags: [python, xarray]
+
 2024-05-02-comparison-of-performance:
   title: Python Performance Options
   excerpt: Investigates how the performance of python code can be enhanced without parallelisation.
