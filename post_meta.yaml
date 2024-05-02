@@ -257,3 +257,7 @@
   title: Adding a new task to a rose/cylc suite
   excerpt: Describes the steps required to add an additional task to the ACCESS-CM2 model, using annualy changing Sea Surface Temperatures as an example.
   tags: [ um, access ]
+2024-05-02-comparison-of-performance:
+  title: Python Performance Options
+  excerpt: Investigates how the performance of python code can be enhanced without parallelisation.
+  tags: [ python ]
