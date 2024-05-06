@@ -3,11 +3,11 @@
     :caption: Latest
     :maxdepth: 1
 
+    /posts/2024-05-02-comparison-of-performance
     /posts/2023-11-04-seasonal-means
     /posts/2023-11-02-gnu-parallel
     /posts/2023-09-20-dask-optimiser
     /posts/2023-07-05-select-region-shapefile
-    /posts/2023-06-22-mfdataset-preprocess
     
 
 .. toctree::
@@ -50,6 +50,7 @@
     :maxdepth: 2
     :hidden:
 
+    /contents/year-2024
     /contents/year-2023
     /contents/year-2022
     /contents/year-2021
