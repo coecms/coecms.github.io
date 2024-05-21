@@ -1,11 +1,10 @@
 
-2024
+python ML
 --------------------------------------------------------------------------------
 
 .. toctree::
-    :caption: 2024
+    :caption: python ML
     :maxdepth: 1
 
     /posts/2024-05-20-pytorch_intro
-    /posts/2024-05-02-comparison-of-performance
     
