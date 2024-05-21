@@ -286,3 +286,7 @@
   title: Python Performance Options
   excerpt: Investigates how the performance of python code can be enhanced without parallelisation.
   tags: [ python ]
+
+2024-05-20-pytorch_intro:
+  title: Introduction to Pytorch
+  tags: [ python ML ]
