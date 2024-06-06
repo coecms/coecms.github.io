@@ -60,7 +60,7 @@ environment. In fact, in our advice to users, we recommend the following Advance
 
 Note the `PYTHONNOUSERSITE=1` environment variable. This will have the effect of preventing anything installed with `pip install --user` from loading at all.
 
-## Virtual envrionments
+## Virtual environments
 Instead, we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html). A virtual environment is a self-contained Python
 environment built on top of an existing Python installation. The self-contained
 nature of a virtual environment means that any issues due to conflicting 
@@ -103,7 +103,7 @@ script with a `#!/usr/bin/env python` [shebang line](https://en.wikipedia.org/wi
 will now run under the new virtual environment. If you're running a script directly, you can
 change the path in the shebang line to the path to the `python` symlink in the virtual environment:
 ```
-#!/home/563/dr4292/xmhw_venv/bin/python3
+#!/home/563/dr4292/xwmb_venv/bin/python3
 
 import xwmb
 ...
@@ -166,14 +166,15 @@ Jupyterlab will still be able to use it.
 
 ## Summary
 
-While we try to make the `hh5` conda analysis environments as comprehensive as possible, we can't 
+While CMS tries to make the `hh5` conda analysis environments as comprehensive as possible, we can't
 always install the packages you need. By creating a virtual environment using the `conda/analysis3` 
 environment as your base,
-its possible to add in packages we can't install, without having the overhead of maintaining
+its possible to add in packages CMS can't install, without having the overhead of maintaining
 your own large conda environment. Furthermore, using a virtual environment avoids the 
 headaches associated with installing software using `pip install --user` as anything 
 installed will be pinned to a specific conda environment. Virtual environments are simple to
-install, and simple to delete and re-create as necessary. 
+install, and simple to delete and re-create as necessary. Virtual environments can also be seamlessly integrated into
+ARE JupyterLab sessions, allowing you to use it anywhere you would use an `analysis3` conda environment.
 
 
 ## Acknowledgements
