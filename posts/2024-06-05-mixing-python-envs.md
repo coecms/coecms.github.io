@@ -2,7 +2,7 @@
 layout: post
 title: Building custom python environments on top of the hh5 conda analysis environments
 author: Dale Roberts
-categories: xarray
+categories: python
 ---
 <script src="https://cdn.jsdelivr.net/gh/atteggiani/animated-terminal/animated-terminal.min.js" defer></script>
 
