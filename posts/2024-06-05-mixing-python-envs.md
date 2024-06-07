@@ -32,7 +32,7 @@ There is no conda distribution for this package, it can only be installed by `pi
 package also has an extensive list of dependencies, most of which are available in the `conda/analysis3` environment, so using the `analysis3` 
 environment as a base will save quite a lot of disk space.
  
-You may be tempted to load the `conda/analysis3` environment and `pip install --user` the xWMB package.
+The simplest approach is to load the `conda/analysis3` environment and `pip install --user` the xWMB package.
 <terminal-window typingDelay=30 lineDelay=200>
     <terminal-line data="input">module use /g/data/hh5/public/modules</terminal-line>
     <terminal-line data="input">module load conda/analysis3</terminal-line>
@@ -44,24 +44,23 @@ You may be tempted to load the `conda/analysis3` environment and `pip install --
     <terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
 </terminal-window>
 
-The trouble with this is that it can lead to problems in the future. The `analysis3` module
+This is sufficient in certain cases, for instance, quickly testing user code, or when long-term
+reproducibility is not necessary. The downside with this approach is that it can lead to problems in the future. First of all, everything will be installed in your `/home` directory, which has a small quota and can easily be filled by local `pip` installations. Another consideration is that the `analysis3` module
 is updated to every 3 months as new environments are released. For example, if you load `conda/analysis3` today,
 you'll get the `conda/analysis3-24.01` environment. If you were to load the same module a couple of months from
 now, you'll get the `conda/analysis3-24.04` environment. Our policies around updating the conda environments
 can be found [here](https://climate-cms.org/cms-wiki/services/services-conda.html). As time goes on, your
 locally installed package will get further and further out of date, and could potentially conflict with newer
-packages installed in updated analysis environments. 
+packages installed in updated analysis environments.
 
-This is one of the most common issues we see come into our helpdesk. A user will open a JupyterLab session in ARE
-and an important package like `dask` or `xarray` will fail to import due to a conflict in the user's local
-environment. In fact, in our advice to users, we recommend the following Advanced Settings for ARE environments:
+In our advice to users, we recommend the following Advanced Settings for ARE environments:
 
 ![ARE recommended settings](../images/ARE-recommended.PNG "ARE recommended JupyterLab settings")
 
-Note the `PYTHONNOUSERSITE=1` environment variable. This will have the effect of preventing anything installed with `pip install --user` from loading at all.
+Note the `PYTHONNOUSERSITE=1` environment variable. This will have the effect of preventing anything installed with `pip install --user` from loading at all. This setting also works in the terminal and can be used as a first step to diagnosing any issues with python package imports.
 
 ## Virtual environments
-Instead, we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html). A virtual environment is a self-contained Python
+What we recommend is creating a [virtual environment](https://docs.python.org/3/library/venv.html). A virtual environment is a self-contained Python
 environment built on top of an existing Python installation. The self-contained
 nature of a virtual environment means that any issues due to conflicting 
 dependencies can be avoided entirely. Being able to base the environment on top of
@@ -96,12 +95,21 @@ at the time of its creation, so it avoids the out-of-date dependencies issue men
     <terminal-line>lrwxrwxrwx 1 dr4292 v45 67 Jun  5 14:43 /home/563/dr4292/xwmb_venv/bin/python3 -> /g/data/hh5/public/apps/miniconda3/envs/analysis3-24.01/bin/python3</terminal-line>
 </terminal-window>
 
-There are a few different ways that this virtual environment can be used in scripts.
-Immediately after loading the `conda/analysis3` module, you can place the command
-`source xwmb_venv/bin/activate` in your script and any `python` command or 
-script with a `#!/usr/bin/env python` [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) 
-will now run under the new virtual environment. If you're running a script directly, you can
-change the path in the shebang line to the path to the `python` symlink in the virtual environment:
+Immediately after loading the `conda/analysis3` module, you can run
+`source xwmb_venv/bin/activate` and any `python` command or script will now run under the new virtual environment.
+```
+#!/usr/bin/env bash
+#PBS -l walltime=1:00:00,mem=4GB,ncpus=1,storage=gdata/hh5
+
+module use /g/data/hh5/public/modules
+module load conda/analysis3
+source xwmb_venv/bin/activate
+
+python3 my_script.py
+```
+
+ If you're running a script directly, you can
+change the path in the [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) line to the path to the `python` symlink in the virtual environment:
 ```
 #!/home/563/dr4292/xwmb_venv/bin/python3
 
@@ -170,9 +178,7 @@ While CMS tries to make the `hh5` conda analysis environments as comprehensive a
 always install the packages you need. By creating a virtual environment using the `conda/analysis3` 
 environment as your base,
 its possible to add in packages CMS can't install, without having the overhead of maintaining
-your own large conda environment. Furthermore, using a virtual environment avoids the 
-headaches associated with installing software using `pip install --user` as anything 
-installed will be pinned to a specific conda environment. Virtual environments are simple to
+your own large conda environment. Furthermore, using a virtual environment  is more stable and easier to maintain and reuse than installing software using `pip install --user`. Virtual environments are simple to
 install, and simple to delete and re-create as necessary. Virtual environments can also be seamlessly integrated into
 ARE JupyterLab sessions, allowing you to use it anywhere you would use an `analysis3` conda environment.
 
