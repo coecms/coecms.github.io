@@ -37,11 +37,9 @@ To query usage for an on-disk file system, NCI provides commands which report on
 nci-files-report --group project_id
 ```
 
-CMS has put in place a `Grafana` server for visualising a range of accounting statistics for CLEX. You can access [this server](https://accessdev.nci.org.au/grafana/login:) using your NCI credentials.
+CMS has put in place a dashboard for visualising a range of accounting statistics for CLEX. Please contact CMS for the passowrd to access [this server](http://climate-cms.org/dashboard/) 
 
-You can access a range of useful statistics by user and group via the [User Report dashboard](https://accessdev.nci.org.au/grafana/d/toeLAYDWz/user-report?orgId=1)
-
-![Grafana User Report](../images/grafana_example.png "Grafana User Report")
+![Dashboard](../images/dashboard_w40.PNG "Dashboard")
 
 More details on how to use these and other accounting tools are available from the [CMS wiki](http://climate-cms.wikis.unsw.edu.au/Accounting_at_NCI).
 
