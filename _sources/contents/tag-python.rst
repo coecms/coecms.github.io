@@ -36,4 +36,5 @@ python
     /posts/2023-11-02-gnu-parallel
     /posts/2023-11-04-seasonal-means
     /posts/2024-05-02-comparison-of-performance
+    /posts/2024-06-05-mixing-python-envs
     

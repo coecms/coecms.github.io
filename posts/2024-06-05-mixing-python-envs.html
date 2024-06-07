@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Find the value of a variable at the times when another variable is maximum &#8212; CLEX CMS Blog</title>
+    <title>Building custom python environments on top of conda/analysis3 &#8212; CLEX CMS Blog</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2018-11-27-Value-when-other-is-max';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2024-06-05-mixing-python-envs';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Per-gridpoint time correlation of two models" href="2019-07-29-multi-apply-along-axis.html" />
-    <link rel="prev" title="Basic usage of python logging module" href="2018-10-05-introduction-to-python-logging.html" />
+    <link rel="next" title="Introduction to Pytorch" href="2024-05-20-pytorch_intro.html" />
+    <link rel="prev" title="CLEX CMS Blog" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,8 +157,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Latest</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="2024-06-05-mixing-python-envs.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="2024-05-20-pytorch_intro.html">Introduction to Pytorch</a></li>
 
 
@@ -295,7 +295,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l2"><a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">Basic usage of python logging module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-12-create-netcdf.html">How to create NetCDF files</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Find the value of a variable at the times when another variable is maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">Per-gridpoint time correlation of two models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2019-09-03-python-animation.html">How to animate 2D fields</a></li>
@@ -312,7 +312,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2024-05-02-comparison-of-performance.html">Python Perfomance Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2024-06-05-mixing-python-envs.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-python%20ML.html">python ML</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -358,7 +358,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-05-31-vscode-are.html">Working with ARE notebooks in VS Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/tag-xarray.html">xarray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/tag-xarray.html">xarray</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="2018-04-24-reading-envi-met.html">Reading ENVI_MET files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-04-27-xarray-plot-types.html">Xarray plot types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-05-22-python-netcdf.html">Python Tuesday: NetCDF Python library overview</a></li>
@@ -368,7 +368,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">Review of line plots with Xarray</a></li>
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Find the value of a variable at the times when another variable is maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2019-07-29-multi-apply-along-axis.html">Per-gridpoint time correlation of two models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2021-07-29-coarsen_climatology.html">Climatologies with ‘Coarsen’</a></li>
@@ -386,8 +386,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2024.html">2024</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="2024-06-05-mixing-python-envs.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2024.html">2024</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="2024-05-20-pytorch_intro.html">Introduction to Pytorch</a></li>
 
 
@@ -447,8 +447,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2019-01-18-using-opendap.html">Using OPeNDAP to access data remotely: MUR example</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Find the value of a variable at the times when another variable is maximum</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2018.html">2018</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2018-11-27-Value-when-other-is-max.html">Find the value of a variable at the times when another variable is maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-26-Setting-up-NetCDF-file-attributes.html">Setting up NetCDF file attributes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-19-mppnccombine-fast.html">Fast MOM collation with payu and mppnncombine-fast</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2018-10-12-create-netcdf.html">How to create NetCDF files</a></li>
@@ -548,7 +548,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2018-11-27-Value-when-other-is-max.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fposts/2024-06-05-mixing-python-envs.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -578,7 +578,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/posts/2018-11-27-Value-when-other-is-max.ipynb" target="_blank"
+      <li><a href="../_sources/posts/2024-06-05-mixing-python-envs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -588,7 +588,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -660,7 +660,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Find the value of a variable at the times when another variable is maximum</h1>
+    <h1>Building custom python environments on top of conda/analysis3</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -670,13 +670,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-of-the-same-dimensionality">Variables of the same dimensionality</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-of-different-dimensionality">Variables of different dimensionality</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-xarray">Solution with <code class="docutils literal notranslate"><span class="pre">xarray</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-for-numpy-arrays">Solution for <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension">Extension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual environments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
             </nav>
         </div>
@@ -688,319 +688,175 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum">
-<h1>Find the value of a variable at the times when another variable is maximum<a class="headerlink" href="#find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum" title="Permalink to this heading">#</a></h1>
-<p><strong>Claire Carouge, CLEX CMS</strong></p>
-<p>Let’s say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.</p>
-<p>As we shall see, it is relatively easy to do with two variables of the same rank, and that is what the <code class="docutils literal notranslate"><span class="pre">where()</span></code> function is designed for. But, depending on which Python package you are using, this problem can be more complicated with variables of different ranks, or not!
-In this blog, we will look at both scenarios.</p>
-<p>We first need to import some packages, read in some data and calculate the maximum in time at all spatial points. As usual, I’m going to use CMIP data as it’s easily accessible.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s get the 2m temperature and the sensible heat flux.</span>
-<span class="c1"># We do not want to decode the time unit. </span>
-<span class="c1"># as datetime objects can&#39;t be plotted.</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/historical/mon/atmos/Amon/r1i1p1/latest/tas/tas_Amon_ACCESS1-0_historical_r1i1p1_185001-200512.nc&#39;</span><span class="p">,</span>
-                        <span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ds1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;/g/data/rr3/publications/CMIP5/output1/CSIRO-BOM/ACCESS1-0/historical/mon/atmos/Amon/r1i1p1/latest/hfss/hfss_Amon_ACCESS1-0_historical_r1i1p1_185001-200512.nc&#39;</span><span class="p">,</span>
-                        <span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">tas</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">tas</span>
-<span class="n">hfss</span> <span class="o">=</span> <span class="n">ds1</span><span class="o">.</span><span class="n">hfss</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tas</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;tas&#39; (time: 1872, lat: 145, lon: 192)&gt;
-[52116480 values with dtype=float32]
-Coordinates:
-  * time     (time) float64 6.753e+05 6.754e+05 ... 7.323e+05 7.323e+05
-  * lat      (lat) float64 -90.0 -88.75 -87.5 -86.25 ... 86.25 87.5 88.75 90.0
-  * lon      (lon) float64 0.0 1.875 3.75 5.625 7.5 ... 352.5 354.4 356.2 358.1
-    height   float64 ...
-Attributes:
-    standard_name:     air_temperature
-    long_name:         Near-Surface Air Temperature
-    units:             K
-    cell_methods:      time: mean
-    cell_measures:     area: areacella
-    history:           2012-01-18T23:37:46Z altered by CMOR: Treated scalar d...
-    associated_files:  baseURL: http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation...
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hfss</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;hfss&#39; (time: 1872, lat: 145, lon: 192)&gt;
-[52116480 values with dtype=float32]
-Coordinates:
-  * time     (time) float64 6.753e+05 6.754e+05 ... 7.323e+05 7.323e+05
-  * lat      (lat) float64 -90.0 -88.75 -87.5 -86.25 ... 86.25 87.5 88.75 90.0
-  * lon      (lon) float64 0.0 1.875 3.75 5.625 7.5 ... 352.5 354.4 356.2 358.1
-Attributes:
-    standard_name:     surface_upward_sensible_heat_flux
-    long_name:         Surface Upward Sensible Heat Flux
-    units:             W m-2
-    cell_methods:      time: mean
-    cell_measures:     area: areacella
-    history:           2012-01-15T11:36:06Z altered by CMOR: replaced missing...
-    associated_files:  baseURL: http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation...
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the maximum temperature at each spatial point along the time axis:</span>
-<span class="n">tas_max</span><span class="o">=</span><span class="n">tas</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">tas_max</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;tas&#39; (lat: 145, lon: 192)&gt;
-array([[258.12787, 258.12787, 258.12787, ..., 258.12787, 258.12787, 258.12787],
-       [259.0565 , 259.0456 , 259.02908, ..., 259.0787 , 259.07742, 259.07217],
-       [259.79144, 259.71857, 259.64832, ..., 260.0159 , 259.9404 , 259.86655],
-       ...,
-       [273.00952, 273.0114 , 273.0609 , ..., 273.01083, 273.00726, 273.0072 ],
-       [273.2563 , 273.26328, 273.27258, ..., 273.25238, 273.25394, 273.25162],
-       [273.18732, 273.18732, 273.18732, ..., 273.18732, 273.18732, 273.18732]],
-      dtype=float32)
-Coordinates:
-  * lat      (lat) float64 -90.0 -88.75 -87.5 -86.25 ... 86.25 87.5 88.75 90.0
-  * lon      (lon) float64 0.0 1.875 3.75 5.625 7.5 ... 352.5 354.4 356.2 358.1
-    height   float64 ...
-</pre></div>
-</div>
-</div>
-</div>
-<section id="variables-of-the-same-dimensionality">
-<h2>Variables of the same dimensionality<a class="headerlink" href="#variables-of-the-same-dimensionality" title="Permalink to this heading">#</a></h2>
-<p><strong>Now we want to find the values of the sensible heat flux when the 2m temperature is maximum.</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the values of the sensible heat flux when temperature is maximum</span>
-<span class="n">hfss_at_max</span><span class="o">=</span> <span class="n">hfss</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tas</span> <span class="o">==</span> <span class="n">tas_max</span><span class="p">)</span>
-<span class="n">hfss_at_max</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">hfss_at_max</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 942 ms, sys: 3.44 s, total: 4.38 s
-Wall time: 4.78 s
-</pre></div>
-</div>
-<img alt="../_images/664ca39b5cea2a3b870fd3a3eb09efe18c6f22ee4f665928c9da3b8b77146cc0.png" src="../_images/664ca39b5cea2a3b870fd3a3eb09efe18c6f22ee4f665928c9da3b8b77146cc0.png" />
-</div>
-</div>
-<p><strong>As you can see, hfss_at_max has the same dimensions as the initial arrays (hfss and tas) but with a lot of missing values. Only the times and spatial points where tas is maximum will have values. So you need to then sample in some way that makes sense for your analysis to plot it. Here we arbitrarily chose to plot the mean in time.</strong></p>
+  <script src="https://cdn.jsdelivr.net/gh/atteggiani/animated-terminal/animated-terminal.min.js" defer></script>
+<section class="tex2jax_ignore mathjax_ignore" id="building-custom-python-environments-on-top-of-conda-analysis3">
+<h1>Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code><a class="headerlink" href="#building-custom-python-environments-on-top-of-conda-analysis3" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The conda analysis environments in the <code class="docutils literal notranslate"><span class="pre">hh5</span></code> project are a community-led approach to create a central
+python environment specifically for the analysis of climate and weather data. As such, these environments
+contain a wide range of packages curated by the CLEX CMS team that can fulfil the requirements of most
+analysis workflows.</p>
+<p>CMS uses the following guidelines to determine whether a package can go into the <code class="docutils literal notranslate"><span class="pre">analysis3-unstable</span></code>
+environment:</p>
+<ul class="simple">
+<li><p>Is the package available from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> or some other reputable conda channel?</p></li>
+<li><p>Is the package in line with the scope of the environment (i.e. climate data analysis)?</p></li>
+<li><p>Is the package actively maintained?</p></li>
+<li><p>Is the package and its dependencies compatible with the existing environment?</p></li>
+</ul>
+<p>If the answer to all of these questions is yes, then CMS will install the package into the environment on request. If, however, these conditions aren’t met, that doesn’t mean that you need to create a new conda environment
+from scratch to use a new package.</p>
 </section>
-<section id="variables-of-different-dimensionality">
-<h2>Variables of different dimensionality<a class="headerlink" href="#variables-of-different-dimensionality" title="Permalink to this heading">#</a></h2>
-<p>It really depends a lot on what object you are using. It is really easy with <code class="docutils literal notranslate"><span class="pre">xarray</span></code> arrays and not so much with <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays</p>
-<p>To illustrate this, we are going to look at the problem of finding at what times the 2m temperature is maximum at each point</p>
-<section id="solution-with-xarray">
-<h3>Solution with <code class="docutils literal notranslate"><span class="pre">xarray</span></code><a class="headerlink" href="#solution-with-xarray" title="Permalink to this heading">#</a></h3>
-<p>In this case, it is as simple as the previous case with variables of the same rank. Note that the result is a full 3D array with lots of missing values (NaN). There are only values when <code class="docutils literal notranslate"><span class="pre">tas</span></code> is at a maximum for that point in space.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_at_max</span><span class="o">=</span><span class="n">tas</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tas</span> <span class="o">==</span> <span class="n">tas_max</span><span class="p">)</span>
-<span class="n">time_at_max</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">time_at_max</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (time: 1872, lat: 145, lon: 192)&gt;
-array([[[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       ...,
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]]])
-Coordinates:
-  * time     (time) float64 6.753e+05 6.754e+05 ... 7.323e+05 7.323e+05
-    height   float64 1.5
-  * lat      (lat) float64 -90.0 -88.75 -87.5 -86.25 ... 86.25 87.5 88.75 90.0
-  * lon      (lon) float64 0.0 1.875 3.75 5.625 7.5 ... 352.5 354.4 356.2 358.1
-Attributes:
-    bounds:         time_bnds
-    units:          days since 0001-01-01
-    calendar:       proleptic_gregorian
-    axis:           T
-    long_name:      time
-    standard_name:  time
-</pre></div>
-</div>
-<img alt="../_images/1d8710aa83d6ffbac9c0c05fd961a504a36c88ee1d8d26c7275becad1ff08def.png" src="../_images/1d8710aa83d6ffbac9c0c05fd961a504a36c88ee1d8d26c7275becad1ff08def.png" />
-</div>
-</div>
-<p><strong>Note:</strong> The time unit is number of days since 0001-01-01, so one would have to convert to a more usable format for scientific usage</p>
+<section id="pip-install-user">
+<h2><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code><a class="headerlink" href="#pip-install-user" title="Permalink to this heading">#</a></h2>
+<p>Lets use the <a class="reference external" href="https://github.com/hdrake/xwmb">xWMB</a> package as an example.
+There is no conda distribution for this package, it can only be installed by <code class="docutils literal notranslate"><span class="pre">pip</span></code> from a git repository so it does not meet our criteria above. This
+package also has an extensive list of dependencies, most of which are available in the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment, so using the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code>
+environment as a base will save quite a lot of disk space.</p>
+<p>The simplest approach is to load the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> the xWMB package.
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input">module use /g/data/hh5/public/modules</terminal-line>
+<terminal-line data="input">module load conda/analysis3</terminal-line>
+<terminal-line data="input">pip install --user git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>Collecting git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>  Cloning <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  Running command git clone --filter=blob:none --quiet <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  …</terminal-line>
+<terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
+</terminal-window></p>
+<p>This is sufficient in certain cases, for instance, quickly testing user code, or when long-term
+reproducibility is not necessary. The downside with this approach is that it can lead to problems in the future. First of all, everything will be installed in your <code class="docutils literal notranslate"><span class="pre">/home</span></code> directory, which has a small quota and can easily be filled by local <code class="docutils literal notranslate"><span class="pre">pip</span></code> installations. Another consideration is that the <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> module
+is updated to every 3 months as new environments are released. For example, if you load <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> today,
+you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-24.01</span></code> environment. If you were to load the same module a couple of months from
+now, you’ll get the <code class="docutils literal notranslate"><span class="pre">conda/analysis3-24.04</span></code> environment. Our policies around updating the conda environments
+can be found <a class="reference external" href="https://climate-cms.org/cms-wiki/services/services-conda.html">here</a>. As time goes on, your
+locally installed package will get further and further out of date, and could potentially conflict with newer
+packages installed in updated analysis environments.</p>
+<p>In our advice to users, we recommend the following Advanced Settings for ARE environments:</p>
+<p><img alt="ARE recommended settings" src="../_images/ARE-recommended.PNG" /></p>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">PYTHONNOUSERSITE=1</span></code> environment variable. This will have the effect of preventing anything installed with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> from loading at all. This setting also works in the terminal and can be used as a first step to diagnosing any issues with python package imports.</p>
 </section>
+<section id="virtual-environments">
+<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Permalink to this heading">#</a></h2>
+<p>What we recommend is creating a <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environment</a>. A virtual environment is a self-contained Python
+environment built on top of an existing Python installation. The self-contained
+nature of a virtual environment means that any issues due to conflicting
+dependencies can be avoided entirely. Being able to base the environment on top of
+an existing <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment means that the installation can be kept
+small, as most of the dependencies will have already been satisfied.</p>
+<p>There are only two additional commands required to install <code class="docutils literal notranslate"><span class="pre">xWMB</span></code> into a virtual environment, as shown below:
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input">module use /g/data/hh5/public/modules</terminal-line>
+<terminal-line data="input">module load conda/analysis3</terminal-line>
+<terminal-line data="input">python3 -m venv xwmb_venv --system-site-packages</terminal-line>
+<terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+<terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>Collecting git+https://github.com/hdrake/xwmb.git&#64;main</terminal-line>
+<terminal-line>  Cloning <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> (to revision main) to /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  Running command git clone --filter=blob:none --quiet <a class="github reference external" href="https://github.com/hdrake/xwmb.git">hdrake/xwmb.git</a> /scratch/v45/dr4292/tmp/pip-req-build-qox565pe</terminal-line>
+<terminal-line>  …</terminal-line>
+<terminal-line>Successfully installed regionate-0.0.1 sectionate-0.2.1 xbudget-0.1.0 xgcm-0.8.2.dev15+g7492277 xwmb-0.1.1 xwmt-0.1.1</terminal-line>
+</terminal-window></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> here, as this will result in the packages being installed in your <code class="docutils literal notranslate"><span class="pre">~/.local</span></code> directory, leaving the virtual environment empty</p>
+</div>
+<p>And that’s it. We now have a fully self-contained environment with a custom
+package built on top of the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment. It is important to note
+that this virtual environment is tied to the version of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> that was loaded
+at the time of its creation, so it avoids the out-of-date dependencies issue mentioned earlier.
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input" inputChar="(xwmb_venv) $">which python3</terminal-line>
+<terminal-line>~/xwmb_venv/bin/python3</terminal-line>
+<terminal-line data="input" inputChar="(xwmb_venv) $">ls -l ~/xwmb_venv/bin/python3</terminal-line>
+<terminal-line>lrwxrwxrwx 1 dr4292 v45 67 Jun  5 14:43 /home/563/dr4292/xwmb_venv/bin/python3 -&gt; /g/data/hh5/public/apps/miniconda3/envs/analysis3-24.01/bin/python3</terminal-line>
+</terminal-window></p>
+<p>Immediately after loading the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> module, you can run
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">xwmb_venv/bin/activate</span></code> and any <code class="docutils literal notranslate"><span class="pre">python</span></code> command or script will now run under the new virtual environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+<span class="c1">#PBS -l walltime=1:00:00,mem=4GB,ncpus=1,storage=gdata/hh5</span>
+
+<span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">g</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hh5</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">modules</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">conda</span><span class="o">/</span><span class="n">analysis3</span>
+<span class="n">source</span> <span class="n">xwmb_venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="n">python3</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>If you’re running a script directly, you can
+change the path in the <a class="reference external" href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> line to the path to the <code class="docutils literal notranslate"><span class="pre">python</span></code> symlink in the virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/home/563/dr4292/xwmb_venv/bin/python3</span>
+
+<span class="kn">import</span> <span class="nn">xwmb</span>
+<span class="o">...</span>
+</pre></div>
+</div>
 </section>
-<section id="solution-for-numpy-arrays">
-<h2>Solution for <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays<a class="headerlink" href="#solution-for-numpy-arrays" title="Permalink to this heading">#</a></h2>
-<p>We’ll use <code class="docutils literal notranslate"><span class="pre">tas</span></code> and <code class="docutils literal notranslate"><span class="pre">tas.time</span></code> again but without using the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> built-in methods. If I try the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> equivalent solution:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nptime_at_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tas</span> <span class="o">==</span> <span class="n">tas_max</span><span class="p">,</span> <span class="n">tas</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-</pre></div>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">#</a></h2>
+<p>Virtual environments are designed to be disposable, so if something goes wrong, instead of trying
+to fix the environment in place, it is safe to simply delete the environment and start again.
+There are many reasons this might need to happen, for example, you’re installing an old
+package that is not compatible with e.g. <code class="docutils literal notranslate"><span class="pre">numpy</span></code> installed in the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment.
+In that case, you could simply delete the environment, load an older <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environment
+and re-create it.</p>
+<terminal-window typingDelay=30 lineDelay=200>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">deactivate</terminal-line>
+    <terminal-line data="input">rm -rf xwmb_venv</terminal-line>
+    <terminal-line data="input">module unload conda</terminal-line>
+    <terminal-line data="input">module load conda/analysis3-23.01</terminal-line>
+    <terminal-line data="input">python3 -m venv xwmb_venv --system-site-packages</terminal-line>
+    <terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+    <terminal-line data="input" inputChar="(xwmb_venv) $">pip install git+https://github.com/hdrake/xwmb.git@main</terminal-line>
+</terminal-window>
+<p>In a similar vein, if you’re installing more packages into a virtual environment and they
+begin to conflict with each other, the best course of action is to create a new virtual environment.
+Virtual environments are isolated from each other, so rather than creating large, monolithic
+environments, it is common practice to create virtual environments for a single package, and have
+multiple virtual environments depending on your immediate requirements.</p>
+<p>In general, if anything in the environment doesn’t work for whatever reason, the best course of action
+is to delete it and try again. You may need to try different <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code> environments, or, if none of those
+work, use one of the NCI installed Python modules as your base.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NCI’s Python modules do not have <code class="docutils literal notranslate"><span class="pre">dask</span></code>, <code class="docutils literal notranslate"><span class="pre">xarray</span></code>, etc. installed, so the resultant virtual environments could be quite large.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-8-027b2651c8a9&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nptime_at_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tas</span> <span class="o">==</span> <span class="n">tas_max</span><span class="p">,</span> <span class="n">tas</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-
-<span class="ne">ValueError</span>: operands could not be broadcast together with shapes (1872,145,192) (1872,) () 
-</pre></div>
-</div>
-</div>
-</div>
-<p>This does not work as <code class="docutils literal notranslate"><span class="pre">numpy</span></code> (and <code class="docutils literal notranslate"><span class="pre">xarray</span></code>) can only perform a <code class="docutils literal notranslate"><span class="pre">where()</span></code> operation on arrays of the same shape. When provided with arrays of different shapes (like in this case), both <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">xarray</span></code> will try to make them conform with each other by expanding the smallest arrays to the shape of the biggest array. The values of the smallest arrays are copied across all missing dimensions. This process is called <code class="docutils literal notranslate"><span class="pre">broadcasting</span></code>.</p>
-<p>The problem is <code class="docutils literal notranslate"><span class="pre">numpy</span></code> is quite conservative in its broadcasting rules and can not perform it in the case above. <code class="docutils literal notranslate"><span class="pre">xarray</span></code> is much better at broadcasting as it uses all the metadata stored in the DataArray to identify the dimensions in each array. That is the reason why <code class="docutils literal notranslate"><span class="pre">DataArray.where()</span></code> worked above.</p>
-<p>If you have <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays, the best solution is to quickly transform your <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays into <code class="docutils literal notranslate"><span class="pre">xarray</span></code> DataArrays. You only need to name the dimensions. Any name will do, as long as you give the same name for the common dimensions in the :</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#DataArray.values will return only the numpy array with the values and none of the metadata stored in the DataArray</span>
-<span class="n">new_tas</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
-<span class="n">new_time</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">tas</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">new_max</span> <span class="o">=</span> <span class="n">new_tas</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">new_time_at_max</span> <span class="o">=</span> <span class="n">new_time</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_tas</span> <span class="o">==</span> <span class="n">new_max</span><span class="p">)</span>
-<span class="n">new_time_at_max</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (t: 1872, l: 145, L: 192)&gt;
-array([[[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       ...,
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]]])
-Dimensions without coordinates: t, l, L
-</pre></div>
-</div>
-</div>
-</div>
-<p>As you see, you can keep your values and the time in separate arrays (new_tas and new_time). You don’t need to add the time array as a coordinate to the 3D array. Although it can be a good idea to do it in general as it keeps the data self-describing.</p>
 </section>
-<section id="extension">
-<h2>Extension<a class="headerlink" href="#extension" title="Permalink to this heading">#</a></h2>
-<p>The other advantage of using <code class="docutils literal notranslate"><span class="pre">xarray</span></code> is it allows you to extend the functionalities beyond the built-in functions a lot more easily. The idea here is to use the  <code class="docutils literal notranslate"><span class="pre">groupby().apply()</span></code> workflow to apply a user-defined function.
-You could obviously use it as a solution to the current problem:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_max</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="n">tas_max</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-
-<span class="n">tasmax_dates</span> <span class="o">=</span> <span class="n">tas</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">check_max</span><span class="p">)</span>
-<span class="n">tasmax_dates</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">tasmax_dates</span>
-</pre></div>
+<section id="jupyter-kernel">
+<h2>Jupyter Kernel<a class="headerlink" href="#jupyter-kernel" title="Permalink to this heading">#</a></h2>
+<p>There is one more step necessary to have your new virtual environment usable as a kernel in an ARE JupyterLab session.
+You’ll need to call <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span></code> while the virtual environment is activated.
+<terminal-window typingDelay=30 lineDelay=200>
+<terminal-line data="input">module use /g/data/hh5/public/modules</terminal-line>
+<terminal-line data="input">module load conda/analysis3</terminal-line>
+<terminal-line data="input">source xwmb_venv/bin/activate</terminal-line>
+<terminal-line data="input" inputChar="(xwmb_venv) $">python3 -m ipykernel install --user --name xwmb-venv --display-name “xWMB + conda/analysis3”</terminal-line>
+</terminal-window></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since this virtual environment is built on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code>, you do not need to install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> in it, as this is already present in the conda environment.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;tas&#39; (time: 1872, lat: 145, lon: 192)&gt;
-array([[[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       ...,
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]],
-
-       [[nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan],
-        ...,
-        [nan, nan, ..., nan, nan],
-        [nan, nan, ..., nan, nan]]])
-Coordinates:
-  * lat      (lat) float64 -90.0 -88.75 -87.5 -86.25 ... 86.25 87.5 88.75 90.0
-  * lon      (lon) float64 0.0 1.875 3.75 5.625 7.5 ... 352.5 354.4 356.2 358.1
-    height   float64 ...
-  * time     (time) float64 6.753e+05 6.754e+05 ... 7.323e+05 7.323e+05
-</pre></div>
-</div>
-<img alt="../_images/c4276637128fda313d7a93e6b1ed0ad287c2ca7bdc8c3275bcefc7e08ba4ebd5.png" src="../_images/c4276637128fda313d7a93e6b1ed0ad287c2ca7bdc8c3275bcefc7e08ba4ebd5.png" />
-</div>
-</div>
-<p>But this is slower than using the built-in functions directly. And it doesn’t keep the attributes (like time_bnds, units, calendar, etc)! It is then best to keep this approach for more complex problems that can not be easily solved otherwise.</p>
+<p>Now, when
+you launch a new ARE JupyterLab instance, you will be able to see your new environment,
+launch a notebook and import the <code class="docutils literal notranslate"><span class="pre">xWMB</span></code> package</p>
+<p><img alt="Jupyterlab launch" src="../_images/notebook_virtualenv_launch.gif" /></p>
+<p>You only have to do this once. If you delete the environment and recreate it at the same path,
+Jupyterlab will still be able to use it.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>While CMS tries to make the <code class="docutils literal notranslate"><span class="pre">hh5</span></code> conda analysis environments as comprehensive as possible, we can’t
+always install the packages you need. By creating a virtual environment using the <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code>
+environment as your base,
+its possible to add in packages CMS can’t install, without having the overhead of maintaining
+your own large conda environment. Furthermore, using a virtual environment  is more stable and easier to maintain and reuse than installing software using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code>. Virtual environments are simple to
+install, and simple to delete and re-create as necessary. Virtual environments can also be seamlessly integrated into
+ARE JupyterLab sessions, allowing you to use it anywhere you would use an <code class="docutils literal notranslate"><span class="pre">analysis3</span></code> conda environment.</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading">#</a></h2>
+<p>Thanks to Davide Marchegiani for <a class="reference external" href="https://github.com/atteggiani/animated-terminal.js">animated-terminal.js</a>.</p>
 </section>
 </section>
 
@@ -1033,20 +889,20 @@ Coordinates:
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2018-10-05-introduction-to-python-logging.html"
+       href="../index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic usage of python logging module</p>
+        <p class="prev-next-title">CLEX CMS Blog</p>
       </div>
     </a>
     <a class="right-next"
-       href="2019-07-29-multi-apply-along-axis.html"
+       href="2024-05-20-pytorch_intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Per-gridpoint time correlation of two models</p>
+        <p class="prev-next-title">Introduction to Pytorch</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1065,13 +921,13 @@ Coordinates:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-of-the-same-dimensionality">Variables of the same dimensionality</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-of-different-dimensionality">Variables of different dimensionality</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-xarray">Solution with <code class="docutils literal notranslate"><span class="pre">xarray</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-for-numpy-arrays">Solution for <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extension">Extension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install-user"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments">Virtual environments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
   </nav></div>
 
