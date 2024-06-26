@@ -6,8 +6,8 @@
     /posts/2024-06-05-mixing-python-envs
     /posts/2024-05-20-pytorch_intro
     /posts/2024-05-02-comparison-of-performance
+    /posts/2023-12-12-apply-ufunc
     /posts/2023-11-04-seasonal-means
-    /posts/2023-11-02-gnu-parallel
     
 
 .. toctree::

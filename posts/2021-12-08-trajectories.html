@@ -163,8 +163,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="2024-05-02-comparison-of-performance.html">Python Perfomance Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2023-12-12-apply-ufunc.html">Speed up custom operations on large datasets with universal functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tags</span></p>
 <ul class="nav bd-sidenav">
@@ -311,6 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-12-12-apply-ufunc.html">Speed up custom operations on large datasets with universal functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2024-05-02-comparison-of-performance.html">Python Perfomance Options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2024-06-05-mixing-python-envs.html">Building custom python environments on top of <code class="docutils literal notranslate"><span class="pre">conda/analysis3</span></code></a></li>
 </ul>
@@ -381,6 +382,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="2023-07-05-select-region-shapefile.html">Using a shapefile to select a region and calculate statistics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2023-12-12-apply-ufunc.html">Speed up custom operations on large datasets with universal functions</a></li>
 </ul>
 </li>
 </ul>
@@ -395,6 +397,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../contents/year-2023.html">2023</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="2023-12-12-apply-ufunc.html">Speed up custom operations on large datasets with universal functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-04-seasonal-means.html">Getting Seasonal Means for the season December-January-February</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-11-02-gnu-parallel.html">Using GNU Parallel in bash scripts to optimize python processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2023-09-20-dask-optimiser.html">Introducing the <code class="docutils literal notranslate"><span class="pre">dask-optimiser</span></code> module</a></li>
@@ -743,7 +746,7 @@ document.write(`
 </section>
 <section id="investigating-the-data">
 <h2>Investigating the data<a class="headerlink" href="#investigating-the-data" title="Permalink to this heading">#</a></h2>
-<p>We can see how long a single trajectory spends in each region by creating a histogram with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a>:</p>
+<p>We can see how long a single trajectory spends in each region by creating a histogram with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total time spent in each state</span>
@@ -779,7 +782,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>If we use this as a mask with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.where()</span></code></a> we can find out which region was entered</p>
+<p>If we use this as a mask with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.where()</span></code></a> we can find out which region was entered</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transitions into each state</span>
@@ -817,7 +820,7 @@ document.write(`
 </section>
 <section id="looking-at-all-datasets">
 <h2>Looking at all datasets<a class="headerlink" href="#looking-at-all-datasets" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a> only works with 1d data, to use it on all trajectories at once we can combine it with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.apply_along_axis.html#numpy.apply_along_axis" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.apply_along_axis()</span></code></a>:</p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.histogram()</span></code></a> only works with 1d data, to use it on all trajectories at once we can combine it with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.apply_along_axis.html#numpy.apply_along_axis" title="(in NumPy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.apply_along_axis()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Applying to the total dataset</span>

@@ -24,4 +24,5 @@ xarray
     /posts/2023-07-05-select-region-shapefile
     /posts/2023-09-20-dask-optimiser
     /posts/2023-11-04-seasonal-means
+    /posts/2023-12-12-apply-ufunc
     
