@@ -290,3 +290,17 @@
     - python
     - xarray
     - dask
+  tags: [python, xarray]
+
+2024-05-02-comparison-of-performance:
+  title: Python Performance Options
+  excerpt: Investigates how the performance of python code can be enhanced without parallelisation.
+  tags: [ python ]
+
+2024-05-20-pytorch_intro:
+  title: Introduction to Pytorch
+  tags: [ python ML ]
+
+2024-06-05-mixing-python-envs:
+  title: Building custom python environments on top of conda/analysis3
+  tags: [ python ]
