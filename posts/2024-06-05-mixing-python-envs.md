@@ -49,7 +49,7 @@ reproducibility is not necessary. The downside with this approach is that it can
 is updated to every 3 months as new environments are released. For example, if you load `conda/analysis3` today,
 you'll get the `conda/analysis3-24.01` environment. If you were to load the same module a couple of months from
 now, you'll get the `conda/analysis3-24.04` environment. Our policies around updating the conda environments
-can be found [here](https://climate-cms.org/cms-wiki/services/services-conda.html). As time goes on, your
+can be found [here](https://coecms.github.io/cms-wiki/services/services-conda.html). As time goes on, your
 locally installed package will get further and further out of date, and could potentially conflict with newer
 packages installed in updated analysis environments.
 
