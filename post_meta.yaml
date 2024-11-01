@@ -280,10 +280,28 @@
 
 2023-11-04-seasonal-means:
   title: Getting seasonal means out of a dataset
+  tags: 
+    - python
+    - xarray
+
+2023-12-12-apply-ufunc:
+  title: Speed up custom operations with universal functions.
+  tags: 
+    - python
+    - xarray
+    - dask
   tags: [python, xarray]
 
 2024-05-02-comparison-of-performance:
   title: Python Performance Options
   author: Holger Wolff
   excerpt: Investigates how the performance of python code can be enhanced without parallelisation.
+  tags: [ python ]
+
+2024-05-20-pytorch_intro:
+  title: Introduction to Pytorch
+  tags: [ python ML ]
+
+2024-06-05-mixing-python-envs:
+  title: Building custom python environments on top of conda/analysis3
   tags: [ python ]
