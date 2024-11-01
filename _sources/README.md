@@ -3,7 +3,7 @@ CMS Blog
 
 The blog is viewable here:
 
-http://climate-cms.org
+http://coecms.github.io
 
 See the jupyter-book docs for info on creating posts - https://jupyterbook.org/intro.html
 
@@ -25,7 +25,7 @@ To create a new blog post:
 1. Delete `branch`
 
 ---
-The new blog post should appear within a few minutes at http://climate-cms.org 
+The new blog post should appear within a few minutes at http://coecms.github.io 
 
 If it doesn't, check under "Github Pages" here for error messages:
 

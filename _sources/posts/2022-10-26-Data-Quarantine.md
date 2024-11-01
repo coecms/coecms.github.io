@@ -64,6 +64,6 @@ For more information on these commands:  https://nci.org.au/sites/default/files/
 
 If there is data that you need to keep long term then there are a couple of things that need to be considered. You can publish your data if you have processed a lot of raw data and it doesn't already exist on the NCI system or you can move data to the tape system for long-term storage. 
 
-Please have a look at this blog: https://climate-cms.org/posts/2022-04-26-storage-where-what-why-how.html
+Please have a look at this blog: https://coecms.github.io/posts/2022-04-26-storage-where-what-why-how.html
 
 Data can exist for longer on gdata than on scratch but for longer term you will need to decide on a method from the above link.
