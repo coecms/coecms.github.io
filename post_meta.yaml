@@ -284,5 +284,6 @@
 
 2024-05-02-comparison-of-performance:
   title: Python Performance Options
+  author: Holger Wolff
   excerpt: Investigates how the performance of python code can be enhanced without parallelisation.
   tags: [ python ]
